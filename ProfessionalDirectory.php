@@ -27,6 +27,15 @@ function professional_directory_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'professional_directory_deactivate' );
 
+//----------
+//Create post type "Services"
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-professionaldirectory-cpt.php';
+// Assegure-se de que este trecho está no arquivo principal do plugin e não dentro de uma condição que o impeça de executar.
+add_action( 'init', ['ProfessionalDirectory_CPT', 'register_service_cpt'] );
+add_action( 'admin_init', ['ProfessionalDirectory_CPT', 'set_service_capabilities'] );
+
+
+
 
 // Enqueue public styles and scripts
 function professionaldirectory_enqueue_scripts() {

@@ -23,3 +23,7 @@ class ProfessionalDirectory_Users {
 	}
 }
 
+// Hook para ativação e desativação do plugin.
+register_activation_hook( __FILE__, array( 'ProfessionalDirectory_Users', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'ProfessionalDirectory_Users', 'deactivate' ) );
+?>
