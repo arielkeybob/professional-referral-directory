@@ -1,0 +1,1 @@
+// Public JavaScript for Professional Directory Plugin
