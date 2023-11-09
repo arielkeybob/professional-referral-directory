@@ -12,6 +12,22 @@ Text Domain: professionaldirectory
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+// Inclua o arquivo de funções do usuário.
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-professionaldirectory-users.php';
+
+// Hook para ativação do plugin.
+function professional_directory_activate() {
+    ProfessionalDirectory_Users::activate();
+}
+register_activation_hook( __FILE__, 'professional_directory_activate' );
+
+// Hook para desativação do plugin.
+function professional_directory_deactivate() {
+    ProfessionalDirectory_Users::deactivate();
+}
+register_deactivation_hook( __FILE__, 'professional_directory_deactivate' );
+
+
 // Enqueue public styles and scripts
 function professionaldirectory_enqueue_scripts() {
     wp_enqueue_style('professionaldirectory-style', plugins_url('/public/css/style.css', __FILE__));
@@ -29,3 +45,5 @@ function professionaldirectory_enqueue_admin_scripts() {
 if ( is_admin() ) {
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
 }
+
+
