@@ -69,3 +69,6 @@ add_action('init', 'professional_directory_set_capabilities', 11);
 
 // Registra a taxonomia personalizada.
 add_action( 'init', ['ProfessionalDirectory_CPT', 'register_service_type_taxonomy'] );
+
+
+require_once plugin_dir_path(__FILE__) . 'includes/class-professionaldirectory-metaboxes.php';
