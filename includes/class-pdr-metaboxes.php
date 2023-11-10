@@ -1,62 +1,58 @@
 <?php
 // Se este arquivo for chamado diretamente, aborte.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
     die;
 }
 
-class ProfessionalDirectory_MetaBoxes {
+class PDR_Metaboxes {
 
-    public function __construct() {
-        add_action( 'add_meta_boxes', [ $this, 'add_custom_meta_box' ] );
-        add_action( 'save_post', [ $this, 'save_custom_meta' ] );
+    // Função para inicializar os meta boxes
+    public static function init() {
+        add_action('add_meta_boxes', [self::class, 'add_meta_boxes']);
+        add_action('save_post', [self::class, 'save_meta_boxes']);
     }
 
-    // Função para adicionar meta box
-    public function add_custom_meta_box() {
+    // Função para adicionar meta boxes
+    public static function add_meta_boxes() {
+        // Adiciona o meta box de localização (inativo no momento)
         add_meta_box(
-            'service_details',                // ID único para a meta box
-            __('Service Details', 'professionaldirectory'), // Título da meta box
-            [ $this, 'custom_meta_box_html' ], // Callback que renderiza o HTML da meta box
-            'professional_service',           // Tipo de post onde a meta box deve aparecer
-            'normal',                         // Contexto onde a meta box deve aparecer ('normal', 'side', 'advanced')
-            'high'                            // Prioridade dentro do contexto onde a meta box deve aparecer
+            'pdr_service_location',
+            'Localização do Serviço',
+            [self::class, 'render_location_meta_box'],
+            'professional_service', // Altere para o tipo de post correto se necessário
+            'side',
+            'default'
         );
     }
 
-    // Callback para renderizar o HTML da meta box
-    public function custom_meta_box_html( $post ) {
-        // Adicionar campos personalizados aqui
-        $value = get_post_meta( $post->ID, '_service_details', true );
+    // Função para renderizar o meta box de localização
+    public static function render_location_meta_box($post) {
+        // Adiciona um campo nonce para verificação
+        wp_nonce_field('pdr_save_location_meta_box_data', 'pdr_location_meta_box_nonce');
 
-        // Nonce field para validação
-        wp_nonce_field( 'custom_meta_box_nonce', 'meta_box_nonce' );
+        // Obtém o valor meta existente
+        $location = get_post_meta($post->ID, '_pdr_service_location', true);
 
-        // HTML para a meta box
-        echo '<label for="service_details">' . __('Service Details', 'professionaldirectory') . '</label>';
-        echo '<input type="text" id="service_details" name="service_details" value="' . esc_attr( $value ) . '" />';
+        // Campo de localização (por enquanto, inativo)
+        echo '<label for="pdr_service_location">Localização:</label>';
+        echo '<input type="text" id="pdr_service_location" name="pdr_service_location" value="' . esc_attr($location) . '" disabled />';
     }
 
-    // Função para salvar os dados do meta box
-    public function save_custom_meta( $post_id ) {
-        // Verificar se o nonce é válido
-        if ( ! isset( $_POST['meta_box_nonce'] ) || ! wp_verify_nonce( $_POST['meta_box_nonce'], 'custom_meta_box_nonce' ) ) {
+    // Função para salvar os dados dos meta boxes
+    public static function save_meta_boxes($post_id) {
+        // Verifica se o post é autosave ou uma revisão
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE || wp_is_post_revision($post_id)) {
             return;
         }
 
-        // Verificar se o campo está definido
-        if ( ! isset( $_POST['service_details'] ) ) {
-            return;
+        // Salvar o meta box de localização (quando ativado)
+        if (isset($_POST['pdr_location_meta_box_nonce']) && wp_verify_nonce($_POST['pdr_location_meta_box_nonce'], 'pdr_save_location_meta_box_data')) {
+            if (isset($_POST['pdr_service_location'])) {
+                update_post_meta($post_id, '_pdr_service_location', sanitize_text_field($_POST['pdr_service_location']));
+            }
         }
-
-        // Verificar permissões de usuário
-        if ( ! current_user_can( 'edit_post', $post_id ) ) {
-            return;
-        }
-
-        // Atualizar os dados no banco de dados
-        update_post_meta( $post_id, '_service_details', sanitize_text_field( $_POST['service_details'] ) );
     }
 }
 
-// Instanciar a classe
-new ProfessionalDirectory_MetaBoxes();
+// Inicializa os meta boxes
+PDR_Metaboxes::init();
