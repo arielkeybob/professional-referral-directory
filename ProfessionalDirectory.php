@@ -13,7 +13,7 @@ Text Domain: professionaldirectory
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclua o arquivo de funções do usuário.
-require_once plugin_dir_path(__FILE__) . 'includes/class-professionaldirectory-users.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 
 // Hook para ativação do plugin.
 function professional_directory_activate() {
@@ -28,7 +28,7 @@ function professional_directory_deactivate() {
 register_deactivation_hook(__FILE__, 'professional_directory_deactivate');
 
 // Create post type "Services"
-require_once plugin_dir_path(__FILE__) . 'includes/class-professionaldirectory-cpt.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 // Registra o CPT durante a inicialização
 add_action('init', ['ProfessionalDirectory_CPT', 'register_service_cpt']);
 
@@ -36,7 +36,7 @@ add_action('init', ['ProfessionalDirectory_CPT', 'register_service_cpt']);
 add_action('admin_init', ['ProfessionalDirectory_CPT', 'set_service_capabilities']);
 
 // Inclua o arquivo de restrições de administração
-require_once plugin_dir_path(__FILE__) . 'includes/class-professionaldirectory-admin.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-admin.php';
 
 // Enqueue public styles and scripts
 function professionaldirectory_enqueue_scripts() {
@@ -71,4 +71,4 @@ add_action('init', 'professional_directory_set_capabilities', 11);
 add_action( 'init', ['ProfessionalDirectory_CPT', 'register_service_type_taxonomy'] );
 
 
-require_once plugin_dir_path(__FILE__) . 'includes/class-professionaldirectory-metaboxes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
