@@ -65,3 +65,7 @@ function professional_directory_set_capabilities() {
 }
 // Este hook garante que as capacidades sejam definidas após o tipo de post ter sido registrado.
 add_action('init', 'professional_directory_set_capabilities', 11);
+
+
+// Registra a taxonomia personalizada.
+add_action( 'init', ['ProfessionalDirectory_CPT', 'register_service_type_taxonomy'] );
