@@ -83,21 +83,23 @@ function pdr_search_callback() {
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-        // Supondo que você deseja retornar uma lista de posts encontrados
-        $services = array();
+        ob_start(); // Inicia a captura do output
+
         while ($query->have_posts()) {
             $query->the_post();
-            $services[] = array(
-                'id' => get_the_ID(),
-                'title' => get_the_title(),
-                // Inclua outros detalhes do serviço conforme necessário
-            );
+            
+            // Altere o caminho para corresponder à estrutura do seu plugin
+            include plugin_dir_path(__FILE__) . 'public/templates/content-service.php';
         }
+
+        $html = ob_get_clean(); // Obtém o output capturado e limpa o buffer
         wp_reset_postdata();
-        wp_send_json_success($services);
+        wp_send_json_success($html);
     } else {
         wp_send_json_error('Nenhum serviço encontrado.');
     }
 
     wp_die();
 }
+
+

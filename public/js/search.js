@@ -43,17 +43,9 @@ jQuery(document).ready(function($) {
     function displayResults(data) {
         var resultsContainer = $('#pdr-search-results');
         resultsContainer.empty();
-
-        if (data && data.length > 0) {
-            $.each(data, function(index, service) {
-                resultsContainer.append('<div class="service-result">' +
-                    '<h3>' + service.name + '</h3>' +
-                    '<p>ID: ' + service.id + '</p>' +
-                    // Inclua outros detalhes do serviço conforme necessário
-                    '</div>');
-            });
-        } else {
-            resultsContainer.append('<p>Nenhum serviço encontrado.</p>');
-        }
+    
+        // Insere o HTML retornado diretamente no container de resultados
+        resultsContainer.html(data);
     }
+    
 });
