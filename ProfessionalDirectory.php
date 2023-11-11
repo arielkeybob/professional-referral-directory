@@ -18,6 +18,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php'; // Inclui as funções de e-mail
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
 
@@ -41,9 +42,7 @@ function professionaldirectory_enqueue_scripts() {
     wp_enqueue_style('professionaldirectory-style', plugins_url('/public/css/style.css', __FILE__));
     wp_enqueue_script('professionaldirectory-script', plugins_url('/public/js/script.js', __FILE__), array('jquery'), '', true);
     wp_enqueue_script('pdr-search-script', plugins_url('/public/js/search.js', __FILE__), array('jquery'), null, true);
-
-    // Correção: Passar 'ajaxurl' como array
-    wp_localize_script('pdr-search-script', 'ajax_object', array( 'ajax_url' => admin_url('admin-ajax.php') ));
+    wp_localize_script('pdr-search-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 }
 add_action('wp_enqueue_scripts', 'professionaldirectory_enqueue_scripts');
 
@@ -70,10 +69,10 @@ function pdr_search_callback() {
     $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
 
     $args = array(
-        'post_type' => 'professional_service', // Substitua pelo seu tipo de post correto
+        'post_type' => 'professional_service',
         'tax_query' => array(
             array(
-                'taxonomy' => 'service_type', // Substitua pela sua taxonomia correta
+                'taxonomy' => 'service_type',
                 'field'    => 'slug',
                 'terms'    => $service_type,
             ),
@@ -83,16 +82,28 @@ function pdr_search_callback() {
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-        ob_start(); // Inicia a captura do output
+        ob_start();
 
         while ($query->have_posts()) {
             $query->the_post();
-            
-            // Altere o caminho para corresponder à estrutura do seu plugin
             include plugin_dir_path(__FILE__) . 'public/templates/content-service.php';
         }
 
-        $html = ob_get_clean(); // Obtém o output capturado e limpa o buffer
+        $html = ob_get_clean();
+
+        // Envio de e-mail para o autor do primeiro post encontrado
+        $query->rewind_posts();
+        if ($query->have_posts()) {
+            $query->the_post();
+            $user_data = array(
+                'name' => isset($_POST['name']) ? $_POST['name'] : '',
+                'email' => isset($_POST['email']) ? $_POST['email'] : '',
+                'service_type' => $service_type,
+                'address' => isset($_POST['address']) ? $_POST['address'] : ''
+            );
+            send_email_to_service_author(get_the_ID(), $user_data);
+        }
+
         wp_reset_postdata();
         wp_send_json_success($html);
     } else {
@@ -101,5 +112,3 @@ function pdr_search_callback() {
 
     wp_die();
 }
-
-
