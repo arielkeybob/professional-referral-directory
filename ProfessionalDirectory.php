@@ -54,6 +54,7 @@ if (is_admin()) {
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
 }
 
+require_once plugin_dir_path(__FILE__) . 'public/class-pdr-shortcodes.php';
 
 
 
