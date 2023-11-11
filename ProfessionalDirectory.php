@@ -41,6 +41,9 @@ function professionaldirectory_enqueue_scripts() {
     wp_enqueue_style('professionaldirectory-style', plugins_url('/public/css/style.css', __FILE__));
     wp_enqueue_script('professionaldirectory-script', plugins_url('/public/js/script.js', __FILE__), array('jquery'), '', true);
     wp_enqueue_script('pdr-search-script', plugins_url('/public/js/search.js', __FILE__), array('jquery'), null, true);
+
+    // Define a variável 'ajaxurl' para ser usada no script JavaScript
+    wp_localize_script('pdr-search-script', 'ajaxurl', admin_url('admin-ajax.php'));
 }
 add_action('wp_enqueue_scripts', 'professionaldirectory_enqueue_scripts');
 
@@ -58,3 +61,15 @@ function professional_directory_set_capabilities() {
     ProfessionalDirectory_CPT::set_service_capabilities();
 }
 add_action('init', 'professional_directory_set_capabilities', 11);
+
+// Adicionando ações para lidar com a requisição AJAX
+add_action('wp_ajax_pdr_search', 'pdr_search_callback');
+add_action('wp_ajax_nopriv_pdr_search', 'pdr_search_callback');
+
+// Função de callback para a ação AJAX
+function pdr_search_callback() {
+    // Aqui você implementará a lógica de busca e de envio de e-mail
+
+    // Não esqueça de finalizar com wp_die() para encerrar a execução de forma adequada
+    wp_die();
+}
