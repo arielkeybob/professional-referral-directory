@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 
         // Enviando a requisição AJAX
         $.ajax({
-            url: ajaxurl, // Certifique-se de que ajaxurl está definido corretamente
+            url: ajax_object.ajax_url, // Certifique-se de que ajaxurl está definido corretamente
             type: 'POST',
             data: formData,
             success: function(response) {
