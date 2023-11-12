@@ -21,6 +21,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php'; // Inclui as funções de e-mail
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
+require_once plugin_dir_path(__FILE__) . 'admin/class-myplugin-admin.php';
+
+// Instanciar a classe de administração
+if (is_admin()) {
+    $myplugin_admin = new MyPlugin_Admin();
+}
 
 // Hooks para ativação e desativação do plugin
 function professional_directory_activate() {
@@ -114,5 +120,4 @@ function pdr_search_callback() {
 }
 
 
-require_once plugin_dir_path(__FILE__) . 'admin\class-myplugin-admin.php';
-$myplugin_admin = new MyPlugin_Admin();
+
