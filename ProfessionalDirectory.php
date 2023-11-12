@@ -112,3 +112,7 @@ function pdr_search_callback() {
 
     wp_die();
 }
+
+
+require_once plugin_dir_path(__FILE__) . 'admin\class-myplugin-admin.php';
+$myplugin_admin = new MyPlugin_Admin();
