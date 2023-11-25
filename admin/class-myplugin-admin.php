@@ -8,8 +8,8 @@ class MyPlugin_Admin {
 
     public function add_admin_menu() {
         add_menu_page(
-            'Configurações do Meu Plugin',
-            'Meu Plugin',
+            'Configurações do ProfessionalDirectory',
+            'ProfessionalDirectory',
             'manage_options',
             'myplugin',
             array($this, 'settings_page'),
@@ -21,7 +21,7 @@ class MyPlugin_Admin {
     public function settings_page() {
         ?>
         <div class="wrap">
-            <h2>Configurações do Meu Plugin</h2>
+            <h2>Configurações do ProfessionalDirectory</h2>
             <form method="post" action="options.php">
                 <?php
                 settings_fields('myplugin_settings_group');
