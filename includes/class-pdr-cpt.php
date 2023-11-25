@@ -39,7 +39,7 @@ class ProfessionalDirectory_CPT {
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
-            'show_in_menu'       => true,
+            'show_in_menu'       => false,
             'query_var'          => true,
             'rewrite'            => ['slug' => 'service'],
             'capability_type'    => 'professional_service',
@@ -119,7 +119,7 @@ class ProfessionalDirectory_CPT {
             'hierarchical'      => true, // Define se a taxonomia é hierárquica como categorias ou não hierárquica como tags.
             'labels'            => $labels,
             'show_ui'           => true,
-            'show_in_menu'      => true,
+            'show_in_menu'      => false,
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => 'service-type' ),
