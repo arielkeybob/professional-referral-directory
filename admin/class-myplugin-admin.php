@@ -2,12 +2,13 @@
 class MyPlugin_Admin {
 
     public function __construct() {
+        require_once plugin_dir_path(__FILE__) . '/export-services.php';
+
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
     }
 
     public function add_admin_menu() {
-        // Menu Principal
         add_menu_page(
             'ProfessionalDirectory',
             'ProfessionalDirectory',
@@ -18,20 +19,16 @@ class MyPlugin_Admin {
             6
         );
 
-        
-
-            // Submenu Direto para Todos os Services
-        $all_services_url = admin_url('edit.php?post_type=professional_service'); // Substitua pelo slug correto do seu post type
+        $all_services_url = admin_url('edit.php?post_type=professional_service');
         add_submenu_page(
             'professional-directory',
-            'All Services',
-            'All Services',
+            'Manage Services',
+            'Manage Services',
             'manage_options',
             $all_services_url
         );
 
-        // Submenu Direto para Tipo de Services
-        $service_type_url = admin_url('edit-tags.php?taxonomy=service_type&post_type=professional_service'); // Substitua pelos slugs corretos
+        $service_type_url = admin_url('edit-tags.php?taxonomy=service_type&post_type=professional_service');
         add_submenu_page(
             'professional-directory',
             'Service Type',
@@ -40,7 +37,6 @@ class MyPlugin_Admin {
             $service_type_url
         );
 
-        // Submenu para Configurações
         add_submenu_page(
             'professional-directory',
             'Settings',
@@ -48,6 +44,15 @@ class MyPlugin_Admin {
             'manage_options',
             'professional-directory-settings',
             array($this, 'settings_page')
+        );
+
+        add_submenu_page(
+            'professional-directory',
+            'Exportar Services',
+            'Exportar',
+            'manage_options',
+            'professional-directory-export',
+            array($this, 'export_services_callback')
         );
     }
 
@@ -99,33 +104,29 @@ class MyPlugin_Admin {
         echo '<div class="wrap"><h1>Bem-vindo ao ProfessionalDirectory</h1></div>';
     }
 
-
-    public function all_services_callback() {
-        // Substitua 'professional_service' pelo slug correto do seu post type
-        $url = admin_url('edit.php?post_type=professional_service');
+    public function settings_page() {
         echo '<div class="wrap">';
-        echo '<h1>Todos os Services</h1>';
-        echo '<p><a href="' . esc_url($url) . '">Gerenciar todos os Services</a></p>';
+        echo '<h2>Configurações do ProfessionalDirectory</h2>';
+        echo '<form method="post" action="options.php">';
+        settings_fields('myplugin_settings_group');
+        do_settings_sections('myplugin');
+        submit_button();
+        echo '</form>';
         echo '</div>';
     }
 
-    public function service_type_callback() {
-        echo '<div class="wrap"><h1>Tipos de Service</h1></div>';
-    }
+    public function export_services_callback() {
+        echo '<div class="wrap">';
+        echo '<h1>Exportar Services</h1>';
+        echo '<form method="post">';
+        echo '<input type="hidden" name="action" value="export_services" />';
+        submit_button('Exportar Services para CSV');
+        echo '</form>';
+        echo '</div>';
 
-    public function settings_page() {
-        ?>
-        <div class="wrap">
-            <h2>Configurações do ProfessionalDirectory</h2>
-            <form method="post" action="options.php">
-                <?php
-                settings_fields('myplugin_settings_group');
-                do_settings_sections('myplugin');
-                submit_button();
-                ?>
-            </form>
-        </div>
-        <?php
+        if (isset($_POST['action']) && $_POST['action'] == 'export_services') {
+            export_services_to_csv();
+        }
     }
 
     public function google_maps_api_key_callback() {
@@ -151,4 +152,5 @@ class MyPlugin_Admin {
         echo "<input type='text' name='myplugin_manual_emails' value='" . esc_attr($manual_emails) . "' style='width: 50%;' placeholder='email1@example.com, email2@example.com' />";
         echo "<p>Insira os e-mails adicionais separados por vírgulas.</p>";
     }
+    
 }
