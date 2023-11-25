@@ -1,3 +1,25 @@
+// Inicializa o Autocomplete do Google Places no campo de endereço
+// Definição global da função initAutocomplete
+window.initAutocomplete = function() {
+    var autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('pdr_service_location'),
+        {types: ['geocode']}
+    );
+
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            alert("No details available for input: '" + place.name + "'");
+            return;
+        }
+
+        // Atualize os campos de latitude e longitude
+        document.getElementById('pdr_latitude_display').textContent = place.geometry.location.lat();
+        document.getElementById('pdr_longitude_display').textContent = place.geometry.location.lng();
+    });
+};
+
+
 jQuery(document).ready(function($) {
     // Exibir campos de nome e e-mail ao clicar em "Next"
     $('#pdr-search-btn').click(function() {
@@ -12,14 +34,14 @@ jQuery(document).ready(function($) {
         var formData = {
             'action': 'pdr_search',
             'service_type': $('select[name="service_type"]').val(),
-            'address': $('input[name="address"]').val(), // Por enquanto não utilizado
+            'address': $('input[name="address"]').val(),
             'name': $('input[name="name"]').val(),
             'email': $('input[name="email"]').val()
         };
 
         // Enviando a requisição AJAX
         $.ajax({
-            url: ajax_object.ajax_url, // Certifique-se de que ajaxurl está definido corretamente
+            url: ajax_object.ajax_url,
             type: 'POST',
             data: formData,
             success: function(response) {
@@ -43,9 +65,8 @@ jQuery(document).ready(function($) {
     function displayResults(data) {
         var resultsContainer = $('#pdr-search-results');
         resultsContainer.empty();
-    
+
         // Insere o HTML retornado diretamente no container de resultados
         resultsContainer.html(data);
     }
-    
 });

@@ -30,7 +30,7 @@ class PDR_Search_Form {
                     }
                     ?>
                 </select>
-                <input type="text" name="address" placeholder="Endereço">
+                <input type="text" name="address" id="pdr_service_location" placeholder="Endereço">
                 <button type="button" id="pdr-search-btn">Next</button>
             </div>
 
