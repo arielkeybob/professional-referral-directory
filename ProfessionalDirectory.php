@@ -3,7 +3,7 @@
 Plugin Name: ProfessionalDirectory
 Plugin URI: http://arielsouza.com.br/professionaldirectory
 Description: Gerencia um diretório de serviços profissionais e listagens.
-Version: 0.9
+Version: 1.0
 Author: Ariel Souza
 Author URI: arielsouza.com.br
 License: GPLv2 or later
