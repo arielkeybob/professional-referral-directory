@@ -18,6 +18,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/form-data-functions.php'; // Inclui a função comum para captura de dados
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php'; // Inclui as funções de e-mail
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
@@ -31,6 +32,7 @@ if (is_admin()) {
 // Hooks para ativação e desativação do plugin
 function professional_directory_activate() {
     ProfessionalDirectory_Users::activate();
+    pdr_create_search_data_table(); // Criação da tabela ao ativar o plugin
 }
 register_activation_hook(__FILE__, 'professional_directory_activate');
 
@@ -114,13 +116,7 @@ function pdr_search_callback() {
         $query->rewind_posts();
         if ($query->have_posts()) {
             $query->the_post();
-            $user_data = array(
-                'name' => isset($_POST['name']) ? $_POST['name'] : '',
-                'email' => isset($_POST['email']) ? $_POST['email'] : '',
-                'service_type' => $service_type,
-                'address' => isset($_POST['address']) ? $_POST['address'] : ''
-            );
-            send_email_to_service_author(get_the_ID(), $user_data);
+            send_email_to_service_author(get_the_ID());
         }
 
         wp_reset_postdata();
@@ -131,4 +127,23 @@ function pdr_search_callback() {
 
     wp_die();
 }
-?>
+
+function pdr_create_search_data_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'pdr_search_data';
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE $table_name (
+        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        service_type VARCHAR(255) NOT NULL,
+        name VARCHAR(255),
+        email VARCHAR(255),
+        address VARCHAR(255),
+        service_title VARCHAR(255),
+        search_date DATETIME NOT NULL
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+register_activation_hook(__FILE__, 'pdr_create_search_data_table');

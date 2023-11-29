@@ -1,10 +1,15 @@
 <?php
 // Se este arquivo for chamado diretamente, aborte.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
     die;
 }
 
-function send_email_to_service_author($post_id, $user_data) {
+// Supondo que a função 'get_form_data' esteja definida em 'form-data-functions.php' e incluída no plugin
+require_once plugin_dir_path(__FILE__) . 'form-data-functions.php';
+
+function send_email_to_service_author($post_id) {
+    $user_data = get_form_data();
+
     $author_email = get_the_author_meta('user_email', get_post_field('post_author', $post_id));
 
     // Recupera os e-mails dos administradores selecionados e e-mails adicionais
@@ -23,11 +28,10 @@ function send_email_to_service_author($post_id, $user_data) {
     $name = sanitize_text_field($user_data['name']);
     $email = sanitize_email($user_data['email']);
     $service_type = sanitize_text_field($user_data['service_type']);
-    $address = sanitize_text_field($user_data['address']); // A ser implementado
+    $address = sanitize_text_field($user_data['address']); 
 
     $subject = "Consulta de Serviço: " . get_the_title($post_id);
     $message = "Nome: $name\nEmail: $email\nTipo de Serviço: $service_type\nEndereço: $address\n\nServiço Encontrado: " . get_the_title($post_id) . "\nID do Post: $post_id";
 
     wp_mail($author_email, $subject, $message, $headers);
 }
-

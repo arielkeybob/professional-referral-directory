@@ -39,7 +39,7 @@ class ProfessionalDirectory_CPT {
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
-            'show_in_menu'       => false,
+            'show_in_menu'       => true,
             'query_var'          => true,
             'rewrite'            => ['slug' => 'service'],
             'capability_type'    => 'professional_service',
@@ -86,8 +86,9 @@ class ProfessionalDirectory_CPT {
         $professional_capabilities = array(
             'publish_professional_services',
             'edit_professional_services',
-            'delete_professional_services',
-            'read_professional_service',
+            'edit_professional_service',
+            'edit_published_professional_services',
+            // Inclua outras capacidades conforme necessário
         );
 
         foreach ($professional_capabilities as $cap) {
@@ -100,7 +101,7 @@ class ProfessionalDirectory_CPT {
         $professional->remove_cap('read_private_professional_services');
     }
 
-    public static function register_service_type_taxonomy() {
+    public static function register_service_type_taxonomy(){
         $labels = array(
             'name'              => _x( 'Service Types', 'taxonomy general name', 'professionaldirectory' ),
             'singular_name'     => _x( 'Service Type', 'taxonomy singular name', 'professionaldirectory' ),
@@ -119,7 +120,7 @@ class ProfessionalDirectory_CPT {
             'hierarchical'      => true, // Define se a taxonomia é hierárquica como categorias ou não hierárquica como tags.
             'labels'            => $labels,
             'show_ui'           => true,
-            'show_in_menu'      => false,
+            'show_in_menu'      => true,
             'show_admin_column' => true,
             'query_var'         => true,
             'rewrite'           => array( 'slug' => 'service-type' ),
