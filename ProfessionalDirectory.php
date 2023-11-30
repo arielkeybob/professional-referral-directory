@@ -114,21 +114,20 @@ function pdr_search_callback() {
 
         $html = ob_get_clean();
 
-        // Envio de e-mail para o autor do primeiro post encontrado e armazenamento de dados
         $query->rewind_posts();
         if ($query->have_posts()) {
             $query->the_post();
-            $post_id = get_the_ID(); // Obtem o ID do primeiro serviço encontrado
-            $author_id = get_post_field('post_author', $post_id); // Obtem o ID do autor
+            $post_id = get_the_ID();
+            $author_id = get_post_field('post_author', $post_id);
 
-            send_email_to_service_author($post_id); // Envia email
+            send_email_to_service_author($post_id);
 
-            // Prepara os dados para armazenamento
-            $user_data = get_form_data(); // Dados do formulário
-            $user_data['service_id'] = $post_id; // Adiciona o ID do serviço aos dados
-            $user_data['author_id'] = $author_id; // Adiciona o ID do autor aos dados
+            $user_data = get_form_data();
+            $user_data['service_id'] = $post_id;
+            $user_data['author_id'] = $author_id;
+            $user_data['search_date'] = current_time('mysql');
 
-            store_search_data($user_data); // Armazena os dados no banco de dados
+            store_search_data($user_data);
         }
 
         wp_reset_postdata();
@@ -139,6 +138,7 @@ function pdr_search_callback() {
 
     wp_die();
 }
+
 
 
 function pdr_create_search_data_table() {

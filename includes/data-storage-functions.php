@@ -39,7 +39,7 @@ function store_search_data($data) {
     $result = $wpdb->insert(
         $table_name,
         $data,
-        array('%s', '%s', '%s', '%s', '%d', '%s') // Tipos de dados correspondentes
+        array('%s', '%s', '%s', '%s', '%d', '%d', '%s') // Atualizando os tipos de dados
     );
 
     // Verificando se ocorreu algum erro durante a inserção
@@ -49,4 +49,5 @@ function store_search_data($data) {
         error_log('Dados inseridos com sucesso no banco de dados.');
     }
 }
+
 
