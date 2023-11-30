@@ -10,41 +10,17 @@ class PDR_Search_Form {
     }
 
     public function render_search_form() {
-        
         global $wpdb; // A classe global do WordPress para operações no banco de dados
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Captura os dados do formulário
-            $service_type = sanitize_text_field($_POST['service_type']);
-            $name = sanitize_text_field($_POST['name']);
-            $email = sanitize_email($_POST['email']);
-            $address = sanitize_text_field($_POST['address']);
-            $service_title = sanitize_text_field($_POST['service_title']); // Supondo que este campo exista
+            // Captura os dados do formulário usando a função get_form_data
+            $form_data = get_form_data();
 
-            // Prepara a tabela 'wp_pdr_search_data' com o prefixo correto
-            $table_name = $wpdb->prefix . 'pdr_search_data';
-
-            // Insere os dados na tabela
-            $insertion_result = $wpdb->insert(
-                $table_name,
-                array(
-                    'service_type' => $service_type,
-                    'name' => $name,
-                    'email' => $email,
-                    'address' => $address,
-                    'service_title' => $service_title,
-                    'search_date' => current_time('mysql') // Captura a data e hora atual
-                ),
-                array('%s', '%s', '%s', '%s', '%s', '%s') // Tipos de dados para cada campo
-            );
-
-            // Verificação de erros
-            if ($insertion_result === false) {
-                // Tratar erro de inserção aqui
-                // Por exemplo, você pode registrar o erro ou notificar o administrador
-            }
+            // Chama a função store_search_data para armazenar os dados no banco de dados
+            store_search_data($form_data);
         }
-ob_start();
+
+        ob_start();
         ?>
         <!-- Formulário de Filtro (Etapa 1) -->
         <form id="pdr-search-form" method="post">

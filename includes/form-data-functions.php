@@ -5,12 +5,13 @@ if (!defined('WPINC')) {
 }
 
 function get_form_data() {
+    // Captura e sanitiza os dados do formulário
     return array(
         'service_type' => sanitize_text_field($_POST['service_type'] ?? ''),
         'name' => sanitize_text_field($_POST['name'] ?? ''),
         'email' => sanitize_email($_POST['email'] ?? ''),
         'address' => sanitize_text_field($_POST['address'] ?? ''),
-        // Adicione a lógica para obter o 'service_title'
-        'service_title' => get_the_title($service_id) // ou outra lógica apropriada
+        // 'service_title' e 'service_id' são definidos em outro lugar
+        // e não precisam ser capturados aqui
     );
 }

@@ -23,6 +23,8 @@ require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php'; // Incl
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
 require_once plugin_dir_path(__FILE__) . 'admin/class-myplugin-admin.php';
+require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
+
 
 // Instanciar a classe de administração
 if (is_admin()) {
@@ -116,7 +118,14 @@ function pdr_search_callback() {
         $query->rewind_posts();
         if ($query->have_posts()) {
             $query->the_post();
-            send_email_to_service_author(get_the_ID());
+            $post_id = get_the_ID(); // Obtem o ID do primeiro serviço encontrado
+            send_email_to_service_author($post_id); // Envia email
+
+            // Prepare os dados para armazenamento
+            $user_data = get_form_data(); // Dados do formulário
+            $user_data['service_id'] = $post_id; // Adiciona o ID do serviço aos dados
+
+            store_search_data($user_data); // Armazena os dados no banco de dados
         }
 
         wp_reset_postdata();
@@ -132,18 +141,27 @@ function pdr_create_search_data_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
     $charset_collate = $wpdb->get_charset_collate();
-    $sql = "CREATE TABLE $table_name (
+
+    // SQL para criar ou modificar a tabela
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_type VARCHAR(255) NOT NULL,
         name VARCHAR(255),
         email VARCHAR(255),
         address VARCHAR(255),
         service_title VARCHAR(255),
-        search_date DATETIME NOT NULL
+        search_date DATETIME NOT NULL,
+        service_id BIGINT UNSIGNED
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
+
+    // Adiciona a coluna 'service_id' se ela não existir
+    $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$table_name}' AND column_name = 'service_id'");
+    if(empty($row)){
+        $wpdb->query("ALTER TABLE $table_name ADD service_id BIGINT UNSIGNED");
+    }
 }
 
 register_activation_hook(__FILE__, 'pdr_create_search_data_table');
