@@ -3,30 +3,7 @@
 if (!defined('WPINC')) {
     die;
 }
-/*
-function store_search_data($data) {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'pdr_search_data';
 
-    // Inserir dados na tabela, incluindo o service_id
-    $result = $wpdb->insert(
-        $table_name,
-        array(
-            'service_type' => $data['service_type'],
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'address' => $data['address'],
-            'service_id' => $data['service_id'], // ID do serviço
-            'search_date' => current_time('mysql'),
-        ),
-        array('%s', '%s', '%s', '%s', '%d', '%s') // Tipos de dados correspondentes
-    );
-
-    if ($result === false) {
-        // Tratar erro de inserção aqui
-    }
-}
-*/
 
 function store_search_data($data) {
     global $wpdb;

@@ -161,12 +161,19 @@ function pdr_create_search_data_table() {
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 
-    // Assegura a existência da coluna 'author_id'
-    $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$table_name}' AND column_name = 'author_id'");
-    if(empty($row)){
-        $wpdb->query("ALTER TABLE $table_name ADD author_id BIGINT UNSIGNED");
+    // Verifica e cria índice para author_id, se não existir
+    if(!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = 'idx_author_id'")) {
+        $wpdb->query("CREATE INDEX idx_author_id ON $table_name (author_id)");
+    }
+
+    // Verifica e cria índice para service_id, se não existir
+    if(!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = 'idx_service_id'")) {
+        $wpdb->query("CREATE INDEX idx_service_id ON $table_name (service_id)");
     }
 }
+
+register_activation_hook(__FILE__, 'pdr_create_search_data_table');
+
 
 register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
