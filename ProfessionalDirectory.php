@@ -114,16 +114,19 @@ function pdr_search_callback() {
 
         $html = ob_get_clean();
 
-        // Envio de e-mail para o autor do primeiro post encontrado
+        // Envio de e-mail para o autor do primeiro post encontrado e armazenamento de dados
         $query->rewind_posts();
         if ($query->have_posts()) {
             $query->the_post();
             $post_id = get_the_ID(); // Obtem o ID do primeiro serviço encontrado
+            $author_id = get_post_field('post_author', $post_id); // Obtem o ID do autor
+
             send_email_to_service_author($post_id); // Envia email
 
-            // Prepare os dados para armazenamento
+            // Prepara os dados para armazenamento
             $user_data = get_form_data(); // Dados do formulário
             $user_data['service_id'] = $post_id; // Adiciona o ID do serviço aos dados
+            $user_data['author_id'] = $author_id; // Adiciona o ID do autor aos dados
 
             store_search_data($user_data); // Armazena os dados no banco de dados
         }
@@ -137,6 +140,7 @@ function pdr_search_callback() {
     wp_die();
 }
 
+
 function pdr_create_search_data_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
@@ -149,19 +153,22 @@ function pdr_create_search_data_table() {
         name VARCHAR(255),
         email VARCHAR(255),
         address VARCHAR(255),
-        service_title VARCHAR(255),
         search_date DATETIME NOT NULL,
-        service_id BIGINT UNSIGNED
+        service_id BIGINT UNSIGNED,
+        author_id BIGINT UNSIGNED
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 
-    // Adiciona a coluna 'service_id' se ela não existir
-    $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$table_name}' AND column_name = 'service_id'");
+    // Assegura a existência da coluna 'author_id'
+    $row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$table_name}' AND column_name = 'author_id'");
     if(empty($row)){
-        $wpdb->query("ALTER TABLE $table_name ADD service_id BIGINT UNSIGNED");
+        $wpdb->query("ALTER TABLE $table_name ADD author_id BIGINT UNSIGNED");
     }
 }
+
+register_activation_hook(__FILE__, 'pdr_create_search_data_table');
+
 
 register_activation_hook(__FILE__, 'pdr_create_search_data_table');
