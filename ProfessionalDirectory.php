@@ -161,21 +161,21 @@ function pdr_create_search_data_table() {
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 
-    // Verifica e cria índice para author_id, se não existir
-    if(!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = 'idx_author_id'")) {
-        $wpdb->query("CREATE INDEX idx_author_id ON $table_name (author_id)");
-    }
+    // Criação de índices
+    $indices = [
+        'author_id' => 'idx_author_id',
+        'service_id' => 'idx_service_id',
+        'service_type' => 'idx_service_type'
+    ];
 
-    // Verifica e cria índice para service_id, se não existir
-    if(!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = 'idx_service_id'")) {
-        $wpdb->query("CREATE INDEX idx_service_id ON $table_name (service_id)");
+    foreach ($indices as $column => $index_name) {
+        if (!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = '$index_name'")) {
+            $wpdb->query("CREATE INDEX $index_name ON $table_name ($column)");
+        }
     }
 }
 
 register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
 
-register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
-
-register_activation_hook(__FILE__, 'pdr_create_search_data_table');
