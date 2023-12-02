@@ -37,3 +37,4 @@ class ProfessionalDirectory_Users {
         remove_role('professional');
     }
 }
+

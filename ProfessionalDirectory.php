@@ -24,6 +24,8 @@ require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
 require_once plugin_dir_path(__FILE__) . 'admin/class-myplugin-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/dashboard-functions.php';
+
 
 
 // Instanciar a classe de administração
@@ -180,20 +182,30 @@ register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
 
 //Adiciona o submenu dashboard ao menu do post type Services
+function pdr_add_dashboard_capability() {
+    $role = get_role('professional'); // Substitua 'professional' pelo papel exato
+    if ($role) {
+        $role->add_cap('view_pdr_dashboard'); // Adicione uma nova capacidade
+    }
+}
+add_action('init', 'pdr_add_dashboard_capability');
+
+// Atualize a função pdr_add_dashboard_submenu para usar a nova capacidade
 function pdr_add_dashboard_submenu() {
     add_submenu_page(
-        'edit.php?post_type=professional_service', // Slug do menu do post type 'service'
-        'Dashboard do Professional',                // Título da página
-        'Dashboard',                                // Título do menu
-        'manage_options',                           // Capacidade necessária
-        'pdr-dashboard',                            // Slug do submenu
-        'pdr_dashboard_page_content'                // Função de callback para o conteúdo do dashboard
+        'edit.php?post_type=professional_service',
+        'Dashboard do Professional',
+        'Dashboard',
+        'view_pdr_dashboard',  // Use a nova capacidade aqui
+        'pdr-dashboard',
+        'pdr_dashboard_page_content'
     );
 }
 add_action('admin_menu', 'pdr_add_dashboard_submenu');
 
+
 function pdr_dashboard_page_content() {
-    include plugin_dir_path(__FILE__) . '/admin/templates/dashboard.php';
+    include plugin_dir_path(__FILE__) . 'admin/templates/dashboard.php';
 }
 
 
