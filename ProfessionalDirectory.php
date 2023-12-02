@@ -179,3 +179,21 @@ register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
 
 
+//Adiciona o submenu dashboard ao menu do post type Services
+function pdr_add_dashboard_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=professional_service', // Slug do menu do post type 'service'
+        'Dashboard do Professional',                // Título da página
+        'Dashboard',                                // Título do menu
+        'manage_options',                           // Capacidade necessária
+        'pdr-dashboard',                            // Slug do submenu
+        'pdr_dashboard_page_content'                // Função de callback para o conteúdo do dashboard
+    );
+}
+add_action('admin_menu', 'pdr_add_dashboard_submenu');
+
+function pdr_dashboard_page_content() {
+    include plugin_dir_path(__FILE__) . '/admin/templates/dashboard.php';
+}
+
+
