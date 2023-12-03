@@ -40,7 +40,24 @@ class PDR_Search_Form {
                     }
                     ?>
                 </select>
-                <input type="text" name="address" id="pdr_service_location" placeholder="Endereço">
+                
+                <select name="service_location">
+                <option value="">Selecione uma Localização</option>
+                <?php
+                // Recupera os termos da taxonomia 'service_location'
+                $terms = get_terms(array(
+                    'taxonomy' => 'service_location',
+                    'hide_empty' => false,
+                ));
+
+                // Lista cada termo como uma opção
+                foreach ($terms as $term) {
+                    echo '<option value="' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+                }
+                ?>
+                </select>
+
+
                 <button type="button" id="pdr-search-btn">Next</button>
             </div>
 

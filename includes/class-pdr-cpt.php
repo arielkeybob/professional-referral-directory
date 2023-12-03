@@ -134,8 +134,43 @@ class ProfessionalDirectory_CPT {
     
         register_taxonomy( 'service_type', array( 'professional_service' ), $args );
     }
+    public static function register_service_location_taxonomy(){
+        $labels = array(
+            'name'              => _x( 'Service Locations', 'taxonomy general name', 'professionaldirectory' ),
+            'singular_name'     => _x( 'Service Location', 'taxonomy singular name', 'professionaldirectory' ),
+            'search_items'      => __( 'Search Service Locations', 'professionaldirectory' ),
+            'all_items'         => __( 'All Service Locations', 'professionaldirectory' ),
+            'parent_item'       => __( 'Parent Service Location', 'professionaldirectory' ),
+            'parent_item_colon' => __( 'Parent Service Location:', 'professionaldirectory' ),
+            'edit_item'         => __( 'Edit Service Location', 'professionaldirectory' ),
+            'update_item'       => __( 'Update Service Location', 'professionaldirectory' ),
+            'add_new_item'      => __( 'Add New Service Location', 'professionaldirectory' ),
+            'new_item_name'     => __( 'New Service Location Name', 'professionaldirectory' ),
+            'menu_name'         => __( 'Service Location', 'professionaldirectory' ),
+        );
+    
+        $args = array(
+            'hierarchical'      => true,
+            'labels'            => $labels,
+            'show_ui'           => true,
+            'show_in_menu'      => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'service-location' ),
+            'capabilities'      => array(
+                'manage_terms' => 'manage_options', // Utiliza a capacidade 'manage_options' para gerenciar termos
+                'edit_terms'   => 'manage_options',
+                'delete_terms' => 'manage_options',
+                'assign_terms' => 'edit_professional_services', // Capacidade para atribuir termos
+            ),
+        );
+    
+        register_taxonomy( 'service_location', array( 'professional_service' ), $args );
+    }
+    
 }
 
 // Registrar o Custom Post Type e a Taxonomia no hook 'init'
 add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_cpt' ]);
 add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_type_taxonomy' ]);
+add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_location_taxonomy' ]);
