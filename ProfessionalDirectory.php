@@ -96,14 +96,21 @@ add_action('wp_ajax_nopriv_pdr_search', 'pdr_search_callback');
 
 function pdr_search_callback() {
     $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
+    $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
 
     $args = array(
         'post_type' => 'professional_service',
         'tax_query' => array(
+            'relation' => 'AND',
             array(
                 'taxonomy' => 'service_type',
                 'field'    => 'slug',
                 'terms'    => $service_type,
+            ),
+            array(
+                'taxonomy' => 'service_location',
+                'field'    => 'slug',
+                'terms'    => $service_location,
             ),
         ),
     );

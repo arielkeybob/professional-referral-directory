@@ -8,10 +8,11 @@ function get_form_data() {
     // Captura e sanitiza os dados do formulário
     return array(
         'service_type' => sanitize_text_field($_POST['service_type'] ?? ''),
+        'service_location' => sanitize_text_field($_POST['service_location'] ?? ''),
         'name' => sanitize_text_field($_POST['name'] ?? ''),
         'email' => sanitize_email($_POST['email'] ?? ''),
-        'address' => sanitize_text_field($_POST['address'] ?? ''),
-        // 'service_title' e 'service_id' são definidos em outro lugar
-        // e não precisam ser capturados aqui
+        // Remova a linha para 'address' se não estiver mais sendo usada
+        // 'address' => sanitize_text_field($_POST['address'] ?? ''),
     );
 }
+

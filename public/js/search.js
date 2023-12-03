@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
         var formData = {
             'action': 'pdr_search',
             'service_type': $('select[name="service_type"]').val(),
-            'address': $('input[name="address"]').val(),
+            'service_location': $('select[name="service_location"]').val(),
             'name': $('input[name="name"]').val(),
             'email': $('input[name="email"]').val()
         };
