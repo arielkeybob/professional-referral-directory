@@ -74,7 +74,11 @@ add_action('wp_enqueue_scripts', 'professionaldirectory_enqueue_scripts');
 // Enfileiramento de estilos e scripts de administração
 function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', __FILE__));
-    wp_enqueue_script('professionaldirectory-admin-script', plugins_url('/admin/js/admin-script.js', __FILE__), array('jquery'), '', true);
+    wp_enqueue_style('bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+    wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', array('jquery'), null, true);
+    wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
+    wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
+    wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
 }
 if (is_admin()) {
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
@@ -207,5 +211,6 @@ add_action('admin_menu', 'pdr_add_dashboard_submenu');
 function pdr_dashboard_page_content() {
     include plugin_dir_path(__FILE__) . 'admin/templates/dashboard.php';
 }
+
 
 
