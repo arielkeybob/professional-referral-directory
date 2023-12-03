@@ -70,7 +70,7 @@ require_once __DIR__ . '/../../includes/dashboard-functions.php';
                     echo '<tr>';
                     echo '<td>' . esc_html($search['name']) . '</td>';
                     echo '<td>' . esc_html($search['email']) . '</td>';
-                    echo '<td>' . esc_html($search['address']) . '</td>';
+                    echo '<td>' . esc_html($search['service_location']) . '</td>';
                     echo '<td>' . esc_html($search['post_title']) . '</td>';
                     echo '<td>' . esc_html($search['service_type']) . '</td>';
                     echo '<td>' . esc_html($search['search_date']) . '</td>';

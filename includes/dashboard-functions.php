@@ -61,7 +61,7 @@ function pdr_get_recent_searches_for_user($limit = 10) {
     $post_table = $wpdb->posts;
 
     $query = $wpdb->prepare(
-        "SELECT sd.service_type, sd.search_date, p.post_title, sd.name, sd.email, sd.address
+        "SELECT sd.service_type, sd.search_date, p.post_title, sd.name, sd.email, sd.service_location
          FROM $table_name as sd
          INNER JOIN $post_table as p ON sd.service_id = p.ID
          WHERE p.post_author = %d
@@ -72,4 +72,5 @@ function pdr_get_recent_searches_for_user($limit = 10) {
 
     return $wpdb->get_results($query, ARRAY_A);
 }
+
 

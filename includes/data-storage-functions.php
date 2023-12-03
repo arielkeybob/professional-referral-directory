@@ -9,14 +9,17 @@ function store_search_data($data) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
 
-    // Adicionando log para verificar se a função foi chamada
-    error_log('store_search_data chamada. Dados recebidos: ' . json_encode($data));
+    // Certifique-se de que 'service_location' esteja no array $data
+    // Se não estiver, adicione-o (substitua 'valor_padrao' pelo valor que você deseja usar se estiver ausente)
+    if (!array_key_exists('service_location', $data)) {
+        $data['service_location'] = 'valor_padrao';
+    }
 
     // Inserir dados na tabela
     $result = $wpdb->insert(
         $table_name,
         $data,
-        array('%s', '%s', '%s', '%s', '%d', '%d', '%s') // Atualizando os tipos de dados
+        array('%s', '%s', '%s', '%s', '%d', '%d', '%s') // Atualize os formatos conforme necessário
     );
 
     // Verificando se ocorreu algum erro durante a inserção
