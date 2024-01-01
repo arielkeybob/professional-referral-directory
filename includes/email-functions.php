@@ -31,9 +31,17 @@ function send_email_to_service_author($post_id) {
     $service_type = sanitize_text_field($user_data['service_type']);
     $service_location = sanitize_text_field($user_data['service_location']); // Adicionado campo service_location
 
-    $subject = "Consulta de Serviço: " . get_the_title($post_id);
-    $message = "Nome: $name\nEmail: $email\nTipo de Serviço: $service_type\nLocalização: $service_location\n\nServiço Encontrado: " . get_the_title($post_id) . "\nID do Post: $post_id";
-
+    $subject = __("Service Inquiry:", "professional_directory") . " " . get_the_title($post_id);
+    $message = sprintf(
+        __("Name: %s\nEmail: %s\nServie Type: %s\nLocation: %s\n\nService Found: %s\nPost ID: %s", "professionaldirectory"),
+        $name,
+        $email,
+        $service_type,
+        $service_location,
+        get_the_title($post_id),
+        $post_id
+    );
+    
     wp_mail($author_email, $subject, $message, $headers);
 }
 

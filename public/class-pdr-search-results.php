@@ -48,13 +48,13 @@ class PDR_Search_Results {
                 }
                 echo '</ul>';
             } else {
-                echo '<p>Nenhum serviço encontrado.</p>';
+                echo '<p>' . esc_html__('No service found.', 'professionaldirectory') . '</p>';
             }
 
             // Restaura a consulta original
             wp_reset_postdata();
         } else {
-            echo '<p>Use o formulário de pesquisa para encontrar serviços.</p>';
+            echo '<p>' . esc_html__('Use the search form to find services.', 'professionaldirectory'). '</p>';
         }
 
         ?>

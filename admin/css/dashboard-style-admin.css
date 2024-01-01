@@ -1,0 +1,24 @@
+/* Estilo CSS para a dashboard */
+#dashboard-container {
+    /* Estilos para o container da dashboard */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#services-data {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#services-data th, #services-data td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#services-data th {
+    background-color: #f4f4f4;
+}

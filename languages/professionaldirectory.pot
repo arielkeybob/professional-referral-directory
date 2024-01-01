@@ -1,0 +1,401 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ProfessionalDirectory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 03:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.4.1\n"
+"X-Domain: professionaldirectory"
+
+#: includes/class-pdr-cpt.php:15
+msgid "Add New"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:14
+msgctxt "Add New on Toolbar"
+msgid "Service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:16
+msgid "Add New Service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:147
+msgid "Add New Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:114
+msgid "Add New Service Type"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:76
+msgid "Additional Emails"
+msgstr ""
+
+#: admin/templates/dashboard.php:70
+msgid "Address"
+msgstr ""
+
+#: includes/class-pdr-metaboxes.php:40
+msgid "Address:"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:13
+msgctxt "Admin Menu text"
+msgid "Services"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:68
+msgid "Admins to Receive Emails"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:142
+msgid "All Service Locations"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:109
+msgid "All Service Types"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:20
+msgid "All Services"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:45
+msgid "API Settings"
+msgstr ""
+
+#. Author of the plugin
+msgid "Ariel Souza"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "arielsouza.com.br"
+msgstr ""
+
+#: admin/templates/dashboard.php:70
+msgid "Date"
+msgstr ""
+
+#: admin/templates/dashboard.php:52
+msgid "Distribution of Searches by Service Type"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:18
+msgid "Edit Service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:145
+msgid "Edit Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:112
+msgid "Edit Service Type"
+msgstr ""
+
+#: public/class-pdr-search-form.php:67 admin/templates/dashboard.php:70
+msgid "Email"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:61
+msgid "Email Settings"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:105
+msgid "email1@example.com, email2@example.com"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:106
+msgid "Enter additional emails separated by commas."
+msgstr ""
+
+#: admin/class-myplugin-admin.php:86
+msgid "Enter the Google Maps API Key"
+msgstr ""
+
+#. Adicionando como um submenu do tipo de post "Service"
+#: admin/class-myplugin-admin.php:13 admin/class-myplugin-admin.php:24
+msgid "General Settings"
+msgstr ""
+
+#: admin/class-myplugin-admin.php:52
+msgid "Google Maps API Key"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://arielsouza.com.br/professionaldirectory"
+msgstr ""
+
+#: includes/class-pdr-metaboxes.php:42
+msgid "Latitude:"
+msgstr ""
+
+#: includes/class-pdr-metaboxes.php:43
+msgid "Longitude:"
+msgstr ""
+
+#. Description of the plugin
+msgid "Manages a directory of professional services and listings."
+msgstr ""
+
+#: includes/email-functions.php:36
+#, php-format
+msgid ""
+"Name: %s\n"
+"Email: %s\n"
+"Servie Type: %s\n"
+"Location: %s\n"
+"\n"
+"Service Found: %s\n"
+"Post ID: %s"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:17
+msgid "New Service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:148
+msgid "New Service Location Name"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:115
+msgid "New Service Type Name"
+msgstr ""
+
+#: public/class-pdr-search-form.php:61
+msgid "Next"
+msgstr ""
+
+#: admin/templates/dashboard.php:83
+msgid "No recent results found."
+msgstr ""
+
+#: public/class-pdr-search-results.php:51 admin/templates/dashboard.php:42
+msgid "No service found."
+msgstr ""
+
+#: includes/class-pdr-cpt.php:24
+msgid "No services found in Trash."
+msgstr ""
+
+#: includes/class-pdr-cpt.php:23
+msgid "No services found."
+msgstr ""
+
+#: public/class-pdr-search-form.php:66
+msgid "Nome"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:25
+msgctxt ""
+"Overrides the “Featured Image” phrase for this post type. Added in 4.3"
+msgid "Service Cover Image"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:30
+msgctxt ""
+"Overrides the “Insert into post”/“Insert into page” phrase (used when "
+"inserting media into a post). Added in 4.4"
+msgid "Insert into service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:27
+msgctxt ""
+"Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
+msgid "Remove cover image"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:26
+msgctxt ""
+"Overrides the “Set featured image” phrase for this post type. Added in 4.3"
+msgid "Set cover image"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:31
+msgctxt ""
+"Overrides the “Uploaded to this post”/“Uploaded to this page” phrase (used "
+"when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:28
+msgctxt ""
+"Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
+msgid "Use as cover image"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:143
+msgid "Parent Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:144
+msgid "Parent Service Location:"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:110
+msgid "Parent Service Type"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:111
+msgid "Parent Service Type:"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:22
+msgid "Parent Services:"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:11
+msgctxt "Post type general name"
+msgid "Services"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:12
+msgctxt "Post type singular name"
+msgid "Service"
+msgstr ""
+
+#: admin/templates/dashboard.php:24
+msgid "Professional Dashboard "
+msgstr ""
+
+#. Name of the plugin
+msgid "ProfessionalDirectory"
+msgstr ""
+
+#: public/templates/content-service.php:12
+msgid "Read more"
+msgstr ""
+
+#: admin/templates/dashboard.php:64
+msgid "Recent Searches"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:32
+msgctxt ""
+"Screen reader text for the filter links heading on the post type listing "
+"screen. Default “Filter posts list”/“Filter pages list”. Added in 4.4"
+msgid "Filter services list"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:34
+msgctxt ""
+"Screen reader text for the items list heading on the post type listing "
+"screen. Default “Posts list”/“Pages list”. Added in 4.4"
+msgid "Services list"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:33
+msgctxt ""
+"Screen reader text for the pagination heading on the post type listing "
+"screen. Default “Posts list navigation”/“Pages list navigation”. Added in 4.4"
+msgid "Services list navigation"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:141
+msgid "Search Service Locations"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:108
+msgid "Search Service Types"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:21
+msgid "Search Services"
+msgstr ""
+
+#: admin/templates/dashboard.php:38
+msgid "Search:"
+msgstr ""
+
+#: public/class-pdr-search-form.php:45
+msgid "Select a Location"
+msgstr ""
+
+#: public/class-pdr-search-form.php:29
+msgid "Select a Service Type"
+msgstr ""
+
+#: admin/templates/dashboard.php:70
+msgid "Service"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:149 includes/class-pdr-metaboxes.php:22
+msgid "Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:116
+msgid "Service Type"
+msgstr ""
+
+#. Título da página
+#: admin/class-myplugin-admin.php:14
+msgid "Settings"
+msgstr ""
+
+#: public/class-pdr-search-form.php:68
+msgid "Submit"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:139
+msgctxt "taxonomy general name"
+msgid "Service Locations"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:106
+msgctxt "taxonomy general name"
+msgid "Service Types"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:140
+msgctxt "taxonomy singular name"
+msgid "Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:107
+msgctxt "taxonomy singular name"
+msgid "Service Type"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:29
+msgctxt ""
+"The post type archive label used in nav menus. Default “Post Archives”. "
+"Added in 4.4"
+msgid "Service archives"
+msgstr ""
+
+#: admin/templates/dashboard.php:30
+msgid "Total Searches by Service."
+msgstr ""
+
+#: admin/templates/dashboard.php:70
+msgid "Type"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:146
+msgid "Update Service Location"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:113
+msgid "Update Service Type"
+msgstr ""
+
+#: public/class-pdr-search-results.php:57
+msgid "Use the search form to find services."
+msgstr ""
+
+#: admin/templates/dashboard.php:70
+msgid "User Name"
+msgstr ""
+
+#: includes/class-pdr-cpt.php:19
+msgid "View Service"
+msgstr ""

@@ -26,7 +26,7 @@ class PDR_Search_Form {
         <form id="pdr-search-form" method="post">
             <div id="pdr-initial-search">
                 <select name="service_type">
-                    <option value="">Selecione um Tipo de Serviço</option>
+                <option value=""><?php echo esc_html__('Select a Service Type', 'professionaldirectory'); ?></option>
                     <?php
                     // Recupera os termos da taxonomia 'service_type'
                     $terms = get_terms(array(
@@ -42,7 +42,7 @@ class PDR_Search_Form {
                 </select>
                 
                 <select name="service_location">
-                <option value="">Selecione uma Localização</option>
+                <option value=""><?php echo esc_html__('Select a Location', 'professionaldirectory'); ?></option>
                 <?php
                 // Recupera os termos da taxonomia 'service_location'
                 $terms = get_terms(array(
@@ -58,14 +58,14 @@ class PDR_Search_Form {
                 </select>
 
 
-                <button type="button" id="pdr-search-btn">Next</button>
+                <button type="button" id="pdr-search-btn"><?php echo esc_html__('Next', 'professionaldirectory'); ?></button>
             </div>
 
             <!-- Formulário de Informações Pessoais (Etapa 2) -->
             <div id="pdr-personal-info-form" style="display:none;">
-                <input type="text" name="name" placeholder="Nome">
-                <input type="email" name="email" placeholder="Email">
-                <button type="submit">Submit</button>
+            <input type="text" name="name" placeholder="<?php echo esc_attr__('Nome', 'professionaldirectory'); ?>">
+            <input type="email" name="email" placeholder="<?php echo esc_attr__('Email', 'professionaldirectory'); ?>">
+            <button type="submit"><?php echo esc_html__('Submit', 'professionaldirectory'); ?></button>
             </div>
         </form>
         <?php

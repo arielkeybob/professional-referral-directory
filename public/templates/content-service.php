@@ -9,6 +9,6 @@ if (!defined('ABSPATH')) {
 <div class="service-result">
     <h3><?php the_title(); ?></h3>
     <p><?php the_excerpt(); ?></p>
-    <a href="<?php the_permalink(); ?>">Leia mais</a>
+    <a href="<?php the_permalink(); ?>"><?php echo esc_html__('Read more', 'professionaldirectory'); ?></a>
     <!-- Adicione mais detalhes do serviço conforme necessário -->
 </div>

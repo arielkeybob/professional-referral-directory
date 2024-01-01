@@ -21,13 +21,13 @@ require_once __DIR__ . '/../../includes/dashboard-functions.php';
 </style>
 <!-- Início do Dashboard -->
 <div class="wrap">
-    <h1>Dashboard do Professional</h1>
+    <h1><?php echo esc_html__('Professional Dashboard ', 'professionaldirectory'); ?></h1>
 
     <div class="row"> <!-- Início da row -->
         <!-- Seção de Total de Pesquisas por Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header">Total de Pesquisas por Serviço</div>
+                <div class="card-header"><?php echo esc_html__('Total Searches by Service.', 'professionaldirectory'); ?></div>
                 <div class="card-body">
                     <?php
                     $services = pdr_get_services_by_current_user();
@@ -35,11 +35,11 @@ require_once __DIR__ . '/../../includes/dashboard-functions.php';
                         echo '<ul>';
                         foreach ($services as $service) {
                             $total_searches = pdr_get_total_searches_by_service($service['ID']);
-                            echo '<li>' . esc_html($service['post_title']) . ' - Pesquisas: ' . esc_html($total_searches) . '</li>';
+                            echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Search:', 'professionaldirectory') . ' ' . esc_html($total_searches) . '</li>';
                         }
                         echo '</ul>';
                     } else {
-                        echo '<p>Nenhum serviço encontrado.</p>';
+                        echo '<p>' . esc_html__('No service found.', 'professionaldirectory') . '</p>';
                     }
                     ?>
                 </div>
@@ -49,40 +49,43 @@ require_once __DIR__ . '/../../includes/dashboard-functions.php';
         <!-- Seção de Distribuição das Pesquisas por Tipo de Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header">Distribuição das Pesquisas por Tipo de Serviço</div>
+                <div class="card-header"><?php echo esc_html__('Distribution of Searches by Service Type', 'professionaldirectory'); ?></div>
                 <div class="card-body">
                     <canvas id="chartServiceTypeDistribution"></canvas>
                 </div>
             </div>
         </div>
-    </div> <!-- Fim da row -->
+    </div>
+</div>
+ <!-- Fim da row -->
 
     <!-- Seção de Pesquisas Recentes -->
     <div class="card mb-4 w-100"> <!-- Classe w-100 para largura total -->
-        <div class="card-header">Pesquisas Recentes</div>
-        <div class="card-body">
-            <?php
-            $recent_searches = pdr_get_recent_searches_for_user();
-            if (!empty($recent_searches)) {
-                echo '<table id="recentSearchesTable" class="display">';
-                echo '<thead><tr><th>Nome do Usuário</th><th>Email</th><th>Endereço</th><th>Service</th><th>Type</th><th>Date</th></tr></thead><tbody>';
-                foreach ($recent_searches as $search) {
-                    echo '<tr>';
-                    echo '<td>' . esc_html($search['name']) . '</td>';
-                    echo '<td>' . esc_html($search['email']) . '</td>';
-                    echo '<td>' . esc_html($search['service_location']) . '</td>';
-                    echo '<td>' . esc_html($search['post_title']) . '</td>';
-                    echo '<td>' . esc_html($search['service_type']) . '</td>';
-                    echo '<td>' . esc_html($search['search_date']) . '</td>';
-                    echo '</tr>';
-                }
-                echo '</tbody></table>';
-            } else {
-                echo '<p>Nenhum resultado recente encontrado.</p>';
+    <div class="card-header"><?php echo esc_html__('Recent Searches', 'professionaldirectory'); ?></div>
+    <div class="card-body">
+        <?php
+        $recent_searches = pdr_get_recent_searches_for_user();
+        if (!empty($recent_searches)) {
+            echo '<table id="recentSearchesTable" class="display">';
+            echo '<thead><tr><th>' . esc_html__('User Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Address', 'professionaldirectory') . '</th><th>' . esc_html__('Service', 'professionaldirectory') . '</th><th>' . esc_html__('Type', 'professionaldirectory') . '</th><th>' . esc_html__('Date', 'professionaldirectory') . '</th></tr></thead><tbody>';
+            foreach ($recent_searches as $search) {
+                echo '<tr>';
+                echo '<td>' . esc_html($search['name']) . '</td>';
+                echo '<td>' . esc_html($search['email']) . '</td>';
+                echo '<td>' . esc_html($search['service_location']) . '</td>';
+                echo '<td>' . esc_html($search['post_title']) . '</td>';
+                echo '<td>' . esc_html($search['service_type']) . '</td>';
+                echo '<td>' . esc_html($search['search_date']) . '</td>';
+                echo '</tr>';
             }
-            ?>
-        </div>
+            echo '</tbody></table>';
+        } else {
+            echo '<p>' . esc_html__('No recent results found.', 'professionaldirectory') . '</p>';
+        }
+        ?>
     </div>
+</div>
+
 
     <!-- Outras seções... -->
 

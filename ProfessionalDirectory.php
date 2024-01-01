@@ -2,8 +2,8 @@
 /*
 Plugin Name: ProfessionalDirectory
 Plugin URI: http://arielsouza.com.br/professionaldirectory
-Description: Gerencia um diretório de serviços profissionais e listagens.
-Version: 1.0
+Description: Manages a directory of professional services and listings.
+Version: 1.1
 Author: Ariel Souza
 Author URI: arielsouza.com.br
 License: GPLv2 or later
@@ -32,7 +32,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/dashboard-functions.php';
 if (is_admin()) {
     $myplugin_admin = new MyPlugin_Admin();
 }
-
+ 
 // Hooks para ativação e desativação do plugin
 function professional_directory_activate() {
     ProfessionalDirectory_Users::activate();
@@ -146,7 +146,7 @@ function pdr_search_callback() {
         wp_reset_postdata();
         wp_send_json_success($html);
     } else {
-        wp_send_json_error('Nenhum serviço encontrado.');
+        wp_send_json_error('No service found.');
     }
 
     wp_die();
@@ -219,5 +219,20 @@ function pdr_dashboard_page_content() {
     include plugin_dir_path(__FILE__) . 'admin/templates/dashboard.php';
 }
 
+add_action('admin_menu', 'add_custom_submenu_page');
 
+function add_custom_submenu_page() {
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        'Dashboard do Admin',
+        'Dashboard do Admin',
+        'manage_options',
+        'dashboard-admin',
+        'dashboard_admin_page_callback'
+    );
+}
+
+function dashboard_admin_page_callback() {
+    include('admin/templates/dashboard-template-admin.php');
+}
 

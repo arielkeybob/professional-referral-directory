@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
                     alert('Informações enviadas com sucesso.');
                 } else {
                     // Tratar casos de falha na busca
-                    $('#pdr-search-results').html('<p>Nenhum serviço encontrado.</p>');
+                    $('#pdr-search-results').html('<p>No service found.</p>');
                 }
             },
             error: function() {
