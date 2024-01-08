@@ -18,25 +18,23 @@ require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
-require_once plugin_dir_path(__FILE__) . 'includes/form-data-functions.php'; // Inclui a função comum para captura de dados
-require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php'; // Inclui as funções de e-mail
+require_once plugin_dir_path(__FILE__) . 'includes/form-data-functions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
 require_once plugin_dir_path(__FILE__) . 'admin/class-myplugin-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
-require_once plugin_dir_path(__FILE__) . 'includes/dashboard-functions.php';
-
-
+require_once plugin_dir_path(__FILE__) . 'includes/dashboard-professional-functions.php';
 
 // Instanciar a classe de administração
 if (is_admin()) {
     $myplugin_admin = new MyPlugin_Admin();
 }
- 
+
 // Hooks para ativação e desativação do plugin
 function professional_directory_activate() {
     ProfessionalDirectory_Users::activate();
-    pdr_create_search_data_table(); // Criação da tabela ao ativar o plugin
+    pdr_create_search_data_table();
 }
 register_activation_hook(__FILE__, 'professional_directory_activate');
 
@@ -60,7 +58,6 @@ function professionaldirectory_enqueue_scripts() {
     wp_enqueue_script('professionaldirectory-script', plugins_url('/public/js/script.js', __FILE__), array('jquery'), '', true);
 
     // Enfileira o script do Google Maps com a biblioteca Places
-    // Certifique-se de que o script do Google Maps seja carregado após o seu script.js
     wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $google_maps_api_key . '&libraries=places&callback=initAutocomplete', array('professionaldirectory-script'), null, true);
 
     // Enfileira o script específico de pesquisa
@@ -73,16 +70,28 @@ add_action('wp_enqueue_scripts', 'professionaldirectory_enqueue_scripts');
 
 // Enfileiramento de estilos e scripts de administração
 function professionaldirectory_enqueue_admin_scripts() {
+    // Enfileirar os estilos de administração
     wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', __FILE__));
-    wp_enqueue_style('bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+    wp_enqueue_script('dashboard-script-admin', plugins_url('/admin/js/dashboard-script-admin.js', __FILE__), array('jquery'), null, true);
+
+    // Passar a URL AJAX e o nonce para o script
+    wp_localize_script('dashboard-script-admin', 'myPlugin', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'ajax_nonce' => wp_create_nonce('fetch_services_nonce')
+    ));
+    // Enfileirar os scripts de administração
     wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', array('jquery'), null, true);
     wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
     wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
     wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
+
 }
+
 if (is_admin()) {
+    require_once plugin_dir_path(__FILE__) . 'includes/dashboard-admin-functions.php';
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
 }
+
 
 // Configuração de capacidades para o CPT
 function professional_directory_set_capabilities() {
@@ -93,6 +102,9 @@ add_action('init', 'professional_directory_set_capabilities', 11);
 // Adicionando ações para lidar com a requisição AJAX
 add_action('wp_ajax_pdr_search', 'pdr_search_callback');
 add_action('wp_ajax_nopriv_pdr_search', 'pdr_search_callback');
+
+// Restante do seu código...
+
 
 function pdr_search_callback() {
     $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
@@ -216,7 +228,7 @@ add_action('admin_menu', 'pdr_add_dashboard_submenu');
 
 
 function pdr_dashboard_page_content() {
-    include plugin_dir_path(__FILE__) . 'admin/templates/dashboard.php';
+    include plugin_dir_path(__FILE__) . 'admin/templates/dashboard-template-professional.php';
 }
 
 add_action('admin_menu', 'add_custom_submenu_page');
@@ -233,6 +245,8 @@ function add_custom_submenu_page() {
 }
 
 function dashboard_admin_page_callback() {
-    include('admin/templates/dashboard-template-admin.php');
+    include plugin_dir_path(__FILE__) . 'admin/templates/dashboard-template-admin.php';
 }
+
+
 

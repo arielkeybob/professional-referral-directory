@@ -4,7 +4,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-require_once __DIR__ . '/../../includes/dashboard-functions.php';
+require_once __DIR__ . '/../../includes/dashboard-professional-functions.php';
 
 // Enfileiramento do Bootstrap e Chart.js no admin do WordPress deve ser feito em outra parte do plugin, não diretamente aqui
 

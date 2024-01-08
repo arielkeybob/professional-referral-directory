@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/dashboard-style-admin.css">
-    <script src="js/dashboard-script-admin.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo plugins_url('/css/dashboard-style-admin.css', dirname(__FILE__)); ?>">
+
 </head>
 <body>
     <div id="dashboard-container">
@@ -40,7 +40,8 @@
             </tbody>
         </table>
     </div>
-    <?php wp_nonce_field('fetch_services_nonce', 'fetch_services_nonce_field'); ?>
-    <script src="js/dashboard-script-admin.js"></script>
+    <<?php wp_nonce_field('fetch_services_nonce', 'fetch_services_nonce_field'); ?>
+    <script src="<?php echo plugins_url('/js/dashboard-script-admin.js', dirname(__FILE__)); ?>"></script>
+
 </body>
 </html>
