@@ -73,9 +73,3 @@ function fetch_admin_dashboard_data() {
     // Sempre finalize funções AJAX com wp_die()
     wp_die();
 }
-<<<<<<< HEAD
-=======
-
-// Não inclua o template diretamente em funções. Isso deve ser feito no callback da página de administração.
-// include('templates/dashboard-template-admin.php');
->>>>>>> 35d949001fa0b508ecb47f8fa7e942cccf26c911
