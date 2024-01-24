@@ -205,7 +205,6 @@ register_activation_hook(__FILE__, 'pdr_create_search_data_table');
 
 
 
-
 //Adiciona o submenu dashboard ao menu do post type Services
 function pdr_add_dashboard_capability() {
     $role = get_role('professional'); // Substitua 'professional' pelo papel exato
