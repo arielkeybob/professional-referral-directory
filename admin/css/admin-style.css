@@ -1,0 +1,33 @@
+/* Admin CSS for Professional Directory Plugin */
+/* Estilo adicional para o dashboard */
+
+/* Remove as bordas e adiciona sombra a cada card */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para a tabela DataTables para ocupar 100% da largura */
+#recentSearchesTable_wrapper {
+    width: 100%;
+}
+
+#recentSearchesTable {
+    width: 100% !important;
+}
+
+/* Reduz o padding dentro das células da tabela para uma aparência mais compacta */
+#recentSearchesTable td {
+    padding: 0.5rem;
+}
+
+/* Estilos para o cabeçalho do card para uma aparência mais limpa */
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+}
+
+/* Ajusta o espaço entre os cards */
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
