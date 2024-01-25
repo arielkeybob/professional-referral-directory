@@ -1,5 +1,5 @@
 <?php
-class MyPlugin_Admin {
+class PDR_Settings {
 
     public function __construct() {
         add_action('admin_menu', array($this, 'add_admin_menu'));

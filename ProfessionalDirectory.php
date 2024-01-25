@@ -25,7 +25,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
-require_once plugin_dir_path(__FILE__) . 'admin/class-myplugin-admin.php';
+require_once plugin_dir_path(__FILE__) . 'admin/class-prd-settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
@@ -37,7 +37,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/enqueue-admin.php';
 
 // Instanciar a classe de administração
 if (is_admin()) {
-    $myplugin_admin = new MyPlugin_Admin();
+    $prd_settings = new PDR_Settings();
 }
 
 // Hooks para ativação e desativação do plugin

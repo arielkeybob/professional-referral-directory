@@ -8,7 +8,6 @@ if (!defined('WPINC')) {
 }
 
 class ProfessionalDirectory_Taxonomies {
-
     /**
      * Registra a taxonomia Tipo de Serviço.
      */
