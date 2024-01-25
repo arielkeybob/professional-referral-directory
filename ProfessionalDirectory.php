@@ -13,6 +13,8 @@ Text Domain: professionaldirectory
 // Prevenção contra acesso direto ao arquivo.
 defined('ABSPATH') or die('No script kiddies please!');
 
+define('PDR_MAIN_FILE', __FILE__);
+
 // Inclusões de Arquivos Principais do Plugin
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
@@ -27,6 +29,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
 require_once plugin_dir_path(__FILE__) . 'admin/admin-menus.php';
+require_once plugin_dir_path(__FILE__) . 'includes/enqueue-public.php';
+require_once plugin_dir_path(__FILE__) . 'includes/enqueue-admin.php';
+
 
 
 // Instanciar a classe de administração
@@ -51,50 +56,9 @@ register_deactivation_hook(__FILE__, 'professional_directory_deactivate');
 add_action('init', ['ProfessionalDirectory_CPT', 'register_service_cpt']);
 add_action('init', ['ProfessionalDirectory_CPT', 'register_service_type_taxonomy']);
 
-// Enfileiramento de estilos e scripts públicos
-function professionaldirectory_enqueue_scripts() {
-    wp_enqueue_style('professionaldirectory-style', plugins_url('/public/css/style.css', __FILE__));
-    
-    // Recupera a chave da API do Google Maps das opções do plugin
-    $google_maps_api_key = get_option('myplugin_google_maps_api_key');
 
-    // Enfileira o script do seu plugin
-    wp_enqueue_script('professionaldirectory-script', plugins_url('/public/js/script.js', __FILE__), array('jquery'), '', true);
 
-    // Enfileira o script do Google Maps com a biblioteca Places
-    wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $google_maps_api_key . '&libraries=places&callback=initAutocomplete', array('professionaldirectory-script'), null, true);
 
-    // Enfileira o script específico de pesquisa
-    wp_enqueue_script('pdr-search-script', plugins_url('/public/js/search.js', __FILE__), array('jquery', 'google-maps'), null, true);
-
-    // Localize o script para disponibilizar a URL do AJAX para o JavaScript
-    wp_localize_script('pdr-search-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
-}
-add_action('wp_enqueue_scripts', 'professionaldirectory_enqueue_scripts');
-
-// Enfileiramento de estilos e scripts de administração
-function professionaldirectory_enqueue_admin_scripts() {
-    // Enfileirar os estilos de administração
-    wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', __FILE__));
-    wp_enqueue_script('dashboard-script-admin', plugins_url('/admin/js/dashboard-script-admin.js', __FILE__), array('jquery'), null, true);
-
-    // Passar a URL AJAX e o nonce para o script
-    wp_localize_script('dashboard-script-admin', 'myPlugin', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'ajax_nonce' => wp_create_nonce('fetch_services_nonce')
-    ));
-    // Enfileirar os scripts de administração
-    wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', array('jquery'), null, true);
-    wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
-    wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
-    wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
-
-}
-
-if (is_admin()) {
-    require_once plugin_dir_path(__FILE__) . 'includes/dashboard-admin-functions.php';
-    add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
-}
 
 
 

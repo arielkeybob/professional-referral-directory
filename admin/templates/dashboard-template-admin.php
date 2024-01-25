@@ -39,6 +39,6 @@
             </tbody>
         </table>
     </div>
-    <script src="<?php echo plugins_url('/js/dashboard-script-admin.js', dirname(__FILE__)); ?>"></script>
+    
 </body>
 </html>
