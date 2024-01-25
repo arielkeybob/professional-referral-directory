@@ -18,6 +18,7 @@ define('PDR_MAIN_FILE', __FILE__);
 // Inclusões de Arquivos Principais do Plugin
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-taxonomies.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'includes/form-data-functions.php';
