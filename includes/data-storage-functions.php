@@ -4,22 +4,26 @@ if (!defined('WPINC')) {
     die;
 }
 
-
 function store_search_data($data) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
 
+    // Log iniciando a função store_search_data
+    error_log('Iniciando store_search_data');
+
     // Certifique-se de que 'service_location' esteja no array $data
-    // Se não estiver, adicione-o (substitua 'valor_padrao' pelo valor que você deseja usar se estiver ausente)
     if (!array_key_exists('service_location', $data)) {
         $data['service_location'] = 'valor_padrao';
     }
+
+    // Log dos dados que serão inseridos
+    error_log('Dados a serem inseridos: ' . print_r($data, true));
 
     // Inserir dados na tabela
     $result = $wpdb->insert(
         $table_name,
         $data,
-        array('%s', '%s', '%s', '%s', '%d', '%d', '%s') // Atualize os formatos conforme necessário
+        array('%s', '%s', '%s', '%s') // Formatando corretamente para strings
     );
 
     // Verificando se ocorreu algum erro durante a inserção
@@ -28,6 +32,7 @@ function store_search_data($data) {
     } else {
         error_log('Dados inseridos com sucesso no banco de dados.');
     }
+
+    // Log finalizando a função
+    error_log('Finalizando store_search_data');
 }
-
-
