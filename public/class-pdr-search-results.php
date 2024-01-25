@@ -7,6 +7,50 @@ if (!defined('WPINC')) {
 class PDR_Search_Results {
     public function __construct() {
         add_shortcode('pdr_search_results', array($this, 'render_search_results'));
+        add_action('wp_ajax_pdr_search', array($this, 'handle_ajax_search'));
+        add_action('wp_ajax_nopriv_pdr_search', array($this, 'handle_ajax_search'));
+    }
+
+    public function handle_ajax_search() {
+        $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
+        $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
+
+        $args = array(
+            'post_type' => 'professional_service',
+            'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => 'service_type',
+                    'field'    => 'slug',
+                    'terms'    => $service_type,
+                ),
+                array(
+                    'taxonomy' => 'service_location',
+                    'field'    => 'slug',
+                    'terms'    => $service_location,
+                ),
+            ),
+        );
+
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+            ob_start();
+
+            while ($query->have_posts()) {
+                $query->the_post();
+                include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
+            }
+
+            $html = ob_get_clean();
+
+            wp_reset_postdata();
+            wp_send_json_success($html);
+        } else {
+            wp_send_json_error('No service found.');
+        }
+
+        wp_die();
     }
 
     public function render_search_results() {
