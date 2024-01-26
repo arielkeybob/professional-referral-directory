@@ -28,7 +28,9 @@ function professionaldirectory_enqueue_admin_scripts() {
 }
 
 if (is_admin()) {
-    require_once plugin_dir_path(__FILE__) . '/dashboard-admin-functions.php';
+    require_once plugin_dir_path(dirname(__FILE__)) . 'admin/dashboard-admin-functions.php';
+
+    // A função para enfileirar os scripts permanece a mesma
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
 }
 

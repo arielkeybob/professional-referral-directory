@@ -27,7 +27,7 @@ require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
 require_once plugin_dir_path(__FILE__) . 'admin/class-prd-settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
-require_once plugin_dir_path(__FILE__) . 'includes/dashboard-professional-functions.php';
+require_once plugin_dir_path(__FILE__) . 'admin/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
 require_once plugin_dir_path(__FILE__) . 'admin/admin-menus.php';
 require_once plugin_dir_path(__FILE__) . 'includes/enqueue-public.php';
@@ -52,4 +52,3 @@ function pdr_deactivate() {
     ProfessionalDirectory_Users::cleanup_user_roles();
 }
 register_deactivation_hook(__FILE__, 'pdr_deactivate');
-?>
