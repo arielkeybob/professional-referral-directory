@@ -10,11 +10,16 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
    - Acesse `Services > Adicionar Novo`.
    - Preencha os detalhes do serviço, incluindo título, descrição e qualquer informação relevante.
    - Selecione o `Service Type` apropriado.
+   - Selecione o `Service Location` apropriado.
    - Publique o serviço.
 
 2. **Editando um Service:**
    - Acesse `Services` e localize o serviço que deseja editar.
    - Faça as alterações necessárias e salve.
+
+3. **Visualisando Métricas:**
+   - Acesse `Dashboard`
+   - Filtre pelo período ou serviço desejado.
 
 ### Para Administradores
 

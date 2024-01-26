@@ -21,13 +21,15 @@ Após a instalação e ativação, o plugin ProfessionalDirectory automaticament
 - Cria o user Role “Professional”.
 - Cria o Post Type “Services”.
 - Cria a taxonomia “Service Type”.
-- Adiciona shortcodes para o search form e resultados de pesquisa.
+- Cria a taxonomia “Service Location.
+- Cria shortcodes para o search form e resultados de pesquisa (veja como usar os shortcodes em [Uso](usage.md)).
 
 ## Verificações Pós-Instalação
 
 1. **Verifique o Role “Professional”:** Acesse `Usuários > Perfis` e confirme se o role “Professional” foi criado.
 2. **Verifique o Post Type “Services”:** Verifique se o novo tipo de post “Services” está disponível no painel.
 3. **Verifique a Taxonomia “Service Type”:** Confirme se a taxonomia está disponível e associada ao Post Type “Services”.
+4. **Verifique a Taxonomia “Service Location”:** Confirme se a taxonomia está disponível e associada ao Post Type “Services”.
 
 ## Problemas Comuns
 
@@ -39,4 +41,4 @@ Para mais informações ou assistência, consulte a seção [FAQ](faq.md) ou ent
 
 ---
 
-Desenvolvido por Ariel SOuza
+Desenvolvido por Ariel Souza

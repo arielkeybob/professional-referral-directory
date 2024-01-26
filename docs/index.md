@@ -22,4 +22,4 @@ Para suporte, dúvidas ou sugestões de melhorias, por favor, consulte a seção
 
 ---
 
-Desenvolvido por Ariel SOuza
+Desenvolvido por Ariel Souza

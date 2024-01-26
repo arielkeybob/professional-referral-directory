@@ -2,15 +2,18 @@
 
 ## Resumo do Plugin
 
-ProfessionalDirectory é um plugin WordPress robusto e flexível destinado a criar e gerenciar um diretório de serviços profissionais. Ele oferece uma ampla gama de funcionalidades para facilitar a gestão de serviços, incluindo a criação de post types personalizados, taxonomias, e funcionalidades avançadas de pesquisa e geolocalização.
+ProfessionalDirectory é um plugin WordPress robusto e flexível destinado a criar e gerenciar um diretório de serviços profissionais. Ele oferece uma ampla gama de funcionalidades para facilitar a gestão de serviços, incluindo a criação de post types personalizados, taxonomias, e funcionalidades avançadas de pesquisa e geolocalização*.
 
 ## Funcionalidades Principais
 
 - **User Role "Professional":** Permite aos usuários com esse role criar e gerenciar seus próprios serviços.
 - **Post Type "Services":** Uma forma personalizada de post para adicionar e gerenciar serviços no diretório.
 - **Taxonomia "Service Type":** Classifica serviços em diferentes categorias, facilitando a organização e a busca.
+- **Taxonomia "Service Location":** Permite criar locais onde os serviços são oferecidos, podendo ser usados como pontos específicos como lojas, ou regiões como cidades, estados, etc.
 - **Formulário de Busca e Resultados (Shortcodes):** Facilita a implementação de formulários de busca no front-end e a exibição dos resultados da pesquisa.
-- **Funcionalidade de Envio de E-mail:** Envia automaticamente e-mails para profissionais com base nas ações do usuário no site.
+- **Funcionalidade de Envio de E-mail:** Envia automaticamente e-mails para profissionais com base nas ações do usuário no site. Isso permite que o profissional receba uma notificação sempre que seu serviço for visualizado.
+- **Dasboard do Profissional:** Permite que o profissional visualize as metricas de pesquisa dos seus serviços em um período selecionado.
+- **Dasboard do Administrador:** Permite que o administrador visualize as metricas de pesquisa de todos os serviços e profissionais.
 
 ## Compatibilidade
 
