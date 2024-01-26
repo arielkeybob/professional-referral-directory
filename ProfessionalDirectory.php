@@ -41,13 +41,15 @@ if (is_admin()) {
 }
 
 // Hooks para ativação e desativação do plugin
-function professional_directory_activate() {
-    ProfessionalDirectory_Users::activate();
+function pdr_activate() {
+    ProfessionalDirectory_Users::initialize_user_roles();
     pdr_create_search_data_table(); // Agora chamada do arquivo activation.php
 }
-register_activation_hook(__FILE__, 'professional_directory_activate');
+register_activation_hook(__FILE__, 'pdr_activate');
 
-function professional_directory_deactivate() {
-    ProfessionalDirectory_Users::deactivate();
+
+function pdr_deactivate() {
+    ProfessionalDirectory_Users::cleanup_user_roles();
 }
-register_deactivation_hook(__FILE__, 'professional_directory_deactivate');
+register_deactivation_hook(__FILE__, 'pdr_deactivate');
+?>

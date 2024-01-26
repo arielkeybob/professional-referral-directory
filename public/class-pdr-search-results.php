@@ -13,10 +13,10 @@ class PDR_Search_Results {
 
     public function handle_ajax_search() {
         // Registrando o início do método
-        error_log('Iniciando handle_ajax_search');
+        //error_log('Iniciando handle_ajax_search');
         
         // Log dos dados POST recebidos
-        error_log('Dados POST recebidos: ' . print_r($_POST, true));
+        //error_log('Dados POST recebidos: ' . print_r($_POST, true));
     
         $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
         $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
@@ -66,7 +66,7 @@ class PDR_Search_Results {
             wp_reset_postdata();
             wp_send_json_success($html);
             // Log da resposta AJAX
-            error_log('Resposta AJAX enviada: ' . $html);
+            //error_log('Resposta AJAX enviada: ' . $html);
         } else {
             wp_send_json_error('No service found.');
         }

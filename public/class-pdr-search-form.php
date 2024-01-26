@@ -17,13 +17,13 @@ class PDR_Search_Form {
             $form_data = get_form_data();
 
             // Log dos dados do formulário
-            error_log('Dados do formulário recebidos: ' . print_r($form_data, true));
+            //error_log('Dados do formulário recebidos: ' . print_r($form_data, true));
 
             // Chama a função store_search_data para armazenar os dados no banco de dados
             store_search_data($form_data);
 
             // Log confirmando a chamada da função store_search_data
-            error_log('store_search_data chamada com: ' . print_r($form_data, true));
+            //error_log('store_search_data chamada com: ' . print_r($form_data, true));
         }
 
         ob_start();

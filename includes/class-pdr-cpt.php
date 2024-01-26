@@ -1,4 +1,4 @@
-    <?php
+<?php
     // Se este arquivo for chamado diretamente, aborte.
     if ( ! defined( 'WPINC' ) ) {
         die;
@@ -104,8 +104,7 @@
                 'publish_professional_services',
                 'edit_professional_services',
                 'edit_professional_service',
-                'edit_published_professional_services',
-                // Inclua outras capacidades conforme necessário
+                'edit_published_professional_services'
             );
 
             foreach ($professional_capabilities as $cap) {
@@ -121,8 +120,7 @@
     }
 
     // Registrar o Custom Post Type e a Taxonomia no hook 'init'
-    add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_cpt' ]);
+    add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_cpt' ], 10);
     add_action('init', ['ProfessionalDirectory_CPT', 'set_service_capabilities'], 11);
     add_action('init', ['ProfessionalDirectory_CPT', 'add_admin_capabilities'], 11);
-
     

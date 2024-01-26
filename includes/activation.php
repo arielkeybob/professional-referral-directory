@@ -17,6 +17,7 @@ function pdr_create_search_data_table() {
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+  
     dbDelta($sql);
 
     // Criação de índices
@@ -24,7 +25,7 @@ function pdr_create_search_data_table() {
         'author_id' => 'idx_author_id',
         'service_id' => 'idx_service_id',
         'service_type' => 'idx_service_type',
-        'search_date' => 'idx_search_date' // Índice adicional para search_date
+        'search_date' => 'idx_search_date'
     ];
 
     foreach ($indices as $column => $index_name) {
@@ -34,3 +35,4 @@ function pdr_create_search_data_table() {
     }
 }
 
+?>

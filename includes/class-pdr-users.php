@@ -5,7 +5,7 @@ if (!defined('WPINC')) {
 }
 
 class ProfessionalDirectory_Users {
-    public static function activate() {
+    public static function initialize_user_roles() {
         if (!get_role('professional')) {
             add_role(
                 'professional',
@@ -27,7 +27,7 @@ class ProfessionalDirectory_Users {
         }
     }
 
-    public static function deactivate() {
+    public static function cleanup_user_roles() {
         if ($role = get_role('professional')) {
             // Remove as capacidades antes de remover o papel para limpeza.
             $role->remove_cap('edit_services');
@@ -38,3 +38,4 @@ class ProfessionalDirectory_Users {
     }
 }
 
+?>
