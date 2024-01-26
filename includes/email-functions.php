@@ -5,7 +5,8 @@ if (!defined('WPINC')) {
 }
 
 // Supondo que a função 'get_form_data' esteja definida em 'form-data-functions.php' e incluída no plugin
-require_once plugin_dir_path(__FILE__) . 'form-data-functions.php';
+require_once plugin_dir_path(PDR_MAIN_FILE) . 'public/form-data-functions.php';
+
 
 function send_email_to_service_author($post_id) {
     $user_data = get_form_data();
