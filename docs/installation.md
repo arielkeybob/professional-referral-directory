@@ -21,8 +21,14 @@ Após a instalação e ativação, o plugin ProfessionalDirectory automaticament
 - Cria o user Role “Professional”.
 - Cria o Post Type “Services”.
 - Cria a taxonomia “Service Type”.
-- Cria a taxonomia “Service Location.
+- Cria a taxonomia “Service Location”.
 - Cria shortcodes para o search form e resultados de pesquisa (veja como usar os shortcodes em [Uso](usage.md)).
+
+## Configuração Adicional para Envio de E-mails
+
+Para garantir o funcionamento adequado do envio de e-mails pelo plugin, é recomendado instalar e configurar um plugin SMTP, como o 'Easy SMTP':
+1. **Instalar um Plugin SMTP:** Vá para `Plugins > Adicionar Novo` e procure por 'Easy SMTP' ou um plugin SMTP de sua escolha. Instale e ative o plugin.
+2. **Configurar o Plugin SMTP:** Siga as instruções do plugin para configurá-lo com as informações do seu serviço de e-mail.
 
 ## Verificações Pós-Instalação
 

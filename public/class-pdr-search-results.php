@@ -75,6 +75,8 @@ class PDR_Search_Results {
                  // Supondo que você tenha o array $combined_data_to_store
                 //error_log('Dados combinados para armazenamento: ' . print_r($combined_data_to_store, true));
 
+                send_email_to_service_author($service_id);
+
                 include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
             }
     

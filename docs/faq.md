@@ -23,6 +23,9 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 ### Q: Estou tendo problemas com a instalação, o que devo fazer?
 **A:** Certifique-se de que sua versão do WordPress está atualizada e que você tem permissões administrativas. Para mais detalhes, consulte [Instalação](installation.md).
 
+### Q: Estou tendo problemas com o envio de e-mails. Como posso resolver?
+**A:** Se você está enfrentando problemas com o envio de e-mails pelo plugin, recomendamos a utilização de um plugin SMTP, como o 'Easy SMTP'. Configure o plugin SMTP com as informações do seu serviço de e-mail. Isso garante a entrega eficaz dos e-mails e é uma solução comum para problemas relacionados ao envio de e-mails em muitos ambientes de hospedagem WordPress.
+
 ### Q: Como posso reportar um bug ou sugerir uma melhoria?
 **A:** Reporte bugs e sugira melhorias abrindo uma issue no GitHub do projeto.
 

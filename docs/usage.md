@@ -9,16 +9,15 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
 1. **Adicionando um Novo Service:**
    - Acesse `Services > Adicionar Novo`.
    - Preencha os detalhes do serviço, incluindo título, descrição e qualquer informação relevante.
-   - Selecione o `Service Type` apropriado.
-   - Selecione o `Service Location` apropriado.
+   - Selecione o `Service Type` e `Service Location` apropriados.
    - Publique o serviço.
 
 2. **Editando um Service:**
    - Acesse `Services` e localize o serviço que deseja editar.
    - Faça as alterações necessárias e salve.
 
-3. **Visualisando Métricas:**
-   - Acesse `Dashboard`
+3. **Visualizando Métricas:**
+   - Acesse `Dashboard`.
    - Filtre pelo período ou serviço desejado.
 
 ### Para Administradores
@@ -36,6 +35,10 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
 
 - Após a busca, os resultados são exibidos na mesma página.
 - Inclua o shortcode `[pdr_search_results]` na página onde deseja exibir os resultados.
+
+## Configuração de E-mail SMTP
+
+Para garantir o envio eficaz de notificações e outros e-mails pelo plugin, é essencial configurar um plugin SMTP, como o 'Easy SMTP'. Siga as instruções de instalação e configuração do plugin SMTP para assegurar a entrega correta dos e-mails.
 
 ## Dicas de Uso
 
