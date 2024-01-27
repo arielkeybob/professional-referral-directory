@@ -31,9 +31,9 @@ class PDR_Search_Results {
             'email' => $email
         ];
     
-        // Chamando a função store_search_data
-        store_search_data($data_to_store);
-    
+
+        //error_log('Dados a serem armazenados antes de chamar store_search_data: ' . print_r($data_to_store, true));
+
         $args = array(
             'post_type' => 'professional_service',
             'tax_query' => array(
@@ -58,6 +58,23 @@ class PDR_Search_Results {
     
             while ($query->have_posts()) {
                 $query->the_post();
+                $service_id = get_the_ID();
+                $author_id = get_the_author_meta('ID');
+
+                // Prepara os dados adicionais
+                $additional_data = [
+                    'service_id' => $service_id,
+                    'author_id' => $author_id
+                ];
+
+                // Combina os dados do formulário com os dados adicionais
+                $combined_data_to_store = array_merge($data_to_store, $additional_data);
+
+                // Chama a função store_search_data
+                store_search_data($combined_data_to_store);
+                 // Supondo que você tenha o array $combined_data_to_store
+                //error_log('Dados combinados para armazenamento: ' . print_r($combined_data_to_store, true));
+
                 include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
             }
     

@@ -56,12 +56,13 @@ function fetch_admin_dashboard_data() {
     $sql .= " GROUP BY s.service_id";
 
     // Debug - Log the SQL query
-    error_log('Executing SQL Query: ' . $sql);
+    //error_log('Executing SQL Query: ' . $sql);
 
     // Executando a consulta
     $results = $wpdb->get_results($sql, ARRAY_A);
 
     // Debug - Verificar resultados
+    /*
     if (empty($results)) {
         error_log('No results found.');
         wp_send_json_error('No data found.');
@@ -69,6 +70,7 @@ function fetch_admin_dashboard_data() {
         error_log('Results found: ' . print_r($results, true));
         wp_send_json_success($results);
     }
+    */
 
     // Sempre finalize funções AJAX com wp_die()
     wp_die();
