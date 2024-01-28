@@ -62,7 +62,7 @@ function fetch_admin_dashboard_data() {
     $results = $wpdb->get_results($sql, ARRAY_A);
 
     // Debug - Verificar resultados
-    /*
+    
     if (empty($results)) {
         error_log('No results found.');
         wp_send_json_error('No data found.');
@@ -70,7 +70,7 @@ function fetch_admin_dashboard_data() {
         error_log('Results found: ' . print_r($results, true));
         wp_send_json_success($results);
     }
-    */
+    
 
     // Sempre finalize funções AJAX com wp_die()
     wp_die();
