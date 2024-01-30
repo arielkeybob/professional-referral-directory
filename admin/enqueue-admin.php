@@ -12,7 +12,8 @@ function professionaldirectory_enqueue_admin_scripts() {
     // Enfileirar os estilos de administração
     wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', PDR_MAIN_FILE));
     wp_enqueue_script('dashboard-script-admin', plugins_url('/admin/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
-
+    wp_enqueue_script('pdr-admin-notifications', plugins_url('/admin/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
+    
 
     // Passar a URL AJAX e o nonce para o script
     wp_localize_script('dashboard-script-admin', 'myPlugin', array(
@@ -24,6 +25,7 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
     wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
     wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
+    
 
 }
 

@@ -35,4 +35,27 @@ function pdr_create_search_data_table() {
     }
 }
 
+
+function pdr_check_version() {
+    if ( get_option( 'pdr_version' ) !== PDR_VERSION ) {
+        // A versão do plugin foi atualizada
+        pdr_activate(); // Reativação para atualizar a versão
+
+        // Adicione aqui outras tarefas necessárias para a atualização
+        update_option( 'pdr_version', PDR_VERSION ); // Atualiza a versão do plugin no banco de dados
+    }
+}
+
+
+
+
+function pdr_start_session() {
+    if (!session_id()) {
+        session_start();
+    }
+}
+
+
+
+
 ?>

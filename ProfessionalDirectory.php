@@ -15,6 +15,9 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 define('PDR_MAIN_FILE', __FILE__);
 
+define( 'PDR_VERSION', '1.1.0' ); // Substitua 1.0.0 pela versão atual do seu plugin
+
+
 // Inclusões de Arquivos Principais do Plugin
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
@@ -32,6 +35,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão
 require_once plugin_dir_path(__FILE__) . 'admin/admin-menus.php';
 require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';
 require_once plugin_dir_path(__FILE__) . 'admin/enqueue-admin.php';
+require_once plugin_dir_path(__FILE__) . 'admin/notifications.php';
 
 
 
@@ -40,12 +44,15 @@ if (is_admin()) {
     $prd_settings = new PDR_Settings();
 }
 
-// Hooks para ativação e desativação do plugin
 function pdr_activate() {
     ProfessionalDirectory_Users::initialize_user_roles();
-    pdr_create_search_data_table(); // Agora chamada do arquivo activation.php
+    pdr_create_search_data_table(); // Chamada existente do arquivo activation.php
+    update_option( 'pdr_version', PDR_VERSION ); // Armazena a versão atual do plugin
+    pdr_check_version();
+    pdr_start_session();
 }
 register_activation_hook(__FILE__, 'pdr_activate');
+
 
 
 function pdr_deactivate() {
