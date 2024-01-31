@@ -1,0 +1,55 @@
+/* Estilo Geral do Formulário */
+#pdr-search-form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Estilo dos campos de seleção e input */
+#pdr-search-form select,
+#pdr-search-form input {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo ao focar nos campos */
+#pdr-search-form select:focus,
+#pdr-search-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,.25);
+}
+
+/* Estilo do Botão */
+#pdr-search-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+/* Efeito hover no botão */
+#pdr-search-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Escondendo o botão "Next" inicialmente */
+#pdr-search-btn {
+    /*display: none;*/
+}
+
+/* Estilo do formulário de informações pessoais */
+#pdr-personal-info-form {
+    display: block; /* Altere conforme necessário */
+}

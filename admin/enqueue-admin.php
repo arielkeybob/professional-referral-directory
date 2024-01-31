@@ -13,6 +13,8 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', PDR_MAIN_FILE));
     wp_enqueue_script('dashboard-script-admin', plugins_url('/admin/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_script('pdr-admin-notifications', plugins_url('/admin/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
+    wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/admin/css/dashboard-style-admin.css', PDR_MAIN_FILE));
+
     
 
     // Passar a URL AJAX e o nonce para o script

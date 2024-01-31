@@ -1,24 +1,77 @@
-/* Estilo CSS para a dashboard */
+/* Estilo Geral do Container do Dashboard */
 #dashboard-container {
-    /* Estilos para o container da dashboard */
+    font-family: 'Arial', sans-serif;
     max-width: 800px;
-    margin: 30px auto;
+    margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#dashboard-container h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos Seletores e Botões */
+#dashboard-container select,
+#dashboard-container input[type="date"] {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#dashboard-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#dashboard-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da Tabela */
 #services-data {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-#services-data th, #services-data td {
-    border: 1px solid #ddd;
-    padding: 8px;
+#services-data thead {
+    background-color: #007bff;
+    color: white;
+}
+
+#services-data th,
+#services-data td {
     text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
 }
 
-#services-data th {
-    background-color: #f4f4f4;
+#services-data tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo do Checkbox */
+#dashboard-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+#dashboard-container label {
+    margin-right: 15px;
+}
+
+/* Estilo para Período Personalizado */
+#custom-period {
+    margin-top: 10px;
 }
