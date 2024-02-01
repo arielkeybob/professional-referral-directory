@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
                 if (response.success) {
                     // Função para processar e exibir os resultados da busca
                     displayResults(response.data);
-                    alert('Informações enviadas com sucesso.');
+                    //alert('Informações enviadas com sucesso.');
                 } else {
                     // Tratar casos de falha na busca
                     $('#pdr-search-results').html('<p>No service found.</p>');
