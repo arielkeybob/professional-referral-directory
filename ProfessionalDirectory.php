@@ -59,3 +59,5 @@ function pdr_deactivate() {
     ProfessionalDirectory_Users::cleanup_user_roles();
 }
 register_deactivation_hook(__FILE__, 'pdr_deactivate');
+
+

@@ -1,0 +1,86 @@
+/* Estilo geral do card */
+.service-result {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+/* Estilo da thumbnail */
+.service-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo do conteúdo do card */
+.service-content {
+    padding: 15px;
+}
+
+.service-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.service-excerpt {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.service-taxonomy {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* Estilo dos detalhes do autor */
+.service-author-details {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+.author-name,
+.author-email,
+.author-website,
+.author-info {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.author-website a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.author-website a:hover {
+    text-decoration: underline;
+}
+
+/* Botão 'Ler mais' */
+.read-more {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .service-result {
+        max-width: 100%;
+    }
+}

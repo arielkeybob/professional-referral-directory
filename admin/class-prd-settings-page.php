@@ -38,6 +38,7 @@ class PDR_Settings {
         register_setting('myplugin_settings_group', 'myplugin_google_maps_api_key');
         register_setting('myplugin_settings_group', 'myplugin_selected_admins');
         register_setting('myplugin_settings_group', 'myplugin_manual_emails');
+        register_setting('myplugin_settings_group', 'myplugin_template_choice');
         
         // Seção de Configurações da API
         add_settings_section(
@@ -77,9 +78,32 @@ class PDR_Settings {
             array($this, 'manual_emails_callback'),
             'myplugin',
             'myplugin_email_settings_section'
-        );        
+        ); 
+        
+        // Seção de Configurações de Template
+        add_settings_section(
+            'myplugin_template_settings_section',
+            __('Template Settings', 'professionaldirectory'),
+            null,
+            'myplugin'
+        );
+        
+        add_settings_field(
+            'myplugin_template_choice',
+            __('Choose Template', 'professionaldirectory'),
+            array($this, 'template_choice_callback'),
+            'myplugin',
+            'myplugin_template_settings_section'
+        );
     }
     
+    public function template_choice_callback() {
+        $template_choice = get_option('myplugin_template_choice', 'template-1');
+        echo "<select name='myplugin_template_choice'>";
+        echo "<option value='template-1' " . selected($template_choice, 'template-1', false) . ">" . esc_html__('Template 1', 'professionaldirectory') . "</option>";
+        echo "<option value='template-2' " . selected($template_choice, 'template-2', false) . ">" . esc_html__('Template 2', 'professionaldirectory') . "</option>";
+        echo "</select>";
+    }
     
     public function google_maps_api_key_callback() {
         $api_key = get_option('myplugin_google_maps_api_key');
