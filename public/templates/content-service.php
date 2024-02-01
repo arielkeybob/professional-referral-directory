@@ -4,15 +4,23 @@ if (!defined('ABSPATH')) {
     exit; // Saída em caso de acesso direto ao arquivo
 }
 
-$in_footer = true; // ou true se você quiser que os scripts sejam carregados no rodapé
 $template_choice = get_option('myplugin_template_choice', 'template-1');
-if ($template_choice == 'template-1') {
-    echo '<link rel="stylesheet" href="' . esc_url(plugins_url('/public/css/search-result-template-1.css', PDR_MAIN_FILE)) . '" type="text/css" />';
-    echo '<script src="' . esc_url(plugins_url('/public/js/search-result-template-1.js', PDR_MAIN_FILE)) . '"></script>';
-} elseif ($template_choice == 'template-2') {
-    echo '<link rel="stylesheet" href="' . esc_url(plugins_url('/public/css/search-result-template-2.css', PDR_MAIN_FILE)) . '" type="text/css" />';
-    echo '<script src="' . esc_url(plugins_url('/public/js/search-result-template-2.js', PDR_MAIN_FILE)) . '"></script>';
+$template_number = str_replace('template-', '', $template_choice); // Isso irá extrair o número do template
+
+// Verifica se os arquivos existem antes de tentar enfileirá-los
+$css_file = plugins_url("/public/css/search-result-template-{$template_number}.css", PDR_MAIN_FILE);
+$js_file = plugins_url("/public/js/search-result-template-{$template_number}.js", PDR_MAIN_FILE);
+
+// Enfileira o CSS
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/css/search-result-template-{$template_number}.css")) {
+    echo '<link rel="stylesheet" href="' . esc_url($css_file) . '" type="text/css" />';
 }
+
+// Enfileira o JS
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/js/search-result-template-{$template_number}.js")) {
+    echo '<script src="' . esc_url($js_file) . '"></script>';
+}
+
 
 
 
