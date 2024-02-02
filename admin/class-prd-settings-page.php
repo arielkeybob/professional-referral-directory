@@ -95,8 +95,84 @@ class PDR_Settings {
             'myplugin',
             'myplugin_template_settings_section'
         );
+
+
+        add_settings_section(
+            'myplugin_frontend_style_settings_section',
+            __('Frontend Style Settings', 'professionaldirectory'),
+            null,
+            'myplugin'
+        );
+
+        // Lista de configurações de estilo
+        $style_settings = [
+            'button_color' => __('Button Color', 'professionaldirectory'),
+            'button_text_color' => __('Button Text Color', 'professionaldirectory'),
+            'button_hover_color' => __('Button Hover Color', 'professionaldirectory'),
+            'button_text_hover_color' => __('Button Text Hover Color', 'professionaldirectory'),
+            'title_font_family' => __('Title Font Family', 'professionaldirectory'),
+            'title_color' => __('Title Color', 'professionaldirectory'),
+            'body_font_family' => __('Body Font Family', 'professionaldirectory'),
+            'body_color' => __('Body Color', 'professionaldirectory'),
+            // Adicione os outros campos de estilo aqui...
+        ];
+
+        foreach ($style_settings as $setting_name => $setting_label) {
+            register_setting('myplugin_settings_group', 'myplugin_' . $setting_name);
+            add_settings_field(
+                'myplugin_' . $setting_name,
+                $setting_label,
+                array($this, $setting_name . '_callback'),
+                'myplugin',
+                'myplugin_frontend_style_settings_section'
+            );
+        }
+
     }
     
+
+    public function button_color_callback() {
+        $value = get_option('myplugin_button_color', '#000000');
+        echo "<input type='color' name='myplugin_button_color' value='" . esc_attr($value) . "'>";
+    }
+
+    public function button_text_color_callback() {
+        $value = get_option('myplugin_button_text_color', '#FFFFFF');
+        echo "<input type='color' name='myplugin_button_text_color' value='" . esc_attr($value) . "'>";
+    }
+
+    public function button_hover_color_callback() {
+        $value = get_option('myplugin_button_hover_color', '#000000');
+        echo "<input type='color' name='myplugin_button_hover_color' value='" . esc_attr($value) . "'>";
+    }
+
+    public function button_text_hover_color_callback() {
+        $value = get_option('myplugin_button_text_hover_color', '#FFFFFF');
+        echo "<input type='color' name='myplugin_button_text_hover_color' value='" . esc_attr($value) . "'>";
+    }
+
+    public function title_font_family_callback() {
+        $value = get_option('myplugin_title_font_family', '');
+        echo "<input type='text' name='myplugin_title_font_family' value='" . esc_attr($value) . "' />";
+    }
+
+    public function title_color_callback() {
+        $value = get_option('myplugin_title_color', '#000000');
+        echo "<input type='color' name='myplugin_title_color' value='" . esc_attr($value) . "'>";
+    }
+
+    public function body_font_family_callback() {
+        $value = get_option('myplugin_body_font_family', '');
+        echo "<input type='text' name='myplugin_body_font_family' value='" . esc_attr($value) . "' />";
+    }
+
+    public function body_color_callback() {
+        $value = get_option('myplugin_body_color', '#000000');
+        echo "<input type='color' name='myplugin_body_color' value='" . esc_attr($value) . "'>";
+    }
+
+
+
     public function template_choice_callback() {
         $template_choice = get_option('myplugin_template_choice', 'template-1');
         echo "<select name='myplugin_template_choice'>";

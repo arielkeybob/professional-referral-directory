@@ -23,14 +23,14 @@
 #pdr-search-form select:focus,
 #pdr-search-form input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0,123,255,.25);
+    border-color: var(--pdr-button-hover-color);
+    box-shadow: 0 0 0 3px var(--pdr-button-color);
 }
 
 /* Estilo do Botão */
 #pdr-search-form button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--pdr-button-color);
+    color: var(--pdr-button-text-color);
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -41,7 +41,8 @@
 
 /* Efeito hover no botão */
 #pdr-search-form button:hover {
-    background-color: #0056b3;
+    background-color: var(--pdr-button-hover-color);
+    color: var(--pdr-button-text-hover-color);
 }
 
 /* Escondendo o botão "Next" inicialmente */

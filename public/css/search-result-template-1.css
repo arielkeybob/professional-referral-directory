@@ -48,8 +48,13 @@ a.read-more {
   width: 100%;
   padding: 15px;
   text-align: center;
-  background: cornflowerblue;
-  color: #fff;
+  background: var(--pdr-button-color);;
+  color: var(--pdr-button-text-color);
+}
+
+a.read-more:hover {
+  background: var(--pdr-button-hover-color);;
+  color: var(--pdr-button-text-hover-color);
 }
 
 #pdr-search-results p{

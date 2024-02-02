@@ -36,6 +36,7 @@ require_once plugin_dir_path(__FILE__) . 'admin/admin-menus.php';
 require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';
 require_once plugin_dir_path(__FILE__) . 'admin/enqueue-admin.php';
 require_once plugin_dir_path(__FILE__) . 'admin/notifications.php';
+require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 
 
 
@@ -59,5 +60,7 @@ function pdr_deactivate() {
     ProfessionalDirectory_Users::cleanup_user_roles();
 }
 register_deactivation_hook(__FILE__, 'pdr_deactivate');
+
+
 
 
