@@ -1,5 +1,6 @@
 // Inicializa o Autocomplete do Google Places no campo de endereço
 // Definição global da função initAutocomplete
+/*
 window.initAutocomplete = function() {
     var autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('pdr_service_location'),
@@ -18,7 +19,7 @@ window.initAutocomplete = function() {
         document.getElementById('pdr_longitude_display').textContent = place.geometry.location.lng();
     });
 };
-
+*/
 
 jQuery(document).ready(function($) {
     // Exibir campos de nome e e-mail ao clicar em "Next"

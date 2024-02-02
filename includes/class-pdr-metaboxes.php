@@ -4,7 +4,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-require_once 'class-pdr-geolocation.php';
+// require_once 'class-pdr-geolocation.php';
 
 class PDR_Metaboxes {
 
@@ -16,6 +16,7 @@ class PDR_Metaboxes {
 
     // Função para adicionar meta boxes
     public static function add_meta_boxes() {
+        /*
         add_meta_box(
             'pdr_service_location',
             __('Service Location', 'professionaldirectory'),
@@ -24,6 +25,7 @@ class PDR_Metaboxes {
             'side',
             'default'
         );
+        */
 
         // Novo metabox para preferência de recebimento de e-mail
         add_meta_box(
@@ -35,13 +37,14 @@ class PDR_Metaboxes {
             'high'
         );
     }
-    
+    /*
     // Função para renderizar o meta box de localização
     public static function render_location_meta_box($post) {
         wp_nonce_field('pdr_save_location_meta_box_data', 'pdr_location_meta_box_nonce');
 
         // Obtém os valores meta existentes
         $location = get_post_meta($post->ID, '_pdr_service_location', true);
+        
         $latitude = get_post_meta($post->ID, '_pdr_service_latitude', true);
         $longitude = get_post_meta($post->ID, '_pdr_service_longitude', true);
 
@@ -49,7 +52,9 @@ class PDR_Metaboxes {
         echo '<input type="text" id="pdr_service_location" name="pdr_service_location" value="' . esc_attr($location) . '" class="widefat" />';
         echo '<p>' . esc_html__('Latitude:', 'professionaldirectory') . ' <span id="pdr_latitude_display">' . esc_html($latitude) . '</span></p>';
         echo '<p>' . esc_html__('Longitude:', 'professionaldirectory') . ' <span id="pdr_longitude_display">' . esc_html($longitude) . '</span></p>';
+        
     }
+    */
 
     // Função para renderizar o meta box de preferência de e-mail
     public static function render_email_preference_meta_box($post) {
@@ -77,16 +82,19 @@ class PDR_Metaboxes {
         }
 
         // Salva a localização
+        /*
         if (isset($_POST['pdr_service_location'])) {
             update_post_meta($post_id, '_pdr_service_location', sanitize_text_field($_POST['pdr_service_location']));
 
             // Geocodificar o endereço e salvar as coordenadas
+            /*
             $coordinates = PDR_Geolocation::geocode_address($_POST['pdr_service_location']);
             if ($coordinates) {
                 update_post_meta($post_id, '_pdr_service_latitude', $coordinates['latitude']);
                 update_post_meta($post_id, '_pdr_service_longitude', $coordinates['longitude']);
             }
         }
+        */
 
         // Salva a preferência de e-mail
         $email_preference = isset($_POST['pdr_email_preference']) ? '1' : '0';

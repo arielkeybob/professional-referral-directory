@@ -48,6 +48,7 @@ class PDR_Settings {
             'myplugin'
         );
         
+        /*
         add_settings_field(
             'myplugin_google_maps_api_key',
             __('Google Maps API Key', 'professionaldirectory'), // Traduzindo o título do campo
@@ -55,6 +56,7 @@ class PDR_Settings {
             'myplugin',
             'myplugin_api_settings_section'
         );
+        */
         
         // Nova Seção de Configurações de E-mail
         add_settings_section(
