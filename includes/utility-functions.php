@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <?php
 // Função auxiliar para obter termos de taxonomia como string
 function pdr_get_taxonomy_terms_as_string($taxonomy) {
@@ -54,3 +55,27 @@ function pdr_get_author_social_html() {
     }
     return '';
 }
+
+
+
+//Enfileirando css e js do template
+$template_choice = get_option('myplugin_template_choice', 'template-1');
+$template_number = str_replace('template-', '', $template_choice); // Isso irá extrair o número do template
+
+// Verifica se os arquivos existem antes de tentar enfileirá-los
+$css_file = plugins_url("/public/css/search-result-template-{$template_number}.css", PDR_MAIN_FILE);
+$js_file = plugins_url("/public/js/search-result-template-{$template_number}.js", PDR_MAIN_FILE);
+
+// Enfileira o CSS
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/css/search-result-template-{$template_number}.css")) {
+    echo '<link rel="stylesheet" href="' . esc_url($css_file) . '" type="text/css" />';
+}
+
+// Enfileira o JS
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/js/search-result-template-{$template_number}.js")) {
+    echo '<script src="' . esc_url($js_file) . '"></script>';
+}
+
+
+
+

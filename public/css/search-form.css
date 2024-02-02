@@ -45,16 +45,8 @@
     color: var(--pdr-button-text-hover-color);
 }
 
-/* Escondendo o botão "Next" inicialmente */
-#pdr-search-btn {
-    /*display: none;*/
-}
 
 /* Estilo do formulário de informações pessoais */
 #pdr-personal-info-form {
     display: block; /* Altere conforme necessário */
 }
-
-
-
-
