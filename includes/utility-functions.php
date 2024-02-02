@@ -23,3 +23,34 @@ function pdr_get_service_thumbnail_url($size = 'full') {
     }
 }
 
+function pdr_get_author_email_html() {
+    $email = get_the_author_meta('email');
+    if ($email) {
+        return '<p class="author-email"><i class="fas fa-envelope"></i> ' . esc_html($email) . '</p>';
+    }
+    return '';
+}
+
+function pdr_get_author_url_html() {
+    $url = get_the_author_meta('url');
+    if ($url) {
+        return '<p class="author-website"><i class="fas fa-globe"></i> <a href="' . esc_url($url) . '">' . esc_html($url) . '</a></p>';
+    }
+    return '';
+}
+
+function pdr_get_author_phone_html() {
+    $phone = get_the_author_meta('telefone');
+    if ($phone) {
+        return '<p class="author-info"><i class="fas fa-phone"></i> ' . esc_html($phone) . '</p>';
+    }
+    return '';
+}
+
+function pdr_get_author_social_html() {
+    $social = get_the_author_meta('social');
+    if ($social) {
+        return '<p class="author-info"><i class="fas fa-icons"></i> ' . esc_html($social) . '</p>';
+    }
+    return '';
+}

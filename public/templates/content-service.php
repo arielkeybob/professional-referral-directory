@@ -57,22 +57,16 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
     </div>
 
     <div class="service-author-details">
-    <p class="author-name">
-        <i class="fas fa-user"></i> <?php the_author(); ?>
-    </p>
-    <p class="author-email">
-        <i class="fas fa-envelope"></i> <?php echo esc_html(get_the_author_meta('email')); ?>
-    </p>
-    <p class="author-website">
-        <i class="fas fa-globe"></i> <a href="<?php echo esc_url(get_the_author_meta('url')); ?>">
-            <?php echo esc_html(get_the_author_meta('url')); ?>
-        </a>
-    </p>
-    <p class="author-info">
-        <i class="fas fa-phone"></i> <?php echo esc_html(get_the_author_meta('telefone')); ?><br>
-        <i class="fas fa-icons"></i> <?php echo esc_html(get_the_author_meta('social')); ?>
-    </p>
-</div>
+        <p class="author-name">
+            <i class="fas fa-user"></i> <?php the_author(); ?>
+        </p>
+
+        <?php echo pdr_get_author_email_html(); ?>
+        <?php echo pdr_get_author_url_html(); ?>
+        <?php echo pdr_get_author_phone_html(); ?>
+        <?php echo pdr_get_author_social_html(); ?>
+    </div>
+
 
 
     <a class="read-more" href="<?php the_permalink(); ?>">
