@@ -24,30 +24,24 @@ if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/js/search-result-templa
 
 
 
-// Função auxiliar para obter termos de taxonomia como string
-function pdr_get_taxonomy_terms_as_string($taxonomy) {
-    $terms = get_the_terms(get_the_ID(), $taxonomy);
-    if (empty($terms)) {
-        return '';
-    }
+// Em content-service.php
+include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php');
 
-    $term_list = array_map(function($term) {
-        return esc_html($term->name);
-    }, $terms);
 
-    return implode(', ', $term_list);
-}
+
 
 // Comece a montar o HTML para cada resultado da busca
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <div class="service-result">
-    <?php if (has_post_thumbnail()) : ?>
+    
         <div class="service-thumbnail">
-            <?php the_post_thumbnail('medium'); ?>
+            <?php 
+            echo '<img src="' . pdr_get_service_thumbnail_url('medium') . '" alt="Service Thumbnail">';
+            ?>
         </div>
-    <?php endif; ?>
+    
 
     <div class="service-content">
         <h3 class="service-title"><?php the_title(); ?></h3>

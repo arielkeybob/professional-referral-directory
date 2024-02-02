@@ -81,3 +81,14 @@ p.service-taxonomy.service-type {
 .service-author-details i {
   margin-right: 10px;
 }
+
+.service-content, .service-author-details, .service-author-details a{
+  font-family: var(--pdr-body-font-family);
+  color: var(--pdr-body-color);
+}
+
+.service-title{
+  font-family: var(--pdr-title-font-family);
+  color: var(--pdr-title-color);
+}
+
