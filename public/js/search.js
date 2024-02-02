@@ -68,5 +68,7 @@ jQuery(document).ready(function($) {
 
         // Insere o HTML retornado diretamente no container de resultados
         resultsContainer.html(data);
+        // Depois que o HTML é inserido, você chama a função para reorganizar os elementos
+       
     }
 });

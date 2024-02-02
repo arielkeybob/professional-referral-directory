@@ -11,6 +11,16 @@ function send_email_to_service_author($post_id) {
     // Captura os dados do usuário a partir do formulário
     $user_data = get_form_data();
 
+    // Verifica a preferência de e-mail do profissional
+    $email_preference = get_post_meta($post_id, '_pdr_email_preference', true);
+
+    // Se o profissional optou por não receber e-mails, retorna sem enviar
+    if ($email_preference != '1') {
+        return; // Encerra a função se o profissional optou por não receber e-mails
+    }
+
+    // Continua com a lógica de envio de e-mail se o profissional optou por receber e-mails
+
     // Obtém o e-mail do autor do post
     $author_email = get_the_author_meta('user_email', get_post_field('post_author', $post_id));
 
@@ -29,7 +39,7 @@ function send_email_to_service_author($post_id) {
     $name = sanitize_text_field($user_data['name']);
     $email = sanitize_email($user_data['email']);
     $service_type = sanitize_text_field($user_data['service_type']);
-    $service_location = sanitize_text_field($user_data['service_location']); // Campo service_location
+    $service_location = sanitize_text_field($user_data['service_location']);
 
     // Prepara o assunto e a mensagem
     $subject = __("Service Inquiry:", "professional_directory") . " " . get_the_title($post_id);
@@ -41,9 +51,7 @@ function send_email_to_service_author($post_id) {
     // Envia o e-mail
     wp_mail($author_email, $subject, $message, $headers);
 
-
     error_log('Enviando email para o autor do post. Post ID: ' . $post_id);
     error_log('Dados do usuário: ' . print_r($user_data, true));
-
-
 }
+
