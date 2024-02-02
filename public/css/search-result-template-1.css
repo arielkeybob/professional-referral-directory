@@ -1,53 +1,78 @@
 #pdr-search-results {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.service-result {
+  display: flex;
+  flex-direction: row; /* Organiza os elementos lado a lado */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  align-items: stretch; /* Assegura que as colunas tenham a mesma altura */
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column; /* Organiza os elementos verticalmente */
+  flex: 1; /* Permite que a coluna esquerda cresÃ§a conforme necessÃ¡rio */
+  align-items: flex-start; /* Alinha os itens Ã  esquerda */
+}
+
+.service-content {
+  flex: 1.8; /* DÃ¡ Ã  coluna direita mais espaÃ§o */
+  padding: 15px 30px 15px 80px;
+}
+
+@media (max-width: 768px) {
   .service-result {
-    display: flex;
-    flex-direction: row; /* Organiza os elementos lado a lado */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    align-items: stretch; /* Assegura que as colunas tenham a mesma altura */
+    flex-direction: column;
   }
-  
-  .card-left {
-    display: flex;
-    flex-direction: column; /* Organiza os elementos verticalmente */
-    flex: 1; /* Permite que a coluna esquerda cresça conforme necessário */
-    align-items: flex-start; /* Alinha os itens à esquerda */
-  }
-  
+
+  .card-left,
   .service-content {
-    flex: 2; /* Dá à coluna direita mais espaço */
-    padding: 15px;
+    flex-basis: 100%;
   }
-  
-  @media (max-width: 768px) {
-    .service-result {
-      flex-direction: column;
-    }
-  
-    .card-left,
-    .service-content {
-      flex-basis: 100%;
-    }
-  }
-  
-  .service-author-details {
-    padding: 15px;
+}
+
+.service-author-details {
+  padding: 15px;
 }
 
 a.read-more {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    text-align: center;
-    background: cornflowerblue;
-    color: #fff;
+  display: block;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background: cornflowerblue;
+  color: #fff;
+}
+
+#pdr-search-results p{
+margin:5px;
+}
+
+img.attachment-medium.size-medium.wp-post-image {
+  width: 100%;
+}
+
+p.service-taxonomy.service-type {
+  margin-top: 50px !important;
+}
+
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  border-right: solid 1px #e9e9e9;
+}
+
+.service-author-details i {
+  margin-right: 10px;
 }

@@ -40,6 +40,7 @@ function pdr_get_taxonomy_terms_as_string($taxonomy) {
 
 // Comece a montar o HTML para cada resultado da busca
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 <div class="service-result">
     <?php if (has_post_thumbnail()) : ?>
@@ -62,22 +63,23 @@ function pdr_get_taxonomy_terms_as_string($taxonomy) {
     </div>
 
     <div class="service-author-details">
-        <p class="author-name">
-            <?php _e('By', 'professionaldirectory'); ?> <?php the_author(); ?>
-        </p>
-        <p class="author-email">
-            <?php _e('Email:', 'professionaldirectory'); ?> <?php echo esc_html(get_the_author_meta('email')); ?>
-        </p>
-        <p class="author-website">
-            <?php _e('Website:', 'professionaldirectory'); ?> <a href="<?php echo esc_url(get_the_author_meta('url')); ?>">
-                <?php echo esc_html(get_the_author_meta('url')); ?>
-            </a>
-        </p>
-        <p class="author-info">
-            <?php _e('Telefone:', 'professionaldirectory'); ?> <?php echo esc_html(get_the_author_meta('telefone')); ?><br>
-            <?php _e('Rede Social:', 'professionaldirectory'); ?> <?php echo esc_html(get_the_author_meta('social')); ?>
-        </p>
-    </div>
+    <p class="author-name">
+        <i class="fas fa-user"></i> <?php the_author(); ?>
+    </p>
+    <p class="author-email">
+        <i class="fas fa-envelope"></i> <?php echo esc_html(get_the_author_meta('email')); ?>
+    </p>
+    <p class="author-website">
+        <i class="fas fa-globe"></i> <a href="<?php echo esc_url(get_the_author_meta('url')); ?>">
+            <?php echo esc_html(get_the_author_meta('url')); ?>
+        </a>
+    </p>
+    <p class="author-info">
+        <i class="fas fa-phone"></i> <?php echo esc_html(get_the_author_meta('telefone')); ?><br>
+        <i class="fas fa-icons"></i> <?php echo esc_html(get_the_author_meta('social')); ?>
+    </p>
+</div>
+
 
     <a class="read-more" href="<?php the_permalink(); ?>">
         <?php _e('Read more', 'professionaldirectory'); ?>
