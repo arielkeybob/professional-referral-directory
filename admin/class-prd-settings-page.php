@@ -108,38 +108,41 @@ class PDR_Settings {
     
         // Configurações para a aba "Style Settings"
         // Configurações para a aba "Style Settings"
-add_settings_section(
-    'myplugin_style_settings_section', // Correção aqui: ID da seção
-    __('Style Settings', 'professionaldirectory'), // Título da seção
-    null, // Callback da seção, opcional
-    'myplugin_style_settings' // Correção aqui: Deve corresponder ao usado em do_settings_sections
-);
+        add_settings_section(
+            'myplugin_style_settings_section', // Correção aqui: ID da seção
+            __('Style Settings', 'professionaldirectory'), // Título da seção
+            null, // Callback da seção, opcional
+            'myplugin_style_settings' // Correção aqui: Deve corresponder ao usado em do_settings_sections
+        );
 
-// Lista de configurações de estilo
-$style_settings = [
-    'button_color' => __('Button Color', 'professionaldirectory'),
-    'button_text_color' => __('Button Text Color', 'professionaldirectory'),
-    'button_hover_color' => __('Button Hover Color', 'professionaldirectory'),
-    'button_text_hover_color' => __('Button Text Hover Color', 'professionaldirectory'),
-    'title_font_family' => __('Title Font Family', 'professionaldirectory'),
-    'title_color' => __('Title Color', 'professionaldirectory'),
-    'body_font_family' => __('Body Font Family', 'professionaldirectory'),
-    'body_color' => __('Body Color', 'professionaldirectory'),
-    // Adicione os outros campos de estilo aqui...
-];
+        // Lista de configurações de estilo
+        $style_settings = [
+            'button_color' => __('Button Color', 'professionaldirectory'),
+            'button_text_color' => __('Button Text Color', 'professionaldirectory'),
+            'button_hover_color' => __('Button Hover Color', 'professionaldirectory'),
+            'button_text_hover_color' => __('Button Text Hover Color', 'professionaldirectory'),
+            'title_font_family' => __('Title Font Family', 'professionaldirectory'),
+            'title_color' => __('Title Color', 'professionaldirectory'),
+            'body_font_family' => __('Body Font Family', 'professionaldirectory'),
+            'body_color' => __('Body Color', 'professionaldirectory'),
+            // Adicione os outros campos de estilo aqui...
+        ];
 
-foreach ($style_settings as $setting_name => $setting_label) {
-    register_setting('myplugin_settings_group', 'myplugin_' . $setting_name);
-    add_settings_field(
-        'myplugin_' . $setting_name,
-        $setting_label,
-        array($this, $setting_name . '_callback'),
-        'myplugin_style_settings', // Correção aqui: Deve corresponder ao usado em do_settings_sections
-        'myplugin_style_settings_section'
-    );
-}
-
-        
+        foreach ($style_settings as $setting_name => $setting_label) {
+            register_setting('myplugin_settings_group', 'myplugin_' . $setting_name);
+            add_settings_field(
+                'myplugin_' . $setting_name,
+                $setting_label,
+                array($this, $setting_name . '_callback'),
+                'myplugin_style_settings', // Correção aqui: Deve corresponder ao usado em do_settings_sections
+                'myplugin_style_settings_section'
+            );
+        }
+    }
+    
+    public function general_option_callback() {
+        $option_value = get_option('myplugin_general_option', ''); // Use the correct option name
+        echo "<input type='text' name='myplugin_general_option' value='" . esc_attr($option_value) . "' />";
     }
     
     
