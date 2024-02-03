@@ -1,5 +1,5 @@
 <?php
-function myplugin_custom_styles() {
+function pdr_custom_styles() {
     ?>
     <style>
         :root {
@@ -16,4 +16,4 @@ function myplugin_custom_styles() {
     </style>
     <?php
 }
-add_action('wp_head', 'myplugin_custom_styles');
+add_action('wp_head', 'pdr_custom_styles');

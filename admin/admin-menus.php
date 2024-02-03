@@ -4,22 +4,21 @@ if (!defined('WPINC')) {
     die;
 }
 
-// Adiciona capacidade específica ao papel 'professional'
+// Adiciona o submenu dashboard ao menu do post type Services
 function pdr_add_dashboard_capability() {
-    $role = get_role('professional'); // Substitua 'professional' pelo papel exato
+    $role = get_role('professional');
     if ($role) {
-        $role->add_cap('view_pdr_dashboard'); // Adiciona uma nova capacidade
+        $role->add_cap('view_pdr_dashboard');
     }
 }
 add_action('init', 'pdr_add_dashboard_capability');
 
-// Adiciona submenu 'Dashboard' ao menu do tipo de post 'professional_service'
 function pdr_add_dashboard_submenu() {
     add_submenu_page(
         'edit.php?post_type=professional_service',
         'Dashboard do Professional',
         'Dashboard',
-        'view_pdr_dashboard', // Usa a nova capacidade aqui
+        'view_pdr_dashboard',
         'pdr-dashboard',
         'pdr_dashboard_page_content'
     );
@@ -27,8 +26,10 @@ function pdr_add_dashboard_submenu() {
 add_action('admin_menu', 'pdr_add_dashboard_submenu');
 
 function pdr_dashboard_page_content() {
-    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-professional.php';
+    include 'templates/dashboard-template-professional.php';
 }
+
+add_action('admin_menu', 'add_custom_submenu_page');
 
 function add_custom_submenu_page() {
     add_submenu_page(
@@ -40,10 +41,9 @@ function add_custom_submenu_page() {
         'dashboard_admin_page_callback'
     );
 }
-add_action('admin_menu', 'add_custom_submenu_page');
 
 function dashboard_admin_page_callback() {
-    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-admin.php';
+    include 'templates/dashboard-template-admin.php';
 }
 
 function pdr_add_shortcodes_help_page() {
@@ -59,26 +59,25 @@ function pdr_add_shortcodes_help_page() {
 add_action('admin_menu', 'pdr_add_shortcodes_help_page');
 
 function pdr_render_shortcodes_help_page() {
-    include plugin_dir_path(__FILE__) . 'shortcodes-help-page.php';
+    include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-// Corrigindo a adição da página de configurações como um submenu de 'Services'
-function pdr_add_plugin_settings_page() {
+// Adicionando a página de configurações gerais ao submenu
+function pdr_add_settings_submenu() {
     add_submenu_page(
-        'edit.php?post_type=professional_service', // Adiciona como um submenu de 'Services'
-        __('Configurações do Plugin', 'professionaldirectory'),
-        __('Configurações do Plugin', 'professionaldirectory'),
+        'edit.php?post_type=professional_service',
+        __('General Settings', 'professionaldirectory'),
+        __('Settings', 'professionaldirectory'),
         'manage_options',
-        'prd_plugin_settings',
-        'prd_settings_page_render'
+        'myplugin',
+        'pdr_settings_page'
     );
 }
-add_action('admin_menu', 'pdr_add_plugin_settings_page');
+add_action('admin_menu', 'pdr_add_settings_submenu');
 
-function prd_settings_page_render() {
+// Inclui o arquivo da classe das configurações para renderizar a página
+function pdr_settings_page() {
     require_once plugin_dir_path(__FILE__) . 'class-prd-settings-page.php';
     $settings_page = new PDR_Settings();
-    $settings_page->plugin_settings_page_render(isset($_GET['tab']) ? $_GET['tab'] : 'api_settings');
+    $settings_page->settings_page();
 }
-
-
