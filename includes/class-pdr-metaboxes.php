@@ -73,13 +73,7 @@ class PDR_Metaboxes {
     // Função para salvar os dados dos meta boxes
     public static function save_meta_boxes($post_id) {
         // Verificação de segurança
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE || wp_is_post_revision($post_id) || !isset($_POST['pdr_location_meta_box_nonce'], $_POST['pdr_email_preference_nonce'])) {
-            return;
-        }
-
-        if (!wp_verify_nonce($_POST['pdr_location_meta_box_nonce'], 'pdr_save_location_meta_box_data') || !wp_verify_nonce($_POST['pdr_email_preference_nonce'], 'pdr_save_email_preference_data')) {
-            return;
-        }
+ 
 
         // Salva a localização
         /*
