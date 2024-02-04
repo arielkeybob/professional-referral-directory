@@ -106,6 +106,10 @@ class PDR_Settings {
             'myplugin_email_settings_section'
         );
     
+
+
+        register_setting('myplugin_settings_group', 'myplugin_button_color', 'sanitize_hex_color');
+
         // Configurações para a aba "Style Settings"
         // Configurações para a aba "Style Settings"
         add_settings_section(
@@ -149,8 +153,12 @@ class PDR_Settings {
 
     public function button_color_callback() {
         $value = get_option('myplugin_button_color', '#000000');
-        echo "<input type='color' name='myplugin_button_color' value='" . esc_attr($value) . "'>";
+        // Campo de entrada de cor original
+        echo "<input type='color' name='myplugin_button_color' value='" . esc_attr($value) . "' />";
+        // Adicionar campo de entrada de texto para código hexadecimal
+        echo "<input type='text' name='myplugin_button_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
     }
+    
 
     public function button_text_color_callback() {
         $value = get_option('myplugin_button_text_color', '#FFFFFF');
