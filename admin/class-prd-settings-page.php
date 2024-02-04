@@ -110,7 +110,7 @@ class PDR_Settings {
 
         register_setting('myplugin_settings_group', 'myplugin_button_color', 'sanitize_hex_color');
 
-        // Configurações para a aba "Style Settings"
+
         // Configurações para a aba "Style Settings"
         add_settings_section(
             'myplugin_style_settings_section', // Correção aqui: ID da seção
@@ -162,18 +162,21 @@ class PDR_Settings {
 
     public function button_text_color_callback() {
         $value = get_option('myplugin_button_text_color', '#FFFFFF');
-        echo "<input type='color' name='myplugin_button_text_color' value='" . esc_attr($value) . "'>";
+        echo "<input type='color' name='myplugin_button_text_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='myplugin_button_text_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
     }
 
     public function button_hover_color_callback() {
         $value = get_option('myplugin_button_hover_color', '#000000');
-        echo "<input type='color' name='myplugin_button_hover_color' value='" . esc_attr($value) . "'>";
+        echo "<input type='color' name='myplugin_button_hover_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='myplugin_button_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
     public function button_text_hover_color_callback() {
-        $value = get_option('myplugin_button_text_hover_color', '#FFFFFF');
-        echo "<input type='color' name='myplugin_button_text_hover_color' value='" . esc_attr($value) . "'>";
-    }
+    $value = get_option('myplugin_button_text_hover_color', '#FFFFFF');
+    echo "<input type='color' name='myplugin_button_text_hover_color' value='" . esc_attr($value) . "' />";
+    echo "<input type='text' name='myplugin_button_text_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+}
 
     public function title_font_family_callback() {
         $value = get_option('myplugin_title_font_family', '');
@@ -182,7 +185,8 @@ class PDR_Settings {
 
     public function title_color_callback() {
         $value = get_option('myplugin_title_color', '#000000');
-        echo "<input type='color' name='myplugin_title_color' value='" . esc_attr($value) . "'>";
+        echo "<input type='color' name='myplugin_title_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='myplugin_title_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
     public function body_font_family_callback() {
@@ -192,7 +196,8 @@ class PDR_Settings {
 
     public function body_color_callback() {
         $value = get_option('myplugin_body_color', '#000000');
-        echo "<input type='color' name='myplugin_body_color' value='" . esc_attr($value) . "'>";
+        echo "<input type='color' name='myplugin_body_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='myplugin_body_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
 

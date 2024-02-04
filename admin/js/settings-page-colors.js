@@ -1,20 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var colorInput = document.querySelector('input[name="myplugin_button_color_hex"]');
-    var colorPicker = document.querySelector('input[name="myplugin_button_color"]');
+    // Selecione todos os seletores de cor
+    var colorPickers = document.querySelectorAll('input[type="color"]');
 
-    if (colorInput && colorPicker) {
-        // Atualiza o campo de texto quando o seletor de cores muda
-        colorPicker.addEventListener('input', function() {
-            colorInput.value = colorPicker.value;
-        });
+    colorPickers.forEach(function(picker) {
+        // Deriva o nome do campo de texto hexadecimal do nome do seletor de cor
+        var hexFieldName = picker.name + '_hex';
+        var hexField = document.querySelector('input[name="' + hexFieldName + '"]');
 
-        // Atualiza o seletor de cores quando o campo de texto muda
-        colorInput.addEventListener('input', function() {
-            // Verifica se o valor é um hexadecimal válido
-            var hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-            if(hexPattern.test(colorInput.value)) {
-                colorPicker.value = colorInput.value;
+        // Quando o valor do seletor de cor muda, atualize o campo de texto hexadecimal
+        picker.addEventListener('input', function() {
+            if (hexField) {
+                hexField.value = picker.value;
             }
         });
-    }
+
+        // Quando o valor do campo de texto hexadecimal muda, atualize o seletor de cor
+        // se o valor for um hexadecimal válido
+        if (hexField) {
+            hexField.addEventListener('input', function() {
+                var hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+                if (hexPattern.test(hexField.value)) {
+                    picker.value = hexField.value;
+                }
+            });
+        }
+    });
 });
