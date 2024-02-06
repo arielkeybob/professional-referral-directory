@@ -42,24 +42,24 @@ require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 
 // Instanciar a classe de administração
 if (is_admin()) {
-    $prd_settings = new PDR_Settings();
+    $pdr_plugin_settings = new PDR_Settings();
 }
 
-function pdr_activate() {
+function pdrActivate() {
     ProfessionalDirectory_Users::initialize_user_roles();
-    pdr_create_search_data_table(); // Chamada existente do arquivo activation.php
+    pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php
     update_option( 'pdr_version', PDR_VERSION ); // Armazena a versão atual do plugin
-    pdr_check_version();
-    pdr_start_session();
+    pdrCheckVersion();
+    pdrStartSession();
 }
-register_activation_hook(__FILE__, 'pdr_activate');
+register_activation_hook(__FILE__, 'pdrActivate');
 
 
 
-function pdr_deactivate() {
+function pdrDeactivate() {
     ProfessionalDirectory_Users::cleanup_user_roles();
 }
-register_deactivation_hook(__FILE__, 'pdr_deactivate');
+register_deactivation_hook(__FILE__, 'pdrDeactivate');
 
 
 
