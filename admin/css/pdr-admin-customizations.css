@@ -1,0 +1,107 @@
+/* custom-admin-style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Geral */
+body, #wpcontent, #wpfooter {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #F4F4F4;
+}
+
+/* Links */
+a {
+    color: #00a0d2;
+}
+
+a:hover {
+    color: #005077;
+}
+
+/* Admin Menu */
+#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+    background-color: #005288; /* Tom de azul moderno */
+    width: 17%; /* Largura do menu como 20% */
+}
+/* Admin Menu */
+#adminmenu{
+    width: 100%; 
+}
+
+#adminmenu a {
+    color: #ffffff;
+}
+
+#adminmenu a:hover, #adminmenu li.menu-top:hover, #adminmenu li.opensub>a.menu-top, #adminmenu li>a.menu-top:focus {
+    color: #fff;
+    background-color: #0073aa; /* Um azul mais claro para contraste */
+}
+
+/* Ícones do menu */
+#adminmenu .wp-menu-image:before {
+    color: #CDDC39; /* Um contraste alto com o azul, ajuste conforme necessário */
+}
+
+/* Ajusta o padding da área de conteúdo principal baseado na nova largura do menu */
+#wpcontent, #wpfooter {
+    padding: 80px;
+    padding-top: 0;
+    margin-left: 17%; /* Ajuste para 80% da área de conteúdo */
+}
+
+/* Ajustes adicionais para a largura do menu quando recolhido */
+.auto-fold #wpcontent, .auto-fold #wpfooter {
+    margin-left: 17%;
+}
+
+.folded #adminmenu, .folded #adminmenuback, .folded #adminmenuwrap {
+    width: 17%;
+}
+
+.folded #wpcontent, .folded #wpfooter {
+    margin-left: 17%;
+}
+
+/* Ocultar a barra superior do admin */
+#wpadminbar {
+   display: none;
+}
+body, html{
+    padding-top: 0 !important  ;
+}
+
+/* Personalizar o cabeçalho do painel */
+#wpbody-content .wrap h1, #wpbody-content .wrap h2 {
+    color: #23282d;
+    font-size: 24px;
+}
+
+/* Botões */
+.wp-core-ui .button-primary {
+    background: #0073aa;
+    border-color: #005288; /* Para combinar com o estilo do menu */
+    color: #fff;
+}
+
+.wp-core-ui .button-primary:hover {
+    background: #005288; /* Um tom mais escuro ao passar o mouse */
+    border-color: #0073aa;
+}
+
+
+
+#adminmenu .wp-submenu-head, #adminmenu a.menu-top{
+    display: flex !important;
+    padding: 10px 8px 10px 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#adminmenu div.wp-menu-name {
+    padding: 4px 8px 0px 4px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}

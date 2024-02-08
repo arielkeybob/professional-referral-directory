@@ -37,6 +37,8 @@ require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';
 require_once plugin_dir_path(__FILE__) . 'admin/enqueue-admin.php';
 require_once plugin_dir_path(__FILE__) . 'admin/notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
+include_once plugin_dir_path(__FILE__) . 'includes/pdr-admin-customizations.php';
+
 
 
 
