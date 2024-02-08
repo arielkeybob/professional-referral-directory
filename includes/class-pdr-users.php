@@ -5,6 +5,7 @@ if (!defined('WPINC')) {
 }
 
 class ProfessionalDirectory_Users {
+
     public static function initialize_user_roles() {
         // Criação e configuração do papel 'professional'
         if (!get_role('professional')) {
@@ -83,6 +84,17 @@ class ProfessionalDirectory_Users {
 
         add_action('personal_options_update', array(__CLASS__, 'save_custom_user_profile_fields'));
         add_action('edit_user_profile_update', array(__CLASS__, 'save_custom_user_profile_fields'));
+
+        // Adiciona o novo hook para remover a opção de esquema de cores
+        add_action('admin_init', array(__CLASS__, 'removeAdminColorSchemeForProfessionals'));
+    }
+
+    public static function removeAdminColorSchemeForProfessionals() {
+        $user = wp_get_current_user();
+        if (in_array('professional', (array)$user->roles)) {
+            global $_wp_admin_css_colors;
+            $_wp_admin_css_colors = array();
+        }
     }
 }
 
