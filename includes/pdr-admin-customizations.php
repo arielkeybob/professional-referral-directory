@@ -22,3 +22,19 @@ function pdrEnqueueCustomAdminStyle() {
     }
 }
 add_action('admin_enqueue_scripts', 'pdrEnqueueCustomAdminStyle');
+
+
+
+
+// Filtro para alterar o texto padrão do rodapé Wordpress "Thank you for creating with WordPress."
+function pdr_remove_footer_admin () {
+    return 'PDR Plugin - By Ariel Souza';
+}
+add_filter('admin_footer_text', 'pdr_remove_footer_admin');
+
+
+// Altera o texto sobre a versão do WordPress do rodapé no admin
+function pdr_remove_footer_version() {
+    return 'Version: ' . PDR_VERSION;
+}
+add_filter('update_footer', 'pdr_remove_footer_version', 9999);
