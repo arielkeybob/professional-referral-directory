@@ -19,10 +19,19 @@ a:hover {
 }
 
 /* Admin Menu */
-#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+#adminmenuback, #adminmenuwrap {
     background-color: #005288; /* Tom de azul moderno */
     width: 17%; /* Largura do menu como 20% */
 }
+#adminmenu{
+    background-color: #005288;
+    width: 100%;
+}
+#adminmenu .wp-submenu{
+    background-color: #3387be;
+    width: 100%;
+}
+
 /* Admin Menu */
 #adminmenu{
     width: 100%; 
@@ -64,7 +73,7 @@ a:hover {
 
 /* Ocultar a barra superior do admin */
 #wpadminbar {
-   display: none;
+   /*display: none;*/
 }
 body, html{
     padding-top: 0 !important  ;
@@ -199,3 +208,52 @@ a:hover {
 table.form-table {
     margin-bottom: 100px;
 }
+
+
+#adminmenu .wp-submenu-head {
+    display: none !important;
+}
+
+#adminmenu .wp-submenu a {
+    font-size: 15px;
+}
+
+#adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
+    padding: 5px 20px;
+}
+
+#adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:hover, #comment-status-display, #dashboard_right_now .versions .b, #ed_reply_toolbar #ed_reply_strong, #pass-strength-result.short, #pass-strength-result.strong, #post-status-display, #post-visibility-display, .feature-filter .feature-name, .item-controls .item-order a, .media-item .percent, .plugins .name{
+    font-weight: 500;
+}
+
+
+.ab-item.ab-empty-item{
+    display: none !important;
+}
+
+div#pdr-custom-logo {
+    width: 17%;
+    background-color: #00a0d2;
+    min-height: 80px;
+}
+
+
+div#pdr-custom-user {
+    padding: 0;
+    display: flex !important;
+    width: 83%;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-end !important;
+}
+
+#pdr-custom-admin-bar{
+    display: flex !important;
+    padding: 0 !important;
+}
+
+#adminmenu {
+    width: 100%;
+    margin-top: -70px;
+}
+
