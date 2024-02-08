@@ -88,6 +88,7 @@ add_action('in_admin_header', 'pdr_add_custom_admin_bar');
 
 
 
+
 function pdr_custom_admin_bar_scripts() {
     ?>
     <script type="text/javascript">

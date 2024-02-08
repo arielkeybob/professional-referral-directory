@@ -1,112 +1,69 @@
-/* custom-admin-style.css */
-
+/* Importações */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 /* Geral */
-body, #wpcontent, #wpfooter {
+body, html, #wpcontent, #wpfooter, #wpbody-content {
     font-family: 'Roboto', sans-serif;
     color: #333;
-    background-color: #F4F4F4;
+    background-color: #ffffff;
+    padding-top: 0 !important;
 }
 
 /* Links */
-a {
+a, #adminmenu a, .wrap a {
     color: #00a0d2;
 }
 
-a:hover {
+a:hover, #adminmenu a:hover {
     color: #005077;
+    text-decoration: underline;
 }
 
 /* Admin Menu */
-#adminmenuback, #adminmenuwrap {
+#adminmenuback, #adminmenuwrap, #adminmenu {
     background-color: #005288; /* Tom de azul moderno */
-    width: 17%; /* Largura do menu como 20% */
+    width: 17%; /* Largura do menu ajustada */
 }
-#adminmenu{
-    background-color: #005288;
-    width: 100%;
-}
-#adminmenu .wp-submenu{
+
+#adminmenu .wp-submenu, #adminmenu {
     background-color: #3387be;
     width: 100%;
 }
 
-/* Admin Menu */
-#adminmenu{
-    width: 100%; 
-}
-
-#adminmenu a {
+#adminmenu a, 
+#adminmenu .wp-submenu a {
     color: #ffffff;
 }
 
-#adminmenu a:hover, #adminmenu li.menu-top:hover, #adminmenu li.opensub>a.menu-top, #adminmenu li>a.menu-top:focus {
-    color: #fff;
+#adminmenu a:hover, 
+#adminmenu li.menu-top:hover, 
+#adminmenu li.opensub>a.menu-top, 
+#adminmenu li>a.menu-top:focus {
     background-color: #0073aa; /* Um azul mais claro para contraste */
+    color: #fff;
 }
 
-/* Ícones do menu */
 #adminmenu .wp-menu-image:before {
-    color: #CDDC39; /* Um contraste alto com o azul, ajuste conforme necessário */
+    color: #CDDC39; /* Um contraste alto com o azul */
 }
 
-/* Ajusta o padding da área de conteúdo principal baseado na nova largura do menu */
-#wpcontent, #wpfooter {
+/* Ajustes de layout do menu e conteúdo */
+#wpcontent, #wpfooter, .folded #wpcontent, .folded #wpfooter, .auto-fold #wpcontent, .auto-fold #wpfooter {
+    margin-left: 17%;
     padding: 80px;
     padding-top: 0;
-    margin-left: 17%; /* Ajuste para 80% da área de conteúdo */
-}
-
-/* Ajustes adicionais para a largura do menu quando recolhido */
-.auto-fold #wpcontent, .auto-fold #wpfooter {
-    margin-left: 17%;
 }
 
 .folded #adminmenu, .folded #adminmenuback, .folded #adminmenuwrap {
     width: 17%;
 }
 
-.folded #wpcontent, .folded #wpfooter {
-    margin-left: 17%;
-}
-
-/* Ocultar a barra superior do admin */
-#wpadminbar {
-   /*display: none;*/
-}
-body, html{
-    padding-top: 0 !important  ;
-}
-
-/* Personalizar o cabeçalho do painel */
-#wpbody-content .wrap h1, #wpbody-content .wrap h2 {
-    color: #23282d;
-    font-size: 24px;
-}
-
-/* Botões */
-.wp-core-ui .button-primary {
-    background: #0073aa;
-    border-color: #005288; /* Para combinar com o estilo do menu */
-    color: #fff;
-}
-
-.wp-core-ui .button-primary:hover {
-    background: #005288; /* Um tom mais escuro ao passar o mouse */
-    border-color: #0073aa;
-}
-
-
-
-#adminmenu .wp-submenu-head, #adminmenu a.menu-top{
+#adminmenu .wp-submenu-head, #adminmenu a.menu-top {
     display: flex !important;
-    padding: 10px 8px 10px 10px;
     flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: flex-start;
+    padding: 10px 8px 10px 10px;
 }
 
 #adminmenu div.wp-menu-name {
@@ -115,55 +72,22 @@ body, html{
     letter-spacing: 1px;
 }
 
-
-
-/* Estilos gerais para a página de perfil */
-#wpbody-content {
-    font-family: 'Roboto', sans-serif;
-    background-color: #F4F4F4;
-    color: #333;
+/* Personalização adicional */
+#wpadminbar {
+    /* display: none; */
 }
 
-/* Ajusta o espaçamento e a largura das seções principais */
-.wrap {
-    max-width: 95%;
-    margin: 20px auto;
-    padding: 35px;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+.wp-core-ui .button-primary {
+    background: #0073aa;
+    border-color: #005288;
+    color: #fff;
 }
 
-/* Estiliza os títulos das seções para um visual mais moderno */
-.wrap h1, .wrap h2 {
-    color: #005288;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
-    margin-bottom: 20px;
+.wp-core-ui .button-primary:hover {
+    background: #005288;
+    border-color: #0073aa;
 }
 
-/* Melhora a aparência das tabelas */
-.form-table th {
-    width: 20%;
-    font-weight: 600;
-    color: #005288;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.form-table td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.form-table input[type="text"],
-.form-table textarea,
-.form-table select {
-    width: 100%;
-    max-width: 400px;
-    padding: 8px;
-}
-
-/* Estilos para botões */
 .button {
     background-color: #005288;
     color: #fff;
@@ -178,25 +102,42 @@ body, html{
     background-color: #003d66;
 }
 
-/* Estilos para links */
-a {
+/* Estilos gerais para a página de perfil e ajustes */
+.wrap {
+    max-width: 95%;
+    margin: 60px auto;
+    padding: 35px;
+    background: #fff;
+    box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 10%);
+}
+
+.wrap h1, .wrap h2 {
+    color: #005288;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+.form-table th {
+    width: 20%;
+    font-weight: 600;
     color: #005288;
 }
 
-a:hover {
-    text-decoration: underline;
+.form-table td, 
+.form-table input[type="text"], 
+.form-table textarea, 
+.form-table select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-    .form-table th,
-    .form-table td {
+    .form-table th, .form-table td {
         display: block;
         width: 100%;
-    }
-
-    .form-table th {
-        margin-top: 20px;
     }
 
     .wrap {
@@ -204,31 +145,34 @@ a:hover {
     }
 }
 
-
-table.form-table {
-    margin-bottom: 100px;
-}
-
-
-#adminmenu .wp-submenu-head {
+/* Customizações específicas */
+.ab-item.ab-empty-item, #adminmenu .wp-submenu-head {
     display: none !important;
 }
 
-#adminmenu .wp-submenu a {
+#adminmenu .wp-submenu a, #adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
     font-size: 15px;
+}
+
+#adminmenu .wp-submenu li.current, 
+#adminmenu .wp-submenu li.current a, 
+#adminmenu .wp-submenu li.current a:hover, 
+#comment-status-display, 
+#dashboard_right_now .versions .b, 
+#ed_reply_toolbar #ed_reply_strong, 
+#pass-strength-result.short, 
+#pass-strength-result.strong, 
+#post-status-display, 
+#post-visibility-display, 
+.feature-filter .feature-name, 
+.item-controls .item-order a, 
+.media-item .percent, 
+.plugins .name {
+    font-weight: 500;
 }
 
 #adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
     padding: 5px 20px;
-}
-
-#adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:hover, #comment-status-display, #dashboard_right_now .versions .b, #ed_reply_toolbar #ed_reply_strong, #pass-strength-result.short, #pass-strength-result.strong, #post-status-display, #post-visibility-display, .feature-filter .feature-name, .item-controls .item-order a, .media-item .percent, .plugins .name{
-    font-weight: 500;
-}
-
-
-.ab-item.ab-empty-item{
-    display: none !important;
 }
 
 div#pdr-custom-logo {
@@ -237,23 +181,37 @@ div#pdr-custom-logo {
     min-height: 80px;
 }
 
-
-div#pdr-custom-user {
-    padding: 0;
+div#pdr-custom-user, #pdr-custom-admin-bar {
     display: flex !important;
-    width: 83%;
-    flex-direction: row;
     align-content: center;
     justify-content: flex-end !important;
 }
-
 #pdr-custom-admin-bar{
-    display: flex !important;
     padding: 0 !important;
+}
+div#pdr-custom-user{
+    box-sizing: border-box;
+    padding: 0 60px;
 }
 
 #adminmenu {
-    width: 100%;
     margin-top: -70px;
 }
 
+
+#menu-management .menu-edit, #menu-settings-column .accordion-container, .comment-ays, .feature-filter, .manage-menus, .menu-item-handle, .popular-tags, .stuffbox, .widget-inside, .widget-top, .widgets-holder-wrap, .wp-editor-container, p.popular-tags, table.widefat {
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+table.widefat {
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.widefat thead td, .widefat thead th {
+    border-bottom: 1px solid #ededed;
+}
+
+.widefat tfoot td, .widefat tfoot th {
+    border-top: 1px solid #ededed;
+}
