@@ -9,12 +9,50 @@ function pdrRemoveAdminBar() {
 }
 add_action('after_setup_theme', 'pdrRemoveAdminBar');
 
-function pdrRemoveDashboardMenu() {
+/*function pdrRemoveDashboardMenu() {
     if (current_user_can('professional')) {
         remove_menu_page('index.php'); // Remove "Dashboard"
     }
 }
 add_action('admin_menu', 'pdrRemoveDashboardMenu');
+*/
+
+// Torna o dashboard do admin o index.php do painel. 
+//Ou seja, torna o dashboard padrão do wp no dashboard do plugin dependendo do tipo de usuário (admin ou professional)
+function pdr_adjust_dashboard_menu() {
+    global $submenu;
+
+    // Checa se o usuário atual é 'professional'
+    if (current_user_can('professional')) {
+        // Muda a URL do Dashboard para a página do dashboard do professional
+        $submenu['index.php'][0][2] = 'edit.php?post_type=professional_service&page=pdr-dashboard';
+        // Remove o submenu "Home" indesejado
+        unset($submenu['index.php'][0]);
+    } elseif (current_user_can('administrator')) {
+        // Muda a URL do Dashboard para a página do dashboard do admin
+        $submenu['index.php'][0][2] = 'edit.php?post_type=professional_service&page=dashboard-admin';
+        // Remove o submenu "Home" indesejado
+        unset($submenu['index.php'][0]);
+    }
+}
+add_action('admin_menu', 'pdr_adjust_dashboard_menu', 999);
+
+function pdr_redirect_dashboard() {
+    if (is_admin()) {
+        $screen = get_current_screen();
+        if ($screen->id === "dashboard") {
+            if (current_user_can('professional')) {
+                wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-dashboard'));
+                exit;
+            } elseif (current_user_can('administrator')) {
+                wp_redirect(admin_url('edit.php?post_type=professional_service&page=dashboard-admin'));
+                exit;
+            }
+        }
+    }
+}
+add_action('current_screen', 'pdr_redirect_dashboard');
+
 
 function pdrEnqueueCustomAdminStyle() {
     if (current_user_can('professional')) {
