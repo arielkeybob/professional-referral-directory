@@ -21,7 +21,7 @@ function pdrEnqueueCustomAdminStyle() {
         wp_enqueue_style('pdr-custom-admin-style', plugin_dir_url(__FILE__) . '../admin/css/pdr-admin-customizations.css');
     }
 }
-add_action('admin_enqueue_scripts', 'pdrEnqueueCustomAdminStyle');
+add_action('admin_enqueue_scripts', 'pdrEnqueueCustomAdminStyle', 9999999);
 
 
 
@@ -65,7 +65,7 @@ function pdr_add_custom_admin_bar() {
         // Defina o caminho relativo da logo
         $logo_url = '/wp-content/uploads/2024/02/logo-exemplo.jpg'; // Ajuste conforme necessário
         ?>
-        <div id="pdr-custom-admin-bar" style="display: flex; justify-content: space-between; align-items: center; width: 100%; background-color: #23282d; padding: 10px 0;">
+        <div id="pdr-custom-admin-bar">
             <div id="pdr-custom-logo" style="width: 17%; display: flex; justify-content: center; align-items: center;">
                 <a href="<?php echo home_url(); ?>">
                     <!-- Ajusta a imagem da logo para se adaptar à largura da div -->
@@ -115,28 +115,5 @@ function pdr_custom_admin_bar_scripts() {
 add_action('admin_head', 'pdr_custom_admin_bar_scripts');
 
 
-
-
-function pdr_custom_admin_bar_styles() {
-    // Verifique se o usuário está logado e no painel de administração antes de adicionar os estilos
-    if (is_user_logged_in() && is_admin()) {
-        echo '<style>
-            #pdr-custom-admin-bar {
-                background-color: #23282d;
-                color: white;
-                padding: 10px 0;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 99999;
-            }
-            #wpcontent, #adminmenuwrap {
-                margin-top: 70px; /* Ajuste conforme a altura da sua barra personalizada */
-            }
-        </style>';
-    }
-}
-add_action('admin_head', 'pdr_custom_admin_bar_styles');
 
 
