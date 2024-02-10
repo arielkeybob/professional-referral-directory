@@ -4,7 +4,7 @@
         die;
     }
 
-    class ProfessionalDirectory_CPT {
+    class PDR_CPT  {
 
         public static function register_service_cpt() {
             $labels = [
@@ -59,6 +59,7 @@
                 'hierarchical'        => false,
                 'menu_position'       => null,
                 'supports'            => ['title', 'editor', 'author', 'thumbnail'],
+                'menu_icon'          => 'dashicons-portfolio',
             ];
 
             register_post_type('professional_service', $args);
@@ -120,7 +121,7 @@
     }
 
     // Registrar o Custom Post Type e a Taxonomia no hook 'init'
-    add_action('init', [ 'ProfessionalDirectory_CPT', 'register_service_cpt' ], 10);
-    add_action('init', ['ProfessionalDirectory_CPT', 'set_service_capabilities'], 11);
-    add_action('init', ['ProfessionalDirectory_CPT', 'add_admin_capabilities'], 11);
+    add_action('init', [ 'PDR_CPT ', 'register_service_cpt' ], 10);
+    add_action('init', ['PDR_CPT ', 'set_service_capabilities'], 11);
+    add_action('init', ['PDR_CPT ', 'add_admin_capabilities'], 11);
     

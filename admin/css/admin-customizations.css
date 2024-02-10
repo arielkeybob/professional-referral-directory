@@ -108,7 +108,7 @@ a:hover, #adminmenu a:hover {
 /* Estilos gerais para a página de perfil e ajustes */
 .wrap {
     max-width: 95%;
-    margin: 60px auto;
+    margin: 10px auto;
     padding: 35px;
     background: #fff;
     box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 10%);
@@ -155,6 +155,7 @@ a:hover, #adminmenu a:hover {
 
 #adminmenu .wp-submenu a, #adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
     font-size: 15px;
+    font-style: oblique;
 }
 
 #adminmenu .wp-submenu li.current, 
@@ -208,9 +209,11 @@ div#pdr-custom-user{
 }
 
 #adminmenu {
-    margin-top: -73px;
+    margin-top: -63px;
 }
-
+#adminmenu li.wp-menu-separator {
+    display: none;
+}
 
 #menu-management .menu-edit, #menu-settings-column .accordion-container, .comment-ays, .feature-filter, .manage-menus, .menu-item-handle, .popular-tags, .stuffbox, .widget-inside, .widget-top, .widgets-holder-wrap, .wp-editor-container, p.popular-tags, table.widefat {
     border: 1px solid #f1f1f1;
@@ -395,3 +398,12 @@ td.title.column-title.has-row-actions.column-primary.page-title {
     padding: 16px;
     background: #f8f8f8;
 }
+
+.wrap h1.wp-heading-inline {
+    display: inline-block;
+    margin-right: 5px;
+    position: fixed;
+    top: 13px;
+    z-index: 99999;
+}
+

@@ -4,7 +4,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-class ProfessionalDirectory_Users {
+class PDR_Users {
 
     public static function initialize_user_roles() {
         // Criação e configuração do papel 'professional'
@@ -99,4 +99,4 @@ class ProfessionalDirectory_Users {
 }
 
 // Chama o método register_hooks na inicialização do plugin
-ProfessionalDirectory_Users::register_hooks();
+PDR_Users::register_hooks();

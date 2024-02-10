@@ -1,5 +1,5 @@
 <?php
-// includes\pdr-admin-bar-customizations.php
+// includes\admin-bar-customizations.php
 
 function pdrRemoveAdminBar() {
     if (current_user_can('professional')) {
