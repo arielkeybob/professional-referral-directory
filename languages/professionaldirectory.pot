@@ -37,11 +37,11 @@ msgstr ""
 msgid "Add New Service Type"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:76
+#: panel/class-myplugin-admin.php:76
 msgid "Additional Emails"
 msgstr ""
 
-#: admin/templates/dashboard.php:70
+#: panel/templates/dashboard.php:70
 msgid "Address"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgctxt "Admin Menu text"
 msgid "Services"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:68
+#: panel/class-myplugin-admin.php:68
 msgid "Admins to Receive Emails"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "All Services"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:45
+#: panel/class-myplugin-admin.php:45
 msgid "API Settings"
 msgstr ""
 
@@ -82,11 +82,11 @@ msgstr ""
 msgid "arielsouza.com.br"
 msgstr ""
 
-#: admin/templates/dashboard.php:70
+#: panel/templates/dashboard.php:70
 msgid "Date"
 msgstr ""
 
-#: admin/templates/dashboard.php:52
+#: panel/templates/dashboard.php:52
 msgid "Distribution of Searches by Service Type"
 msgstr ""
 
@@ -102,32 +102,32 @@ msgstr ""
 msgid "Edit Service Type"
 msgstr ""
 
-#: public/class-pdr-search-form.php:67 admin/templates/dashboard.php:70
+#: public/class-pdr-search-form.php:67 panel/templates/dashboard.php:70
 msgid "Email"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:61
+#: panel/class-myplugin-admin.php:61
 msgid "Email Settings"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:105
+#: panel/class-myplugin-admin.php:105
 msgid "email1@example.com, email2@example.com"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:106
+#: panel/class-myplugin-admin.php:106
 msgid "Enter additional emails separated by commas."
 msgstr ""
 
-#: admin/class-myplugin-admin.php:86
+#: panel/class-myplugin-admin.php:86
 msgid "Enter the Google Maps API Key"
 msgstr ""
 
 #. Adicionando como um submenu do tipo de post "Service"
-#: admin/class-myplugin-admin.php:13 admin/class-myplugin-admin.php:24
+#: panel/class-myplugin-admin.php:13 panel/class-myplugin-admin.php:24
 msgid "General Settings"
 msgstr ""
 
-#: admin/class-myplugin-admin.php:52
+#: panel/class-myplugin-admin.php:52
 msgid "Google Maps API Key"
 msgstr ""
 
@@ -175,11 +175,11 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: admin/templates/dashboard.php:83
+#: panel/templates/dashboard.php:83
 msgid "No recent results found."
 msgstr ""
 
-#: public/class-pdr-search-results.php:51 admin/templates/dashboard.php:42
+#: public/class-pdr-search-results.php:51 panel/templates/dashboard.php:42
 msgid "No service found."
 msgstr ""
 
@@ -263,7 +263,7 @@ msgctxt "Post type singular name"
 msgid "Service"
 msgstr ""
 
-#: admin/templates/dashboard.php:24
+#: panel/templates/dashboard.php:24
 msgid "Professional Dashboard "
 msgstr ""
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: admin/templates/dashboard.php:64
+#: panel/templates/dashboard.php:64
 msgid "Recent Searches"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Search Services"
 msgstr ""
 
-#: admin/templates/dashboard.php:38
+#: panel/templates/dashboard.php:38
 msgid "Search:"
 msgstr ""
 
@@ -324,7 +324,7 @@ msgstr ""
 msgid "Select a Service Type"
 msgstr ""
 
-#: admin/templates/dashboard.php:70
+#: panel/templates/dashboard.php:70
 msgid "Service"
 msgstr ""
 
@@ -337,7 +337,7 @@ msgid "Service Type"
 msgstr ""
 
 #. Título da página
-#: admin/class-myplugin-admin.php:14
+#: panel/class-myplugin-admin.php:14
 msgid "Settings"
 msgstr ""
 
@@ -372,11 +372,11 @@ msgctxt ""
 msgid "Service archives"
 msgstr ""
 
-#: admin/templates/dashboard.php:30
+#: panel/templates/dashboard.php:30
 msgid "Total Searches by Service."
 msgstr ""
 
-#: admin/templates/dashboard.php:70
+#: panel/templates/dashboard.php:70
 msgid "Type"
 msgstr ""
 
@@ -392,7 +392,7 @@ msgstr ""
 msgid "Use the search form to find services."
 msgstr ""
 
-#: admin/templates/dashboard.php:70
+#: panel/templates/dashboard.php:70
 msgid "User Name"
 msgstr ""
 

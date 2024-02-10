@@ -22,23 +22,23 @@ define( 'PDR_VERSION', '1.1.0' ); // Substitua 1.0.0 pela versão atual do seu p
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-taxonomies.php';
-require_once plugin_dir_path(__FILE__) . 'admin/class-admin-restrictions.php';
+require_once plugin_dir_path(__FILE__) . 'panel/class-panel-restrictions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
-require_once plugin_dir_path(__FILE__) . 'admin/class-settings-page.php';
+require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
-require_once plugin_dir_path(__FILE__) . 'admin/dashboard-professional-functions.php';
+require_once plugin_dir_path(__FILE__) . 'panel/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
-require_once plugin_dir_path(__FILE__) . 'admin/admin-menus.php';
+require_once plugin_dir_path(__FILE__) . 'panel/panel-menus.php';
 require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';
-require_once plugin_dir_path(__FILE__) . 'admin/enqueue-admin.php';
-require_once plugin_dir_path(__FILE__) . 'admin/notifications.php';
+require_once plugin_dir_path(__FILE__) . 'panel/enqueue-panel.php';
+require_once plugin_dir_path(__FILE__) . 'panel/panel-notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
-include_once plugin_dir_path(__FILE__) . 'admin/admin-general-customizations.php';
-include_once plugin_dir_path(__FILE__) . 'admin/admin-bar-customizations.php';
+include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
+include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
 
 
 

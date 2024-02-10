@@ -1,6 +1,6 @@
 
 <?php
-// admin-general-customizations.php
+// panel-general-customizations.php
 function pdr_adjust_dashboard_menu() {
     global $submenu;
 
@@ -38,7 +38,7 @@ add_action('current_screen', 'pdr_redirect_dashboard');
 
 function pdrEnqueueCustomAdminStyle() {
     if (current_user_can('professional')) {
-        wp_enqueue_style('pdr-custom-admin-style', plugin_dir_url(__FILE__) . '../admin/css/admin-customizations.css');
+        wp_enqueue_style('pdr-custom-admin-style', plugin_dir_url(__FILE__) . '../panel/css/admin-customizations.css');
     }
 }
 add_action('admin_enqueue_scripts', 'pdrEnqueueCustomAdminStyle', 9999999);

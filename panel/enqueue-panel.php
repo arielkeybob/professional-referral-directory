@@ -10,10 +10,10 @@ if (!defined('WPINC')) {
 // Enfileiramento de estilos e scripts de administração
 function professionaldirectory_enqueue_admin_scripts() {
     // Enfileirar os estilos de administração
-    wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/admin/css/admin-style.css', PDR_MAIN_FILE));
-    wp_enqueue_script('dashboard-script-admin', plugins_url('/admin/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
-    wp_enqueue_script('pdr-admin-notifications', plugins_url('/admin/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
-    wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/admin/css/dashboard-style-admin.css', PDR_MAIN_FILE));
+    wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/panel/css/admin-style.css', PDR_MAIN_FILE));
+    wp_enqueue_script('dashboard-script-admin', plugins_url('/panel/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
+    wp_enqueue_script('pdr-admin-notifications', plugins_url('/panel/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
+    wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', PDR_MAIN_FILE));
     
 
     
@@ -28,13 +28,13 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
     wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
     wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
-    wp_enqueue_script('pdr-settings-page-script', plugins_url('admin/js/settings-page-colors.js', PDR_MAIN_FILE));
+    wp_enqueue_script('pdr-settings-page-script', plugins_url('panel/js/settings-page-colors.js', PDR_MAIN_FILE));
     
 
 }
 
 if (is_admin()) {
-    require_once plugin_dir_path(dirname(__FILE__)) . 'admin/dashboard-admin-functions.php';
+    require_once plugin_dir_path(dirname(__FILE__)) . 'panel/dashboard-admin-functions.php';
 
     // A função para enfileirar os scripts permanece a mesma
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
@@ -42,7 +42,7 @@ if (is_admin()) {
 
 
 //Quando for separar o enfileiramento baseado nas capacidades do usuário usar como base o código abaixo
-// Adicionar no arquivo includes/enqueue-admin.php
+// Adicionar no arquivo includes/enqueue-panel.php
 /*
 function professionaldirectory_enqueue_professional_scripts() {
     if (current_user_can('professional_capability')) { // Substitua 'professional_capability' pela capacidade real
