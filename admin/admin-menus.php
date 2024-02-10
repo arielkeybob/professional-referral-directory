@@ -25,6 +25,7 @@ function pdr_add_dashboard_submenu() {
 }
 add_action('admin_menu', 'pdr_add_dashboard_submenu');
 
+
 function pdr_dashboard_page_content() {
     include 'templates/dashboard-template-professional.php';
 }
@@ -77,7 +78,7 @@ add_action('admin_menu', 'pdr_add_settings_submenu');
 
 // Inclui o arquivo da classe das configurações para renderizar a página
 function pdr_settings_page() {
-    require_once plugin_dir_path(__FILE__) . 'class-prd-settings-page.php';
+    require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
     $settings_page = new PDR_Settings();
     $settings_page->settings_page();
 }

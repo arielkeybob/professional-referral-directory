@@ -1,0 +1,409 @@
+/* Importações */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* Geral */
+body, html, #wpcontent, #wpfooter, #wpbody-content {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #ffffff;
+    padding-top: 3px !important;
+}
+#wpcontent, #adminmenuwrap {
+    margin-top: 70px;
+}
+
+/* Links */
+a, #adminmenu a, .wrap a {
+    color: #00a0d2;
+}
+
+a:hover, #adminmenu a:hover {
+    color: #005077;
+    text-decoration: underline;
+}
+
+/* Admin Menu */
+#adminmenuback, #adminmenuwrap, #adminmenu {
+    background-color: #005288; /* Tom de azul moderno */
+    width: 17%; /* Largura do menu ajustada */
+}
+
+#adminmenu .wp-submenu, #adminmenu {
+    background-color: #3387be;
+    width: 100%;
+}
+
+#adminmenu a, 
+#adminmenu .wp-submenu a {
+    color: #ffffff;
+}
+
+#adminmenu a:hover, 
+#adminmenu li.menu-top:hover, 
+#adminmenu li.opensub>a.menu-top, 
+#adminmenu li>a.menu-top:focus {
+    background-color: #0073aa; /* Um azul mais claro para contraste */
+    color: #fff;
+}
+
+#adminmenu .wp-menu-image:before {
+    color: #CDDC39; /* Um contraste alto com o azul */
+}
+
+/* Ajustes de layout do menu e conteúdo */
+#wpcontent, #wpfooter, .folded #wpcontent, .folded #wpfooter, .auto-fold #wpcontent, .auto-fold #wpfooter {
+    margin-left: 17%;
+    padding: 30px;
+    padding-top: 0;
+}
+
+.folded #adminmenu, .folded #adminmenuback, .folded #adminmenuwrap {
+    width: 17%;
+}
+
+#adminmenu .wp-submenu-head, #adminmenu a.menu-top {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 8px 10px 10px;
+}
+
+#adminmenu div.wp-menu-name {
+    padding: 4px 8px 0px 4px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+/* Personalização adicional */
+#wpadminbar {
+    /* display: none; */
+}
+
+.wp-core-ui .button-primary {
+    background: #0073aa !important;
+    border-color: #005288 !important;
+    color: #fff !important;
+}
+
+.wp-core-ui .button-primary:hover {
+    background: #005288 !important;
+    border-color: #0073aa !important;
+}
+
+.button {
+    background-color: #005288 !important;
+    color: #fff !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #003d66 ;
+}
+
+/* Estilos gerais para a página de perfil e ajustes */
+.wrap {
+    max-width: 95%;
+    margin: 10px auto;
+    padding: 35px;
+    background: #fff;
+    box-shadow: 0px 0px 20px 1px rgb(0 0 0 / 10%);
+}
+
+.wrap h1, .wrap h2 {
+    color: #005288;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+.form-table th {
+    width: 20%;
+    font-weight: 600;
+    color: #005288;
+}
+
+.form-table td, 
+.form-table input[type="text"], 
+.form-table textarea, 
+.form-table select {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .form-table th, .form-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .wrap {
+        padding: 10px;
+    }
+}
+
+/* Customizações específicas */
+.ab-item.ab-empty-item, #adminmenu .wp-submenu-head {
+    display: none !important;
+}
+
+#adminmenu .wp-submenu a, #adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
+    font-size: 15px;
+    font-style: oblique;
+}
+
+#adminmenu .wp-submenu li.current, 
+#adminmenu .wp-submenu li.current a, 
+#adminmenu .wp-submenu li.current a:hover, 
+#comment-status-display, 
+#dashboard_right_now .versions .b, 
+#ed_reply_toolbar #ed_reply_strong, 
+#pass-strength-result.short, 
+#pass-strength-result.strong, 
+#post-status-display, 
+#post-visibility-display, 
+.feature-filter .feature-name, 
+.item-controls .item-order a, 
+.media-item .percent, 
+.plugins .name {
+    font-weight: 500;
+}
+
+#adminmenu .wp-has-current-submenu ul>li>a, .folded #adminmenu li.menu-top .wp-submenu>li>a {
+    padding: 5px 20px;
+}
+
+div#pdr-custom-logo {
+    width: 17%;
+    background-color: #00a0d2;
+    min-height: 80px;
+}
+
+div#pdr-custom-user, #pdr-custom-admin-bar {
+    display: flex !important;
+    align-content: center;
+    justify-content: flex-end !important;
+}
+
+#pdr-custom-admin-bar{
+    padding: 0 !important;
+    background-color: #ffffff;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+}
+
+div#pdr-custom-user{
+    box-sizing: border-box;
+    padding: 0 60px;
+}
+
+#adminmenu {
+    margin-top: -63px;
+}
+#adminmenu li.wp-menu-separator {
+    display: none;
+}
+
+#menu-management .menu-edit, #menu-settings-column .accordion-container, .comment-ays, .feature-filter, .manage-menus, .menu-item-handle, .popular-tags, .stuffbox, .widget-inside, .widget-top, .widgets-holder-wrap, .wp-editor-container, p.popular-tags, table.widefat {
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 0px 0px rgba(0,0,0,.04);
+}
+
+table.widefat {
+    border: 0px solid #f1f1f1;
+    box-shadow: 0 0px 0px rgba(0,0,0,.04);
+}
+.widefat thead td, .widefat thead th {
+    border-bottom: 0px solid #ededed;
+}
+
+.widefat tfoot td, .widefat tfoot th {
+    border-top: 0px solid #ededed;
+}
+
+#screen-meta-links{
+    display: none;
+}
+
+/* Estilização geral da tabela */
+.wp-list-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Remover todas as bordas padrão */
+.wp-list-table th, .wp-list-table td {
+    border: none;
+}
+
+/* Cabeçalho da tabela */
+.wp-list-table thead th {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 2px solid #ececec;
+}
+
+/* Linhas da tabela */
+.wp-list-table tr {
+    transition: background-color 0.3s ease;
+}
+
+/* Células da tabela */
+.wp-list-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ececec;
+    vertical-align: middle;
+}
+
+/* Última célula da linha sem borda para alinhar com o final do cabeçalho */
+.wp-list-table tr td:last-child {
+    border-bottom: none;
+}
+
+/* Realçar linha ao passar o mouse */
+.wp-list-table tr:hover {
+    background-color: #fff;
+}
+
+/* Estilização dos links e botões */
+.wp-list-table a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.wp-list-table a:hover {
+    text-decoration: underline;
+}
+
+/* Estilização do rodapé da tabela */
+.wp-list-table tfoot th {
+    background-color: #fff;
+    border-top: 2px solid #ececec;
+    padding: 12px 15px;
+}
+
+/* Estilização do paginador */
+.tablenav .tablenav-pages {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.tablenav .tablenav-pages a, .tablenav .tablenav-pages span {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    box-shadow: none;
+    background: #fff;
+}
+
+.tablenav .tablenav-pages a:hover {
+    border-color: #ccc;
+}
+
+.tablenav .tablenav-pages .current {
+    background-color: #0073aa;
+    color: #fff;
+    border-color: #0073aa;
+}
+
+.alternate, .striped>tbody>:nth-child(odd), ul.striped>:nth-child(odd) {
+    background-color: #fff;
+}
+
+td.date.column-date {
+    border-bottom: 1px solid #ececec !important;
+}
+
+td.title.column-title.has-row-actions.column-primary.page-title {
+    padding: 24px 10px 0 10px;
+}
+
+.updates-table tbody td.check-column, .widefat tbody th.check-column, .widefat tfoot td.check-column, .widefat thead td.check-column {
+    padding: 2px 0 0 3px;
+}
+
+.widefat .check-column {
+    vertical-align: middle;
+}
+
+
+#collapse-menu{
+    display: none;
+}
+
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .wp-list-table thead, .wp-list-table tr, .wp-list-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .wp-list-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .wp-list-table td {
+        border: none;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .wp-list-table td:before {
+        content: attr(data-colname);
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
+
+.pdr-dash-notifications img, .pdr-icon-help img {
+    padding: 16px;
+    background: #f4f4f4;
+}
+
+.pdr-dash-notifications img:hover, .pdr-icon-help img:hover {
+    padding: 16px;
+    background: #f8f8f8;
+}
+
+.wrap h1.wp-heading-inline {
+    display: inline-block;
+    margin-right: 5px;
+    position: fixed;
+    top: 13px;
+    z-index: 99999;
+}
+

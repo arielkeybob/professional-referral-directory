@@ -22,13 +22,13 @@ define( 'PDR_VERSION', '1.1.0' ); // Substitua 1.0.0 pela versão atual do seu p
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-taxonomies.php';
-require_once plugin_dir_path(__FILE__) . 'admin/class-pdr-admin.php';
+require_once plugin_dir_path(__FILE__) . 'admin/class-admin-restrictions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
-require_once plugin_dir_path(__FILE__) . 'admin/class-prd-settings-page.php';
+require_once plugin_dir_path(__FILE__) . 'admin/class-settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'admin/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
@@ -37,29 +37,32 @@ require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';
 require_once plugin_dir_path(__FILE__) . 'admin/enqueue-admin.php';
 require_once plugin_dir_path(__FILE__) . 'admin/notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
+include_once plugin_dir_path(__FILE__) . 'admin/admin-general-customizations.php';
+include_once plugin_dir_path(__FILE__) . 'admin/admin-bar-customizations.php';
+
 
 
 
 // Instanciar a classe de administração
 if (is_admin()) {
-    $prd_settings = new PDR_Settings();
+    $pdr_plugin_settings = new PDR_Settings();
 }
 
-function pdr_activate() {
-    ProfessionalDirectory_Users::initialize_user_roles();
-    pdr_create_search_data_table(); // Chamada existente do arquivo activation.php
+function pdrActivate() {
+    PDR_Users::initialize_user_roles();
+    pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php
     update_option( 'pdr_version', PDR_VERSION ); // Armazena a versão atual do plugin
-    pdr_check_version();
-    pdr_start_session();
+    pdrCheckVersion();
+    pdrStartSession();
 }
-register_activation_hook(__FILE__, 'pdr_activate');
+register_activation_hook(__FILE__, 'pdrActivate');
 
 
 
-function pdr_deactivate() {
-    ProfessionalDirectory_Users::cleanup_user_roles();
+function pdrDeactivate() {
+    PDR_Users::cleanup_user_roles();
 }
-register_deactivation_hook(__FILE__, 'pdr_deactivate');
+register_deactivation_hook(__FILE__, 'pdrDeactivate');
 
 
 
