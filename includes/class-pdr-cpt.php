@@ -4,7 +4,7 @@
         die;
     }
 
-    class PDR_CPT  {
+    class PDR_CPT {
 
         public static function register_service_cpt() {
             $labels = [
@@ -121,7 +121,7 @@
     }
 
     // Registrar o Custom Post Type e a Taxonomia no hook 'init'
-    add_action('init', [ 'PDR_CPT ', 'register_service_cpt' ], 10);
-    add_action('init', ['PDR_CPT ', 'set_service_capabilities'], 11);
-    add_action('init', ['PDR_CPT ', 'add_admin_capabilities'], 11);
+    add_action('init', [ 'PDR_CPT', 'register_service_cpt' ], 10);
+    add_action('init', ['PDR_CPT', 'set_service_capabilities'], 11);
+    add_action('init', ['PDR_CPT', 'add_admin_capabilities'], 11);
     
