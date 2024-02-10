@@ -1,5 +1,5 @@
 <?php
-function pdr_create_search_data_table() {
+function pdrCreateSearchDataTable() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
     $charset_collate = $wpdb->get_charset_collate();
@@ -36,10 +36,10 @@ function pdr_create_search_data_table() {
 }
 
 
-function pdr_check_version() {
+function pdrCheckVersion() {
     if ( get_option( 'pdr_version' ) !== PDR_VERSION ) {
         // A versão do plugin foi atualizada
-        pdr_activate(); // Reativação para atualizar a versão
+        pdrActivate(); // Reativação para atualizar a versão
 
         // Adicione aqui outras tarefas necessárias para a atualização
         update_option( 'pdr_version', PDR_VERSION ); // Atualiza a versão do plugin no banco de dados
@@ -49,7 +49,7 @@ function pdr_check_version() {
 
 
 
-function pdr_start_session() {
+function pdrStartSession() {
     if (!session_id()) {
         session_start();
     }

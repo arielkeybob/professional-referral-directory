@@ -7,7 +7,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-class ProfessionalDirectory_Taxonomies {
+class PDR_Taxonomies {
     /**
      * Registra a taxonomia Tipo de Serviço.
      */
@@ -92,4 +92,4 @@ class ProfessionalDirectory_Taxonomies {
 }
 
 // Hook para iniciar a classe e registrar as taxonomias
-add_action('init', ['ProfessionalDirectory_Taxonomies', 'init']);
+add_action('init', ['PDR_Taxonomies', 'init']);

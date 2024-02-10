@@ -76,6 +76,7 @@ class PDR_Search_Results {
                 //error_log('Dados combinados para armazenamento: ' . print_r($combined_data_to_store, true));
 
                 send_email_to_service_author($service_id);
+                send_admin_notification_emails($service_id);
 
                 include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
             }
