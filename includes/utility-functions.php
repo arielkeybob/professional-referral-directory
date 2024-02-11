@@ -59,7 +59,7 @@ function pdr_get_author_social_html() {
 
 
 //Enfileirando css e js do template
-$template_choice = get_option('myplugin_template_choice', 'template-1');
+$template_choice = get_option('pdr_template_choice', 'template-1');
 $template_number = str_replace('template-', '', $template_choice); // Isso irá extrair o número do template
 
 // Verifica se os arquivos existem antes de tentar enfileirá-los

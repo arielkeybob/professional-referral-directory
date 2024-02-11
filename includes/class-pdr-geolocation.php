@@ -8,7 +8,7 @@ if (!defined('WPINC')) {
 class PDR_Geolocation {
 
     public static function geocode_address($address) {
-        $api_key = get_option('myplugin_google_maps_api_key');
+        $api_key = get_option('pdr_google_maps_api_key');
         $address = urlencode($address);
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$api_key}";
 

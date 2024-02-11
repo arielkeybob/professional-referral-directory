@@ -47,8 +47,8 @@ function send_admin_notification_emails($post_id) {
     $user_data = get_form_data();
 
     // Recupera e-mails adicionais das configurações do plugin
-    $selected_admins = get_option('myplugin_selected_admins', []);
-    $manual_emails = explode(',', get_option('myplugin_manual_emails', ''));
+    $selected_admins = get_option('pdr_selected_admins', []);
+    $manual_emails = explode(',', get_option('pdr_manual_emails', ''));
 
     // Prepara o assunto e a mensagem para os administradores
     $subject = "Admin Notification: Service Inquiry for " . get_the_title($post_id);

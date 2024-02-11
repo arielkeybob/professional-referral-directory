@@ -70,7 +70,7 @@ function pdr_add_settings_submenu() {
         __('General Settings', 'professionaldirectory'),
         __('Settings', 'professionaldirectory'),
         'manage_options',
-        'myplugin',
+        'settings',
         'pdr_settings_page'
     );
 }

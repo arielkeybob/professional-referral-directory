@@ -10,7 +10,7 @@ function professionaldirectory_enqueue_scripts() {
     
     /*
     // Recupera a chave da API do Google Maps das opções do plugin
-    $google_maps_api_key = get_option('myplugin_google_maps_api_key');
+    $google_maps_api_key = get_option('pdr_google_maps_api_key');
    
     // Enfileira o script do Google Maps com a biblioteca Places
     wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $google_maps_api_key . '&libraries=places&callback=initAutocomplete', array('professionaldirectory-script'), null, true);
