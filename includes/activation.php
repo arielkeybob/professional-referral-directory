@@ -16,7 +16,7 @@ function pdrCreateSearchDataTable() {
         author_id BIGINT UNSIGNED
     ) $charset_collate;";
 
-    require_once(ABSPATH . 'wp-panel/includes/upgrade.php');
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   
     dbDelta($sql);
 
