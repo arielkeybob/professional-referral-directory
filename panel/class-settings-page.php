@@ -326,28 +326,34 @@ class PDR_Settings {
 
 
     // Callback para Panel Style
+    // Callback para a cor primária
     public function primary_color_callback() {
         $value = get_option('prd_primary_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_primary_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_primary_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
     // Callback para a cor secundária
     public function secondary_color_callback() {
         $value = get_option('prd_secondary_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_secondary_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_secondary_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
     // Callback para a cor do texto
     public function text_color_callback() {
         $value = get_option('prd_text_color', '#333333'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_text_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_text_color_hex' value='" . esc_attr($value) . "' placeholder='#333333' />";
     }
 
     // Callback para a cor de destaque (Accent color)
     public function accent_color_callback() {
         $value = get_option('prd_accent_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_accent_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_accent_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
+
 
     
 }
