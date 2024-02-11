@@ -19,18 +19,18 @@ class PDR_Settings {
             <form method="post" action="options.php">
                 <?php
                 if ($active_tab == 'general_settings') {
-                    settings_fields('prd_settings_group');
-                    do_settings_sections('prd_general_settings');
+                    settings_fields('pdr_settings_group_general');
+                    do_settings_sections('pdr_general_settings');
                 } elseif ($active_tab == 'api_settings') {
-                    settings_fields('prd_settings_group');
-                    do_settings_sections('prd_api_settings');
+                    settings_fields('pdr_settings_group_api');
+                    do_settings_sections('pdr_api_settings');
                 } elseif ($active_tab == 'email_settings') {
-                    settings_fields('prd_settings_group');
-                    do_settings_sections('prd_email_settings');
+                    settings_fields('pdr_settings_group_email');
+                    do_settings_sections('pdr_email_settings');
                 } elseif ($active_tab == 'style_settings') {
-                    settings_fields('prd_settings_group');
-                    do_settings_sections('prd_style_settings');
-                }
+                    settings_fields('pdr_settings_group_style'); // Certifique-se de registrar este grupo em register_settings()
+                    do_settings_sections('pdr_style_settings');
+                }                
                 submit_button();
                 ?>
             </form>
@@ -41,82 +41,97 @@ class PDR_Settings {
 
     public function register_settings() {
         // Registra configurações para a aba "General Settings"
-        register_setting('prd_settings_group_general', 'prd_option_general');
-    
+        register_setting('pdr_settings_group_general', 'pdr_general_option');
+        
         add_settings_section(
-            'prd_general_settings_section', 
+            'pdr_general_settings_section', 
             __('General Settings', 'professionaldirectory'), 
             null, 
-            'prd_general_settings'
+            'pdr_general_settings'
         );
     
         add_settings_field(
-            'prd_general_option', 
+            'pdr_general_option', 
             __('General Option', 'professionaldirectory'), 
             array($this, 'general_option_callback'), 
-            'prd_general_settings', 
-            'prd_general_settings_section'
+            'pdr_general_settings', 
+            'pdr_general_settings_section'
         );
     
-        // Repita o padrão acima para cada conjunto de configurações/aba.
-    
+
+
+
+
         // Configurações para a aba "API Settings"
-        register_setting('prd_settings_group_api', 'prd_google_maps_api_key');
+        register_setting('pdr_settings_group_api', 'pdr_google_maps_api_key');
     
         add_settings_section(
-            'prd_api_settings_section',
+            'pdr_api_settings_section',
             __('API Settings', 'professionaldirectory'),
             null,
-            'prd_api_settings'
+            'pdr_api_settings'
         );
     
         add_settings_field(
-            'prd_google_maps_api_key',
+            'pdr_google_maps_api_key',
             __('Google Maps API Key', 'professionaldirectory'),
             array($this, 'google_maps_api_key_callback'),
-            'prd_api_settings',
-            'prd_api_settings_section'
+            'pdr_api_settings',
+            'pdr_api_settings_section'
         );
     
+
+
+
+
         // Configurações para a aba "Email Settings"
-        register_setting('prd_settings_group_email', 'prd_selected_admins');
-        register_setting('prd_settings_group_email', 'prd_manual_emails');
+        register_setting('pdr_settings_group_email', 'pdr_selected_admins');
+        register_setting('pdr_settings_group_email', 'pdr_manual_emails');
     
         add_settings_section(
-            'prd_email_settings_section',
+            'pdr_email_settings_section',
             __('Email Settings', 'professionaldirectory'),
             null,
-            'prd_email_settings'
+            'pdr_email_settings'
         );
     
-        // Campos para "Email Settings"
         add_settings_field(
-            'prd_selected_admins',
+            'pdr_selected_admins',
             __('Admins to Receive Emails', 'professionaldirectory'),
             array($this, 'selected_admins_callback'),
-            'prd_email_settings',
-            'prd_email_settings_section'
+            'pdr_email_settings',
+            'pdr_email_settings_section'
         );
     
         add_settings_field(
-            'prd_manual_emails',
+            'pdr_manual_emails',
             __('Additional Emails', 'professionaldirectory'),
             array($this, 'manual_emails_callback'),
-            'prd_email_settings',
-            'prd_email_settings_section'
+            'pdr_email_settings',
+            'pdr_email_settings_section'
         );
     
 
 
-        register_setting('prd_settings_group', 'prd_button_color', 'sanitize_hex_color');
+        
 
 
         // Configurações para a aba "Style Settings"
+        register_setting('pdr_settings_group_style', 'pdr_button_color', 'sanitize_hex_color');
+        register_setting('pdr_settings_group_style', 'pdr_button_text_color', 'sanitize_hex_color');
+        register_setting('pdr_settings_group_style', 'pdr_button_hover_color', 'sanitize_hex_color');
+        register_setting('pdr_settings_group_style', 'pdr_button_text_hover_color', 'sanitize_hex_color');
+        register_setting('pdr_settings_group_style', 'pdr_title_font_family');
+        register_setting('pdr_settings_group_style', 'pdr_title_color', 'sanitize_hex_color');
+        register_setting('pdr_settings_group_style', 'pdr_body_font_family');
+        register_setting('pdr_settings_group_style', 'pdr_body_color', 'sanitize_hex_color');
+
+
         add_settings_section(
-            'prd_style_settings_section', // Correção aqui: ID da seção
+            'pdr_style_settings_section', 
             __('Style Settings', 'professionaldirectory'), // Título da seção
             null, // Callback da seção, opcional
-            'prd_style_settings' // Correção aqui: Deve corresponder ao usado em do_settings_sections
+            'pdr_style_settings' // Correção aqui: Deve corresponder ao usado em do_settings_sections
         );
 
         // Lista de configurações de estilo
@@ -128,98 +143,52 @@ class PDR_Settings {
             'title_font_family' => __('Title Font Family', 'professionaldirectory'),
             'title_color' => __('Title Color', 'professionaldirectory'),
             'body_font_family' => __('Body Font Family', 'professionaldirectory'),
-            'body_color' => __('Body Color', 'professionaldirectory'),
+            'body_color' => __('Body Color', 'professionaldirectory')
             // Adicione os outros campos de estilo aqui...
         ];
 
         foreach ($style_settings as $setting_name => $setting_label) {
-            register_setting('prd_settings_group', 'prd_' . $setting_name);
+            register_setting('pdr_settings_group', 'pdr_' . $setting_name);
             add_settings_field(
-                'prd_' . $setting_name,
+                'pdr_' . $setting_name,
                 $setting_label,
                 array($this, $setting_name . '_callback'),
-                'prd_style_settings', // Correção aqui: Deve corresponder ao usado em do_settings_sections
-                'prd_style_settings_section'
+                'pdr_style_settings', 
+                'pdr_style_settings_section'
             );
         }
     }
     
+    //Callback General options
     public function general_option_callback() {
-        $option_value = get_option('prd_general_option', ''); // Use the correct option name
-        echo "<input type='text' name='prd_general_option' value='" . esc_attr($option_value) . "' />";
+        $option_value = get_option('pdr_general_option', ''); // Use the correct option name
+        echo "<input type='text' name='pdr_general_option' value='" . esc_attr($option_value) . "' />";
     }
     
     
 
-    public function button_color_callback() {
-        $value = get_option('prd_button_color', '#000000');
-        // Campo de entrada de cor original
-        echo "<input type='color' name='prd_button_color' value='" . esc_attr($value) . "' />";
-        // Adicionar campo de entrada de texto para código hexadecimal
-        echo "<input type='text' name='prd_button_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
-    }
-    
-
-    public function button_text_color_callback() {
-        $value = get_option('prd_button_text_color', '#FFFFFF');
-        echo "<input type='color' name='prd_button_text_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_button_text_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
-    }
-
-    public function button_hover_color_callback() {
-        $value = get_option('prd_button_hover_color', '#000000');
-        echo "<input type='color' name='prd_button_hover_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_button_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
-    }
-
-    public function button_text_hover_color_callback() {
-    $value = get_option('prd_button_text_hover_color', '#FFFFFF');
-    echo "<input type='color' name='prd_button_text_hover_color' value='" . esc_attr($value) . "' />";
-    echo "<input type='text' name='prd_button_text_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
-}
-
-    public function title_font_family_callback() {
-        $value = get_option('prd_title_font_family', '');
-        echo "<input type='text' name='prd_title_font_family' value='" . esc_attr($value) . "' />";
-    }
-
-    public function title_color_callback() {
-        $value = get_option('prd_title_color', '#000000');
-        echo "<input type='color' name='prd_title_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_title_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
-    }
-
-    public function body_font_family_callback() {
-        $value = get_option('prd_body_font_family', '');
-        echo "<input type='text' name='prd_body_font_family' value='" . esc_attr($value) . "' />";
-    }
-
-    public function body_color_callback() {
-        $value = get_option('prd_body_color', '#000000');
-        echo "<input type='color' name='prd_body_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_body_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
-    }
-
-
-
-    public function template_choice_callback() {
-        $template_choice = get_option('prd_template_choice', 'template-1');
-        echo "<select name='prd_template_choice'>";
-        echo "<option value='template-1' " . selected($template_choice, 'template-1', false) . ">" . esc_html__('Template 1', 'professionaldirectory') . "</option>";
-        echo "<option value='template-2' " . selected($template_choice, 'template-2', false) . ">" . esc_html__('Template 2', 'professionaldirectory') . "</option>";
-        echo "</select>";
-    }
-    
+    //Callbacks API Options
     public function google_maps_api_key_callback() {
-        $api_key = get_option('prd_google_maps_api_key');
-        echo "<input type='text' name='prd_google_maps_api_key' value='" . esc_attr($api_key) . "' placeholder='" . esc_attr__('Enter the Google Maps API Key', 'professionaldirectory') . "' />";
+        $api_key = get_option('pdr_google_maps_api_key');
+        echo "<input type='text' name='pdr_google_maps_api_key' value='" . esc_attr($api_key) . "' placeholder='" . esc_attr__('Enter the Google Maps API Key', 'professionaldirectory') . "' />";
     }
 
+
+
+
+
+    //Callbacks Email Options
     public function selected_admins_callback() {
-        $selected_admins = get_option('prd_selected_admins', []);
+        $selected_admins = get_option('pdr_selected_admins', []);
+        
+        // Garante que $selected_admins seja um array
+        if (!is_array($selected_admins)) {
+            $selected_admins = explode(',', $selected_admins); // Apenas se você suspeitar que o valor possa ser uma string delimitada por vírgulas
+        }
+        
         $admins = get_users(['role' => 'administrator']);
     
-        echo '<select multiple name="prd_selected_admins[]" style="width: 100%;">';
+        echo '<select multiple name="pdr_selected_admins[]" style="width: 100%;">';
         foreach ($admins as $admin) {
             $selected = in_array($admin->user_email, $selected_admins) ? 'selected' : '';
             $admin_display = sprintf('%s (%s)', $admin->display_name, $admin->user_email);
@@ -228,12 +197,71 @@ class PDR_Settings {
         echo '</select>';
     }
     
-
+    
     public function manual_emails_callback() {
-        $manual_emails = get_option('prd_manual_emails', '');
-        echo "<input type='text' name='prd_manual_emails' value='" . esc_attr($manual_emails) . "' style='width: 50%;' placeholder='" . esc_attr__('email1@example.com, email2@example.com', 'professionaldirectory') . "' />";
+        $manual_emails = get_option('pdr_manual_emails', '');
+        echo "<input type='text' name='pdr_manual_emails' value='" . esc_attr($manual_emails) . "' style='width: 50%;' placeholder='" . esc_attr__('email1@example.com, email2@example.com', 'professionaldirectory') . "' />";
         echo "<p>" . esc_html__('Enter additional emails separated by commas.', 'professionaldirectory') . "</p>";
+    }
 
+
+
+
+    //Callbacks Frontend Style options
+    public function button_color_callback() {
+        $value = get_option('pdr_button_color', '#000000');
+        // Campo de entrada de cor original
+        echo "<input type='color' name='pdr_button_color' value='" . esc_attr($value) . "' />";
+        // Adicionar campo de entrada de texto para código hexadecimal
+        echo "<input type='text' name='pdr_button_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+    }
+       
+    public function button_text_color_callback() {
+        $value = get_option('pdr_button_text_color', '#FFFFFF');
+        echo "<input type='color' name='pdr_button_text_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='pdr_button_text_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+    }
+
+    public function button_hover_color_callback() {
+        $value = get_option('pdr_button_hover_color', '#000000');
+        echo "<input type='color' name='pdr_button_hover_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='pdr_button_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+    }
+
+    public function button_text_hover_color_callback() {
+    $value = get_option('pdr_button_text_hover_color', '#FFFFFF');
+    echo "<input type='color' name='pdr_button_text_hover_color' value='" . esc_attr($value) . "' />";
+    echo "<input type='text' name='pdr_button_text_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+    }
+
+    public function title_font_family_callback() {
+        $value = get_option('pdr_title_font_family', '');
+        echo "<input type='text' name='pdr_title_font_family' value='" . esc_attr($value) . "' />";
+    }
+
+    public function title_color_callback() {
+        $value = get_option('pdr_title_color', '#000000');
+        echo "<input type='color' name='pdr_title_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='pdr_title_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+    }
+
+    public function body_font_family_callback() {
+        $value = get_option('pdr_body_font_family', '');
+        echo "<input type='text' name='pdr_body_font_family' value='" . esc_attr($value) . "' />";
+    }
+
+    public function body_color_callback() {
+        $value = get_option('pdr_body_color', '#000000');
+        echo "<input type='color' name='pdr_body_color' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='pdr_body_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+    }
+
+    public function template_choice_callback() {
+        $template_choice = get_option('pdr_template_choice', 'template-1');
+        echo "<select name='pdr_template_choice'>";
+        echo "<option value='template-1' " . selected($template_choice, 'template-1', false) . ">" . esc_html__('Template 1', 'professionaldirectory') . "</option>";
+        echo "<option value='template-2' " . selected($template_choice, 'template-2', false) . ">" . esc_html__('Template 2', 'professionaldirectory') . "</option>";
+        echo "</select>";
     }
     
 }
