@@ -19,7 +19,7 @@ function professionaldirectory_enqueue_admin_scripts() {
     
 
     // Passar a URL AJAX e o nonce para o script
-    wp_localize_script('dashboard-script-admin', 'myPlugin', array(
+    wp_localize_script('dashboard-script-admin', 'pdrAjax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'ajax_nonce' => wp_create_nonce('fetch_services_nonce')
     ));

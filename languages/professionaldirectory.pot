@@ -37,7 +37,7 @@ msgstr ""
 msgid "Add New Service Type"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:76
+#: panel/class-pdrAjax-admin.php:76
 msgid "Additional Emails"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgctxt "Admin Menu text"
 msgid "Services"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:68
+#: panel/class-pdrAjax-admin.php:68
 msgid "Admins to Receive Emails"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "All Services"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:45
+#: panel/class-pdrAjax-admin.php:45
 msgid "API Settings"
 msgstr ""
 
@@ -106,28 +106,28 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:61
+#: panel/class-pdrAjax-admin.php:61
 msgid "Email Settings"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:105
+#: panel/class-pdrAjax-admin.php:105
 msgid "email1@example.com, email2@example.com"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:106
+#: panel/class-pdrAjax-admin.php:106
 msgid "Enter additional emails separated by commas."
 msgstr ""
 
-#: panel/class-myplugin-admin.php:86
+#: panel/class-pdrAjax-admin.php:86
 msgid "Enter the Google Maps API Key"
 msgstr ""
 
 #. Adicionando como um submenu do tipo de post "Service"
-#: panel/class-myplugin-admin.php:13 panel/class-myplugin-admin.php:24
+#: panel/class-pdrAjax-admin.php:13 panel/class-pdrAjax-admin.php:24
 msgid "General Settings"
 msgstr ""
 
-#: panel/class-myplugin-admin.php:52
+#: panel/class-pdrAjax-admin.php:52
 msgid "Google Maps API Key"
 msgstr ""
 
@@ -337,7 +337,7 @@ msgid "Service Type"
 msgstr ""
 
 #. Título da página
-#: panel/class-myplugin-admin.php:14
+#: panel/class-pdrAjax-admin.php:14
 msgid "Settings"
 msgstr ""
 

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Preparar os dados para a requisição AJAX
         const data = {
             'action': 'fetch_admin_dashboard_data',
-            'nonce': myPlugin.ajax_nonce,
+            'nonce': pdrAjax.ajax_nonce,
             'period': period,
             'include_no_search': includeNoSearch,
             'start_date': startDate,
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Enviar a requisição AJAX
-        jQuery.post(myPlugin.ajax_url, data, function(response) {
+        jQuery.post(pdrAjax.ajax_url, data, function(response) {
             if (response.success) {
                 // Limpar a tabela existente
                 servicesTableBody.innerHTML = '';
