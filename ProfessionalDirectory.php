@@ -48,6 +48,18 @@ if (is_admin()) {
     $pdr_plugin_settings = new PDR_Settings();
 }
 
+// Enfileirando o carregador de mídia
+function pdr_enqueue_media_uploader() {
+    if (function_exists('wp_enqueue_media')) {
+        wp_enqueue_media();
+    } else {
+        wp_enqueue_style('thickbox');
+        wp_enqueue_script('media-upload');
+        wp_enqueue_script('thickbox');
+    }
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
+
 function pdrActivate() {
     PDR_Users::initialize_user_roles();
     pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php

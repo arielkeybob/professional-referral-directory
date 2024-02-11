@@ -22,16 +22,26 @@ function pdr_add_custom_admin_bar() {
         $profile_url = get_edit_profile_url($current_user->ID);
         $logout_url = wp_logout_url();
         $avatar_url = get_avatar_url($current_user->ID);
-        // Ajuste o caminho conforme necessário, dependendo da localização do seu arquivo PHP em relação à raiz do WordPress
-        $logo_url = '/wp-content/uploads/2024/02/logo-exemplo.jpg';
+
+        // Obtem o ID da imagem da logo salvo nas opções do tema
+        $logo_id = get_option('prd_panel_logo');
+        // Obtem a URL da imagem a partir do ID
+        $logo_url = wp_get_attachment_url($logo_id);
+        
+        // Se nenhuma imagem foi definida, você pode definir uma imagem padrão
+        if (!$logo_url) {
+            $logo_url = '/wp-content/uploads/default-logo.png'; // Caminho para a logo padrão
+        }
+
         $bell_notification_url = plugin_dir_url(__FILE__) . '../public/img/Bell-Notification.png'; // Ajuste este caminho
-        $hepl_icon_url = plugin_dir_url(__FILE__) . '../public/img/help-icon.png';
+        $help_icon_url = plugin_dir_url(__FILE__) . '../public/img/help-icon.png'; // Ajuste este caminho
 
         ?>
         <div id="pdr-custom-admin-bar">
             <div id="pdr-custom-logo" style="width: 17%; display: flex; justify-content: center; align-items: center;">
                 <a href="<?php echo home_url(); ?>">
-                    <img src="<?php echo home_url($logo_url); ?>" alt="Logo do Site" style="max-width: 100%; max-height: 50px;">
+                    <!-- Aqui usamos a URL da imagem da logo -->
+                    <img src="<?php echo esc_url($logo_url); ?>" alt="Logo do Site" style="max-width: 100%; max-height: 50px;">
                 </a>
             </div>
             <div id="pdr-custom-user" style="width: 83%; display: flex; justify-content: flex-end; align-items: center;">

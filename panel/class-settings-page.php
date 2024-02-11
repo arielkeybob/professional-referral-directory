@@ -30,7 +30,7 @@ class PDR_Settings {
                     settings_fields('prd_settings_group_email');
                     do_settings_sections('prd_email_settings');
                 } elseif ($active_tab == 'style_settings') {
-                    settings_fields('prd_settings_group_frontend_style'); // Certifique-se de registrar este grupo em register_settings()
+                    settings_fields('prd_settings_group_frontend_style');
                     do_settings_sections('prd_style_settings');
                 } elseif ($active_tab == 'panel_style') {
                     settings_fields('prd_settings_group_panel_style');
@@ -172,6 +172,7 @@ class PDR_Settings {
         register_setting('prd_settings_group_panel_style', 'prd_secondary_color', 'sanitize_hex_color');
         register_setting('prd_settings_group_panel_style', 'prd_text_color', 'sanitize_hex_color');
         register_setting('prd_settings_group_panel_style', 'prd_accent_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_panel_style', 'prd_panel_logo');
 
         // Dentro de register_settings()
         add_settings_section(
@@ -214,6 +215,14 @@ class PDR_Settings {
             'prd_panel_style_section'
         );
 
+        // Adicionando a seção de upload da logo
+        add_settings_field(
+            'prd_panel_logo',
+            __('Panel Logo', 'professionaldirectory'),
+            array($this, 'panel_logo_callback'),
+            'prd_panel_style_settings',
+            'prd_panel_style_section'
+        );
 
     }
     
@@ -354,6 +363,77 @@ class PDR_Settings {
         echo "<input type='text' name='prd_accent_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
+    public function panel_logo_callback() {
+        $logo_id = get_option('prd_panel_logo');
+        // Se houver uma imagem, obtenha a URL da imagem
+        $image_url = wp_get_attachment_url($logo_id);
+        ?>
+        <input type="hidden" id="prd_panel_logo" name="prd_panel_logo" value="<?php echo esc_attr($logo_id); ?>" />
+        <input type="button" id="prd_panel_logo_button" class="button" value="<?php _e('Upload Logo', 'professionaldirectory'); ?>" />
+        <input type="button" id="prd_panel_logo_remove_button" class="button" value="<?php _e('Remove Logo', 'professionaldirectory'); ?>" <?php echo $logo_id ? '' : 'style="display:none;"'; ?> />
+        <span class="description"><?php _e('Upload or remove the panel logo.', 'professionaldirectory'); ?></span>
+        <div id="prd_panel_logo_preview" style="min-height: 100px;">
+            <?php if($image_url): ?>
+                <img style="max-width:250px;" src="<?php echo esc_url($image_url); ?>" />
+            <?php endif; ?>
+        </div>
+        <script>
+        jQuery(document).ready(function($){
+            $('#prd_panel_logo_button').click(function(e) {
+                e.preventDefault();
+                var image_frame;
+                if(image_frame){
+                    image_frame.open();
+                }
+                // Define image_frame as wp.media object
+                image_frame = wp.media({
+                    title: 'Select Media',
+                    multiple : false,
+                    library : {
+                        type : 'image',
+                    }
+                });
+                
+                image_frame.on('close',function() {
+                    // On close, get selections and save to the hidden input
+                    // plus other AJAX stuff to refresh the image preview
+                    var selection =  image_frame.state().get('selection').first().toJSON();
+                    $('#prd_panel_logo').val(selection.id);
+                    $('#prd_panel_logo_preview').html('<img src="'+selection.sizes.full.url+'" style="max-width:100%;"/>');
+                });
+                
+                image_frame.on('open',function() {
+                    // On open, get the id from the hidden input
+                    // and select the appropiate images in the media manager
+                    var selection =  image_frame.state().get('selection');
+                    var ids = $('#prd_panel_logo').val().split(',');
+                    ids.forEach(function(id) {
+                        var attachment = wp.media.attachment(id);
+                        attachment.fetch();
+                        selection.add( attachment ? [ attachment ] : [] );
+                    });
+                
+                });
+                
+                image_frame.open();
+            });
 
+            $('#prd_panel_logo_remove_button').click(function(e){
+            e.preventDefault();
+            $('#prd_panel_logo').val('');
+            $('#prd_panel_logo_preview').html('');
+            $(this).hide();
+            });
+
+            // If there is an image selected, show the remove button
+            if($('#prd_panel_logo').val()) {
+                $('#prd_panel_logo_remove_button').show();
+            }
+        });
+        </script>
+        <?php
+    }
+    
+    
     
 }
