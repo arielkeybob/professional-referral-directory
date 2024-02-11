@@ -14,7 +14,7 @@ class PDR_Settings {
                 <a href="?post_type=professional_service&page=settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('General Settings', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Style Settings', 'professionaldirectory'); ?></a>
+                <a href="?post_type=professional_service&page=settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
 
             </h2>
@@ -30,7 +30,7 @@ class PDR_Settings {
                     settings_fields('prd_settings_group_email');
                     do_settings_sections('prd_email_settings');
                 } elseif ($active_tab == 'style_settings') {
-                    settings_fields('prd_settings_group_style'); // Certifique-se de registrar este grupo em register_settings()
+                    settings_fields('prd_settings_group_frontend_style'); // Certifique-se de registrar este grupo em register_settings()
                     do_settings_sections('prd_style_settings');
                 } elseif ($active_tab == 'panel_style') {
                     settings_fields('prd_settings_group_panel_style');
@@ -122,20 +122,20 @@ class PDR_Settings {
         
 
 
-        // Configurações para a aba "Style Settings"
-        register_setting('prd_settings_group_style', 'prd_button_color', 'sanitize_hex_color');
-        register_setting('prd_settings_group_style', 'prd_button_text_color', 'sanitize_hex_color');
-        register_setting('prd_settings_group_style', 'prd_button_hover_color', 'sanitize_hex_color');
-        register_setting('prd_settings_group_style', 'prd_button_text_hover_color', 'sanitize_hex_color');
-        register_setting('prd_settings_group_style', 'prd_title_font_family');
-        register_setting('prd_settings_group_style', 'prd_title_color', 'sanitize_hex_color');
-        register_setting('prd_settings_group_style', 'prd_body_font_family');
-        register_setting('prd_settings_group_style', 'prd_body_color', 'sanitize_hex_color');
+        // Configurações para a aba "Frontend Style"
+        register_setting('prd_settings_group_frontend_style', 'prd_button_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_frontend_style', 'prd_button_text_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_frontend_style', 'prd_button_hover_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_frontend_style', 'prd_button_text_hover_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_frontend_style', 'prd_title_font_family');
+        register_setting('prd_settings_group_frontend_style', 'prd_title_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_frontend_style', 'prd_body_font_family');
+        register_setting('prd_settings_group_frontend_style', 'prd_body_color', 'sanitize_hex_color');
 
 
         add_settings_section(
             'prd_style_settings_section', 
-            __('Style Settings', 'professionaldirectory'), // Título da seção
+            __('Frontend Style', 'professionaldirectory'), // Título da seção
             null, // Callback da seção, opcional
             'prd_style_settings' // Correção aqui: Deve corresponder ao usado em do_settings_sections
         );
