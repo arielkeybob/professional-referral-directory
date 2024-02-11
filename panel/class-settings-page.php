@@ -15,6 +15,8 @@ class PDR_Settings {
                 <a href="?post_type=professional_service&page=settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Style Settings', 'professionaldirectory'); ?></a>
+                <a href="?post_type=professional_service&page=settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
+
             </h2>
             <form method="post" action="options.php">
                 <?php
@@ -30,7 +32,11 @@ class PDR_Settings {
                 } elseif ($active_tab == 'style_settings') {
                     settings_fields('prd_settings_group_style'); // Certifique-se de registrar este grupo em register_settings()
                     do_settings_sections('prd_style_settings');
-                }                
+                } elseif ($active_tab == 'panel_style') {
+                    settings_fields('prd_settings_group_panel_style');
+                    do_settings_sections('prd_panel_style_settings');
+                }
+                               
                 submit_button();
                 ?>
             </form>
@@ -157,6 +163,58 @@ class PDR_Settings {
                 'prd_style_settings_section'
             );
         }
+
+
+
+
+        // Configurações para a aba "Panel Style"
+        register_setting('prd_settings_group_panel_style', 'prd_primary_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_panel_style', 'prd_secondary_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_panel_style', 'prd_text_color', 'sanitize_hex_color');
+        register_setting('prd_settings_group_panel_style', 'prd_accent_color', 'sanitize_hex_color');
+
+        // Dentro de register_settings()
+        add_settings_section(
+            'prd_panel_style_section',
+            __('Panel Style Settings', 'professionaldirectory'),
+            null,
+            'prd_panel_style_settings'
+        );
+
+        // Adicionando campos
+        add_settings_field(
+            'prd_primary_color',
+            __('Primary Color', 'professionaldirectory'),
+            array($this, 'primary_color_callback'),
+            'prd_panel_style_settings',
+            'prd_panel_style_section'
+        );
+
+        add_settings_field(
+            'prd_secondary_color',
+            __('Secondary Color', 'professionaldirectory'),
+            array($this, 'secondary_color_callback'),
+            'prd_panel_style_settings',
+            'prd_panel_style_section'
+        );
+
+        add_settings_field(
+            'prd_text_color',
+            __('Text Color', 'professionaldirectory'),
+            array($this, 'text_color_callback'),
+            'prd_panel_style_settings',
+            'prd_panel_style_section'
+        );
+
+        add_settings_field(
+            'prd_accent_color',
+            __('Accent Color', 'professionaldirectory'),
+            array($this, 'accent_color_callback'),
+            'prd_panel_style_settings',
+            'prd_panel_style_section'
+        );
+
+
     }
     
     //Callback General options
@@ -166,6 +224,7 @@ class PDR_Settings {
     }
     
     
+
 
     //Callbacks API Options
     public function google_maps_api_key_callback() {
@@ -196,7 +255,6 @@ class PDR_Settings {
         }
         echo '</select>';
     }
-    
     
     public function manual_emails_callback() {
         $manual_emails = get_option('prd_manual_emails', '');
@@ -263,5 +321,33 @@ class PDR_Settings {
         echo "<option value='template-2' " . selected($template_choice, 'template-2', false) . ">" . esc_html__('Template 2', 'professionaldirectory') . "</option>";
         echo "</select>";
     }
+
+
+
+
+    // Callback para Panel Style
+    public function primary_color_callback() {
+        $value = get_option('prd_primary_color', '#0073aa'); // Valor padrão como exemplo
+        echo "<input type='color' name='prd_primary_color' value='" . esc_attr($value) . "' />";
+    }
+
+    // Callback para a cor secundária
+    public function secondary_color_callback() {
+        $value = get_option('prd_secondary_color', '#0073aa'); // Valor padrão como exemplo
+        echo "<input type='color' name='prd_secondary_color' value='" . esc_attr($value) . "' />";
+    }
+
+    // Callback para a cor do texto
+    public function text_color_callback() {
+        $value = get_option('prd_text_color', '#333333'); // Valor padrão como exemplo
+        echo "<input type='color' name='prd_text_color' value='" . esc_attr($value) . "' />";
+    }
+
+    // Callback para a cor de destaque (Accent color)
+    public function accent_color_callback() {
+        $value = get_option('prd_accent_color', '#0073aa'); // Valor padrão como exemplo
+        echo "<input type='color' name='prd_accent_color' value='" . esc_attr($value) . "' />";
+    }
+
     
 }
