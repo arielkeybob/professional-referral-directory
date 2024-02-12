@@ -22,6 +22,7 @@ a:hover, #adminmenu a:hover {
     text-decoration: underline;
 }
 
+
 #adminmenu .wp-submenu a:focus, 
 #adminmenu .wp-submenu a:hover, 
 #adminmenu a:hover, 
@@ -63,6 +64,8 @@ a:hover, #adminmenu a:hover {
     padding: 30px;
     padding-top: 0;
 }
+
+
 
 .folded #adminmenu, .folded #adminmenuback, .folded #adminmenuwrap {
     width: 17%;

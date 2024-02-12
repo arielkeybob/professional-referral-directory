@@ -33,11 +33,11 @@ function pdr_add_custom_admin_bar() {
             $logo_url = '/wp-content/uploads/default-logo.png'; // Caminho para a logo padrão
         }
 
-        $bell_notification_url = plugin_dir_url(__FILE__) . '../public/img/Bell-Notification.png'; // Ajuste este caminho
-        $help_icon_url = plugin_dir_url(__FILE__) . '../public/img/help-icon.png'; // Ajuste este caminho
+        $bell_notification_url = plugin_dir_url(__FILE__) . '../public/img/Bell-Notification.png'; 
+        $help_icon_url = plugin_dir_url(__FILE__) . '../public/img/help-icon.png'; 
 
         ?>
-        <div id="pdr-custom-admin-bar">
+        <div id="pdr-custom-admin-bar" style="width: 100%; display: flex;">
             <div id="pdr-custom-logo" style="width: 17%; display: flex; justify-content: center; align-items: center;">
                 <a href="<?php echo home_url(); ?>">
                     <!-- Aqui usamos a URL da imagem da logo -->
@@ -48,7 +48,7 @@ function pdr_add_custom_admin_bar() {
                 <!-- Ícone de ajuda -->
                 <div class="pdr-icon-help" style="margin-right: 20px;">
                     <a href="#" title="Ajuda">
-                    <img src="<?php echo esc_url($hepl_icon_url); ?>" alt="Hepl" style="height: 24px; width: 24px;">
+                    <img src="<?php echo esc_url($help_icon_url); ?>" alt="Help" style="height: 24px; width: 24px;">
                     </a> <!-- Link de ajuda será adicionado aqui -->
                 </div>
                 <!-- Ícone de notificações -->
