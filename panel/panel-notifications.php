@@ -3,8 +3,8 @@
 function pdr_obter_notificacoes_ativas() {
     $caminho_json = plugin_dir_path( __FILE__ ) . 'notifications/notifications.json';
     $notificacoes = json_decode( file_get_contents( $caminho_json ), true );
-    return array_filter($notificacoes, function($notificacao) {
-        return $notificacao['status'] === 'ativo';
+    return array_filter($notificacoes, function($notification) {
+        return $notification['status'] === 'ativo';
     });
 }
 
@@ -31,10 +31,10 @@ function pdr_exibir_notificacoes_admin() {
     }
 
     $notificacoes = pdr_obter_notificacoes_ativas();
-    foreach ($notificacoes as $notificacao) {
+    foreach ($notificacoes as $notification) {
         // Verifica se a notificação já foi fechada pelo usuário
-        if (!isset($_SESSION['pdr_notificacao_fechada_' . $notificacao['id']])) {
-            echo "<div class='notice notice-info is-dismissible pdr-notificacao' data-notificacao-id='{$notificacao['id']}'><p><strong>{$notificacao['titulo']}</strong></p><p>{$notificacao['mensagem']}</p></div>";
+        if (!isset($_SESSION['pdr_notification_fechada_' . $notification['id']])) {
+            echo "<div class='notice notice-info is-dismissible pdr-notification' data-notification-id='{$notification['id']}'><p><strong>{$notification['titulo']}</strong></p><p>{$notification['mensagem']}</p></div>";
         }
     }
 }

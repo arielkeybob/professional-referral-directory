@@ -41,7 +41,7 @@ function pdr_add_custom_admin_bar() {
             <div id="pdr-custom-logo" style="width: 17%; display: flex; justify-content: center; align-items: center;">
                 <a href="<?php echo home_url(); ?>">
                     <!-- Aqui usamos a URL da imagem da logo -->
-                    <img src="<?php echo esc_url($logo_url); ?>" alt="Logo do Site" style="max-width: 100%; max-height: 50px;">
+                    <img src="<?php echo esc_url($logo_url); ?>" alt="Site Logo" style="max-width: 100%; max-height: 50px;">
                 </a>
             </div>
             <div id="pdr-custom-user" style="width: 83%; display: flex; justify-content: flex-end; align-items: center;">

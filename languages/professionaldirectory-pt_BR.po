@@ -1,14 +1,13 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ProfessionalDirectory\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-16 22:04+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: 2024-02-16 22:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,195 +17,195 @@ msgstr ""
 
 #: panel/class-settings-page.php:212
 msgid "Accent Color"
-msgstr ""
+msgstr "Cor de Destaque"
 
 #: includes/class-pdr-cpt.php:15
 msgid "Add New"
-msgstr ""
+msgstr "Adicionar Novo"
 
 #: includes/class-pdr-cpt.php:14
 msgctxt "Add New on Toolbar"
 msgid "Service"
-msgstr ""
+msgstr "Serviço"
 
 #: includes/class-pdr-cpt.php:16
 msgid "Add New Service"
-msgstr ""
+msgstr "Adicionar Novo Serviço"
 
 #: includes/class-pdr-taxonomies.php:61
 msgid "Add New Service Location"
-msgstr ""
+msgstr "Adicionar Nova Localização de Serviço"
 
 #: includes/class-pdr-taxonomies.php:24
 msgid "Add New Service Type"
-msgstr ""
+msgstr "Adicionar Novo Tipo de Serviço"
 
 #: panel/class-settings-page.php:114
 msgid "Additional Emails"
-msgstr ""
+msgstr "Emails Adicionais"
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Address"
-msgstr ""
+msgstr "Endereço"
 
 #: panel/templates/dashboard-template-admin.php:8
 msgid "Admin Dashboard"
-msgstr ""
+msgstr "Painel do Admin"
 
 #: includes/class-pdr-cpt.php:13
 msgctxt "Admin Menu text"
 msgid "Services"
-msgstr ""
+msgstr "Serviços"
 
 #: panel/class-settings-page.php:106
 msgid "Admins to Receive Emails"
-msgstr ""
+msgstr "Administradores para Receber Emails"
 
 #: includes/class-pdr-taxonomies.php:56
 msgid "All Service Locations"
-msgstr ""
+msgstr "Todas as Localizações de Serviços"
 
 #: includes/class-pdr-taxonomies.php:19
 msgid "All Service Types"
-msgstr ""
+msgstr "Todos os Tipos de Serviços"
 
 #: includes/class-pdr-cpt.php:20
 msgid "All Services"
-msgstr ""
+msgstr "Todos os Serviços"
 
 #: panel/templates/dashboard-template-admin.php:26
 msgid "Also show services without searches in the period"
-msgstr ""
+msgstr "Mostrar também serviços sem pesquisas no período"
 
 #: panel/class-settings-page.php:15 panel/class-settings-page.php:76
 msgid "API Settings"
-msgstr ""
+msgstr "Configurações da API"
 
 #. Author of the plugin
 msgid "Ariel Souza"
-msgstr ""
+msgstr "Ariel Souza"
 
 #. Author URI of the plugin
 msgid "arielsouza.com.br"
-msgstr ""
+msgstr "arielsouza.com.br"
 
 #: panel/templates/dashboard-template-admin.php:33
 msgid "Author Name"
-msgstr ""
+msgstr "Nome do Autor"
 
 #: panel/class-settings-page.php:152
 msgid "Body Color"
-msgstr ""
+msgstr "Cor do Corpo"
 
 #: panel/class-settings-page.php:151
 msgid "Body Font Family"
-msgstr ""
+msgstr "Família da Fonte do Corpo"
 
 #: panel/class-settings-page.php:145
 msgid "Button Color"
-msgstr ""
+msgstr "Cor do Botão"
 
 #: panel/class-settings-page.php:147
 msgid "Button Hover Color"
-msgstr ""
+msgstr "Cor do Botão ao Passar o Mouse"
 
 #: panel/class-settings-page.php:146
 msgid "Button Text Color"
-msgstr ""
+msgstr "Cor do Texto do Botão"
 
 #: panel/class-settings-page.php:148
 msgid "Button Text Hover Color"
-msgstr ""
+msgstr "Cor do Texto do Botão ao Passar o Mouse"
 
 #: panel/templates/dashboard-template-admin.php:16
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: panel/templates/dashboard-template-admin.php:34
 msgid "Date of Last Search"
-msgstr ""
+msgstr "Data da Última Pesquisa"
 
 #: includes/class-pdr-metaboxes.php:69
 msgid "Desejo receber notificações por e-mail para este serviço"
-msgstr ""
+msgstr "Desejo receber notificações por e-mail para este serviço"
 
 #: panel/templates/dashboard-template-professional.php:52
 msgid "Distribution of Searches by Service Type"
-msgstr ""
+msgstr "Distribuição de Pesquisas por Tipo de Serviço"
 
 #: includes/class-pdr-cpt.php:18
 msgid "Edit Service"
-msgstr ""
+msgstr "Editar Serviço"
 
 #: includes/class-pdr-taxonomies.php:59
 msgid "Edit Service Location"
-msgstr ""
+msgstr "Editar Localização de Serviço"
 
 #: includes/class-pdr-taxonomies.php:22
 msgid "Edit Service Type"
-msgstr ""
+msgstr "Editar Tipo de Serviço"
 
 #: public/class-pdr-search-form.php:73
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: panel/class-settings-page.php:16 panel/class-settings-page.php:99
 msgid "Email Settings"
-msgstr ""
+msgstr "Configurações de Email"
 
 #: panel/class-settings-page.php:270
 msgid "email1@example.com, email2@example.com"
-msgstr ""
+msgstr "email1@exemplo.com, email2@exemplo.com"
 
 #: panel/class-settings-page.php:271
 msgid "Enter additional emails separated by commas."
-msgstr ""
+msgstr "Insira emails adicionais separados por vírgulas."
 
 #: panel/class-settings-page.php:241
 msgid "Enter the Google Maps API Key"
-msgstr ""
+msgstr "Insira a Chave da API do Google Maps"
 
 #: panel/class-settings-page.php:17 panel/class-settings-page.php:138
 msgid "Frontend Style"
-msgstr ""
+msgstr "Estilo do Frontend"
 
 #: panel/class-settings-page.php:61
 msgid "General Option"
-msgstr ""
+msgstr "Opção Geral"
 
 #: panel/class-settings-page.php:14 panel/class-settings-page.php:54
 #: panel/panel-menus.php:70
 msgid "General Settings"
-msgstr ""
+msgstr "Configurações Gerais"
 
 #: panel/class-settings-page.php:83
 msgid "Google Maps API Key"
-msgstr ""
+msgstr "Chave da API do Google Maps"
 
 #. URI of the plugin
 msgid "http://arielsouza.com.br/professionaldirectory"
-msgstr ""
+msgstr "http://arielsouza.com.br/professionaldirectory"
 
 #: panel/templates/dashboard-template-admin.php:14
 msgid "Last Month"
-msgstr ""
+msgstr "Último Mês"
 
 #: panel/templates/dashboard-template-admin.php:13
 msgid "Last Week"
-msgstr ""
+msgstr "Última Semana"
 
 #: panel/templates/dashboard-template-admin.php:22
 msgid "Load Data"
-msgstr ""
+msgstr "Carregar Dados"
 
 #. Description of the plugin
 msgid "Manages a directory of professional services and listings."
-msgstr ""
+msgstr "Gerencia um diretório de serviços profissionais e listagens."
 
 #: includes/email-functions.php:34
 #, php-format
@@ -219,328 +218,335 @@ msgid ""
 "Service Found: %s\n"
 "Post ID: %s"
 msgstr ""
+"Nome: %s\n"
+"Email: %s\n"
+"Tipo de Serviço: %s\n"
+"Localização: %s\n"
+"\n"
+"Serviço Encontrado: %s\n"
+"ID do Post: %s"
 
 #: includes/class-pdr-cpt.php:17
 msgid "New Service"
-msgstr ""
+msgstr "Novo Serviço"
 
 #: includes/class-pdr-taxonomies.php:62
 msgid "New Service Location Name"
-msgstr ""
+msgstr "Nome da Nova Localização de Serviço"
 
 #: includes/class-pdr-taxonomies.php:25
 msgid "New Service Type Name"
-msgstr ""
+msgstr "Nome do Novo Tipo de Serviço"
 
 #: public/class-pdr-search-form.php:67
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
 #: panel/templates/dashboard-template-professional.php:83
 msgid "No recent results found."
-msgstr ""
+msgstr "Nenhum resultado recente encontrado."
 
 #: public/class-pdr-search-results.php:137
 #: panel/templates/dashboard-template-professional.php:42
 msgid "No service found."
-msgstr ""
+msgstr "Nenhum serviço encontrado."
 
 #: includes/class-pdr-cpt.php:24
 msgid "No services found in Trash."
-msgstr ""
+msgstr "Nenhum serviço encontrado na Lixeira."
 
 #: includes/class-pdr-cpt.php:23
 msgid "No services found."
-msgstr ""
+msgstr "Nenhum serviço encontrado."
 
 #: public/class-pdr-search-form.php:72
 msgid "Nome"
-msgstr ""
+msgstr "Nome"
 
 #: panel/templates/dashboard-template-admin.php:32
 msgid "Number of Searches"
-msgstr ""
+msgstr "Número de Pesquisas"
 
 #: includes/class-pdr-cpt.php:25
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Service Cover Image"
-msgstr ""
+msgstr "Imagem de Capa do Serviço"
 
 #: includes/class-pdr-cpt.php:30
 msgctxt ""
 "Overrides the “Insert into post”/“Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into service"
-msgstr ""
+msgstr "Inserir no serviço"
 
 #: includes/class-pdr-cpt.php:27
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove cover image"
-msgstr ""
+msgstr "Remover imagem de capa"
 
 #: includes/class-pdr-cpt.php:26
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set cover image"
-msgstr ""
+msgstr "Definir imagem de capa"
 
 #: includes/class-pdr-cpt.php:31
 msgctxt ""
 "Overrides the “Uploaded to this post”/“Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this service"
-msgstr ""
+msgstr "Carregado para este serviço"
 
 #: includes/class-pdr-cpt.php:28
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as cover image"
-msgstr ""
+msgstr "Usar como imagem de capa"
 
 #: panel/class-settings-page.php:221
 msgid "Panel Logo"
-msgstr ""
+msgstr "Logo do Painel"
 
 #: panel/class-settings-page.php:18
 msgid "Panel Style"
-msgstr ""
+msgstr "Estilo do Painel"
 
 #: panel/class-settings-page.php:180
 msgid "Panel Style Settings"
-msgstr ""
+msgstr "Configurações de Estilo do Painel"
 
 #: includes/class-pdr-taxonomies.php:57
 msgid "Parent Service Location"
-msgstr ""
+msgstr "Localização de Serviço Pai"
 
 #: includes/class-pdr-taxonomies.php:58
 msgid "Parent Service Location:"
-msgstr ""
+msgstr "Localização de Serviço Pai:"
 
 #: includes/class-pdr-taxonomies.php:20
 msgid "Parent Service Type"
-msgstr ""
+msgstr "Tipo de Serviço Pai"
 
 #: includes/class-pdr-taxonomies.php:21
 msgid "Parent Service Type:"
-msgstr ""
+msgstr "Tipo de Serviço Pai:"
 
 #: includes/class-pdr-cpt.php:22
 msgid "Parent Services:"
-msgstr ""
+msgstr "Serviços Pai:"
 
 #: includes/class-pdr-cpt.php:11
 msgctxt "Post type general name"
 msgid "Services"
-msgstr ""
+msgstr "Serviços"
 
 #: includes/class-pdr-cpt.php:12
 msgctxt "Post type singular name"
 msgid "Service"
-msgstr ""
+msgstr "Serviço"
 
 #: includes/class-pdr-metaboxes.php:33
 msgid "Preferência de Recebimento de E-mail"
-msgstr ""
+msgstr "Preferência de Recebimento de E-mail"
 
 #: panel/class-settings-page.php:188
 msgid "Primary Color"
-msgstr ""
+msgstr "Cor Primária"
 
 #: panel/templates/dashboard-template-professional.php:24
 msgid "Professional Dashboard "
-msgstr ""
+msgstr "Painel Profissional "
 
 #. Name of the plugin
 msgid "ProfessionalDirectory"
-msgstr ""
+msgstr "Diretório Profissional"
 
 #: public/templates/content-service.php:50
 msgid "Read more"
-msgstr ""
+msgstr "Ler mais"
 
 #: panel/templates/dashboard-template-professional.php:64
 msgid "Recent Searches"
-msgstr ""
+msgstr "Pesquisas Recentes"
 
 #: panel/class-settings-page.php:373
 msgid "Remove Logo"
-msgstr ""
+msgstr "Remover Logo"
 
 #: includes/class-pdr-cpt.php:32
 msgctxt ""
 "Screen reader text for the filter links heading on the post type listing "
 "screen. Default “Filter posts list”/“Filter pages list”. Added in 4.4"
 msgid "Filter services list"
-msgstr ""
+msgstr "Filtrar lista de serviços"
 
 #: includes/class-pdr-cpt.php:34
 msgctxt ""
 "Screen reader text for the items list heading on the post type listing "
 "screen. Default “Posts list”/“Pages list”. Added in 4.4"
 msgid "Services list"
-msgstr ""
+msgstr "Lista de Serviços"
 
 #: includes/class-pdr-cpt.php:33
 msgctxt ""
 "Screen reader text for the pagination heading on the post type listing "
 "screen. Default “Posts list navigation”/“Pages list navigation”. Added in 4.4"
 msgid "Services list navigation"
-msgstr ""
+msgstr "Navegação da lista de serviços"
 
 #: includes/class-pdr-taxonomies.php:55
 msgid "Search Service Locations"
-msgstr ""
+msgstr "Buscar Localizações de Serviço"
 
 #: includes/class-pdr-taxonomies.php:18
 msgid "Search Service Types"
-msgstr ""
+msgstr "Buscar Tipos de Serviço"
 
 #: includes/class-pdr-cpt.php:21
 msgid "Search Services"
-msgstr ""
+msgstr "Buscar Serviços"
 
 #: panel/templates/dashboard-template-professional.php:38
 msgid "Search:"
-msgstr ""
+msgstr "Buscar:"
 
 #: panel/class-settings-page.php:196
 msgid "Secondary Color"
-msgstr ""
+msgstr "Cor Secundária"
 
 #: public/class-pdr-search-form.php:51
 msgid "Select a Location"
-msgstr ""
+msgstr "Selecione uma Localização"
 
 #: public/class-pdr-search-form.php:35
 msgid "Select a Service Type"
-msgstr ""
+msgstr "Selecione um Tipo de Serviço"
 
 #: panel/templates/dashboard-template-admin.php:10
 msgid "Select Period:"
-msgstr ""
+msgstr "Selecionar Período:"
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Service"
-msgstr ""
+msgstr "Serviço"
 
 #: includes/class-pdr-taxonomies.php:63
 msgid "Service Location"
-msgstr ""
+msgstr "Localização de Serviço"
 
 #: public/templates/content-service.php:31
 msgid "Service Locations:"
-msgstr ""
+msgstr "Localizações de Serviço:"
 
 #: panel/templates/dashboard-template-admin.php:31
 msgid "Service Name"
-msgstr ""
+msgstr "Nome do Serviço"
 
 #: includes/class-pdr-taxonomies.php:26
 msgid "Service Type"
-msgstr ""
+msgstr "Tipo de Serviço"
 
 #: public/templates/content-service.php:27
 msgid "Service Types:"
-msgstr ""
+msgstr "Tipos de Serviço:"
 
 #: panel/class-settings-page.php:12 panel/panel-menus.php:71
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: public/class-pdr-search-form.php:74
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #: includes/class-pdr-taxonomies.php:53
 msgctxt "taxonomy general name"
 msgid "Service Locations"
-msgstr ""
+msgstr "Localizações de Serviço"
 
 #: includes/class-pdr-taxonomies.php:16
 msgctxt "taxonomy general name"
 msgid "Service Types"
-msgstr ""
+msgstr "Tipos de Serviço"
 
 #: includes/class-pdr-taxonomies.php:54
 msgctxt "taxonomy singular name"
 msgid "Service Location"
-msgstr ""
+msgstr "Localização de Serviço"
 
 #: includes/class-pdr-taxonomies.php:17
 msgctxt "taxonomy singular name"
 msgid "Service Type"
-msgstr ""
+msgstr "Tipo de Serviço"
 
 #: panel/class-settings-page.php:329
 msgid "Template 1"
-msgstr ""
+msgstr "Modelo 1"
 
 #: panel/class-settings-page.php:330
 msgid "Template 2"
-msgstr ""
+msgstr "Modelo 2"
 
 #: panel/class-settings-page.php:204
 msgid "Text Color"
-msgstr ""
+msgstr "Cor do Texto"
 
 #: includes/class-pdr-cpt.php:29
 msgctxt ""
 "The post type archive label used in nav menus. Default “Post Archives”. "
 "Added in 4.4"
 msgid "Service archives"
-msgstr ""
+msgstr "Arquivos de Serviço"
 
 #: panel/templates/dashboard-template-admin.php:15
 msgid "This Year"
-msgstr ""
+msgstr "Este Ano"
 
 #: panel/class-settings-page.php:150
 msgid "Title Color"
-msgstr ""
+msgstr "Cor do Título"
 
 #: panel/class-settings-page.php:149
 msgid "Title Font Family"
-msgstr ""
+msgstr "Família de Fonte do Título"
 
 #: panel/templates/dashboard-template-admin.php:12
 msgid "Today"
-msgstr ""
+msgstr "Hoje"
 
 #: panel/templates/dashboard-template-professional.php:30
 msgid "Total Searches by Service."
-msgstr ""
+msgstr "Total de Pesquisas por Serviço."
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: includes/class-pdr-taxonomies.php:60
 msgid "Update Service Location"
-msgstr ""
+msgstr "Atualizar Localização de Serviço"
 
 #: includes/class-pdr-taxonomies.php:23
 msgid "Update Service Type"
-msgstr ""
+msgstr "Atualizar Tipo de Serviço"
 
 #: panel/class-settings-page.php:372
 msgid "Upload Logo"
-msgstr ""
+msgstr "Carregar Logo"
 
 #: panel/class-settings-page.php:374
 msgid "Upload or remove the panel logo."
-msgstr ""
+msgstr "Carregar ou remover o logo do painel."
 
 #: public/class-pdr-search-results.php:143
 msgid "Use the search form to find services."
-msgstr ""
+msgstr "Use o formulário de busca para encontrar serviços."
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "User Name"
-msgstr ""
+msgstr "Nome do Usuário"
 
 #: includes/class-pdr-cpt.php:19
 msgid "View Service"
-msgstr ""
+msgstr "Visualizar Serviço"

@@ -5,37 +5,37 @@
 </head>
 <body>
     <div id="dashboard-container">
-        <h1>Dashboard do Admin</h1>
+        <h1><?php _e('Admin Dashboard', 'professionaldirectory'); ?></h1>
         <div>
-            <label for="period-selector">Selecionar Período:</label>
+            <label for="period-selector"><?php _e('Select Period:', 'professionaldirectory'); ?></label>
             <select id="period-selector">
-                <option value="today">Hoje</option>
-                <option value="last_week">Última Semana</option>
-                <option value="last_month">Último Mês</option>
-                <option value="this_year">Este Ano</option>
-                <option value="custom">Personalizado</option>
+                <option value="today"><?php _e('Today', 'professionaldirectory'); ?></option>
+                <option value="last_week"><?php _e('Last Week', 'professionaldirectory'); ?></option>
+                <option value="last_month"><?php _e('Last Month', 'professionaldirectory'); ?></option>
+                <option value="this_year"><?php _e('This Year', 'professionaldirectory'); ?></option>
+                <option value="custom"><?php _e('Custom', 'professionaldirectory'); ?></option>
             </select>
             <div id="custom-period" style="display:none;">
                 <input type="date" id="start-date">
                 <input type="date" id="end-date">
             </div>
-            <button id="load-data">Carregar Dados</button>
+            <button id="load-data"><?php _e('Load Data', 'professionaldirectory'); ?></button>
         </div>
         <div>
             <input type="checkbox" id="show-services-without-search">
-            <label for="show-services-without-search">Exibir também serviços sem pesquisas no período</label>
+            <label for="show-services-without-search"><?php _e('Also show services without searches in the period', 'professionaldirectory'); ?></label>
         </div>
         <table id="services-data">
             <thead>
                 <tr>
-                    <th>Nome do Serviço</th>
-                    <th>Quantidade de Pesquisas</th>
-                    <th>Nome do Autor</th>
-                    <th>Data da Última Pesquisa</th>
+                    <th><?php _e('Service Name', 'professionaldirectory'); ?></th>
+                    <th><?php _e('Number of Searches', 'professionaldirectory'); ?></th>
+                    <th><?php _e('Author Name', 'professionaldirectory'); ?></th>
+                    <th><?php _e('Date of Last Search', 'professionaldirectory'); ?></th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Os dados dos serviços serão inseridos aqui pelo JavaScript -->
+                <!-- Service data will be inserted here by JavaScript -->
             </tbody>
         </table>
     </div>

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ProfessionalDirectory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 22:04+0000\n"
+"POT-Creation-Date: 2024-02-16 21:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -49,10 +49,6 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:8
-msgid "Admin Dashboard"
-msgstr ""
-
 #: includes/class-pdr-cpt.php:13
 msgctxt "Admin Menu text"
 msgid "Services"
@@ -74,10 +70,6 @@ msgstr ""
 msgid "All Services"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:26
-msgid "Also show services without searches in the period"
-msgstr ""
-
 #: panel/class-settings-page.php:15 panel/class-settings-page.php:76
 msgid "API Settings"
 msgstr ""
@@ -88,10 +80,6 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "arielsouza.com.br"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:33
-msgid "Author Name"
 msgstr ""
 
 #: panel/class-settings-page.php:152
@@ -118,16 +106,8 @@ msgstr ""
 msgid "Button Text Hover Color"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:16
-msgid "Custom"
-msgstr ""
-
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Date"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:34
-msgid "Date of Last Search"
 msgstr ""
 
 #: includes/class-pdr-metaboxes.php:69
@@ -192,18 +172,6 @@ msgstr ""
 msgid "http://arielsouza.com.br/professionaldirectory"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:14
-msgid "Last Month"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:13
-msgid "Last Week"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:22
-msgid "Load Data"
-msgstr ""
-
 #. Description of the plugin
 msgid "Manages a directory of professional services and listings."
 msgstr ""
@@ -255,10 +223,6 @@ msgstr ""
 
 #: public/class-pdr-search-form.php:72
 msgid "Nome"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:32
-msgid "Number of Searches"
 msgstr ""
 
 #: includes/class-pdr-cpt.php:25
@@ -418,10 +382,6 @@ msgstr ""
 msgid "Select a Service Type"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:10
-msgid "Select Period:"
-msgstr ""
-
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Service"
 msgstr ""
@@ -432,10 +392,6 @@ msgstr ""
 
 #: public/templates/content-service.php:31
 msgid "Service Locations:"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:31
-msgid "Service Name"
 msgstr ""
 
 #: includes/class-pdr-taxonomies.php:26
@@ -493,20 +449,12 @@ msgctxt ""
 msgid "Service archives"
 msgstr ""
 
-#: panel/templates/dashboard-template-admin.php:15
-msgid "This Year"
-msgstr ""
-
 #: panel/class-settings-page.php:150
 msgid "Title Color"
 msgstr ""
 
 #: panel/class-settings-page.php:149
 msgid "Title Font Family"
-msgstr ""
-
-#: panel/templates/dashboard-template-admin.php:12
-msgid "Today"
 msgstr ""
 
 #: panel/templates/dashboard-template-professional.php:30

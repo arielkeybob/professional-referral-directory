@@ -6,36 +6,36 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h1>Ajuda de Shortcodes do Plugin ProfessionalDirectory</h1>
-    <p>Aqui você encontrará instruções detalhadas sobre como usar os shortcodes disponíveis no plugin ProfessionalDirectory para melhorar a funcionalidade do seu site WordPress.</p>
+    <h1><?php _e('Plugin ProfessionalDirectory Shortcodes Help', 'professional-directory'); ?></h1>
+    <p><?php _e('Here you will find detailed instructions on how to use the available shortcodes in the ProfessionalDirectory plugin to enhance the functionality of your WordPress site.', 'professional-directory'); ?></p>
 
-    <h2>Shortcodes Disponíveis</h2>
+    <h2><?php _e('Available Shortcodes', 'professional-directory'); ?></h2>
 
     <div class="shortcode-section">
-        <h3>Formulário de Busca</h3>
-        <p>Este shortcode exibe um formulário de busca que permite aos usuários procurar por serviços profissionais com base no tipo de serviço e localização.</p>
+        <h3><?php _e('Search Form', 'professional-directory'); ?></h3>
+        <p><?php _e('This shortcode displays a search form that allows users to search for professional services based on service type and location.', 'professional-directory'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_search_form]</code>
-            <button onclick="copyToClipboard(this, '[pdr_search_form]')">Copiar</button>
+            <button onclick="copyToClipboard(this, '[pdr_search_form]')"><?php _e('Copy', 'professional-directory'); ?></button>
         </div>
     </div>
 
     <div class="shortcode-section">
-        <h3>Resultados da Pesquisa</h3>
-        <p>Este shortcode exibe os resultados da busca. Utilize-o na página que irá mostrar os serviços buscados pelos usuários.</p>
+        <h3><?php _e('Search Results', 'professional-directory'); ?></h3>
+        <p><?php _e('This shortcode displays the search results. Use it on the page that will show the services searched for by users.', 'professional-directory'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_search_results]</code>
-            <button onclick="copyToClipboard(this, '[pdr_search_results]')">Copiar</button>
+            <button onclick="copyToClipboard(this, '[pdr_search_results]')"><?php _e('Copy', 'professional-directory'); ?></button>
         </div>
     </div>
 
     <script>
-        // Função para copiar o shortcode e mudar o texto do botão
+        // Function to copy the shortcode and change the button text
         function copyToClipboard(btn, shortcode) {
             navigator.clipboard.writeText(shortcode);
-            btn.textContent = 'Copiado!';
+            btn.textContent = '<?php echo esc_js(__('Copied!', 'professional-directory')); ?>';
             setTimeout(function() {
-                btn.textContent = 'Copiar';
+                btn.textContent = '<?php echo esc_js(__('Copy', 'professional-directory')); ?>';
             }, 3000);
         }
     </script>
