@@ -1,10 +1,11 @@
 <?php
+defined('ABSPATH') or die('No script kiddies please!');
+
 function pdrCreateSearchDataTable() {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'pdr_search_data';
     $charset_collate = $wpdb->get_charset_collate();
+    $table_name = $wpdb->prefix . 'pdr_search_data';
 
-    // SQL para criar ou modificar a tabela
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_type VARCHAR(255) NOT NULL,
@@ -17,45 +18,53 @@ function pdrCreateSearchDataTable() {
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-  
     dbDelta($sql);
+}
 
-    // Criação de índices
-    $indices = [
-        'author_id' => 'idx_author_id',
-        'service_id' => 'idx_service_id',
-        'service_type' => 'idx_service_type',
-        'search_date' => 'idx_search_date'
-    ];
+function pdrCreateContactsTable() {
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+    $table_name = $wpdb->prefix . 'pdr_contacts';
 
-    foreach ($indices as $column => $index_name) {
-        if (!$wpdb->query("SHOW INDEX FROM $table_name WHERE Key_name = '$index_name'")) {
-            $wpdb->query("CREATE INDEX $index_name ON $table_name ($column)");
-        }
-    }
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        contact_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        default_name VARCHAR(255) DEFAULT NULL
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+function pdrCreateContactAuthorRelationTable() {
+    global $wpdb;
+    $charset_collate = $wpdb->get_charset_collate();
+    $table_name = $wpdb->prefix . 'pdr_contact_author_relation';
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        relation_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        contact_id BIGINT UNSIGNED NOT NULL,
+        author_id BIGINT UNSIGNED NOT NULL,
+        post_id BIGINT UNSIGNED NOT NULL,
+        status VARCHAR(100) NOT NULL,
+        custom_name VARCHAR(255) DEFAULT NULL,
+        FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE CASCADE
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+function pdr_setup_activation() {
+    pdrCreateSearchDataTable();
+    pdrCreateContactsTable();
+    pdrCreateContactAuthorRelationTable();
+    // Atualize aqui com qualquer outra lógica de ativação necessária
 }
 
 
-function pdrCheckVersion() {
-    if ( get_option( 'pdr_version' ) !== PDR_VERSION ) {
-        // A versão do plugin foi atualizada
-        pdrActivate(); // Reativação para atualizar a versão
 
-        // Adicione aqui outras tarefas necessárias para a atualização
-        update_option( 'pdr_version', PDR_VERSION ); // Atualiza a versão do plugin no banco de dados
-    }
-}
+// Certifique-se de substituir 'PDR_MAIN_FILE' pela constante correta que aponta para o arquivo principal do seu plugin
+// Se 'PDR_MAIN_FILE' não for definida, você deve definir ou substituir diretamente pelo caminho do arquivo principal do plugin.
+register_activation_hook(PDR_MAIN_FILE, 'pdr_setup_activation');
 
-
-
-
-function pdrStartSession() {
-    if (!session_id()) {
-        session_start();
-    }
-}
-
-
-
-
-?>

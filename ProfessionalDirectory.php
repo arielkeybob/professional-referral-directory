@@ -40,21 +40,10 @@ require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
 // Inclui as classes do plugin
-require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-cpt.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-metabox.php';
-require_once plugin_dir_path(__FILE__) . 'public/class-contacts-public.php';
 
 
 
-// Inicializa as classes
-function seu_plugin_init() {
-    $cpt = new Contatos_CPT();
-    $metabox = new Contatos_Metabox();
-    
-    $public = new Contatos_Public();
-}
 
-add_action('plugins_loaded', 'seu_plugin_init');
 
 
 
@@ -76,6 +65,7 @@ function pdr_enqueue_media_uploader() {
 }
 add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
 
+/*
 function pdrActivate() {
     PDR_Users::initialize_user_roles();
     pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php
@@ -84,7 +74,7 @@ function pdrActivate() {
     pdrStartSession();
 }
 register_activation_hook(__FILE__, 'pdrActivate');
-
+*/
 
 
 function pdrDeactivate() {

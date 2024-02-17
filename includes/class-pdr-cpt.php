@@ -101,12 +101,14 @@
 
         public static function set_service_capabilities() {
             $professional = get_role('professional');
-            $professional_capabilities = array(
-                'publish_professional_services',
-                'edit_professional_services',
-                'edit_professional_service',
-                'edit_published_professional_services'
-            );
+            if ($professional) {
+                $professional_capabilities = [
+                    'publish_professional_services',
+                    'edit_professional_services',
+                    'edit_professional_service',
+                    'edit_published_professional_services',
+                    // Adicione mais capacidades conforme necessário
+                ];
 
             foreach ($professional_capabilities as $cap) {
                 $professional->add_cap($cap);
@@ -119,9 +121,9 @@
         }
         
     }
+}
 
     // Registrar o Custom Post Type e a Taxonomia no hook 'init'
-    add_action('init', [ 'PDR_CPT', 'register_service_cpt' ], 10);
-    add_action('init', ['PDR_CPT', 'set_service_capabilities'], 11);
-    add_action('init', ['PDR_CPT', 'add_admin_capabilities'], 11);
-    
+    add_action('init', ['PDR_CPT', 'register_service_cpt']);
+add_action('init', ['PDR_CPT', 'add_admin_capabilities']);
+add_action('init', ['PDR_CPT', 'set_service_capabilities']);

@@ -27,6 +27,13 @@ class PDR_Search_Results {
         $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
         $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
     
+
+        // Supondo que $email e $name sejam coletados do formulário
+        $dados = ['email' => $email, 'name' => $name];
+        adicionar_ou_atualizar_contato($dados);
+
+
+
         // Preparando os dados para armazenamento
         $data_to_store = [
             'service_type' => $service_type,
@@ -74,7 +81,7 @@ class PDR_Search_Results {
                 // Combina os dados do formulário com os dados adicionais
                 $combined_data_to_store = array_merge($data_to_store, $additional_data);
 
-                criar_ou_atualizar_contato($combined_data_to_store);
+                
 
                 // Chama a função store_search_data
                 store_search_data($combined_data_to_store);
