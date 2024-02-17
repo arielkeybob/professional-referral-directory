@@ -39,6 +39,22 @@ require_once plugin_dir_path(__FILE__) . 'panel/panel-notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
+// Inclui as classes do plugin
+require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-cpt.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-metabox.php';
+require_once plugin_dir_path(__FILE__) . 'public/class-contacts-public.php';
+
+
+
+// Inicializa as classes
+function seu_plugin_init() {
+    $cpt = new Contatos_CPT();
+    $metabox = new Contatos_Metabox();
+    
+    $public = new Contatos_Public();
+}
+
+add_action('plugins_loaded', 'seu_plugin_init');
 
 
 

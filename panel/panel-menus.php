@@ -26,6 +26,27 @@ function pdr_add_dashboard_submenu() {
 add_action('admin_menu', 'pdr_add_dashboard_submenu');
 
 
+function pdr_add_contacts_capability() {
+    $role = get_role('professional');
+    if ($role) {
+        $role->add_cap('view_pdr_contacts');
+    }
+}
+add_action('init', 'pdr_add_contacts_capability');
+
+function pdr_add_contacts_submenu() {
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        'Gerenciamento de Contatos',
+        'Contatos',
+        'view_pdr_contacts',
+        'pdr-contacts',
+        'pdr_contacts_page_content'
+    );
+}
+add_action('admin_menu', 'pdr_add_contacts_submenu');
+
+
 function pdr_dashboard_page_content() {
     include 'templates/dashboard-template-professional.php';
 }
@@ -81,4 +102,50 @@ function pdr_settings_page() {
     require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
     $settings_page = new PDR_Settings();
     $settings_page->settings_page();
+}
+
+
+function pdr_contacts_page_content() {
+    // Verifica se o usuário atual possui a capacidade requerida.
+    if (!current_user_can('view_pdr_contacts')) {
+        wp_die(__('Você não tem permissão para acessar esta página.', 'seu-plugin'));
+    }
+
+    global $wpdb;
+    $tabela_contatos = $wpdb->prefix . 'contatos'; // Substitua pelo nome correto da sua tabela de contatos.
+
+    // Busca contatos do banco de dados.
+    $contatos = $wpdb->get_results("SELECT * FROM {$tabela_contatos}");
+
+    echo '<div class="wrap">';
+    echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'seu-plugin') . '</h1>';
+
+    // Inicia a tabela de contatos.
+    echo '<table class="wp-list-table widefat fixed striped">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>' . esc_html__('Nome', 'seu-plugin') . '</th>';
+    echo '<th>' . esc_html__('Email', 'seu-plugin') . '</th>';
+    echo '<th>' . esc_html__('Status', 'seu-plugin') . '</th>';
+    echo '<th>' . esc_html__('Ações', 'seu-plugin') . '</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
+    // Itera sobre cada contato e exibe uma linha na tabela.
+    foreach ($contatos as $contato) {
+        echo '<tr>';
+        echo '<td>' . esc_html($contato->nome) . '</td>';
+        echo '<td>' . esc_html($contato->email) . '</td>';
+        echo '<td>' . esc_html($contato->status) . '</td>';
+        echo '<td>';
+        // Exemplo de ação: link para visualizar detalhes do contato.
+        echo '<a href="' . esc_url(admin_url('admin.php?page=detalhes-contato&id=' . $contato->id)) . '">' . __('Ver Detalhes', 'seu-plugin') . '</a>';
+        echo '</td>';
+        echo '</tr>';
+    }
+
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
 }
