@@ -14,7 +14,6 @@ function pdrCreateSearchDataTable() {
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_type VARCHAR(255) NOT NULL,
         name VARCHAR(255),
-        email VARCHAR(255),
         service_location VARCHAR(255),
         search_date DATETIME NOT NULL,
         service_id BIGINT UNSIGNED,

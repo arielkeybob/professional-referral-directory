@@ -52,13 +52,18 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $postId, $st
 function store_search_data($data) {
     global $wpdb;
     $searchDataTable = $wpdb->prefix . 'pdr_search_data';
-
+    
+    // Defina search_date se não estiver no array $data
+    if (!array_key_exists('search_date', $data)) {
+        $data['search_date'] = current_time('mysql');
+    }
+    
     // Obter ou criar contact_id baseado no e-mail fornecido
     $contactId = adicionar_ou_atualizar_contato(['email' => $data['email'], 'name' => $data['name']]);
 
     // Preparar dados para inserção, associando a pesquisa ao contact_id
     $data['contact_id'] = $contactId;
-    unset($data['email'], $data['name']); // Removendo chaves não necessárias para a tabela de pesquisa
+    unset($data['email']); // Removendo chaves não necessárias para a tabela de pesquisa
 
     // Inserir dados da pesquisa na tabela
     $wpdb->insert($searchDataTable, $data);

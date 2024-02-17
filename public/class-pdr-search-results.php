@@ -39,7 +39,9 @@ class PDR_Search_Results {
             'service_type' => $service_type,
             'service_location' => $service_location,
             'name' => $name,
-            'email' => $email
+            'email' => $email,
+            'search_date' => current_time('mysql'), // Garanta que a data da pesquisa seja definida aqui
+            // Outros dados conforme necessário...
         ];
     
 
