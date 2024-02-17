@@ -46,8 +46,6 @@ include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php
 
 
 
-
-
 // Instanciar a classe de administração
 if (is_admin()) {
     $pdr_plugin_settings = new PDR_Settings();
@@ -65,16 +63,22 @@ function pdr_enqueue_media_uploader() {
 }
 add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
 
-/*
+
 function pdrActivate() {
-    PDR_Users::initialize_user_roles();
-    pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php
-    update_option( 'pdr_version', PDR_VERSION ); // Armazena a versão atual do plugin
+    require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Assegura que o arquivo de ativação seja carregado.
+    pdrCreateSearchDataTable();
+    pdrCreateContactsTable();
+    pdrCreateContactAuthorRelationTable();
     pdrCheckVersion();
     pdrStartSession();
+    if (class_exists('PDR_Users')) {
+        PDR_Users::initialize_user_roles(); // Assume que este método está definido e implementado corretamente.
+    }
+    update_option('pdr_version', PDR_VERSION);
 }
 register_activation_hook(__FILE__, 'pdrActivate');
-*/
+
+
 
 
 function pdrDeactivate() {
