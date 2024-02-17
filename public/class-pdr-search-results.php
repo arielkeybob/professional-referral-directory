@@ -4,6 +4,10 @@ if (!defined('WPINC')) {
     die;
 }
 
+// Inclui o arquivo data-storage-functions.php para acessar suas funções
+require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data-storage-functions.php';
+
+
 class PDR_Search_Results {
     public function __construct() {
         add_shortcode('pdr_search_results', array($this, 'render_search_results'));
@@ -69,6 +73,8 @@ class PDR_Search_Results {
 
                 // Combina os dados do formulário com os dados adicionais
                 $combined_data_to_store = array_merge($data_to_store, $additional_data);
+
+                criar_ou_atualizar_contato($combined_data_to_store);
 
                 // Chama a função store_search_data
                 store_search_data($combined_data_to_store);

@@ -106,46 +106,55 @@ function pdr_settings_page() {
 
 
 function pdr_contacts_page_content() {
-    // Verifica se o usuário atual possui a capacidade requerida.
     if (!current_user_can('view_pdr_contacts')) {
         wp_die(__('Você não tem permissão para acessar esta página.', 'professionaldirectory'));
     }
 
-    global $wpdb;
-    $tabela_contatos = $wpdb->prefix . 'contatos'; // Substitua pelo nome correto da sua tabela de contatos.
+    $args = [
+        'post_type' => 'contato', // Certifique-se de que 'contato' é o slug correto do seu CPT
+        'posts_per_page' => -1, // Buscar todos os contatos
+        'post_status' => 'publish', // Apenas contatos publicados
+    ];
 
-    // Busca contatos do banco de dados.
-    $contatos = $wpdb->get_results("SELECT * FROM {$tabela_contatos}");
+    $contatos_query = new WP_Query($args);
 
     echo '<div class="wrap">';
     echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'professionaldirectory') . '</h1>';
 
-    // Inicia a tabela de contatos.
-    echo '<table class="wp-list-table widefat fixed striped">';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>' . esc_html__('Nome', 'professionaldirectory') . '</th>';
-    echo '<th>' . esc_html__('Email', 'professionaldirectory') . '</th>';
-    echo '<th>' . esc_html__('Status', 'professionaldirectory') . '</th>';
-    echo '<th>' . esc_html__('Ações', 'professionaldirectory') . '</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
-    // Itera sobre cada contato e exibe uma linha na tabela.
-    foreach ($contatos as $contato) {
+    if ($contatos_query->have_posts()) {
+        // Inicia a tabela de contatos.
+        echo '<table class="wp-list-table widefat fixed striped">';
+        echo '<thead>';
         echo '<tr>';
-        echo '<td>' . esc_html($contato->nome) . '</td>';
-        echo '<td>' . esc_html($contato->email) . '</td>';
-        echo '<td>' . esc_html($contato->status) . '</td>';
-        echo '<td>';
-        // Exemplo de ação: link para visualizar detalhes do contato.
-        echo '<a href="' . esc_url(admin_url('admin.php?page=detalhes-contato&id=' . $contato->id)) . '">' . __('Ver Detalhes', 'professionaldirectory') . '</a>';
-        echo '</td>';
+        echo '<th>' . esc_html__('Nome', 'professionaldirectory') . '</th>';
+        echo '<th>' . esc_html__('Email', 'professionaldirectory') . '</th>';
+        echo '<th>' . esc_html__('Status', 'professionaldirectory') . '</th>';
         echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        while ($contatos_query->have_posts()) {
+            $contatos_query->the_post();
+            $post_id = get_the_ID();
+            $email = get_post_meta($post_id, '_contato_email', true);
+            $status = get_post_meta($post_id, '_contato_status', true);
+
+            echo '<tr>';
+            echo '<td>' . get_the_title() . '</td>';
+            echo '<td>' . esc_html($email) . '</td>';
+            echo '<td>' . esc_html($status) . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</tbody>';
+        echo '</table>';
+    } else {
+        echo '<p>' . esc_html__('Nenhum contato encontrado.', 'professionaldirectory') . '</p>';
     }
 
-    echo '</tbody>';
-    echo '</table>';
     echo '</div>';
+
+    // Restaura a consulta global original após um loop customizado
+    wp_reset_postdata();
 }
+

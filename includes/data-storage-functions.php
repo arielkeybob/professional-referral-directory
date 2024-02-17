@@ -58,3 +58,46 @@ function store_search_data($data) {
     error_log('Finalizando store_search_data');
     */
 }
+
+function verifica_contato_existente($email) {
+    global $wpdb;
+    $post_type = 'contato'; // Ajuste conforme o slug correto do seu CPT
+    $meta_key = '_contato_email'; // A chave meta usada para armazenar o e-mail no CPT
+
+    $query = "
+        SELECT p.ID FROM {$wpdb->posts} p
+        INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+        WHERE p.post_type = %s AND pm.meta_key = %s AND pm.meta_value = %s
+        LIMIT 1
+    ";
+
+    $contato_id = $wpdb->get_var($wpdb->prepare($query, $post_type, $meta_key, $email));
+
+    return $contato_id ? $contato_id : false;
+}
+
+
+function criar_ou_atualizar_contato($dados_pesquisa) {
+    $contato_existente_id = verifica_contato_existente($dados_pesquisa['email']);
+    $contato_id = $contato_existente_id ?: '0';
+
+    // Se não existir, cria um novo contato
+    if (!$contato_existente_id) {
+        // Cria um novo post do tipo 'contato'
+        $contato_id = wp_insert_post(array(
+            'post_type'   => 'contato',
+            'post_title'  => $dados_pesquisa['name'],
+            'post_status' => 'publish',
+            'meta_input'  => array(
+                '_contato_email' => $dados_pesquisa['email'],
+                '_contato_status' => 'lead', // Exemplo de status padrão
+                // Adicione outros metadados conforme necessário
+            ),
+        ));
+    } else {
+        // Atualiza um contato existente com novas informações
+        // Você pode decidir quais metadados atualizar ou adicionar lógica conforme necessário
+    }
+
+    return $contato_id;
+}

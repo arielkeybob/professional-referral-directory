@@ -26,14 +26,11 @@ class Contatos_Metabox {
      * Renderiza o conteúdo do metabox.
      */
     public function renderizar_metabox($post) {
-        // Adicione um nonce para verificação
         wp_nonce_field('seguranca_metabox_contato', 'contato_nonce');
         
-        // Recupera os valores dos metadados, se disponíveis
         $email = get_post_meta($post->ID, '_contato_email', true);
         $status = get_post_meta($post->ID, '_contato_status', true);
         
-        // Campos do formulário para entrada dos metadados
         echo '<label for="contato_email">' . __('Email do Contato', 'professionaldirectory') . '</label>';
         echo '<input type="email" id="contato_email" name="contato_email" value="' . esc_attr($email) . '" class="widefat">';
         
@@ -44,6 +41,7 @@ class Contatos_Metabox {
         echo '<option value="cliente" ' . selected($status, 'cliente', false) . '>' . __('Cliente', 'professionaldirectory') . '</option>';
         echo '</select>';
     }
+    
 
     /**
      * Salva os metadados personalizados quando o post é salvo.
