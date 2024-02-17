@@ -1,73 +1,67 @@
 <?php
-// Prevenção contra acesso direto ao arquivo
-if (!defined('WPINC')) {
-    die;
+defined('ABSPATH') or die('No script kiddies please!');
+
+/**
+ * Adiciona ou atualiza um contato na tabela 'pdr_contacts'.
+ */
+function adicionar_ou_atualizar_contato($dados) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'pdr_contacts';
+    $email = $dados['email'];
+    $name = $dados['name'] ?? ''; // Assume que 'name' pode não estar definido
+
+    // Verificar se o contato já existe
+    $contact = $wpdb->get_row($wpdb->prepare("SELECT contact_id FROM $table_name WHERE email = %s", $email));
+
+    if ($contact) {
+        // Atualiza o contato existente
+        $wpdb->update($table_name, ['default_name' => $name], ['email' => $email]);
+    } else {
+        // Insere um novo contato
+        $wpdb->insert($table_name, ['email' => $email, 'default_name' => $name]);
+        return $wpdb->insert_id;
+    }
+    return $contact->contact_id;
 }
 
-// Atualização da função store_search_data para usar a nova tabela de contatos
+/**
+ * Cria ou atualiza a relação entre contato e autor.
+ */
+function createOrUpdateContactAuthorRelation($contactId, $authorId, $postId, $status = 'active', $customName = null) {
+    global $wpdb;
+    $relationTable = $wpdb->prefix . 'pdr_contact_author_relation';
+
+    // Verificar se já existe uma relação
+    $existingRelation = $wpdb->get_row($wpdb->prepare(
+        "SELECT relation_id FROM $relationTable WHERE contact_id = %d AND author_id = %d AND post_id = %d",
+        $contactId, $authorId, $postId
+    ));
+
+    if ($existingRelation) {
+        // Atualiza a relação existente se necessário
+        $wpdb->update($relationTable, ['status' => $status, 'custom_name' => $customName], ['relation_id' => $existingRelation->relation_id]);
+    } else {
+        // Cria uma nova relação
+        $wpdb->insert($relationTable, ['contact_id' => $contactId, 'author_id' => $authorId, 'post_id' => $postId, 'status' => $status, 'custom_name' => $customName]);
+    }
+}
+
+/**
+ * Armazena os dados da pesquisa associando-os automaticamente a um contato.
+ */
 function store_search_data($data) {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'pdr_search_data'; // Substitua 'pdr_search_data' pelo nome da sua nova tabela de contatos
+    $searchDataTable = $wpdb->prefix . 'pdr_search_data';
 
-    // Adicionando ou atualizando a data de pesquisa e localização do serviço
-    $data['service_location'] = $data['service_location'] ?? 'valor_padrao';
-    $data['search_date'] = $data['search_date'] ?? current_time('mysql');
+    // Obter ou criar contact_id baseado no e-mail fornecido
+    $contactId = adicionar_ou_atualizar_contato(['email' => $data['email'], 'name' => $data['name']]);
 
-    if (!isset($data['service_id']) || !isset($data['author_id'])) {
-        return; // Importante ter esses dados, senão a função para
-    }
+    // Preparar dados para inserção, associando a pesquisa ao contact_id
+    $data['contact_id'] = $contactId;
+    unset($data['email'], $data['name']); // Removendo chaves não necessárias para a tabela de pesquisa
 
-    // Verifica se o e-mail já existe na nova tabela de contatos
-    $email = $data['email'];
-    $contact_exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM $table_name WHERE email = %s", $email));
-
-    if ($contact_exists) {
-        // Atualiza o registro existente
-        $wpdb->update(
-            $table_name,
-            $data, // Supõe que $data já contenha todos os campos necessários
-            ['email' => $email] // Condição para encontrar o registro a ser atualizado
-        );
-    } else {
-        // Insere um novo registro
-        $wpdb->insert($table_name, $data);
-    }
+    // Inserir dados da pesquisa na tabela
+    $wpdb->insert($searchDataTable, $data);
 }
 
-    // Função para adicionar ou atualizar contato na nova tabela
-    function adicionar_ou_atualizar_contato($dados) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'pdr_contacts';
-    
-        // Certifique-se de que o índice 'name' esteja presente no array $dados.
-        // Use 'default_name' como fallback se 'name' não estiver disponível.
-        $nome = isset($dados['name']) ? $dados['name'] : (isset($dados['default_name']) ? $dados['default_name'] : null);
-    
-        if (!$nome) {
-            // Log de erro ou manipulação se o nome não estiver disponível
-            error_log('Nome não fornecido para adicionar ou atualizar contato.');
-            return;
-        }
-    
-        // Verifica se o e-mail já existe na tabela
-        $contato_existente = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $dados['email']));
-    
-        if (null !== $contato_existente) {
-            // Atualiza contato existente com o novo nome
-            $wpdb->update($table_name, ['default_name' => $nome], ['email' => $dados['email']]);
-        } else {
-            // Insere novo contato com o e-mail e o nome fornecidos
-            $wpdb->insert($table_name, ['email' => $dados['email'], 'default_name' => $nome]);
-        }
-    }
-    
-
-
-    // Função para recuperar informações de contato
-    function recuperar_informacoes_contato($email) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'pdr_contacts';
-
-        return $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $email), ARRAY_A);
-    }
-
+// Aqui, você pode adicionar quaisquer outras funções relacionadas ao armazenamento de dados que seu plugin necessite.

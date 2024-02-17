@@ -5,8 +5,11 @@ defined('ABSPATH') or die('No script kiddies please!');
 function pdrCreateSearchDataTable() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
+    $contacts_table_name = $wpdb->prefix . 'pdr_contacts'; // Nome da tabela de contatos para referência de chave estrangeira
     $charset_collate = $wpdb->get_charset_collate();
 
+    // Atualize a definição da tabela para incluir a coluna contact_id
+    // Adicione também uma chave estrangeira referenciando a tabela wp_pdr_contacts, se desejar garantir integridade referencial
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_type VARCHAR(255) NOT NULL,
@@ -15,12 +18,15 @@ function pdrCreateSearchDataTable() {
         service_location VARCHAR(255),
         search_date DATETIME NOT NULL,
         service_id BIGINT UNSIGNED,
-        author_id BIGINT UNSIGNED
+        author_id BIGINT UNSIGNED,
+        contact_id BIGINT UNSIGNED,
+        FOREIGN KEY (contact_id) REFERENCES $contacts_table_name(contact_id) ON DELETE SET NULL
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 }
+
 
 // Função para criar a tabela de contatos
 function pdrCreateContactsTable() {
