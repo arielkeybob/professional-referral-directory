@@ -1,12 +1,9 @@
 <?php
-// Se este arquivo for chamado diretamente, aborte.
 if (!defined('WPINC')) {
     die;
 }
 
-// Inclui o arquivo data-storage-functions.php para acessar suas funções
 require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data-storage-functions.php';
-
 
 class PDR_Search_Results {
     public function __construct() {
@@ -16,92 +13,74 @@ class PDR_Search_Results {
     }
 
     public function handle_ajax_search() {
-        // Registrando o início do método
-        //error_log('Iniciando handle_ajax_search');
-        
-        // Log dos dados POST recebidos
-        //error_log('Dados POST recebidos: ' . print_r($_POST, true));
-    
         $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
         $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
         $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
         $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
     
-
-        // Supondo que $email e $name sejam coletados do formulário
-        $dados = ['email' => $email, 'name' => $name];
-        adicionar_ou_atualizar_contato($dados);
-
-
-
-        // Preparando os dados para armazenamento
-        $data_to_store = [
-            'service_type' => $service_type,
-            'service_location' => $service_location,
-            'name' => $name,
-            'email' => $email,
-            'search_date' => current_time('mysql'), // Garanta que a data da pesquisa seja definida aqui
-            // Outros dados conforme necessário...
-        ];
+        // Certifique-se de que email e nome estão presentes
+        if (empty($email) || empty($name)) {
+            wp_send_json_error('Email and name are required.');
+            wp_die();
+        }
+    
+        // Obter ou criar contact_id baseado no e-mail fornecido
+        $contactId = adicionar_ou_atualizar_contato(['email' => $email, 'name' => $name]);
     
 
-        //error_log('Dados a serem armazenados antes de chamar store_search_data: ' . print_r($data_to_store, true));
-
-        $args = array(
+        $args = [
             'post_type' => 'professional_service',
-            'tax_query' => array(
+            'tax_query' => [
                 'relation' => 'AND',
-                array(
+                [
                     'taxonomy' => 'service_type',
                     'field'    => 'slug',
                     'terms'    => $service_type,
-                ),
-                array(
+                ],
+                [
                     'taxonomy' => 'service_location',
                     'field'    => 'slug',
                     'terms'    => $service_location,
-                ),
-            ),
-        );
-    
+                ],
+            ],
+        ];
+
         $query = new WP_Query($args);
-    
-        if ($query->have_posts()) {
-            ob_start();
-    
-            while ($query->have_posts()) {
-                $query->the_post();
-                $service_id = get_the_ID();
-                $author_id = get_the_author_meta('ID');
 
-                // Prepara os dados adicionais
-                $additional_data = [
-                    'service_id' => $service_id,
-                    'author_id' => $author_id
-                ];
+    if ($query->have_posts()) {
+        ob_start();
 
-                // Combina os dados do formulário com os dados adicionais
-                $combined_data_to_store = array_merge($data_to_store, $additional_data);
+        while ($query->have_posts()) {
+            $query->the_post();
+            $service_id = get_the_ID();
+            $author_id = get_post_field('post_author', $service_id);
 
-                
+            $data_to_store = [
+                'service_type' => $service_type,
+                'service_location' => $service_location,
+                'name' => $name,
+                'email' => $email, // Garanta que email está sendo passado
+                'contact_id' => $contactId,
+                'service_id' => $service_id,
+                'author_id' => $author_id,
+                'search_date' => current_time('mysql'),
+            ];
 
-                // Chama a função store_search_data
-                store_search_data($combined_data_to_store);
-                 // Supondo que você tenha o array $combined_data_to_store
-                //error_log('Dados combinados para armazenamento: ' . print_r($combined_data_to_store, true));
+                // Armazenar os dados da pesquisa
+                $result = store_search_data($data_to_store);
+                if (!$result) {
+                    error_log('Failed to store search data.');
+                }
 
-                send_email_to_service_author($service_id);
-                send_admin_notification_emails($service_id);
+                // Criar ou atualizar a relação contato-autor
+                createOrUpdateContactAuthorRelation($contactId, $author_id, $service_id, 'active', $name);
 
                 include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
             }
     
             $html = ob_get_clean();
-    
             wp_reset_postdata();
             wp_send_json_success($html);
-            // Log da resposta AJAX
-            //error_log('Resposta AJAX enviada: ' . $html);
         } else {
             wp_send_json_error('No service found.');
         }
