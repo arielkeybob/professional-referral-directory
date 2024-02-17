@@ -38,18 +38,29 @@ function store_search_data($data) {
     function adicionar_ou_atualizar_contato($dados) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'pdr_contacts';
-
+    
+        // Certifique-se de que o índice 'name' esteja presente no array $dados.
+        // Use 'default_name' como fallback se 'name' não estiver disponível.
+        $nome = isset($dados['name']) ? $dados['name'] : (isset($dados['default_name']) ? $dados['default_name'] : null);
+    
+        if (!$nome) {
+            // Log de erro ou manipulação se o nome não estiver disponível
+            error_log('Nome não fornecido para adicionar ou atualizar contato.');
+            return;
+        }
+    
         // Verifica se o e-mail já existe na tabela
         $contato_existente = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $dados['email']));
-
+    
         if (null !== $contato_existente) {
-            // Atualiza contato existente
-            $wpdb->update($table_name, ['default_name' => $dados['default_name']], ['email' => $dados['email']]);
+            // Atualiza contato existente com o novo nome
+            $wpdb->update($table_name, ['default_name' => $nome], ['email' => $dados['email']]);
         } else {
-            // Insere novo contato
-            $wpdb->insert($table_name, ['email' => $dados['email'], 'default_name' => $dados['default_name']]);
+            // Insere novo contato com o e-mail e o nome fornecidos
+            $wpdb->insert($table_name, ['email' => $dados['email'], 'default_name' => $nome]);
         }
     }
+    
 
 
     // Função para recuperar informações de contato
