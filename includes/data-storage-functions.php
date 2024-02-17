@@ -42,8 +42,7 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $postId, $st
     // Se existir, atualiza. Se não, cria uma nova.
     if (null !== $existingRelation) {
         $wpdb->update($relationTable, [
-            'status' => $status,
-            'custom_name' => $customName
+            'status' => $status           
         ], [
             'relation_id' => $existingRelation->relation_id
         ]);
@@ -52,8 +51,7 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $postId, $st
             'contact_id' => $contactId,
             'author_id' => $authorId,
             'post_id' => $postId,
-            'status' => $status,
-            'custom_name' => $customName
+            'status' => $status
         ]);
     }
 }
