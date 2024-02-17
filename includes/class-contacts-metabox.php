@@ -16,7 +16,7 @@ class Contatos_Metabox {
     public function adicionar_metabox_contato() {
         add_meta_box(
             'informacoes_contato', // ID do Metabox
-            __('Informações do Contato', 'seu-plugin'), // Título do Metabox
+            __('Informações do Contato', 'professionaldirectory'), // Título do Metabox
             array($this, 'renderizar_metabox'), // Callback para renderizar o conteúdo do Metabox
             'contato' // CPT ao qual o Metabox será adicionado
         );
@@ -34,14 +34,14 @@ class Contatos_Metabox {
         $status = get_post_meta($post->ID, '_contato_status', true);
         
         // Campos do formulário para entrada dos metadados
-        echo '<label for="contato_email">' . __('Email do Contato', 'seu-plugin') . '</label>';
+        echo '<label for="contato_email">' . __('Email do Contato', 'professionaldirectory') . '</label>';
         echo '<input type="email" id="contato_email" name="contato_email" value="' . esc_attr($email) . '" class="widefat">';
         
-        echo '<label for="contato_status">' . __('Status', 'seu-plugin') . '</label>';
+        echo '<label for="contato_status">' . __('Status', 'professionaldirectory') . '</label>';
         echo '<select id="contato_status" name="contato_status" class="widefat">';
-        echo '<option value="lead" ' . selected($status, 'lead', false) . '>' . __('Lead', 'seu-plugin') . '</option>';
-        echo '<option value="prospect" ' . selected($status, 'prospect', false) . '>' . __('Prospect', 'seu-plugin') . '</option>';
-        echo '<option value="cliente" ' . selected($status, 'cliente', false) . '>' . __('Cliente', 'seu-plugin') . '</option>';
+        echo '<option value="lead" ' . selected($status, 'lead', false) . '>' . __('Lead', 'professionaldirectory') . '</option>';
+        echo '<option value="prospect" ' . selected($status, 'prospect', false) . '>' . __('Prospect', 'professionaldirectory') . '</option>';
+        echo '<option value="cliente" ' . selected($status, 'cliente', false) . '>' . __('Cliente', 'professionaldirectory') . '</option>';
         echo '</select>';
     }
 

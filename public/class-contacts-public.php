@@ -50,7 +50,7 @@ class Contatos_Public {
      */
     public function enfileirar_scripts() {
         wp_enqueue_script(
-            'seu-plugin-contatos-public-js',
+            'professionaldirectory-contatos-public-js',
             plugin_dir_url(__FILE__) . 'js/seu-script-public.js',
             array('jquery'),
             '1.0.0',
@@ -59,7 +59,7 @@ class Contatos_Public {
 
         // Localize o script para adicionar dados do PHP ao JS, como URLs AJAX e nonces.
         wp_localize_script(
-            'seu-plugin-contatos-public-js',
+            'professionaldirectory-contatos-public-js',
             'seuPlugin',
             array(
                 'ajax_url' => admin_url('admin-ajax.php'),

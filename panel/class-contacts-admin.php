@@ -38,11 +38,11 @@ class Contatos_Admin_Page {
      */
     public function pdr_contacts_page_content() {
         if (!current_user_can('view_pdr_contacts')) {
-            wp_die(__('Você não tem permissão para acessar esta página.', 'seu-plugin'));
+            wp_die(__('Você não tem permissão para acessar esta página.', 'professionaldirectory'));
         }
 
         echo '<div class="wrap">';
-        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'seu-plugin') . '</h1>';
+        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'professionaldirectory') . '</h1>';
         // Implemente a lógica para mostrar os contatos e suas ações aqui.
         echo '</div>';
     }
