@@ -41,7 +41,15 @@ include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
 // Inclui as classes do plugin
 
+function pdrActivate() {
+    pdrActivatePlugin(); // Esta função está definida em activation.php.
+    if (class_exists('PDR_Users')) {
+        PDR_Users::initialize_user_roles();
+    }
+    update_option('pdr_version', PDR_VERSION);
+}
 
+register_activation_hook(__FILE__, 'pdrActivate');
 
 
 
@@ -64,19 +72,7 @@ function pdr_enqueue_media_uploader() {
 add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
 
 
-function pdrActivate() {
-    require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Assegura que o arquivo de ativação seja carregado.
-    pdrCreateSearchDataTable();
-    pdrCreateContactsTable();
-    pdrCreateContactAuthorRelationTable();
-    pdrCheckVersion();
-    pdrStartSession();
-    if (class_exists('PDR_Users')) {
-        PDR_Users::initialize_user_roles(); // Assume que este método está definido e implementado corretamente.
-    }
-    update_option('pdr_version', PDR_VERSION);
-}
-register_activation_hook(__FILE__, 'pdrActivate');
+
 
 
 

@@ -59,23 +59,23 @@ class PDR_Search_Results {
                 'service_type' => $service_type,
                 'service_location' => $service_location,
                 'name' => $name,
-                'email' => $email, // Garanta que email está sendo passado
+                'email' => $email,
                 'contact_id' => $contactId,
                 'service_id' => $service_id,
                 'author_id' => $author_id,
                 'search_date' => current_time('mysql'),
+                'search_status' => 'pending', // Inicialmente, todos os estados de pesquisa são definidos como 'pending'
             ];
 
-                // Armazenar os dados da pesquisa
-                $result = store_search_data($data_to_store);
-                if (!$result) {
-                    error_log('Failed to store search data.');
-                }
+            // Armazenar os dados da pesquisa
+            if (!store_search_data($data_to_store)) {
+                error_log('Failed to store search data.');
+            }
 
-                // Criar ou atualizar a relação contato-autor
-                createOrUpdateContactAuthorRelation($contactId, $author_id, $service_id, 'active', $name);
+            // Criar ou atualizar a relação contato-autor
+            createOrUpdateContactAuthorRelation($contactId, $author_id, 'active', null);
 
-                include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
+            include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/content-service.php';
             }
     
             $html = ob_get_clean();

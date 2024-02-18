@@ -29,32 +29,39 @@ function adicionar_ou_atualizar_contato($dados) {
 /**
  * Cria ou atualiza a relação entre contato e autor.
  */
-function createOrUpdateContactAuthorRelation($contactId, $authorId, $postId, $status = 'active', $customName = null) {
+/**
+ * Cria ou atualiza a relação entre contato e autor na tabela 'wp_pdr_author_contact_relations'.
+ */
+function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'active', $customName = null) {
     global $wpdb;
-    $relationTable = $wpdb->prefix . 'pdr_contact_author_relation';
+    $relationTable = $wpdb->prefix . 'pdr_author_contact_relations';
 
-    // Verificar se já existe uma relação
+    // Verificar se já existe uma relação para o par contato-autor
     $existingRelation = $wpdb->get_row($wpdb->prepare(
-        "SELECT relation_id FROM $relationTable WHERE contact_id = %d AND author_id = %d AND post_id = %d",
-        $contactId, $authorId, $postId
+        "SELECT author_contact_id FROM $relationTable WHERE contact_id = %d AND author_id = %d",
+        $contactId, $authorId
     ));
 
-    // Se existir, atualiza. Se não, cria uma nova.
-    if (null !== $existingRelation) {
-        $wpdb->update($relationTable, [
-            'status' => $status           
-        ], [
-            'relation_id' => $existingRelation->relation_id
-        ]);
+    // Prepara os dados para inserção ou atualização
+    $data = [
+        'contact_id' => $contactId,
+        'author_id' => $authorId,
+        'status' => $status,
+    ];
+    // Se um nome personalizado foi fornecido, inclua-o nos dados
+    if ($customName !== null) {
+        $data['custom_name'] = $customName;
+    }
+
+    if ($existingRelation) {
+        // Se a relação já existe, atualize-a
+        $wpdb->update($relationTable, $data, ['author_contact_id' => $existingRelation->author_contact_id]);
     } else {
-        $wpdb->insert($relationTable, [
-            'contact_id' => $contactId,
-            'author_id' => $authorId,
-            'post_id' => $postId,
-            'status' => $status
-        ]);
+        // Se não existe, crie uma nova relação
+        $wpdb->insert($relationTable, $data);
     }
 }
+
 
 
 /**
@@ -64,43 +71,29 @@ function store_search_data($data) {
     global $wpdb;
     $searchDataTable = $wpdb->prefix . 'pdr_search_data';
     
-    // Certifique-se de que tanto 'email' quanto 'name' estão presentes
-    if (empty($data['email']) || !isset($data['name'])) {
-        // Trate a falta de dados essenciais conforme necessário
-        error_log('Email ou nome não fornecido para store_search_data.');
-        return false; // Ou outra maneira de indicar falha
-    }
-
-    // Defina search_date se não estiver no array $data
-    if (!array_key_exists('search_date', $data)) {
-        $data['search_date'] = current_time('mysql');
-    }
-    
-    // Obter ou criar contact_id baseado no e-mail fornecido
-    $contactId = adicionar_ou_atualizar_contato(['email' => $data['email'], 'name' => $data['name']]);
-    if (!$contactId) {
-        // Falha ao obter ou criar contact_id
-        error_log('Falha ao obter ou criar contact_id em store_search_data.');
-        return false;
-    }
-
-    // Preparar dados para inserção, associando a pesquisa ao contact_id
-    $data['contact_id'] = $contactId;
-    // Se você decidir remover o 'email' após obter o 'contact_id', faça isso aqui
-    // Mas, como você mencionou a necessidade de manter o 'name', ele não será removido
-    unset($data['email']); // Ajuste conforme a estrutura da sua tabela wp_pdr_search_data
-
-    // Verifique se todos os campos necessários estão presentes antes da inserção
-    if (!isset($data['service_type']) || !isset($data['service_location']) || !isset($data['search_date']) || !isset($data['contact_id'])) {
+    // Assegura que os campos necessários estão presentes
+    if (!isset($data['service_type'], $data['service_location'], $data['contact_id'], $data['author_id'])) {
         error_log('Dados necessários ausentes para inserção em wp_pdr_search_data.');
         return false;
     }
 
-    // Inserir dados da pesquisa na tabela
-    $result = $wpdb->insert($searchDataTable, $data);
+    // Adiciona a data atual se não for fornecida
+    if (!isset($data['search_date'])) {
+        $data['search_date'] = current_time('mysql');
+    }
 
-    if ($result === false) {
-        // Tratar erro de inserção
+    // Inserir dados da pesquisa na tabela, incluindo o status da pesquisa
+    $insertData = [
+        'service_type' => $data['service_type'],
+        'service_location' => $data['service_location'],
+        'search_date' => $data['search_date'],
+        'service_id' => $data['service_id'] ?? 0, // Adiciona 0 se service_id não estiver definido
+        'author_id' => $data['author_id'],
+        'contact_id' => $data['contact_id'],
+        'search_status' => $data['search_status'] ?? 'pending', // Usa 'pending' como padrão se não definido
+    ];
+
+    if (!$wpdb->insert($searchDataTable, $insertData)) {
         error_log('Erro ao inserir dados em wp_pdr_search_data: ' . $wpdb->last_error);
         return false;
     }
