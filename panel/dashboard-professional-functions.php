@@ -57,13 +57,15 @@ function pdr_get_services_by_current_user() {
 function pdr_get_recent_searches_for_user($limit = 10) {
     global $wpdb;
     $current_user_id = get_current_user_id();
-    $table_name = $wpdb->prefix . 'pdr_search_data';
-    $post_table = $wpdb->posts;
+    $searchDataTable = $wpdb->prefix . 'pdr_search_data';
+    $contactsTable = $wpdb->prefix . 'pdr_contacts';
+    $postTable = $wpdb->posts;
 
     $query = $wpdb->prepare(
-        "SELECT sd.service_type, sd.search_date, p.post_title, sd.name, sd.email, sd.service_location
-         FROM $table_name as sd
-         INNER JOIN $post_table as p ON sd.service_id = p.ID
+        "SELECT sd.service_type, sd.search_date, p.post_title, c.default_name AS name, c.email, sd.service_location
+         FROM $searchDataTable AS sd
+         INNER JOIN $contactsTable AS c ON sd.contact_id = c.contact_id
+         INNER JOIN $postTable AS p ON sd.service_id = p.ID
          WHERE p.post_author = %d
          ORDER BY sd.search_date DESC 
          LIMIT %d", 
@@ -72,5 +74,6 @@ function pdr_get_recent_searches_for_user($limit = 10) {
 
     return $wpdb->get_results($query, ARRAY_A);
 }
+
 
 
