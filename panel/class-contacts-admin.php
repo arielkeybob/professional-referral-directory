@@ -8,46 +8,43 @@ class Contatos_Admin_Page {
         // Hook para adicionar o conteúdo da página no submenu correto, adicionado em panel-menus.php
     }
 
-    /**
-     * Renderiza a página de gerenciamento de contatos no painel de administração.
-     */
     public function render() {
         if (!current_user_can('view_pdr_contacts')) {
             wp_die(__('Você não tem permissão para acessar esta página.', 'professionaldirectory'));
         }
 
         global $wpdb;
-
-        // Obtém o ID do usuário atual para buscar os contatos relacionados.
         $current_user_id = get_current_user_id();
 
-        // Consulta que une as tabelas de contatos e a relação contato-autor para buscar contatos relacionados ao autor.
-        $query = $wpdb->prepare(
+        $contacts = $wpdb->get_results($wpdb->prepare(
             "SELECT c.contact_id, c.email, c.default_name
             FROM {$wpdb->prefix}pdr_contact_author_relation car
             JOIN {$wpdb->prefix}pdr_contacts c ON car.contact_id = c.contact_id
             WHERE car.author_id = %d
             GROUP BY c.contact_id",
             $current_user_id
-        );
-
-        $contacts = $wpdb->get_results($query, ARRAY_A);
+        ), ARRAY_A);
 
         echo '<div class="wrap">';
         echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'professionaldirectory') . '</h1>';
 
-        // Verifica se existem contatos e exibe em uma tabela.
         if (!empty($contacts)) {
             echo '<table class="wp-list-table widefat fixed striped">';
             echo '<thead>';
-            echo '<tr><th>' . esc_html__('Nome', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th></tr>';
+            echo '<tr><th>' . esc_html__('Nome', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Ações', 'professionaldirectory') . '</th></tr>';
             echo '</thead>';
             echo '<tbody>';
 
             foreach ($contacts as $contact) {
-                echo '<tr>';
+                // A linha da tabela agora tem uma coluna extra com um link para a página de detalhes do contato
+                $details_url = wp_nonce_url(
+                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $contact['contact_id']], admin_url('admin.php')),
+                    'view_contact_details_' . $contact['contact_id'],
+                    'contact_nonce'
+                );                echo '<tr>';
                 echo '<td>' . esc_html($contact['default_name']) . '</td>';
                 echo '<td>' . esc_html($contact['email']) . '</td>';
+                echo '<td><a href="' . $details_url . '" class="button-secondary">' . __('Ver Detalhes', 'professionaldirectory') . '</a></td>';
                 echo '</tr>';
             }
 
@@ -61,4 +58,4 @@ class Contatos_Admin_Page {
     }
 }
 
-// A instanciação da classe e adição ao menu é feita em panel-menus.php para evitar duplicação de menus.
+// A instanciação da classe e a adição ao menu são feitas em panel-menus.php para evitar duplicação.

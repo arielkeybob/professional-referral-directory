@@ -9,7 +9,6 @@ function pdr_initialize_panel_menus() {
     add_action('admin_menu', 'pdr_register_submenus');
     add_action('init', 'pdr_add_roles_and_capabilities');
 }
-add_action('admin_init', 'pdr_initialize_panel_menus');
 
 // Adiciona as capacidades necessárias ao papel 'professional'.
 function pdr_add_roles_and_capabilities() {
@@ -66,7 +65,15 @@ function pdr_register_submenus() {
         'pdr_settings_page'
     );
 
-    // Adicione mais submenus conforme necessário.
+    // Registra a página de detalhes do contato como uma página 'fantasma' (não aparece no menu, mas o WordPress reconhece a permissão)
+    add_submenu_page(
+        null, // Não exibe no menu
+        __('Detalhes do Contato', 'professionaldirectory'),
+        null, // Não exibe no menu
+        'view_pdr_contacts',
+        'pdr-contact-details',
+        'pdr_contact_details_page_content'
+    );
 }
 
 // Função que renderiza o conteúdo da página do Dashboard do Professional.
@@ -79,6 +86,11 @@ function pdr_contacts_page_content() {
     require_once plugin_dir_path(__FILE__) . 'class-contacts-admin.php';
     $contactsPage = new Contatos_Admin_Page();
     $contactsPage->render();
+}
+
+// Função para renderizar o conteúdo da página de detalhes do contato
+function pdr_contact_details_page_content() {
+    require_once plugin_dir_path(__FILE__) . 'single-contact.php';
 }
 
 // Função para a página de ajuda de shortcodes.
