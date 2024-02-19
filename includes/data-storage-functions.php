@@ -42,25 +42,24 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'a
         $contactId, $authorId
     ));
 
-    // Prepara os dados para inserção ou atualização
-    $data = [
-        'contact_id' => $contactId,
-        'author_id' => $authorId,
-        'status' => $status,
-    ];
-    // Se um nome personalizado foi fornecido, inclua-o nos dados
-    if ($customName !== null) {
-        $data['custom_name'] = $customName;
-    }
+    // Se não existir, cria uma nova relação
+    if (!$existingRelation) {
+        $data = [
+            'contact_id' => $contactId,
+            'author_id' => $authorId,
+            'status' => $status,
+        ];
+        
+        // Se um nome personalizado foi fornecido, inclua-o nos dados
+        if ($customName !== null) {
+            $data['custom_name'] = $customName;
+        }
 
-    if ($existingRelation) {
-        // Se a relação já existe, atualize-a
-        $wpdb->update($relationTable, $data, ['author_contact_id' => $existingRelation->author_contact_id]);
-    } else {
-        // Se não existe, crie uma nova relação
         $wpdb->insert($relationTable, $data);
     }
+    // Se a relação já existir, não fazemos nada
 }
+
 
 
 
