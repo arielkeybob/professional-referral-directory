@@ -4,10 +4,15 @@ if (!defined('WPINC')) {
     die;
 }
 
-// Adiciona capacidades ao papel 'professional' e registra submenus.
+
+
+
+
+// Adiciona capacidades ao papel 'professional' e registra menus e submenus.
 function pdr_initialize_panel_menus() {
-    add_action('admin_menu', 'pdr_register_submenus');
+    add_action('admin_menu', 'pdr_register_menus');
     add_action('init', 'pdr_add_roles_and_capabilities');
+    add_action('admin_menu', 'pdr_remove_default_dashboard_for_professionals', 999);
 }
 
 // Adiciona as capacidades necessárias ao papel 'professional'.
@@ -23,27 +28,32 @@ function pdr_add_roles_and_capabilities() {
     }
 }
 
-// Registra os submenus no painel de administração.
-function pdr_register_submenus() {
-    // Submenu do Dashboard do Professional.
-    add_submenu_page(
-        'edit.php?post_type=professional_service',
+// Registra menus e submenus no painel de administração.
+function pdr_register_menus() {
+
+    // Adiciona um menu para o Dashboard do Professional
+    add_menu_page(
         __('Dashboard do Professional', 'professionaldirectory'),
-        __('Dashboard', 'professionaldirectory'),
+        __('Dashboard Professional', 'professionaldirectory'),
         'view_pdr_dashboard',
-        'pdr-dashboard',
-        'pdr_dashboard_page_content'
+        'pdr-professional-dashboard',
+        'pdr_dashboard_page_content',
+        'dashicons-businessman',
+        3
     );
 
-    // Submenu de Gerenciamento de Contatos.
-    add_submenu_page(
-        'edit.php?post_type=professional_service',
+    // Menu de Gerenciamento de Contatos como um menu principal.
+    add_menu_page(
         __('Gerenciamento de Contatos', 'professionaldirectory'),
         __('Contatos', 'professionaldirectory'),
         'view_pdr_contacts',
         'pdr-contacts',
-        'pdr_contacts_page_content'
+        'pdr_contacts_page_content',
+        'dashicons-businessman',
+        6
     );
+
+    
 
     // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
@@ -65,7 +75,7 @@ function pdr_register_submenus() {
         'pdr_settings_page'
     );
 
-    // Registra a página de detalhes do contato como uma página 'fantasma' (não aparece no menu, mas o WordPress reconhece a permissão)
+    // Registra a página de detalhes do contato como uma página 'fantasma'
     add_submenu_page(
         null, // Não exibe no menu
         __('Detalhes do Contato', 'professionaldirectory'),
@@ -76,9 +86,17 @@ function pdr_register_submenus() {
     );
 }
 
-// Função que renderiza o conteúdo da página do Dashboard do Professional.
 function pdr_dashboard_page_content() {
+    // Inclui o arquivo que contém o conteúdo do dashboard do professional
     include plugin_dir_path(__FILE__) . 'templates/dashboard-template-professional.php';
+}
+
+function pdr_remove_default_dashboard_for_professionals() {
+    // Verifica se o usuário atual tem o papel de 'professional'
+    if (current_user_can('professional')) {
+        // Remove o Dashboard padrão
+        remove_menu_page('index.php');
+    }
 }
 
 // Função que renderiza o conteúdo da página de Contatos.
