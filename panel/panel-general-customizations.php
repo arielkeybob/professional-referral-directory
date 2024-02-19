@@ -7,29 +7,25 @@ function pdr_adjust_dashboard_menu() {
     // Checa se o usuário atual é 'professional'
     if (current_user_can('professional')) {
         // Muda a URL do Dashboard para a página do dashboard do professional
-        $submenu['index.php'][0][2] = 'edit.php?post_type=professional_service&page=pdr-dashboard';
-        // Remove o submenu "Home" indesejado
-        unset($submenu['index.php'][0]);
-    } elseif (current_user_can('administrator')) {
-        // Muda a URL do Dashboard para a página do dashboard do admin
-        $submenu['index.php'][0][2] = 'edit.php?post_type=professional_service&page=dashboard-admin';
+        $submenu['index.php'][0][2] = 'admin.php?page=pdr-professional-dashboard';
         // Remove o submenu "Home" indesejado
         unset($submenu['index.php'][0]);
     }
+    // Não é necessário ajustar para administradores, pois eles seguirão para o dashboard padrão
 }
 add_action('admin_menu', 'pdr_adjust_dashboard_menu', 999);
 
 function pdr_redirect_dashboard() {
     if (is_admin()) {
         $screen = get_current_screen();
+        // Verifica se a tela atual é o dashboard
         if ($screen->id === "dashboard") {
+            // Redireciona apenas se o usuário for 'professional'
             if (current_user_can('professional')) {
-                wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-dashboard'));
-                exit;
-            } elseif (current_user_can('administrator')) {
-                wp_redirect(admin_url('edit.php?post_type=professional_service&page=dashboard-admin'));
+                wp_redirect(admin_url('admin.php?page=pdr-professional-dashboard'));
                 exit;
             }
+            // Não redireciona administradores, permitindo acesso ao dashboard padrão
         }
     }
 }
