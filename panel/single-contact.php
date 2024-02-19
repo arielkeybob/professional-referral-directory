@@ -15,7 +15,7 @@ $contact_id = isset($_GET['contact_id']) ? intval($_GET['contact_id']) : 0;
 if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_POST['contact_status']) && check_admin_referer('update_contact_status_' . $contact_id)) {
     $new_status = $_POST['contact_status'];
     $wpdb->update(
-        "{$wpdb->prefix}pdr_contact_author_relation",
+        "{$wpdb->prefix}pdr_author_contact_relations",
         ['status' => $new_status],
         ['contact_id' => $contact_id, 'author_id' => get_current_user_id()]
     );
@@ -39,7 +39,7 @@ if ($contact_id) {
     ));
 
     $status = $wpdb->get_var($wpdb->prepare(
-        "SELECT status FROM {$wpdb->prefix}pdr_contact_author_relation
+        "SELECT status FROM {$wpdb->prefix}pdr_contact_authors
         WHERE contact_id = %d AND author_id = %d",
         $contact_id,
         get_current_user_id()

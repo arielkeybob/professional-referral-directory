@@ -18,7 +18,7 @@ class Contatos_Admin_Page {
 
         $contacts = $wpdb->get_results($wpdb->prepare(
             "SELECT c.contact_id, c.email, c.default_name
-            FROM {$wpdb->prefix}pdr_contact_author_relation car
+            FROM {$wpdb->prefix}pdr_author_contact_relations car
             JOIN {$wpdb->prefix}pdr_contacts c ON car.contact_id = c.contact_id
             WHERE car.author_id = %d
             GROUP BY c.contact_id",

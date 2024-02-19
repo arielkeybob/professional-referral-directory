@@ -58,15 +58,17 @@ function pdr_get_recent_searches_for_user($limit = 10) {
     global $wpdb;
     $current_user_id = get_current_user_id();
     $searchDataTable = $wpdb->prefix . 'pdr_search_data';
+    $authorContactRelationsTable = $wpdb->prefix . 'pdr_author_contact_relations';
     $contactsTable = $wpdb->prefix . 'pdr_contacts';
     $postTable = $wpdb->posts;
 
     $query = $wpdb->prepare(
         "SELECT sd.service_type, sd.search_date, p.post_title, c.default_name AS name, c.email, sd.service_location
          FROM $searchDataTable AS sd
-         INNER JOIN $contactsTable AS c ON sd.contact_id = c.contact_id
+         INNER JOIN $authorContactRelationsTable AS acr ON sd.contact_id = acr.contact_id
+         INNER JOIN $contactsTable AS c ON acr.contact_id = c.contact_id
          INNER JOIN $postTable AS p ON sd.service_id = p.ID
-         WHERE p.post_author = %d
+         WHERE acr.author_id = %d
          ORDER BY sd.search_date DESC 
          LIMIT %d", 
          $current_user_id, $limit
@@ -74,6 +76,7 @@ function pdr_get_recent_searches_for_user($limit = 10) {
 
     return $wpdb->get_results($query, ARRAY_A);
 }
+
 
 
 
