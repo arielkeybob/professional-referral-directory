@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
-    // Atualizar status do contato via AJAX
+    // Atualizar status do contato via AJAX (Parte comentada previamente, mantida para referência)
+    /*
     $('#contact_status').change(function() {
         var contactId = $(this).closest('form').find('input[name="contact_id"]').val();
         var newStatus = $(this).val();
@@ -11,8 +12,8 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'salvar_status_contato',
                 contact_id: contactId,
-                contact_status: newStatus,
-                security: pdrPanelAjax.ajax_nonce
+                contact_status: newStatus
+                // Removido: security: pdrPanelAjax.ajax_nonce
             },
             success: function(response) {
                 console.log('Resposta do salvar_status_contato:', response);
@@ -24,6 +25,7 @@ jQuery(document).ready(function($) {
             }
         });
     });
+    */
 
     // Atualizar status da pesquisa via AJAX
     $('.search_status').change(function() {
@@ -37,8 +39,8 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'salvar_status_pesquisa',
                 search_id: searchId,
-                search_status: newStatus,
-                security: pdrPanelAjax.ajax_nonce // Garanta que este nonce corresponda à ação no servidor
+                search_status: newStatus
+                // Removido: security: pdrPanelAjax.ajax_nonce
             },
             success: function(response) {
                 console.log('Resposta do salvar_status_pesquisa:', response);
