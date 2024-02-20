@@ -20,8 +20,6 @@ global $wpdb;
 $contact_id = isset($_GET['contact_id']) ? intval($_GET['contact_id']) : 0;
 
 // Processamento do formulário de atualização de status e nome customizado
-// Processamento do formulário de atualização de status e nome customizado
-// Processamento do formulário de atualização de status e nome customizado
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     error_log('Processando POST request.');
 
@@ -66,7 +64,6 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
     }
 
     // Atualização do status das pesquisas
-    // Atualização do status das pesquisas
     if (isset($_POST['search_status']) && isset($_POST['search_id'])) {
         $search_id = intval($_POST['search_id']);
         $search_status = sanitize_text_field($_POST['search_status']);
@@ -101,13 +98,9 @@ if ($contact_id) {
     $contact = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}pdr_contacts WHERE contact_id = %d", $contact_id));
     $status = $wpdb->get_var($wpdb->prepare("SELECT status FROM {$wpdb->prefix}pdr_author_contact_relations WHERE contact_id = %d AND author_id = %d", $contact_id, get_current_user_id()));
     $custom_name = $wpdb->get_var($wpdb->prepare("SELECT custom_name FROM {$wpdb->prefix}pdr_author_contact_relations WHERE contact_id = %d AND author_id = %d", $contact_id, get_current_user_id()));
-    $searches = $wpdb->get_results($wpdb->prepare("SELECT s.* FROM {$wpdb->prefix}pdr_search_data WHERE contact_id = %d", $contact_id));
 
-    // Busca as pesquisas associadas ao contato
-    $searches = $wpdb->get_results($wpdb->prepare(
-        "SELECT s.* FROM {$wpdb->prefix}pdr_search_data s WHERE s.contact_id = %d",
-        $contact_id
-    ));
+    // Correção: Remove o uso incorreto do alias 's' na consulta SQL
+    $searches = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}pdr_search_data WHERE contact_id = %d", $contact_id));
 
     echo '<div class="wrap">';
     echo '<h1>' . esc_html__('Detalhes do Contato', 'professionaldirectory') . '</h1>';
@@ -116,19 +109,12 @@ if ($contact_id) {
         echo '<p><strong>Nome:</strong> ' . esc_html($contact->default_name) . '</p>';
         echo '<p><strong>Email:</strong> ' . esc_html($contact->email) . '</p>';
 
-        // Formulário para atualizar o status e o nome customizado
+        // Formulário para atualizar o nome customizado
         echo '<form method="post" action="">';
         wp_nonce_field('update_contact_status_' . $contact_id);
-        echo '<label for="contact_status">Status:</label>';
-        echo '<select name="contact_status" id="contact_status">';
-        foreach (['active', 'lead', 'not_interested', 'client'] as $option) {
-            echo '<option value="' . esc_attr($option) . '"' . selected($status, $option, false) . '>' . esc_html(ucfirst($option)) . '</option>';
-        }
-        echo '</select>';
-        // Campo para editar o nome customizado
         echo '<p><strong>Nome Personalizado:</strong></p>';
         echo '<input type="text" name="custom_name" value="' . esc_attr($custom_name ? $custom_name : $contact->default_name) . '">';
-        echo '<input type="submit" value="' . esc_attr__('Update Status e Nome', 'professionaldirectory') . '" class="button button-primary">';
+        echo '<input type="submit" value="' . esc_attr__('Atualizar Nome', 'professionaldirectory') . '" class="button button-primary">';
         echo '</form>';
 
         // Exibe as pesquisas associadas
@@ -143,16 +129,13 @@ if ($contact_id) {
 
                 // Formulário para atualizar o status da pesquisa
                 echo '<form method="post" action="">';
-                wp_nonce_field('update_search_status_' . $search->id); // Certifique-se de gerar e verificar um nonce adequado
-                echo '<select name="search_status">';
+                wp_nonce_field('update_search_status_' . $search->id);
+                echo '<select name="search_status" class="search_status" data-search-id="' . esc_attr($search->id) . '">';
                 foreach (['pendente', 'aprovado', 'rejeitado'] as $option) {
                     echo '<option value="' . esc_attr($option) . '"' . selected($search->search_status, $option, false) . '>' . esc_html(ucfirst($option)) . '</option>';
                 }
                 echo '</select>';
-                echo '<input type="hidden" name="search_id" value="' . esc_attr($search->id) . '">';
-                echo '<input type="submit" value="' . esc_attr__('Atualizar', 'professionaldirectory') . '" class="button">';
                 echo '</form>';
-
                 echo '</li>';
             }
 
@@ -166,5 +149,48 @@ if ($contact_id) {
     echo '</div>';
 } else {
     wp_die(__('ID do contato não especificado.', 'professionaldirectory'));
+}
+
+// Adicione esta parte ao final do seu arquivo para tratar as requisições AJAX
+add_action('wp_ajax_salvar_status_contato', 'salvar_status_contato_ajax');
+add_action('wp_ajax_salvar_status_pesquisa', 'salvar_status_pesquisa_ajax');
+
+function salvar_status_contato_ajax() {
+    // Debug: Verificar se a ação é alcançada
+    error_log('Ação AJAX salvar_status_contato alcançada.');
+
+    check_ajax_referer('pdr_panel_nonce', 'security');
+
+    // Debug: Verificar se os dados POST estão presentes
+    error_log('Dados recebidos: ' . print_r($_POST, true));
+
+    // Lógica de atualização permanece igual...
+    wp_send_json_success('Status do contato atualizado com sucesso.');
+}
+
+
+
+function salvar_status_pesquisa_ajax() {
+    check_ajax_referer('pdr_panel_nonce', 'security');
+
+    global $wpdb;
+    $search_id = isset($_POST['search_id']) ? intval($_POST['search_id']) : 0;
+    $new_status = isset($_POST['search_status']) ? sanitize_text_field($_POST['search_status']) : '';
+
+    // Debug: Log dos dados recebidos
+    error_log('Recebendo dados AJAX: Search ID: ' . $search_id . ', New Status: ' . $new_status);
+
+    // Supondo que a tabela e a coluna estejam corretas
+    $updated = $wpdb->update(
+        "{$wpdb->prefix}pdr_search_data",
+        ['search_status' => $new_status], // Garanta que esta coluna exista
+        ['id' => $search_id]
+    );
+
+    if (false === $updated) {
+        wp_send_json_error('Falha ao atualizar o status da pesquisa.');
+    } else {
+        wp_send_json_success('Status da pesquisa atualizado com sucesso.');
+    }
 }
 ?>

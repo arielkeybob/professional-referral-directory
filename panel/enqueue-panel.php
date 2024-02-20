@@ -15,6 +15,14 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_script('pdr-admin-notifications', plugins_url('/panel/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', PDR_MAIN_FILE));
     
+    // Enfileirar o script AJAX específico do painel
+    wp_enqueue_script('pdr-panel-ajax-script', plugins_url('/panel/js/pdr-panel-ajax.js', PDR_MAIN_FILE), array('jquery'), null, true);
+
+    // Passar a URL AJAX e o nonce para o script pdr-panel-ajax
+    wp_localize_script('pdr-panel-ajax-script', 'pdrPanelAjax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'ajax_nonce' => wp_create_nonce('pdr_panel_nonce') // Ação correspondente à verificação
+    ]);
 
     
 
