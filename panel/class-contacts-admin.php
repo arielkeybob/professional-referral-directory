@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if (!defined('WPINC')) {
     die;
 }
@@ -57,5 +58,5 @@ class Contatos_Admin_Page {
         echo '</div>';
     }
 }
-
+ob_end_flush();
 // A instanciação da classe e a adição ao menu são feitas em panel-menus.php para evitar duplicação.

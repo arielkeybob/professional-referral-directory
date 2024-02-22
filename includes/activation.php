@@ -117,4 +117,3 @@ function pdrStartSession() {
     }
 }
 add_action('init', 'pdrStartSession');
-?>
