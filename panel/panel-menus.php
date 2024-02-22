@@ -4,7 +4,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-
+require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
 
 
 
@@ -30,6 +30,8 @@ function pdr_add_roles_and_capabilities() {
 
 // Registra menus e submenus no painel de administração.
 function pdr_register_menus() {
+    // Instancia a classe PDR_Settings aqui para uso nos callbacks.
+    $pdr_plugin_settings = new PDR_Settings();
 
     // Adiciona um menu para o Dashboard do Professional
     add_menu_page(
@@ -74,14 +76,14 @@ function pdr_register_menus() {
         'pdr_render_shortcodes_help_page'
     );
 
-    // Submenu de Configurações Gerais.
+    // Submenu de Configurações Gerais utilizando a instância de PDR_Settings.
     add_submenu_page(
         'edit.php?post_type=professional_service',
         __('Configurações Gerais', 'professionaldirectory'),
         __('Configurações', 'professionaldirectory'),
         'manage_options',
         'pdr-general-settings',
-        'pdr_settings_page'
+        [$pdr_plugin_settings, 'settings_page']
     );
 
     // Registra a página de detalhes do contato como uma página 'fantasma'
@@ -128,13 +130,11 @@ function pdr_contact_details_page_content() {
 
 // Função para a página de ajuda de shortcodes.
 function pdr_render_shortcodes_help_page() {
-    include plugin_dir_path(__FILE__) . 'templates/shortcodes-help-page.php';
+    include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-// Função para a página de configurações gerais.
-function pdr_settings_page() {
-    include plugin_dir_path(__FILE__) . 'templates/settings-page.php';
-}
+
+
 
 // Inicialização
 pdr_initialize_panel_menus();

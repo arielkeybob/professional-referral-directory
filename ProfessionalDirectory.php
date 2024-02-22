@@ -28,7 +28,7 @@ require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
-require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php';
+//require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php'; //Já é incluido diretamente no panel/panel-menus.php
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'panel/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
@@ -53,11 +53,6 @@ register_activation_hook(__FILE__, 'pdrActivate');
 
 
 
-
-// Instanciar a classe de administração
-if (is_admin()) {
-    $pdr_plugin_settings = new PDR_Settings();
-}
 
 // Enfileirando o carregador de mídia
 function pdr_enqueue_media_uploader() {
