@@ -78,6 +78,7 @@ if ($contact_id) {
     $searches = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}pdr_search_data WHERE contact_id = %d", $contact_id));
 
     echo '<div class="wrap">';
+    echo '<div id="save-status"></div>';
     echo '<h1>' . esc_html__('Detalhes do Contato', 'professionaldirectory') . '</h1>';
 
     if ($contact) {
@@ -127,4 +128,9 @@ if ($contact_id) {
 } else {
     wp_die(__('ID do contato não especificado.', 'professionaldirectory'));
 }
+
+$js_url = plugins_url('/js/alert-save-before-leave.js', __FILE__);
+
+// Imprime a tag <script> para enfileirar seu arquivo JS diretamente
+echo '<script src="' . esc_url($js_url) . '"></script>';
 ?>
