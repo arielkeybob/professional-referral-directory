@@ -11,7 +11,7 @@ if (!defined('WPINC')) {
 function professionaldirectory_enqueue_admin_scripts() {
     // Enfileirar os estilos de administração
     wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/panel/css/admin-style.css', PDR_MAIN_FILE));
-    //wp_enqueue_script('dashboard-script-admin', plugins_url('/panel/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
+    wp_enqueue_script('dashboard-script-admin', plugins_url('/panel/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_script('pdr-admin-notifications', plugins_url('/panel/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', PDR_MAIN_FILE));
     

@@ -54,6 +54,15 @@ function pdr_register_menus() {
     );
 
     
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        __('Dashboard do Admin', 'professionaldirectory'),
+        __('Dashboard do Admin', 'professionaldirectory'),
+        'manage_options',
+        'dashboard-admin',
+        'pdr_dashboard_admin_page_content'
+    );
+    
 
     // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
@@ -85,6 +94,12 @@ function pdr_register_menus() {
         'pdr_contact_details_page_content'
     );
 }
+
+
+function pdr_dashboard_admin_page_content() {
+    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-admin.php';
+}
+
 
 function pdr_dashboard_page_content() {
     // Inclui o arquivo que contém o conteúdo do dashboard do professional
