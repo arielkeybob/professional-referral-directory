@@ -35,7 +35,7 @@ if ($contact_id) {
         echo '<input type="hidden" name="action" value="save_contact_details">';
         echo '<input type="hidden" name="contact_id" value="' . esc_attr($contact_id) . '">';
 
-        echo '<p><strong>Nome:</strong> ' . esc_html($contact->default_name) . '</p>';
+        echo '<p><strong>Name:</strong> ' . esc_html($contact->default_name) . '</p>';
         echo '<p><strong>Email:</strong> ' . esc_html($contact->email) . '</p>';
 
         // Campo para status do contato
@@ -47,7 +47,7 @@ if ($contact_id) {
         echo '</select>';
 
         // Campo para editar o nome customizado
-        echo '<p><strong>Nome Personalizado:</strong></p>';
+        echo '<p><strong>Custom Name:</strong></p>';
         echo '<input type="text" name="custom_name" value="' . esc_attr($custom_name ? $custom_name : $contact->default_name) . '">';
 
         // Seção de pesquisas
