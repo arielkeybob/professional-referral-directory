@@ -1,62 +1,76 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('form');
+    var form = document.querySelector('#contact-form');
     if (form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Impede o envio normal do formulário
+            e.preventDefault(); // Prevents the normal form submission
 
-            // Prepara os dados do formulário para serem enviados via AJAX
             var formData = new FormData(form);
-            formData.append('action', 'save_contact_details'); // Ação para o WordPress identificar
+            formData.append('action', 'save_contact_details'); // Action for WordPress to identify
 
-            // AJAX request para o servidor WordPress
+            // AJAX request to the WordPress server
             fetch(ajaxurl, {
                 method: 'POST',
-                credentials: 'same-origin', // Necessário para cookies/sessão funcionar corretamente
+                credentials: 'same-origin', // Necessary for cookies/session to work correctly
                 body: formData,
             })
             .then(response => response.json())
             .then(data => {
-                // Atualiza o elemento de status com base na resposta
-                var saveStatusDiv = document.getElementById('save-status');
                 if (data.success) {
-                    if (saveStatusDiv) {
-                        saveStatusDiv.textContent = 'Salvo'; // Mensagem de sucesso
-                    }
+                    // Success notification
+                    Toastify({
+                        text: "Saved successfully!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "bottom",
+                        position: "center",
+                        backgroundColor: "#4fbe87",
+                        stopOnFocus: true,
+                        
+                    }).showToast();
                 } else {
-                    if (saveStatusDiv) {
-                        saveStatusDiv.textContent = 'Erro ao salvar'; // Mensagem de erro
-                    }
+                    // Error notification with server message, if available
+                    Toastify({
+                        text: "Error saving: " + (data.message || 'Please try again later.'),
+                        duration: 3000,
+                        close: true,
+                        gravity: "bottom",
+                        position: "center",
+                        backgroundColor: "#e74c3c",
+                        stopOnFocus: true,
+                    }).showToast();
                 }
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.error('Error:', error);
-                var saveStatusDiv = document.getElementById('save-status');
-                if (saveStatusDiv) {
-                    saveStatusDiv.textContent = 'Erro ao salvar'; // Mensagem de erro em caso de falha na requisição
-                }
+                // Communication error notification
+                Toastify({
+                    text: "Communication error with the server.",
+                    duration: 3000,
+                    close: true,
+                    gravity: "bottom",
+                    position: "center",
+                    backgroundColor: "#e74c3c",
+                    stopOnFocus: true,
+                }).showToast();
             });
 
-            // Reseta a flag de formulário modificado após o envio
+            // Resets the form modified flag after submission
             formModified = false;
         });
 
-        // Flag para verificar se o formulário foi modificado
         var formModified = false;
 
-        // Detecta alterações em qualquer campo do formulário
+        // Detects changes in any form field
         form.addEventListener('change', function() {
             formModified = true;
-            var saveStatusDiv = document.getElementById('save-status');
-            if (saveStatusDiv) {
-                saveStatusDiv.textContent = 'Alterações não salvas...'; // Mensagem de status quando o formulário é modificado
-            }
         });
 
-        // Alerta o usuário se tentar sair da página com alterações não salvas
+        // Alerts the user if they try to leave the page with unsaved changes
         window.addEventListener('beforeunload', function(e) {
             if (formModified) {
-                var confirmationMessage = 'Alterações que você fez podem não ser salvas.';
-                (e || window.event).returnValue = confirmationMessage; // Padrão para alguns navegadores
-                return confirmationMessage; // Padrão para outros navegadores
+                var confirmationMessage = 'Changes you made may not be saved.';
+                (e || window.event).returnValue = confirmationMessage;
+                return confirmationMessage;
             }
         });
     }

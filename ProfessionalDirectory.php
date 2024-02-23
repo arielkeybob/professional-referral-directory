@@ -144,3 +144,12 @@ add_action('wp_ajax_save_contact_details', function() {
 
     exit;
 });
+
+
+function pdr_enqueue_toastify() {
+    wp_enqueue_style('toastify-css', 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
+    wp_enqueue_script('toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js', [], null, true);
+    wp_enqueue_script('custom-toastify-js', plugin_dir_url(__FILE__) . 'lib/toastify/custom-toastify.js', ['toastify-js'], null, true);
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_toastify');
+
