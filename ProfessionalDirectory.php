@@ -39,6 +39,7 @@ require_once plugin_dir_path(__FILE__) . 'panel/panel-notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
+
 // Inclui as classes do plugin
 
 function pdrActivate() {
@@ -146,6 +147,7 @@ add_action('wp_ajax_save_contact_details', function() {
 });
 
 
+/*
 function pdr_enqueue_toastify() {
     wp_enqueue_style('toastify-css', 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
     wp_enqueue_script('toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js', [], null, true);
@@ -153,3 +155,19 @@ function pdr_enqueue_toastify() {
 }
 add_action('admin_enqueue_scripts', 'pdr_enqueue_toastify');
 
+*/
+
+
+
+function pdr_enqueue_material_icons() {
+    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_material_icons');
+
+
+function pdr_enqueue_notyf() {
+    wp_enqueue_style('notyf-css', 'https://unpkg.com/notyf/notyf.min.css');
+    wp_enqueue_script('notyf-js', 'https://unpkg.com/notyf/notyf.min.js', [], null, true);
+    wp_enqueue_script('my-custom-notyf-js', plugin_dir_url(__FILE__) . 'js/my-custom-notyf.js', ['notyf-js'], null, true);
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_notyf');
