@@ -39,19 +39,14 @@ require_once plugin_dir_path(__FILE__) . 'panel/panel-notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
+require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
 
 // Inclui as classes do plugin
 
 function pdrActivate() {
     pdrActivatePlugin(); // Esta função está definida em activation.php.
-    if (class_exists('PDR_Users')) {
-        PDR_Users::initialize_user_roles();
-    }
-    update_option('pdr_version', PDR_VERSION);
 }
-
 register_activation_hook(__FILE__, 'pdrActivate');
-
 
 
 
@@ -69,10 +64,6 @@ add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
 
 
 
-
-
-
-
 function pdrDeactivate() {
     PDR_Users::cleanup_user_roles();
 }
@@ -81,93 +72,8 @@ register_deactivation_hook(__FILE__, 'pdrDeactivate');
 
 
 
-
-
-
-add_action('wp_ajax_save_contact_details', function() {
-    // Certifique-se de que o nonce foi enviado e é válido
-    check_ajax_referer('update_contact_' . $_POST['contact_id'], 'nonce');
-
-    // Verifica se o usuário tem permissão para executar esta ação
-    if (!current_user_can('view_pdr_contacts')) {
-        wp_send_json_error(['message' => 'Permissão insuficiente.']);
-        exit;
-    }
-
-    global $wpdb;
-    $contact_id = isset($_POST['contact_id']) ? intval($_POST['contact_id']) : 0;
-    $author_id = get_current_user_id(); // Obtém o ID do autor atual
-    $new_status = isset($_POST['contact_status']) ? sanitize_text_field($_POST['contact_status']) : '';
-    $custom_name = isset($_POST['custom_name']) ? sanitize_text_field($_POST['custom_name']) : '';
-
-    // Atualiza o status e o nome customizado do contato se o autor bate com o atual
-    $updated = $wpdb->update(
-        "{$wpdb->prefix}pdr_author_contact_relations",
-        ['status' => $new_status, 'custom_name' => $custom_name],
-        [
-            'contact_id' => $contact_id,
-            'author_id' => $author_id // Condição adicional para o author_id
-        ]
-    );
-
-    if (false === $updated) {
-        error_log('Erro ao atualizar o contato: ' . $wpdb->last_error);
-        wp_send_json_error(['message' => 'Erro ao atualizar o contato.']);
-        exit;
-    }
-
-    // Atualiza o status das pesquisas se o autor bate com o atual
-    $errors = false;
-    foreach ($_POST['searches'] as $search_id => $search_status) {
-        $search_id_sanitized = intval($search_id);
-        $status_sanitized = sanitize_text_field($search_status);
-
-        $search_updated = $wpdb->update(
-            "{$wpdb->prefix}pdr_search_data",
-            ['search_status' => $status_sanitized],
-            [
-                'id' => $search_id_sanitized,
-                'author_id' => $author_id // Condição adicional para o author_id
-            ]
-        );
-
-        if (false === $search_updated) {
-            error_log("Erro ao atualizar o status da pesquisa ID $search_id: " . $wpdb->last_error);
-            $errors = true;
-        }
-    }
-
-    if ($errors) {
-        wp_send_json_error(['message' => 'Erro ao atualizar o status de algumas ou todas as pesquisas.']);
-    } else {
-        wp_send_json_success(['message' => 'Informações atualizadas com sucesso.']);
-    }
-
-    exit;
-});
-
-
-/*
-function pdr_enqueue_toastify() {
-    wp_enqueue_style('toastify-css', 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
-    wp_enqueue_script('toastify-js', 'https://cdn.jsdelivr.net/npm/toastify-js', [], null, true);
-    wp_enqueue_script('custom-toastify-js', plugin_dir_url(__FILE__) . 'lib/toastify/custom-toastify.js', ['toastify-js'], null, true);
+//AJAX salvar contato   
+// Adicionar o hook apenas se o contexto atual for uma requisição AJAX.
+if (defined('DOING_AJAX') && DOING_AJAX) {
+    add_action('wp_ajax_save_contact_details', 'pdr_save_contact_details_ajax_handler');
 }
-add_action('admin_enqueue_scripts', 'pdr_enqueue_toastify');
-
-*/
-
-
-
-function pdr_enqueue_material_icons() {
-    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
-}
-add_action('admin_enqueue_scripts', 'pdr_enqueue_material_icons');
-
-
-function pdr_enqueue_notyf() {
-    wp_enqueue_style('notyf-css', 'https://unpkg.com/notyf/notyf.min.css');
-    wp_enqueue_script('notyf-js', 'https://unpkg.com/notyf/notyf.min.js', [], null, true);
-    wp_enqueue_script('my-custom-notyf-js', plugin_dir_url(__FILE__) . 'js/my-custom-notyf.js', ['notyf-js'], null, true);
-}
-add_action('admin_enqueue_scripts', 'pdr_enqueue_notyf');

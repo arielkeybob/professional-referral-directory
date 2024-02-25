@@ -68,3 +68,17 @@ function professionaldirectory_enqueue_admin_only_scripts() {
 add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_professional_scripts');
 add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_only_scripts');
 */
+
+
+function pdr_enqueue_material_icons() {
+    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_material_icons');
+
+
+function pdr_enqueue_notyf() {
+    wp_enqueue_style('notyf-css', 'https://unpkg.com/notyf/notyf.min.css');
+    wp_enqueue_script('notyf-js', 'https://unpkg.com/notyf/notyf.min.js', [], null, true);
+    wp_enqueue_script('my-custom-notyf-js', plugin_dir_url(__FILE__) . 'js/my-custom-notyf.js', ['notyf-js'], null, true);
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_notyf');
