@@ -7,7 +7,12 @@ if (!defined('WPINC')) {
 // Presume-se que $contact_id e $wpdb já estão definidos no contexto em que este arquivo é incluído.
 
 // Busca as pesquisas associadas ao contato
-$searches = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}pdr_search_data WHERE contact_id = %d", $contact_id));
+// Obtenha o ID do usuário logado
+$author_id = get_current_user_id();
+
+// Modifique a consulta para incluir a verificação do author_id
+$searches = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}pdr_search_data WHERE contact_id = %d AND author_id = %d", $contact_id, $author_id));
+
 
 // Exibe as pesquisas associadas
 if (!empty($searches)) {

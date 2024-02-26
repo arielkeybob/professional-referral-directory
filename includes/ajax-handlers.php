@@ -45,6 +45,7 @@ function pdr_save_contact_details_ajax_handler() {
             error_log("Erro ao atualizar o status da pesquisa ID $search_id: " . $wpdb->last_error);
             $errors = true;
         }
+        error_log("A pesquisa $search_id foi salva como $status_sanitized ");
     }
 
     if ($errors) {
