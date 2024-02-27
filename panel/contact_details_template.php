@@ -12,19 +12,21 @@
                 <div class="row">
                     <!-- Custom Name Field -->
                     <div class="input-field col s12 m6">
+                        <div>
                         <i class="material-icons prefix">account_circle</i>
                         <input type="text" id="custom_name" class="validate" name="custom_name" value="<?php echo esc_attr($custom_name ? $custom_name : $contact->default_name); ?>" readonly>
-                        <label for="custom_name"><?php echo esc_html__('Custom Name:', 'professionaldirectory'); ?></label>
                         <a href="javascript:void(0);" id="edit-name" class="btn-floating waves-effect waves-light red"><i class="material-icons">edit</i></a>
-                    </div>
-
-                    <!-- Default Name Field Display -->
-                    <div class="col s12 m6">
+                        </div>
+                        <!-- Default Name Field Display -->
+                    <div>
                         <p class="form-static-text">
                             <strong><?php echo esc_html__('Default Name:', 'professionaldirectory'); ?></strong>
                             <?php echo esc_html($contact->default_name); ?>
                         </p>
                     </div>
+                    </div>
+
+                    
                 </div>
 
                 <div class="row">
@@ -59,7 +61,8 @@
         <div class="col s12 m6 l4"> <!-- Cards lado a lado conforme o tamanho da tela -->
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"><?php echo esc_html__('Search ID:', 'professionaldirectory') . ' ' . esc_html($search->id); ?></span>
+                <span class="card-title"><?php echo get_the_title($search->service_id); ?></span>
+
                     <p><strong><?php echo esc_html__('Search Date:', 'professionaldirectory'); ?></strong> <?php echo esc_html($search->search_date); ?></p>
                     <p><strong><?php echo esc_html__('Service Type:', 'professionaldirectory'); ?></strong> <?php echo esc_html($search->service_type); ?></p>
 

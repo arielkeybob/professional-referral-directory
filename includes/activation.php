@@ -78,7 +78,8 @@ function pdrCreateSearchDataTable() {
         author_id BIGINT UNSIGNED,
         contact_id BIGINT UNSIGNED,
         search_status VARCHAR(100) NOT NULL DEFAULT 'pending',
-        FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE SET NULL
+        FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE SET NULL,
+        FOREIGN KEY (post_id) REFERENCES {$wpdb->posts}(ID) ON DELETE CASCADE // Adicione esta linha para referenciar a tabela de posts
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
