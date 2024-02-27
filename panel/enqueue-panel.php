@@ -39,6 +39,11 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
     wp_enqueue_script('pdr-settings-page-script', plugins_url('panel/js/settings-page-colors.js', PDR_MAIN_FILE));
     
+    // Adiciona o CSS do Materialize
+wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
+
+// Adiciona o JavaScript do Materialize
+wp_enqueue_script('materialize-js', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array('jquery'), '1.0.0', true);
 
 }
 
