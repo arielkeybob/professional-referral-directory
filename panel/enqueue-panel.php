@@ -14,7 +14,16 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_script('dashboard-script-admin', plugins_url('/panel/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_script('pdr-admin-notifications', plugins_url('/panel/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
     wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', PDR_MAIN_FILE));
+    wp_enqueue_script('pdr-admin-script', plugins_url('/panel/js/admin-script.js', PDR_MAIN_FILE), array('jquery'), null, true);
     
+    // Enfileirar o script AJAX específico do painel
+    wp_enqueue_script('pdr-panel-ajax-script', plugins_url('/panel/js/pdr-panel-ajax.js', PDR_MAIN_FILE), array('jquery'), null, true);
+
+    // Passar a URL AJAX e o nonce para o script pdr-panel-ajax
+    wp_localize_script('pdr-panel-ajax-script', 'pdrPanelAjax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'ajax_nonce' => wp_create_nonce('pdr_panel_nonce') // Ação correspondente à verificação
+    ]);
 
     
 
@@ -59,3 +68,17 @@ function professionaldirectory_enqueue_admin_only_scripts() {
 add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_professional_scripts');
 add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_only_scripts');
 */
+
+
+function pdr_enqueue_material_icons() {
+    wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_material_icons');
+
+
+function pdr_enqueue_notyf() {
+    wp_enqueue_style('notyf-css', 'https://unpkg.com/notyf/notyf.min.css');
+    wp_enqueue_script('notyf-js', 'https://unpkg.com/notyf/notyf.min.js', [], null, true);
+    wp_enqueue_script('my-custom-notyf-js', plugin_dir_url(__FILE__) . 'js/my-custom-notyf.js', ['notyf-js'], null, true);
+}
+add_action('admin_enqueue_scripts', 'pdr_enqueue_notyf');

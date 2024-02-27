@@ -1,52 +1,66 @@
 <?php
+ob_start();
 if (!defined('WPINC')) {
     die;
 }
 
 class Contatos_Admin_Page {
     public function __construct() {
-        add_action('admin_menu', array($this, 'adicionar_menu_contatos'));
-        add_action('init', array($this, 'pdr_add_contacts_capability'));
+        // Hook para adicionar o conteúdo da página no submenu correto, adicionado em panel-menus.php
     }
 
-    /**
-     * Adiciona capacidade para o tipo de usuário 'professional' ver os contatos.
-     */
-    public function pdr_add_contacts_capability() {
-        $role = get_role('professional');
-        if ($role) {
-            $role->add_cap('view_pdr_contacts'); // Adiciona capacidade para ver os contatos.
-        }
-    }
-
-    /**
-     * Adiciona um menu de contatos ao painel de administração.
-     */
-    public function adicionar_menu_contatos() {
-        add_submenu_page(
-            'edit.php?post_type=professional_service', // Ajuste conforme necessário.
-            'Dashboard do Professional',
-            'Dashboard',
-            'view_pdr_contacts', // Use a capacidade que você adicionou acima.
-            'pdr-dashboard',
-            array($this, 'pdr_contacts_page_content') // Referência ao método corrigido.
-        );
-    }
-
-    /**
-     * Renderiza a página de gerenciamento de contatos no painel de administração.
-     */
-    public function pdr_contacts_page_content() {
+    public function render() {
         if (!current_user_can('view_pdr_contacts')) {
-            wp_die(__('Você não tem permissão para acessar esta página.', 'seu-plugin'));
+            wp_die(__('Você não tem permissão para acessar esta página.', 'professionaldirectory'));
         }
+
+        global $wpdb;
+        $current_user_id = get_current_user_id();
+
+        $contacts = $wpdb->get_results($wpdb->prepare(
+            "SELECT c.contact_id, c.email, c.default_name, car.custom_name
+             FROM {$wpdb->prefix}pdr_author_contact_relations car
+             JOIN {$wpdb->prefix}pdr_contacts c ON car.contact_id = c.contact_id
+             WHERE car.author_id = %d
+             GROUP BY c.contact_id",
+            $current_user_id
+        ), ARRAY_A);
 
         echo '<div class="wrap">';
-        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'seu-plugin') . '</h1>';
-        // Implemente a lógica para mostrar os contatos e suas ações aqui.
+        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'professionaldirectory') . '</h1>';
+
+        if (!empty($contacts)) {
+            echo '<table class="wp-list-table widefat fixed striped">';
+            echo '<thead>';
+            echo '<tr><th>' . esc_html__('Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Ações', 'professionaldirectory') . '</th></tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            foreach ($contacts as $contact) {
+                // Verifica se custom_name não está vazio e não é null, caso contrário, usa default_name
+                $display_name = (!empty($contact['custom_name'])) ? $contact['custom_name'] : $contact['default_name'];
+
+
+                // A linha da tabela agora tem uma coluna extra com um link para a página de detalhes do contato
+                $details_url = wp_nonce_url(
+                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $contact['contact_id']], admin_url('admin.php')),
+                    'view_contact_details_' . $contact['contact_id'],
+                    'contact_nonce'
+                );                echo '<tr>';
+                echo '<td>' . esc_html($display_name) . '</td>';
+                echo '<td>' . esc_html($contact['email']) . '</td>';
+                echo '<td><a href="' . $details_url . '" class="button-secondary">' . __('Ver Detalhes', 'professionaldirectory') . '</a></td>';
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+        } else {
+            echo '<p>' . esc_html__('Nenhum contato encontrado.', 'professionaldirectory') . '</p>';
+        }
+
         echo '</div>';
     }
 }
-
-// Inicializa a classe para adicionar a funcionalidade ao WordPress.
-new Contatos_Admin_Page();
+ob_end_flush();
+// A instanciação da classe e a adição ao menu são feitas em panel-menus.php para evitar duplicação.

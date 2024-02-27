@@ -28,7 +28,7 @@ require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
-require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php';
+//require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php'; //Já é incluido diretamente no panel/panel-menus.php
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'panel/dashboard-professional-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
@@ -39,30 +39,16 @@ require_once plugin_dir_path(__FILE__) . 'panel/panel-notifications.php';
 require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
+require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
+
 // Inclui as classes do plugin
-require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-cpt.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-contacts-metabox.php';
-require_once plugin_dir_path(__FILE__) . 'public/class-contacts-public.php';
 
-
-
-// Inicializa as classes
-function seu_plugin_init() {
-    $cpt = new Contatos_CPT();
-    $metabox = new Contatos_Metabox();
-    
-    $public = new Contatos_Public();
+function pdrActivate() {
+    pdrActivatePlugin(); // Esta função está definida em activation.php.
 }
-
-add_action('plugins_loaded', 'seu_plugin_init');
-
+register_activation_hook(__FILE__, 'pdrActivate');
 
 
-
-// Instanciar a classe de administração
-if (is_admin()) {
-    $pdr_plugin_settings = new PDR_Settings();
-}
 
 // Enfileirando o carregador de mídia
 function pdr_enqueue_media_uploader() {
@@ -76,15 +62,6 @@ function pdr_enqueue_media_uploader() {
 }
 add_action('admin_enqueue_scripts', 'pdr_enqueue_media_uploader');
 
-function pdrActivate() {
-    PDR_Users::initialize_user_roles();
-    pdrCreateSearchDataTable(); // Chamada existente do arquivo activation.php
-    update_option( 'pdr_version', PDR_VERSION ); // Armazena a versão atual do plugin
-    pdrCheckVersion();
-    pdrStartSession();
-}
-register_activation_hook(__FILE__, 'pdrActivate');
-
 
 
 function pdrDeactivate() {
@@ -95,3 +72,8 @@ register_deactivation_hook(__FILE__, 'pdrDeactivate');
 
 
 
+//AJAX salvar contato   
+// Adicionar o hook apenas se o contexto atual for uma requisição AJAX.
+if (defined('DOING_AJAX') && DOING_AJAX) {
+    add_action('wp_ajax_save_contact_details', 'pdr_save_contact_details_ajax_handler');
+}

@@ -1,151 +1,140 @@
 <?php
-// Se este arquivo for chamado diretamente, aborte.
+// Verificação para garantir que o arquivo não seja acessado diretamente.
 if (!defined('WPINC')) {
     die;
 }
 
-// Adiciona o submenu dashboard ao menu do post type Services
-function pdr_add_dashboard_capability() {
+require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
+
+
+
+// Adiciona capacidades ao papel 'professional' e registra menus e submenus.
+function pdr_initialize_panel_menus() {
+    add_action('admin_menu', 'pdr_register_menus');
+    add_action('init', 'pdr_add_roles_and_capabilities');
+    add_action('admin_menu', 'pdr_remove_default_dashboard_for_professionals', 999);
+}
+
+// Adiciona as capacidades necessárias ao papel 'professional'.
+function pdr_add_roles_and_capabilities() {
     $role = get_role('professional');
+
+    // Verifica se o papel existe antes de tentar adicionar capacidades.
     if ($role) {
+        // Adiciona a capacidade de ver o dashboard do professional e os contatos.
         $role->add_cap('view_pdr_dashboard');
-    }
-}
-add_action('init', 'pdr_add_dashboard_capability');
-
-function pdr_add_dashboard_submenu() {
-    add_submenu_page(
-        'edit.php?post_type=professional_service',
-        'Dashboard do Professional',
-        'Dashboard',
-        'view_pdr_dashboard',
-        'pdr-dashboard',
-        'pdr_dashboard_page_content'
-    );
-}
-add_action('admin_menu', 'pdr_add_dashboard_submenu');
-
-
-function pdr_add_contacts_capability() {
-    $role = get_role('professional');
-    if ($role) {
         $role->add_cap('view_pdr_contacts');
+        // Adicione outras capacidades conforme necessário aqui.
     }
 }
-add_action('init', 'pdr_add_contacts_capability');
 
-function pdr_add_contacts_submenu() {
-    add_submenu_page(
-        'edit.php?post_type=professional_service',
-        'Gerenciamento de Contatos',
-        'Contatos',
+// Registra menus e submenus no painel de administração.
+function pdr_register_menus() {
+    // Instancia a classe PDR_Settings aqui para uso nos callbacks.
+    $pdr_plugin_settings = new PDR_Settings();
+
+    // Adiciona um menu para o Dashboard do Professional
+    add_menu_page(
+        __('Dashboard do Professional', 'professionaldirectory'),
+        __('Dashboard Professional', 'professionaldirectory'),
+        'view_pdr_dashboard',
+        'pdr-professional-dashboard',
+        'pdr_dashboard_page_content',
+        'dashicons-businessman',
+        3
+    );
+
+    // Menu de Gerenciamento de Contatos como um menu principal.
+    add_menu_page(
+        __('Gerenciamento de Contatos', 'professionaldirectory'),
+        __('Contatos', 'professionaldirectory'),
         'view_pdr_contacts',
         'pdr-contacts',
-        'pdr_contacts_page_content'
+        'pdr_contacts_page_content',
+        'dashicons-businessman',
+        6
     );
-}
-add_action('admin_menu', 'pdr_add_contacts_submenu');
 
-
-function pdr_dashboard_page_content() {
-    include 'templates/dashboard-template-professional.php';
-}
-
-add_action('admin_menu', 'add_custom_submenu_page');
-
-function add_custom_submenu_page() {
+    
     add_submenu_page(
         'edit.php?post_type=professional_service',
-        'Dashboard do Admin',
-        'Dashboard do Admin',
+        __('Dashboard do Admin', 'professionaldirectory'),
+        __('Dashboard do Admin', 'professionaldirectory'),
         'manage_options',
         'dashboard-admin',
-        'dashboard_admin_page_callback'
+        'pdr_dashboard_admin_page_content'
     );
-}
+    
 
-function dashboard_admin_page_callback() {
-    include 'templates/dashboard-template-admin.php';
-}
-
-function pdr_add_shortcodes_help_page() {
+    // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
         'edit.php?post_type=professional_service',
-        'Ajuda de Shortcodes',
-        'Ajuda de Shortcodes',
+        __('Ajuda de Shortcodes', 'professionaldirectory'),
+        __('Ajuda de Shortcodes', 'professionaldirectory'),
         'manage_options',
         'pdr-shortcodes-help',
         'pdr_render_shortcodes_help_page'
     );
-}
-add_action('admin_menu', 'pdr_add_shortcodes_help_page');
 
+    // Submenu de Configurações Gerais utilizando a instância de PDR_Settings.
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        __('Configurações Gerais', 'professionaldirectory'),
+        __('Configurações', 'professionaldirectory'),
+        'manage_options',
+        'pdr-general-settings',
+        [$pdr_plugin_settings, 'settings_page']
+    );
+
+    // Registra a página de detalhes do contato como uma página 'fantasma'
+    add_submenu_page(
+        null, // Não exibe no menu
+        __('Detalhes do Contato', 'professionaldirectory'),
+        null, // Não exibe no menu
+        'view_pdr_contacts',
+        'pdr-contact-details',
+        'pdr_contact_details_page_content'
+    );
+}
+
+
+function pdr_dashboard_admin_page_content() {
+    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-admin.php';
+}
+
+
+function pdr_dashboard_page_content() {
+    // Inclui o arquivo que contém o conteúdo do dashboard do professional
+    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-professional.php';
+}
+
+function pdr_remove_default_dashboard_for_professionals() {
+    // Verifica se o usuário atual tem o papel de 'professional'
+    if (current_user_can('professional')) {
+        // Remove o Dashboard padrão
+        remove_menu_page('index.php');
+    }
+}
+
+// Função que renderiza o conteúdo da página de Contatos.
+function pdr_contacts_page_content() {
+    require_once plugin_dir_path(__FILE__) . 'class-contacts-admin.php';
+    $contactsPage = new Contatos_Admin_Page();
+    $contactsPage->render();
+}
+
+// Função para renderizar o conteúdo da página de detalhes do contato
+function pdr_contact_details_page_content() {
+    require_once plugin_dir_path(__FILE__) . 'single-contact.php';
+}
+
+// Função para a página de ajuda de shortcodes.
 function pdr_render_shortcodes_help_page() {
     include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-// Adicionando a página de configurações gerais ao submenu
-function pdr_add_settings_submenu() {
-    add_submenu_page(
-        'edit.php?post_type=professional_service',
-        __('General Settings', 'professionaldirectory'),
-        __('Settings', 'professionaldirectory'),
-        'manage_options',
-        'settings',
-        'pdr_settings_page'
-    );
-}
-add_action('admin_menu', 'pdr_add_settings_submenu');
-
-// Inclui o arquivo da classe das configurações para renderizar a página
-function pdr_settings_page() {
-    require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
-    $settings_page = new PDR_Settings();
-    $settings_page->settings_page();
-}
 
 
-function pdr_contacts_page_content() {
-    // Verifica se o usuário atual possui a capacidade requerida.
-    if (!current_user_can('view_pdr_contacts')) {
-        wp_die(__('Você não tem permissão para acessar esta página.', 'seu-plugin'));
-    }
 
-    global $wpdb;
-    $tabela_contatos = $wpdb->prefix . 'contatos'; // Substitua pelo nome correto da sua tabela de contatos.
-
-    // Busca contatos do banco de dados.
-    $contatos = $wpdb->get_results("SELECT * FROM {$tabela_contatos}");
-
-    echo '<div class="wrap">';
-    echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'seu-plugin') . '</h1>';
-
-    // Inicia a tabela de contatos.
-    echo '<table class="wp-list-table widefat fixed striped">';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>' . esc_html__('Nome', 'seu-plugin') . '</th>';
-    echo '<th>' . esc_html__('Email', 'seu-plugin') . '</th>';
-    echo '<th>' . esc_html__('Status', 'seu-plugin') . '</th>';
-    echo '<th>' . esc_html__('Ações', 'seu-plugin') . '</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
-    // Itera sobre cada contato e exibe uma linha na tabela.
-    foreach ($contatos as $contato) {
-        echo '<tr>';
-        echo '<td>' . esc_html($contato->nome) . '</td>';
-        echo '<td>' . esc_html($contato->email) . '</td>';
-        echo '<td>' . esc_html($contato->status) . '</td>';
-        echo '<td>';
-        // Exemplo de ação: link para visualizar detalhes do contato.
-        echo '<a href="' . esc_url(admin_url('admin.php?page=detalhes-contato&id=' . $contato->id)) . '">' . __('Ver Detalhes', 'seu-plugin') . '</a>';
-        echo '</td>';
-        echo '</tr>';
-    }
-
-    echo '</tbody>';
-    echo '</table>';
-    echo '</div>';
-}
+// Inicialização
+pdr_initialize_panel_menus();

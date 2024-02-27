@@ -77,6 +77,14 @@ class PDR_Users {
         update_user_meta($user_id, 'social', $_POST['social']);
     }
 
+    public static function hideAdminColorSchemeForProfessionals() {
+        $user = wp_get_current_user();
+        if (in_array('professional', (array)$user->roles)) {
+            echo '<style>tr.user-admin-color-wrap { display: none; }</style>';
+        }
+    }
+
+
     public static function register_hooks() {
         // Registra os hooks para adicionar e salvar campos personalizados
         add_action('show_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
@@ -84,18 +92,14 @@ class PDR_Users {
 
         add_action('personal_options_update', array(__CLASS__, 'save_custom_user_profile_fields'));
         add_action('edit_user_profile_update', array(__CLASS__, 'save_custom_user_profile_fields'));
+        // Oculta a opção de esquema de cores para usuários "professional"
+        add_action('admin_head', array(__CLASS__, 'hideAdminColorSchemeForProfessionals'));
 
-        // Adiciona o novo hook para remover a opção de esquema de cores
-        add_action('admin_init', array(__CLASS__, 'removeAdminColorSchemeForProfessionals'));
     }
 
-    public static function removeAdminColorSchemeForProfessionals() {
-        $user = wp_get_current_user();
-        if (in_array('professional', (array)$user->roles)) {
-            global $_wp_admin_css_colors;
-            $_wp_admin_css_colors = array();
-        }
-    }
+    
+   
+    
 }
 
 // Chama o método register_hooks na inicialização do plugin
