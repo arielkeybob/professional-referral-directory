@@ -13,7 +13,6 @@
                     <!-- Custom Name Field -->
                     <div class="input-field col s12 m6">
                         <div>
-                        <i class="material-icons prefix">account_circle</i>
                         <input type="text" id="custom_name" class="validate" name="custom_name" value="<?php echo esc_attr($custom_name ? $custom_name : $contact->default_name); ?>" readonly>
                         <a href="javascript:void(0);" id="edit-name" class="btn-floating waves-effect waves-light red"><i class="material-icons">edit</i></a>
                         </div>
@@ -25,6 +24,37 @@
                         </p>
                     </div>
                     </div>
+
+                    <!-- Contact Status Dropdown -->
+                    <!-- Seu trecho de código PHP -->
+    <div class="row">
+        <div class="col s12 m6" style="display: flex; align-items: center; justify-content: flex-end;">
+            <span style="margin-right: 10px;">
+                <?php echo esc_html__('Contact Status:', 'professionaldirectory'); ?>
+            </span>
+            <select name="contact_status" id="contact_status">
+                <option value="" disabled selected><?php echo esc_html__('Choose Status', 'professionaldirectory'); ?></option>
+                <?php foreach (['active', 'lead', 'not_interested', 'client'] as $option) : ?>
+                    <option value="<?php echo esc_attr($option); ?>" <?php echo selected($status, $option, false); ?>>
+                        <?php echo esc_html(ucfirst($option)); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+
+<!-- Inicialização do Materialize Select -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+
+    // Ajustando a largura do dropdown para se adequar ao conteúdo mais largo
+    var select = document.getElementById('contact_status');
+    var instance = M.FormSelect.getInstance(select);
+    select.style.width = instance.dropdownOptions.clientWidth + 'px';
+});
+</script>
 
                     
                 </div>
@@ -38,18 +68,7 @@
                         </p>
                     </div>
 
-                    <!-- Contact Status Dropdown -->
-                    <div class="input-field col s12 m6">
-                        <select name="contact_status" id="contact_status">
-                            <option value="" disabled selected><?php echo esc_html__('Choose Status', 'professionaldirectory'); ?></option>
-                            <?php foreach (['active', 'lead', 'not_interested', 'client'] as $option) : ?>
-                            <option value="<?php echo esc_attr($option); ?>" <?php echo selected($status, $option, false); ?>>
-                                <?php echo esc_html(ucfirst($option)); ?>
-                            </option>
-                            <?php endforeach; ?>
-                        </select>
-                        <label><?php echo esc_html__('Contact Status:', 'professionaldirectory'); ?></label>
-                    </div>
+                    
                 </div>
 
                 <!-- Associated Searches -->
