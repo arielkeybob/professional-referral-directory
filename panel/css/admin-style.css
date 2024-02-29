@@ -67,3 +67,21 @@ select.regular-text {
 select#contact_status {
     width: 100%;
 }
+
+h2 {
+    font-size: 2rem !important;
+}
+
+.color-hex-text-field{
+    width: 90px !important;
+    text-align: right;
+    margin: 0 0 0px 20px !important;
+    height: 0 !important;
+}
+
+.font-text-field {
+    width: 140px !important;
+    text-align: right;
+    margin: 0 0 0px 20px !important;
+    height: 0 !important;
+}

@@ -280,47 +280,47 @@ class PDR_Settings {
         // Campo de entrada de cor original
         echo "<input type='color' name='prd_button_color' value='" . esc_attr($value) . "' />";
         // Adicionar campo de entrada de texto para código hexadecimal
-        echo "<input type='text' name='prd_button_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+        echo "<input type='text' name='prd_button_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
     }
        
     public function button_text_color_callback() {
         $value = get_option('prd_button_text_color', '#FFFFFF');
         echo "<input type='color' name='prd_button_text_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_button_text_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+        echo "<input type='text' name='prd_button_text_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
     }
 
     public function button_hover_color_callback() {
         $value = get_option('prd_button_hover_color', '#000000');
         echo "<input type='color' name='prd_button_hover_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_button_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+        echo "<input type='text' name='prd_button_hover_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
     public function button_text_hover_color_callback() {
     $value = get_option('prd_button_text_hover_color', '#FFFFFF');
     echo "<input type='color' name='prd_button_text_hover_color' value='" . esc_attr($value) . "' />";
-    echo "<input type='text' name='prd_button_text_hover_color_hex' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
+    echo "<input type='text' name='prd_button_text_hover_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#ffffff' />";
     }
 
     public function title_font_family_callback() {
         $value = get_option('prd_title_font_family', '');
-        echo "<input type='text' name='prd_title_font_family' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_title_font_family' class='font-text-field' value='" . esc_attr($value) . "' />";
     }
 
     public function title_color_callback() {
         $value = get_option('prd_title_color', '#000000');
         echo "<input type='color' name='prd_title_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_title_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+        echo "<input type='text' name='prd_title_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
     public function body_font_family_callback() {
         $value = get_option('prd_body_font_family', '');
-        echo "<input type='text' name='prd_body_font_family' value='" . esc_attr($value) . "' />";
+        echo "<input type='text' name='prd_body_font_family' class='font-text-field' value='" . esc_attr($value) . "' />";
     }
 
     public function body_color_callback() {
         $value = get_option('prd_body_color', '#000000');
         echo "<input type='color' name='prd_body_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_body_color_hex' value='" . esc_attr($value) . "' placeholder='#000000' />";
+        echo "<input type='text' name='prd_body_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#000000' />";
     }
 
     public function template_choice_callback() {
@@ -339,28 +339,28 @@ class PDR_Settings {
     public function primary_color_callback() {
         $value = get_option('prd_primary_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_primary_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_primary_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
+        echo "<input type='text' name='prd_primary_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
     // Callback para a cor secundária
     public function secondary_color_callback() {
         $value = get_option('prd_secondary_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_secondary_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_secondary_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
+        echo "<input type='text' name='prd_secondary_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
     // Callback para a cor do texto
     public function text_color_callback() {
         $value = get_option('prd_text_color', '#333333'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_text_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_text_color_hex' value='" . esc_attr($value) . "' placeholder='#333333' />";
+        echo "<input type='text' name='prd_text_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#333333' />";
     }
 
     // Callback para a cor de destaque (Accent color)
     public function accent_color_callback() {
         $value = get_option('prd_accent_color', '#0073aa'); // Valor padrão como exemplo
         echo "<input type='color' name='prd_accent_color' value='" . esc_attr($value) . "' />";
-        echo "<input type='text' name='prd_accent_color_hex' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
+        echo "<input type='text' name='prd_accent_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
     public function panel_logo_callback() {

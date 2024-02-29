@@ -422,6 +422,7 @@ td.title.column-title.has-row-actions.column-primary.page-title {
 .pdr-dash-notifications img, .pdr-icon-help img {
     padding: 16px;
     background: #f4f4f4;
+    box-sizing: content-box;
 }
 
 .pdr-dash-notifications img:hover, .pdr-icon-help img:hover {
