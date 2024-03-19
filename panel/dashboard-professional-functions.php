@@ -63,7 +63,7 @@ function pdr_get_recent_searches_for_user($limit = 10) {
     $postTable = $wpdb->posts;
 
     $query = $wpdb->prepare(
-        "SELECT sd.service_type, sd.search_date, p.post_title, c.default_name AS name, c.email, sd.service_location
+        "SELECT sd.service_type, sd.search_date, p.post_title, c.default_name AS name, c.email, sd.service_location, sd.contact_id
          FROM $searchDataTable AS sd
          INNER JOIN $authorContactRelationsTable AS acr ON sd.contact_id = acr.contact_id
          INNER JOIN $contactsTable AS c ON acr.contact_id = c.contact_id
@@ -76,7 +76,3 @@ function pdr_get_recent_searches_for_user($limit = 10) {
 
     return $wpdb->get_results($query, ARRAY_A);
 }
-
-
-
-

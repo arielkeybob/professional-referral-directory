@@ -69,8 +69,13 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
             echo '<table id="recentSearchesTable" class="display">';
             echo '<thead><tr><th>' . esc_html__('User Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Address', 'professionaldirectory') . '</th><th>' . esc_html__('Service', 'professionaldirectory') . '</th><th>' . esc_html__('Type', 'professionaldirectory') . '</th><th>' . esc_html__('Date', 'professionaldirectory') . '</th></tr></thead><tbody>';
             foreach ($recent_searches as $search) {
+                $details_url = wp_nonce_url(
+                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $search['contact_id']], admin_url('admin.php')),
+                    'view_contact_details_' . $search['contact_id'],
+                    'contact_nonce'
+                );
                 echo '<tr>';
-                echo '<td>' . esc_html($search['name']) . '</td>';
+                echo '<td><a href="' . esc_url($details_url) . '">' . esc_html($search['name']) . '</a></td>'; // Link para os detalhes do contato
                 echo '<td>' . esc_html($search['email']) . '</td>';
                 echo '<td>' . esc_html($search['service_location']) . '</td>';
                 echo '<td>' . esc_html($search['post_title']) . '</td>';
