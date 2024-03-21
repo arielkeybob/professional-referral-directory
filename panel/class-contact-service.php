@@ -24,4 +24,33 @@ class ContactService {
         );
         return $this->wpdb->get_results($query, ARRAY_A);
     }
+
+    // Continuação da classe ContactService em contact-service.php
+
+    public function getContactDetailsById($contactId) {
+        $query = $this->wpdb->prepare(
+            "SELECT * FROM {$this->wpdb->prefix}pdr_contacts WHERE contact_id = %d",
+            $contactId
+        );
+        return $this->wpdb->get_row($query);
+    }
+
+    public function getCustomNameAndStatus($contactId, $authorId) {
+        $query = $this->wpdb->prepare(
+            "SELECT custom_name, status FROM {$this->wpdb->prefix}pdr_author_contact_relations WHERE contact_id = %d AND author_id = %d",
+            $contactId,
+            $authorId
+        );
+        return $this->wpdb->get_row($query);
+    }
+
+    public function getSearchesByContactId($contactId, $authorId) {
+        $query = $this->wpdb->prepare(
+            "SELECT * FROM {$this->wpdb->prefix}pdr_search_data WHERE contact_id = %d AND author_id = %d",
+            $contactId,
+            $authorId
+        );
+        return $this->wpdb->get_results($query);
+    }
+
 }

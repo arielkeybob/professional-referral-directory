@@ -5,7 +5,8 @@ if (!defined('WPINC')) {
 }
 
 // Inclui a classe ContactService para gerenciar as consultas de contato.
-require_once __DIR__ . '/class-contact-service.php';
+require_once dirname(__DIR__) .  '\panel\class-contact-service.php';
+
 
 class Contatos_Admin_Page {
     protected $contactService;
