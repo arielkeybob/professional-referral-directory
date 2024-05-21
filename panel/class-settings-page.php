@@ -300,11 +300,46 @@ class PDR_Settings {
 
     public function template_choice_callback() {
         $template_choice = get_option('pdr_template_choice', 'template-1');
-        echo "<select name='pdr_template_choice'>";
-        echo "<option value='template-1' " . selected($template_choice, 'template-1', false) . ">" . esc_html__('Template 1', 'professionaldirectory') . "</option>";
-        echo "<option value='template-2' " . selected($template_choice, 'template-2', false) . ">" . esc_html__('Template 2', 'professionaldirectory') . "</option>";
-        echo "</select>";
+        $templates = [
+            'template-1' => 'Template 1',
+            'template-2' => 'Template 2'
+        ];
+        ?>
+        <div class="template-choice-container">
+            <?php foreach ($templates as $template_value => $template_label): ?>
+                <label>
+                    <input type="radio" name="pdr_template_choice" value="<?php echo esc_attr($template_value); ?>" <?php checked($template_choice, $template_value); ?> />
+                    <img src="<?php echo plugin_dir_url(PDR_MAIN_FILE) . 'panel/img/' . esc_attr($template_value) . '.jpg'; ?>" alt="<?php echo esc_attr($template_label); ?>" class="template-thumbnail" />
+                </label>
+            <?php endforeach; ?>
+        </div>
+        <style>
+            .template-choice-container {
+                display: flex;
+                gap: 10px;
+            }
+            .template-choice-container label {
+                display: block;
+                text-align: center;
+                cursor: pointer;
+            }
+            .template-choice-container input[type="radio"] {
+                display: none;
+            }
+            .template-thumbnail {
+                border: 2px solid transparent;
+                border-radius: 5px;
+                transition: border-color 0.3s;
+                width: 150px; /* Ajuste conforme necessário */
+                height: auto; /* Mantém a proporção da imagem */
+            }
+            .template-choice-container input[type="radio"]:checked + .template-thumbnail {
+                border-color: #007cba;
+            }
+        </style>
+        <?php
     }
+    
 
     // Callbacks Panel Style
     public function primary_color_callback() {
