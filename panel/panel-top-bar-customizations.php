@@ -30,7 +30,7 @@ function pdr_add_custom_admin_bar() {
         
         // Se nenhuma imagem foi definida, você pode definir uma imagem padrão
         if (!$logo_url) {
-            $logo_url = '/wp-content/uploads/default-logo.png'; // Caminho para a logo padrão
+            $logo_url = plugin_dir_url(__FILE__) . '../panel/img/default-logo.png'; // Caminho para a logo padrão
         }
 
         $bell_notification_url = plugin_dir_url(__FILE__) . '../public/img/Bell-Notification.png'; 
