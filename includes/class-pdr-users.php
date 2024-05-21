@@ -1,5 +1,5 @@
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') or die('No script kiddies please!');
 
 class PDR_Users {
 
@@ -11,6 +11,7 @@ class PDR_Users {
                 'Professional',
                 array(
                     'read' => true, // Permite que o usuário leia
+                    'upload_files' => true, // Permite que o usuário faça upload de arquivos
                     // Adicione outras capacidades específicas para o papel 'professional' aqui.
                 )
             );
@@ -22,6 +23,7 @@ class PDR_Users {
             // Adicione as capacidades relacionadas ao tipo de post 'service'.
             $role->add_cap('edit_services');
             $role->add_cap('edit_published_services');
+            $role->add_cap('upload_files'); // Certifique-se de que a capacidade de upload está incluída
             // Adicione outras capacidades conforme necessário.
         }
     }
@@ -31,6 +33,7 @@ class PDR_Users {
         if ($role = get_role('professional')) {
             $role->remove_cap('edit_services');
             $role->remove_cap('edit_published_services');
+            $role->remove_cap('upload_files'); // Remova a capacidade de upload também
             // Remova outras capacidades adicionadas.
         }
         remove_role('professional');
@@ -81,7 +84,6 @@ class PDR_Users {
         }
     }
 
-
     public static function register_hooks() {
         // Registra os hooks para adicionar e salvar campos personalizados
         add_action('show_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
@@ -91,12 +93,7 @@ class PDR_Users {
         add_action('edit_user_profile_update', array(__CLASS__, 'save_custom_user_profile_fields'));
         // Oculta a opção de esquema de cores para usuários "professional"
         add_action('admin_head', array(__CLASS__, 'hideAdminColorSchemeForProfessionals'));
-
     }
-
-    
-   
-    
 }
 
 // Chama o método register_hooks na inicialização do plugin

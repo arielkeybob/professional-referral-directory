@@ -26,7 +26,7 @@ function pdr_add_custom_admin_bar() {
         $avatar_url = get_avatar_url($current_user->ID);
 
         // Obtem o ID da imagem da logo salvo nas opções do tema
-        $logo_id = get_option('prd_panel_logo');
+        $logo_id = get_option('pdr_panel_logo');
         // Obtem a URL da imagem a partir do ID
         $logo_url = wp_get_attachment_url($logo_id);
         

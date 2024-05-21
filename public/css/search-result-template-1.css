@@ -68,6 +68,11 @@ img.attachment-medium.size-medium.wp-post-image {
   width: 100%;
 }
 
+.service-thumbnail img {
+  width: 100%;
+}
+
+
 p.service-taxonomy.service-type {
   margin-top: 50px !important;
 }
