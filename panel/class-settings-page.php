@@ -48,6 +48,7 @@ class PDR_Settings {
     public function register_settings() {
         // Registra configurações para a aba "General Settings"
         register_setting('pdr_settings_group_general', 'pdr_general_option');
+        register_setting('pdr_settings_group_general', 'pdr_delete_data_on_uninstall'); // Novo registro para deletar dados
         
         add_settings_section(
             'pdr_general_settings_section', 
@@ -61,6 +62,15 @@ class PDR_Settings {
             __('General Option', 'professionaldirectory'), 
             array($this, 'general_option_callback'), 
             'pdr_general_settings', 
+            'pdr_general_settings_section'
+        );
+
+        // Adiciona a nova configuração para deletar dados na desinstalação
+        add_settings_field(
+            'pdr_delete_data_on_uninstall',
+            __('Delete Data on Uninstall', 'professionaldirectory'),
+            array($this, 'delete_data_on_uninstall_callback'),
+            'pdr_general_settings',
             'pdr_general_settings_section'
         );
 
@@ -220,6 +230,18 @@ class PDR_Settings {
         echo "<input type='text' name='pdr_general_option' value='" . esc_attr($option_value) . "' />";
     }
 
+    // Callback Delete Data on Uninstall
+    public function delete_data_on_uninstall_callback() {
+        $option = get_option('pdr_delete_data_on_uninstall', 'no');
+        ?>
+        <select name="pdr_delete_data_on_uninstall">
+            <option value="yes" <?php selected($option, 'yes'); ?>><?php _e('Yes', 'professionaldirectory'); ?></option>
+            <option value="no" <?php selected($option, 'no'); ?>><?php _e('No', 'professionaldirectory'); ?></option>
+        </select>
+        <p class="description"><?php _e('Choose whether to delete all plugin data when the plugin is uninstalled.', 'professionaldirectory'); ?></p>
+        <?php
+    }
+
     // Callbacks API Options
     public function google_maps_api_key_callback() {
         $api_key = get_option('pdr_google_maps_api_key');
@@ -349,8 +371,6 @@ class PDR_Settings {
         </style>
         <?php
     }
-    
-    
 
     // Callbacks Panel Style
     public function primary_color_callback() {
@@ -365,7 +385,7 @@ class PDR_Settings {
         echo "<input type='text' name='pdr_secondary_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#0073aa' />";
     }
 
-    public function text_color_callback() {
+     public function text_color_callback() {
         $value = get_option('pdr_text_color', '#333333');
         echo "<input type='color' name='pdr_text_color' value='" . esc_attr($value) . "' />";
         echo "<input type='text' name='pdr_text_color_hex' class='color-hex-text-field' value='" . esc_attr($value) . "' placeholder='#333333' />";
@@ -443,4 +463,3 @@ class PDR_Settings {
     }
 }
 ?>
-
