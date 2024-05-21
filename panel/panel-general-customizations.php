@@ -57,7 +57,16 @@ add_filter('update_footer', 'pdr_remove_footer_version', 9999);
 
 
 
+?>
+<script src="path/to/materialize/js/materialize.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+});
+</script>
 
+<?php
 
 
 

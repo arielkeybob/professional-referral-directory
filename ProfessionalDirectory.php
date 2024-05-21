@@ -77,3 +77,5 @@ register_deactivation_hook(__FILE__, 'pdrDeactivate');
 if (defined('DOING_AJAX') && DOING_AJAX) {
     add_action('wp_ajax_save_contact_details', 'pdr_save_contact_details_ajax_handler');
 }
+
+

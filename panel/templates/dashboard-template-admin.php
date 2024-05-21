@@ -39,14 +39,5 @@
             </tbody>
         </table>
     </div>
-    <!-- No final do body -->
-<script src="path/to/materialize/js/materialize.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-});
-</script>
-
 </body>
 </html>
