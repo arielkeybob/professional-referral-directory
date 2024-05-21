@@ -307,21 +307,23 @@ class PDR_Settings {
         ?>
         <div class="template-choice-container">
             <?php foreach ($templates as $template_value => $template_label): ?>
-                <label>
+                <label title="<?php echo esc_attr($template_label); ?>">
                     <input type="radio" name="pdr_template_choice" value="<?php echo esc_attr($template_value); ?>" <?php checked($template_choice, $template_value); ?> />
                     <img src="<?php echo plugin_dir_url(PDR_MAIN_FILE) . 'panel/img/' . esc_attr($template_value) . '.jpg'; ?>" alt="<?php echo esc_attr($template_label); ?>" class="template-thumbnail" />
+                    <span class="template-label"><?php echo esc_html($template_label); ?></span>
                 </label>
             <?php endforeach; ?>
         </div>
         <style>
             .template-choice-container {
                 display: flex;
-                gap: 10px;
+                gap: 20px;
             }
             .template-choice-container label {
                 display: block;
                 text-align: center;
                 cursor: pointer;
+                position: relative;
             }
             .template-choice-container input[type="radio"] {
                 display: none;
@@ -336,9 +338,18 @@ class PDR_Settings {
             .template-choice-container input[type="radio"]:checked + .template-thumbnail {
                 border-color: #007cba;
             }
+            .template-label {
+                display: block;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+            .template-choice-container label:hover .template-thumbnail {
+                border-color: #555;
+            }
         </style>
         <?php
     }
+    
     
 
     // Callbacks Panel Style
