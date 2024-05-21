@@ -53,11 +53,13 @@ function pdrCreateContactsTable() {
     dbDelta($sql);
 }
 
-// Função para criar a tabela de dados de pesquisa
 function pdrCreateSearchDataTable() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_search_data';
     $charset_collate = $wpdb->get_charset_collate();
+
+    // Certifique-se de que a tabela de contatos seja criada primeiro.
+    pdrCreateContactsTable(); // Chame a função para criar a tabela de contatos aqui.
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -76,7 +78,6 @@ function pdrCreateSearchDataTable() {
     dbDelta($sql);
 }
 
-// Função para criar a tabela de relação autor-contato
 function pdrCreateAuthorContactRelationsTable() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_author_contact_relations';
@@ -88,7 +89,9 @@ function pdrCreateAuthorContactRelationsTable() {
         author_id BIGINT UNSIGNED NOT NULL,
         status VARCHAR(100) NOT NULL,
         custom_name VARCHAR(255) DEFAULT NULL,
-        UNIQUE (contact_id, author_id)
+        UNIQUE (contact_id, author_id),
+        FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE CASCADE,
+        FOREIGN KEY (author_id) REFERENCES {$wpdb->users}(ID) ON DELETE CASCADE
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -117,11 +120,10 @@ function pdrActivatePlugin() {
     pdr_initialize_user_roles();
     wp_cache_flush();
     pdr_clear_transients(); // Limpa todos os transients
-    pdrCreateContactsTable();
     pdrCreateSearchDataTable();
     pdrCreateAuthorContactRelationsTable();
     pdrCheckVersion();
     pdrStartSession();
 }
 
-register_activation_hook(PDR_MAIN_FILE, 'pdrActivatePlugin');
+register_activation_hook(__FILE__, 'pdrActivatePlugin');
