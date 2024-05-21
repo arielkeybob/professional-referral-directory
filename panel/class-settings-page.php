@@ -1,4 +1,6 @@
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
+    
 class PDR_Settings {
 
     public function __construct() {

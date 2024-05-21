@@ -1,9 +1,5 @@
 <?php
-// class-contact-service.php
-
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 class ContactService {
     protected $wpdb;

@@ -1,8 +1,5 @@
 <?php
-// Verifica se este arquivo não está sendo acessado diretamente.
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a classe ContactService para gerenciar as consultas de contato.
 require_once dirname(__DIR__) .  '\panel\class-contact-service.php';

@@ -1,8 +1,5 @@
 <?php
-// Verifica se o arquivo foi chamado diretamente.
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 class Contatos_Public {
     public function __construct() {

@@ -1,8 +1,5 @@
 <?php
-// Se este arquivo for chamado diretamente, aborte.
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 function get_form_data() {
     // Captura e sanitiza os dados do formulário

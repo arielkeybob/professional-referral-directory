@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
 // Função auxiliar para obter termos de taxonomia como string
 function pdr_get_taxonomy_terms_as_string($taxonomy) {
     $terms = get_the_terms(get_the_ID(), $taxonomy);

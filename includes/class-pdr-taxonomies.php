@@ -3,9 +3,7 @@
  * Classe para gerenciar as taxonomias do ProfessionalDirectory.
  */
 
-if (!defined('WPINC')) {
-    die;
-}
+ defined('ABSPATH') or die('No script kiddies please!');
 
 class PDR_Taxonomies {
     /**

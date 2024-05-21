@@ -1,8 +1,5 @@
 <?php
-// Verifica se o arquivo foi chamado diretamente
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a função de captura de dados do formulário
 require_once plugin_dir_path(PDR_MAIN_FILE) . 'public/form-data-functions.php';

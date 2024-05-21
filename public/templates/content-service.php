@@ -1,8 +1,5 @@
 <?php
-// Verifique se o WordPress foi carregado corretamente
-if (!defined('ABSPATH')) {
-    exit; // Saída em caso de acesso direto ao arquivo
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 
 // Em content-service.php

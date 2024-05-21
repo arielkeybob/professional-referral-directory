@@ -1,9 +1,7 @@
 <?php
 // single-contact.php
 ob_start();
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a classe ContactService para gerenciar as consultas de contato.
 require_once 'class-contact-service.php';

@@ -1,8 +1,5 @@
 <?php
-// Verifica se o WordPress carregou corretamente
-if (!defined('ABSPATH')) {
-    exit; // Sai se acessado diretamente
-}
+defined('ABSPATH') or die('No script kiddies please!');
 ?>
 
 <div class="wrap">

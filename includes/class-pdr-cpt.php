@@ -1,9 +1,7 @@
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
     // Se este arquivo for chamado diretamente, aborte.
-    if ( ! defined( 'WPINC' ) ) {
-        die;
-    }
-
+    
     class PDR_CPT {
 
         public static function register_service_cpt() {

@@ -1,4 +1,6 @@
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
+    
 // includes\panel-top-bar-customizations.php
 
 function pdrRemoveAdminBar() {

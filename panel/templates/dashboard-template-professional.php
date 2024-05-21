@@ -1,8 +1,5 @@
 <?php
-// Verifique se este arquivo não está sendo acessado diretamente.
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
 

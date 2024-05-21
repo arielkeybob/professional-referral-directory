@@ -1,4 +1,6 @@
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
+    
 // Hook para a resposta AJAX
 add_action('wp_ajax_fetch_admin_dashboard_data', 'fetch_admin_dashboard_data');
 

@@ -1,4 +1,6 @@
 <?php
+
+    defined('ABSPATH') or die('No script kiddies please!');
 // export-services.php
 
 function export_services_to_csv() {

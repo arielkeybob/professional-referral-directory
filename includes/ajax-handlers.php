@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') or die('No script kiddies please!');
 
 function pdr_save_contact_details_ajax_handler() {
     // Certifique-se de que o nonce foi enviado e é válido

@@ -1,8 +1,5 @@
 <?php
-// Se este arquivo for chamado diretamente, aborte.
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 // require_once 'class-pdr-geolocation.php';
 

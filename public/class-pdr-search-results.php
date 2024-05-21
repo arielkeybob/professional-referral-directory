@@ -1,7 +1,5 @@
 <?php
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data-storage-functions.php';
 

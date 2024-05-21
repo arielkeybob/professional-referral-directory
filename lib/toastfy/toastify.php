@@ -1,4 +1,6 @@
 <?php
+    defined('ABSPATH') or die('No script kiddies please!');
+    
 function enqueue_toastify() {
     $plugin_url = plugin_dir_url(__FILE__);
 

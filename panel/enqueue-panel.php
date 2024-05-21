@@ -1,8 +1,5 @@
 <?php
-// Se este arquivo for chamado diretamente, aborte.
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 
 
@@ -40,10 +37,10 @@ function professionaldirectory_enqueue_admin_scripts() {
     wp_enqueue_script('pdr-settings-page-script', plugins_url('panel/js/settings-page-colors.js', PDR_MAIN_FILE));
     
     // Adiciona o CSS do Materialize
-wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
+//wp_enqueue_style('materialize-css', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css');
 
 // Adiciona o JavaScript do Materialize
-wp_enqueue_script('materialize-js', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array('jquery'), '1.0.0', true);
+//wp_enqueue_script('materialize-js', 'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array('jquery'), '1.0.0', true);
 
 }
 
@@ -53,6 +50,9 @@ if (is_admin()) {
     // A função para enfileirar os scripts permanece a mesma
     add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
 }
+
+
+
 
 
 //Quando for separar o enfileiramento baseado nas capacidades do usuário usar como base o código abaixo

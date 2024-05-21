@@ -1,4 +1,6 @@
 <?php
+
+    defined('ABSPATH') or die('No script kiddies please!');
 // Função para estilos no frontend
 function pdr_custom_frontend_styles() {
     ?>

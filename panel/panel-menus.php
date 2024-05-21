@@ -1,8 +1,5 @@
 <?php
-// Verificação para garantir que o arquivo não seja acessado diretamente.
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
 

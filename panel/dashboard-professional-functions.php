@@ -1,8 +1,5 @@
 <?php
-// Verifique se este arquivo não está sendo acessado diretamente.
-if (!defined('WPINC')) {
-    die;
-}
+    defined('ABSPATH') or die('No script kiddies please!');
 
 // Certifique-se de incluir ou autoload a classe ContactService.
 // Isso pode ser feito no início do seu plugin ou onde essas funções serão chamadas.

@@ -1,5 +1,6 @@
 <?php
-
+    defined('ABSPATH') or die('No script kiddies please!');
+    
 function pdr_obter_notificacoes_ativas() {
     $caminho_json = plugin_dir_path( __FILE__ ) . 'notifications/notifications.json';
     $notificacoes = json_decode( file_get_contents( $caminho_json ), true );

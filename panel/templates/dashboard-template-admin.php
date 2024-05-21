@@ -1,3 +1,7 @@
+<?php
+    defined('ABSPATH') or die('No script kiddies please!');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
