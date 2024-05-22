@@ -9,7 +9,13 @@ if (!defined('PDR_MAIN_FILE')) {
     define('PDR_MAIN_FILE', __FILE__);
 }
 
+// Define a constante PDR_MAIN_FILE
+if (!defined('PDR_MAIN_FILE')) {
+    define('PDR_MAIN_FILE', __FILE__);
+}
+
 // Carrega o arquivo principal do plugin para acessar as constantes e funções do plugin
+require_once plugin_dir_path(__FILE__) . 'includes/activation.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php';
 
 // Verifica a opção do usuário para saber se deve deletar os dados
