@@ -363,7 +363,7 @@ msgstr "Painel Profissional "
 msgid "ProfessionalDirectory"
 msgstr "Diretório Profissional"
 
-#: public/templates/content-service.php:50
+#: public/templates/search-result-template-1.php:50
 msgid "Read more"
 msgstr "Ler mais"
 
@@ -436,7 +436,7 @@ msgstr "Serviço"
 msgid "Service Location"
 msgstr "Localização de Serviço"
 
-#: public/templates/content-service.php:31
+#: public/templates/search-result-template-1.php:31
 msgid "Service Locations:"
 msgstr "Localizações de Serviço:"
 
@@ -448,7 +448,7 @@ msgstr "Nome do Serviço"
 msgid "Service Type"
 msgstr "Tipo de Serviço"
 
-#: public/templates/content-service.php:27
+#: public/templates/search-result-template-1.php:27
 msgid "Service Types:"
 msgstr "Tipos de Serviço:"
 

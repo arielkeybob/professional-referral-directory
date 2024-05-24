@@ -1,47 +1,54 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
 
-    defined('ABSPATH') or die('No script kiddies please!');
-// export-services.php
+// Verifica se a solicitação para exportar dados foi feita
+if (isset($_POST['pdr_export_data']) && current_user_can('manage_options')) {
+    global $wpdb;
 
-function export_services_to_csv() {
-    // Verifica se o usuário atual tem permissão para exportar
-    if (!current_user_can('export')) {
-        wp_die('Você não tem permissão para acessar esta funcionalidade.');
-    }
+    $filename = 'pdr-data-export-' . date('Y-m-d') . '.csv';
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename=' . $filename);
+    header('Pragma: no-cache');
+    header('Expires: 0');
 
-    // Define o tipo de post que será exportado
-    $args = array(
-        'post_type' => 'professional_service', // Substitua pelo slug correto do seu post type
-        'posts_per_page' => -1
-    );
-
-    $services = get_posts($args);
-
-    // Verifica se há serviços para exportar
-    if (empty($services)) {
-        wp_die('Nenhum serviço disponível para exportação.');
-    }
-
-    // Define os cabeçalhos para o download do arquivo CSV
-    header('Content-Type: text/csv; charset=utf-8');
-    header('Content-Disposition: attachment; filename="services.csv"');
-
-    // Abre a saída do PHP para escrita do arquivo CSV
     $output = fopen('php://output', 'w');
 
-    // Define e escreve os cabeçalhos das colunas no CSV
-    fputcsv($output, array('ID', 'Title', 'Date'));
+    // Função para exportar uma tabela
+    function export_table($table_name, $columns, $output) {
+        global $wpdb;
 
-    // Percorre os serviços e escreve as linhas no CSV
-    foreach ($services as $service) {
-        fputcsv($output, array(
-            $service->ID,
-            get_the_title($service->ID),
-            $service->post_date
-        ));
+        // Escreve o nome da tabela
+        fputcsv($output, [$table_name]);
+
+        // Escreve os nomes das colunas
+        fputcsv($output, $columns);
+
+        // Busca os dados da tabela
+        $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+
+        // Escreve os dados da tabela
+        if ($results) {
+            foreach ($results as $row) {
+                fputcsv($output, $row);
+            }
+        }
+
+        // Adiciona uma linha em branco para separar as tabelas
+        fputcsv($output, []);
     }
 
-    // Fecha a saída e encerra o script
+    // Exporta a tabela pdr_contacts
+    export_table($wpdb->prefix . 'pdr_contacts', ['contact_id', 'email', 'default_name'], $output);
+
+    // Exporta a tabela pdr_search_data
+    export_table($wpdb->prefix . 'pdr_search_data', ['id', 'service_type', 'service_location', 'search_date', 'service_id', 'author_id', 'contact_id', 'search_status'], $output);
+
+    // Exporta a tabela pdr_author_contact_relations
+    export_table($wpdb->prefix . 'pdr_author_contact_relations', ['author_contact_id', 'contact_id', 'author_id', 'status', 'custom_name'], $output);
+
     fclose($output);
     exit;
 }
+?>

@@ -18,6 +18,7 @@ class PDR_Settings {
                 <a href="?post_type=professional_service&page=pdr-general-settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=pdr-general-settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'professionaldirectory'); ?></a>
                 <a href="?post_type=professional_service&page=pdr-general-settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
+                <a href="?post_type=professional_service&page=pdr-general-settings&tab=advanced_settings" class="nav-tab <?php echo $active_tab == 'advanced_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Advanced', 'professionaldirectory'); ?></a>
             </h2>
             <form method="post" action="options.php">
                 <?php
@@ -36,6 +37,9 @@ class PDR_Settings {
                 } elseif ($active_tab == 'panel_style') {
                     settings_fields('pdr_settings_group_panel_style');
                     do_settings_sections('pdr_panel_style_settings');
+                } elseif ($active_tab == 'advanced_settings') {
+                    settings_fields('pdr_settings_group_advanced');
+                    do_settings_sections('pdr_advanced_settings');
                 }
                                
                 submit_button();
@@ -222,6 +226,24 @@ class PDR_Settings {
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
         );
+
+        // Configurações para a aba "Advanced"
+        register_setting('pdr_settings_group_advanced', 'pdr_export_data'); // Novo registro para exportar dados
+    
+        add_settings_section(
+            'pdr_advanced_settings_section', 
+            __('Tools', 'professionaldirectory'), 
+            null, 
+            'pdr_advanced_settings'
+        );
+    
+        add_settings_field(
+            'pdr_export_data', 
+            __('Export Data', 'professionaldirectory'), 
+            array($this, 'export_data_callback'), 
+            'pdr_advanced_settings', 
+            'pdr_advanced_settings_section'
+        );
     }
 
     // Callback General options
@@ -241,6 +263,17 @@ class PDR_Settings {
         <p class="description"><?php _e('Choose whether to delete all plugin data when the plugin is uninstalled.', 'professionaldirectory'); ?></p>
         <?php
     }
+
+    // Callback para Export Data
+public function export_data_callback() {
+    ?>
+    <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
+        <input type="hidden" name="action" value="pdr_export_data" />
+        <?php submit_button(__('Export Data (Coming Soon)', 'professionaldirectory'), 'secondary', '', false, array('disabled' => 'disabled')); ?>
+    </form>
+    <p class="description"><?php _e('This feature will be available in a future update.', 'professionaldirectory'); ?></p>
+    <?php
+}
 
     // Callbacks API Options
     public function google_maps_api_key_callback() {
@@ -371,6 +404,7 @@ class PDR_Settings {
         </style>
         <?php
     }
+    
 
     // Callbacks Panel Style
     public function primary_color_callback() {
