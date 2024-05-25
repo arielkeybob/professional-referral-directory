@@ -32,12 +32,30 @@ jQuery(document).ready(function($) {
     $('#pdr-search-form').on('submit', function(e) {
         e.preventDefault();
 
+        // Validação dos campos de senha se a criação de conta estiver marcada
+        if ($('#create-account').is(':checked')) {
+            var password = $('input[name="password"]').val();
+            var confirmPassword = $('input[name="confirm_password"]').val();
+
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem.');
+                return;
+            }
+
+            if (!password || !confirmPassword) {
+                alert('Por favor, preencha todos os campos de senha.');
+                return;
+            }
+        }
+
         var formData = {
             'action': 'pdr_search',
             'service_type': $('select[name="service_type"]').val(),
             'service_location': $('select[name="service_location"]').val(),
             'name': $('input[name="name"]').val(),
-            'email': $('input[name="email"]').val()
+            'email': $('input[name="email"]').val(),
+            'create_account': $('#create-account').is(':checked') ? '1' : '',
+            'password': $('input[name="password"]').val()
         };
 
         // Enviando a requisição AJAX

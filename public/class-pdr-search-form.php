@@ -90,7 +90,8 @@ class PDR_Search_Form {
                         <?php _e('Create an account', 'professionaldirectory'); ?>
                     </label>
                     <div id="account-info" style="display: none;">
-                        <!-- Additional fields for account creation -->
+                        <input type="password" name="password" placeholder="<?php echo esc_attr__('Password', 'professionaldirectory'); ?>" required>
+                        <input type="password" name="confirm_password" placeholder="<?php echo esc_attr__('Confirm Password', 'professionaldirectory'); ?>" required>
                     </div>
                 <?php endif; ?>
 
@@ -118,4 +119,3 @@ class PDR_Search_Form {
 }
 
 new PDR_Search_Form();
-?>

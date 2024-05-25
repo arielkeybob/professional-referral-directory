@@ -11,10 +11,16 @@ class PDR_Search_Results {
     }
 
     public function handle_ajax_search() {
+        error_log('Iniciando handle_ajax_search');
+        
         $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
         $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
         $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
         $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+        $create_account = isset($_POST['create_account']) ? $_POST['create_account'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+        error_log("service_type: $service_type, service_location: $service_location, name: $name, email: $email, create_account: $create_account, password: $password");
 
         // Certifique-se de que email e nome estão presentes
         if (empty($email) || empty($name)) {
@@ -22,8 +28,33 @@ class PDR_Search_Results {
             wp_die();
         }
 
+        // Criar usuário se solicitado
+        if ($create_account) {
+            error_log('Iniciando criação de conta');
+            $user_id = wp_create_user($email, $password, $email);
+            if (is_wp_error($user_id)) {
+                error_log('Erro ao criar usuário: ' . $user_id->get_error_message());
+                wp_send_json_error('Erro ao criar usuário: ' . $user_id->get_error_message());
+                wp_die();
+            } else {
+                error_log('Usuário criado com sucesso: ' . $user_id);
+                // Atualizar o nome do usuário
+                wp_update_user([
+                    'ID' => $user_id,
+                    'display_name' => $name,
+                    'role' => 'subscriber',
+                ]);
+
+                // Logar o usuário recém-criado
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+                error_log('Usuário logado com sucesso: ' . $user_id);
+            }
+        }
+
         // Obter ou criar contact_id baseado no e-mail fornecido
         $contactId = adicionar_ou_atualizar_contato(['email' => $email, 'name' => $name]);
+        error_log("contactId: $contactId");
 
         $args = [
             'post_type' => 'professional_service',
