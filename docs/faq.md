@@ -18,6 +18,18 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 ### Q: Quem pode criar e gerenciar serviços?
 **A:** Usuários com o role “Professional” e administradores podem criar e gerenciar serviços.
 
+### Q: Quem pode cadastrar Locations e Service Types?
+**A:** Até a versão 1.1.2, somente administradores do site podem cadastrar Locations e Service Types. Estamos estudando a viabilidade de permitir que os Professionals também possam fazer esse cadastro.
+
+### Q: Como funciona a pesquisa de serviços sem login?
+**A:** Usuários podem pesquisar serviços sem fazer login. Porém eles devem fornecer o nome e email para realizar a pesquisa. Opcionalmente, eles podem criar uma conta durante o processo de pesquisa.
+
+### Q: Como criar uma conta durante a pesquisa de serviços?
+**A:** Durante a pesquisa, os usuários têm a opção de criar uma conta marcando a opção "Create an account" e fornecendo uma senha. Se a conta for criada com sucesso, o usuário será automaticamente logado.
+
+### Q: O que acontece se o usuário não optar por criar uma conta?
+**A:** Se o usuário não optar por criar uma conta, ele ainda poderá realizar a pesquisa e ver os resultados fornecendo apenas o nome e o email.
+
 ## Problemas e Soluções
 
 ### Q: Estou tendo problemas com a instalação, o que devo fazer?
