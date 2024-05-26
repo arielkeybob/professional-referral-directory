@@ -19,6 +19,7 @@ define( 'PDR_VERSION', '1.1.2' ); // Substitua 1.0.0 pela versão atual do seu p
 
 
 // Inclusões de Arquivos Principais do Plugin
+
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-taxonomies.php';

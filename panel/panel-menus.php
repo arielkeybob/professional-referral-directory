@@ -1,8 +1,7 @@
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
-
 
 
 // Adiciona capacidades ao papel 'professional' e registra menus e submenus.
@@ -30,6 +29,16 @@ function pdr_register_menus() {
     // Instancia a classe PDR_Settings aqui para uso nos callbacks.
     $pdr_plugin_settings = new PDR_Settings();
 
+    // Submenu de Boas-vindas.
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        __('Boas-vindas', 'professionaldirectory'),
+        __('Boas-vindas', 'professionaldirectory'),
+        'manage_options',
+        'pdr-welcome-page',
+        'pdr_welcome_page_content'
+    );
+
     // Adiciona um menu para o Dashboard do Professional
     add_menu_page(
         __('Dashboard do Professional', 'professionaldirectory'),
@@ -52,7 +61,6 @@ function pdr_register_menus() {
         6
     );
 
-    
     add_submenu_page(
         'edit.php?post_type=professional_service',
         __('Dashboard do Admin', 'professionaldirectory'),
@@ -61,7 +69,6 @@ function pdr_register_menus() {
         'dashboard-admin',
         'pdr_dashboard_admin_page_content'
     );
-    
 
     // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
@@ -130,8 +137,10 @@ function pdr_render_shortcodes_help_page() {
     include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-
-
+// Função para a página de boas-vindas.
+function pdr_welcome_page_content() {
+    include plugin_dir_path(__FILE__) . '/welcome-page.php';
+}
 
 // Inicialização
 pdr_initialize_panel_menus();
