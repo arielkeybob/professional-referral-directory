@@ -2,6 +2,7 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
+require_once plugin_dir_path(__FILE__) . 'commission-settings.php'; // Certifique-se de incluir o arquivo onde a função está definida
 
 // Adiciona capacidades ao papel 'professional' e registra menus e submenus.
 function pdr_initialize_panel_menus() {
@@ -37,6 +38,16 @@ function pdr_register_menus() {
         'manage_options',
         'pdr-welcome-page',
         'pdr_welcome_page_content'
+    );
+
+    // Submenu de Comissões.
+    add_submenu_page(
+        'edit.php?post_type=professional_service',
+        __('Comissões', 'professionaldirectory'),
+        __('Comissões', 'professionaldirectory'),
+        'manage_options',
+        'pdr-commissions-page',
+        'pdr_commissions_settings_page' // Esta é a função correta a ser chamada
     );
 
     // Adiciona um menu para o Dashboard do Professional
@@ -101,11 +112,9 @@ function pdr_register_menus() {
     );
 }
 
-
 function pdr_dashboard_admin_page_content() {
     include plugin_dir_path(__FILE__) . 'templates/dashboard-template-admin.php';
 }
-
 
 function pdr_dashboard_page_content() {
     // Inclui o arquivo que contém o conteúdo do dashboard do professional
@@ -167,3 +176,4 @@ function pdr_handle_create_pages() {
 
 // Inicialização
 pdr_initialize_panel_menus();
+?>
