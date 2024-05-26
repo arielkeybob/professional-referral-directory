@@ -12,50 +12,47 @@ class PDR_Search_Results {
 
     public function handle_ajax_search() {
         error_log('Iniciando handle_ajax_search');
-        
+    
         $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
         $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
         $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
         $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-        $create_account = isset($_POST['create_account']) ? $_POST['create_account'] : '';
-        $password = isset($_POST['password']) ? $_POST['password'] : '';
-
+        $create_account = isset($_POST['create_account']) ? sanitize_text_field($_POST['create_account']) : '';
+        $password = isset($_POST['password']) ? sanitize_text_field($_POST['password']) : '';
+    
         error_log("service_type: $service_type, service_location: $service_location, name: $name, email: $email, create_account: $create_account, password: $password");
-
-        // Certifique-se de que email e nome estão presentes
+    
         if (empty($email) || empty($name)) {
             wp_send_json_error('Email and name are required.');
             wp_die();
         }
-
-        // Criar usuário se solicitado
-        if ($create_account) {
+    
+        // Processa a criação de conta apenas se a opção for selecionada
+        if ($create_account && !empty($password)) {
             error_log('Iniciando criação de conta');
-            $user_id = wp_create_user($email, $password, $email);
+            $userdata = array(
+                'user_login' => $email,
+                'user_email' => $email,
+                'user_pass' => $password,
+                'first_name' => $name,
+                'role' => 'subscriber'
+            );
+            $user_id = wp_insert_user($userdata);
+    
             if (is_wp_error($user_id)) {
-                error_log('Erro ao criar usuário: ' . $user_id->get_error_message());
-                wp_send_json_error('Erro ao criar usuário: ' . $user_id->get_error_message());
+                wp_send_json_error($user_id->get_error_message());
                 wp_die();
             } else {
                 error_log('Usuário criado com sucesso: ' . $user_id);
-                // Atualizar o nome do usuário
-                wp_update_user([
-                    'ID' => $user_id,
-                    'display_name' => $name,
-                    'role' => 'subscriber',
-                ]);
-
-                // Logar o usuário recém-criado
                 wp_set_current_user($user_id);
                 wp_set_auth_cookie($user_id);
                 error_log('Usuário logado com sucesso: ' . $user_id);
             }
         }
-
-        // Obter ou criar contact_id baseado no e-mail fornecido
+    
         $contactId = adicionar_ou_atualizar_contato(['email' => $email, 'name' => $name]);
-        error_log("contactId: $contactId");
-
+        error_log('contactId: ' . $contactId);
+    
         $args = [
             'post_type' => 'professional_service',
             'tax_query' => [
@@ -72,21 +69,20 @@ class PDR_Search_Results {
                 ],
             ],
         ];
-
+    
         $query = new WP_Query($args);
-
+    
         if ($query->have_posts()) {
             ob_start();
-
-            // Obter a escolha do template
+    
             $template_choice = get_option('pdr_template_choice', 'template-1');
             $template_file = 'search-result-' . $template_choice . '.php';
-
+    
             while ($query->have_posts()) {
                 $query->the_post();
                 $service_id = get_the_ID();
                 $author_id = get_post_field('post_author', $service_id);
-
+    
                 $data_to_store = [
                     'service_type' => $service_type,
                     'service_location' => $service_location,
@@ -96,81 +92,33 @@ class PDR_Search_Results {
                     'service_id' => $service_id,
                     'author_id' => $author_id,
                     'search_date' => current_time('mysql'),
-                    'search_status' => 'pending', // Inicialmente, todos os estados de pesquisa são definidos como 'pending'
+                    'search_status' => 'pending',
                 ];
-
-                // Armazenar os dados da pesquisa
+    
                 if (!store_search_data($data_to_store)) {
                     error_log('Failed to store search data.');
                 }
-
-                // Criar ou atualizar a relação contato-autor
+    
                 createOrUpdateContactAuthorRelation($contactId, $author_id, 'active', null);
-
-                // Incluir o template correto
+    
                 include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/' . $template_file;
             }
-
+    
             $html = ob_get_clean();
             wp_reset_postdata();
             wp_send_json_success($html);
         } else {
             wp_send_json_error('No service found.');
         }
-
+    
         wp_die();
     }
+    
+    
 
     public function render_search_results() {
         ob_start();
-
-        // Verifica se os dados do formulário foram enviados
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Captura os termos das taxonomias do formulário
-            $service_type_term = isset($_POST['service_type']) ? $_POST['service_type'] : '';
-            $service_location_term = isset($_POST['service_location']) ? $_POST['service_location'] : '';
-
-            // Prepara os argumentos para a consulta
-            $args = array(
-                'post_type' => 'professional_service',
-                'tax_query' => array(
-                    'relation' => 'AND',
-                    array(
-                        'taxonomy' => 'service_type',
-                        'field'    => 'slug',
-                        'terms'    => $service_type_term
-                    ),
-                    array(
-                        'taxonomy' => 'service_location',
-                        'field'    => 'slug',
-                        'terms'    => $service_location_term
-                    )
-                )
-            );
-
-            // Realiza a consulta
-            $query = new WP_Query($args);
-
-            // Verifica se a consulta encontrou resultados
-            if ($query->have_posts()) {
-                echo '<ul>';
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
-                }
-                echo '</ul>';
-            } else {
-                echo '<p>' . esc_html__('No service found.', 'professionaldirectory') . '</p>';
-            }
-
-            // Restaura a consulta original
-            wp_reset_postdata();
-        } else {
-            echo '<p>' . esc_html__('Use the search form to find services.', 'professionaldirectory'). '</p>';
-        }
-
         ?>
-        <!-- Local para exibir os resultados da busca -->
         <div id="pdr-search-results"></div>
         <?php
         return ob_get_clean();

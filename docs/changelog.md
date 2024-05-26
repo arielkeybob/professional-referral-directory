@@ -2,30 +2,29 @@
 
 Este arquivo documenta todas as alterações significativas feitas em cada versão do plugin ProfessionalDirectory.
 
-## [Versão Atual]
+## [1.1.2] - 2024-05-25
+### Added
+- Implemented user creation during search process.
+- Added feature to allow search without login or user creation.
+- Improved AJAX handling and logging for debugging.
+- Updated search form to capture user details and provide login/account creation options.
 
-- Data de lançamento: [Data de Lançamento]
-- Resumo das principais mudanças nesta versão.
+### Fixed
+- Corrected issues where searches were not working without login.
+- Ensured proper handling and logging of account creation process.
 
-## [Versão Anterior]
+## [1.1.1] - Previous Date
+### Added
+- Initial implementation of search functionality.
+- Basic user authentication and search result display.
 
-- Data de lançamento: [Data de Lançamento]
-- Lista de mudanças realizadas nesta versão.
-
-## Versões Anteriores
-
-### [Versão X.Y.Z]
-
-- Data de lançamento: [Data de Lançamento]
-- Mudanças detalhadas.
-
-### [Versão X.Y.Z-1]
-
-- Data de lançamento: [Data de Lançamento]
-- Mudanças detalhadas.
+## [1.1.0] - Initial Release
+### Added
+- Core functionality for managing professional service listings.
+- Basic search and filter options.
 
 ---
 
 Este changelog segue o [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) e adere ao [Versionamento Semântico](https://semver.org/).
 
-Desenvolvido por Ariel SOuza
+Desenvolvido por Ariel Souza

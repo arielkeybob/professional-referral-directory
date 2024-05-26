@@ -32,30 +32,15 @@ jQuery(document).ready(function($) {
     $('#pdr-search-form').on('submit', function(e) {
         e.preventDefault();
 
-        // Validação dos campos de senha se a criação de conta estiver marcada
-        if ($('#create-account').is(':checked')) {
-            var password = $('input[name="password"]').val();
-            var confirmPassword = $('input[name="confirm_password"]').val();
-
-            if (password !== confirmPassword) {
-                alert('As senhas não coincidem.');
-                return;
-            }
-
-            if (!password || !confirmPassword) {
-                alert('Por favor, preencha todos os campos de senha.');
-                return;
-            }
-        }
-
         var formData = {
             'action': 'pdr_search',
             'service_type': $('select[name="service_type"]').val(),
             'service_location': $('select[name="service_location"]').val(),
             'name': $('input[name="name"]').val(),
             'email': $('input[name="email"]').val(),
-            'create_account': $('#create-account').is(':checked') ? '1' : '',
-            'password': $('input[name="password"]').val()
+            'create_account': $('input[name="create_account"]').is(':checked') ? 1 : 0,
+            'password': $('input[name="password"]').val(),
+            'confirm_password': $('input[name="confirm_password"]').val()
         };
 
         // Enviando a requisição AJAX
@@ -67,10 +52,9 @@ jQuery(document).ready(function($) {
                 if (response.success) {
                     // Função para processar e exibir os resultados da busca
                     displayResults(response.data);
-                    //alert('Informações enviadas com sucesso.');
                 } else {
                     // Tratar casos de falha na busca
-                    $('#pdr-search-results').html('<p>No service found.</p>');
+                    $('#pdr-search-results').html('<p>' + response.data + '</p>');
                 }
             },
             error: function() {
@@ -87,7 +71,8 @@ jQuery(document).ready(function($) {
 
         // Insere o HTML retornado diretamente no container de resultados
         resultsContainer.html(data);
-        // Depois que o HTML é inserido, você chama a função para reorganizar os elementos
-       
     }
 });
+
+
+
