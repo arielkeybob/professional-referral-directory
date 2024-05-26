@@ -3,12 +3,12 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
 
-
 // Adiciona capacidades ao papel 'professional' e registra menus e submenus.
 function pdr_initialize_panel_menus() {
     add_action('admin_menu', 'pdr_register_menus');
     add_action('init', 'pdr_add_roles_and_capabilities');
     add_action('admin_menu', 'pdr_remove_default_dashboard_for_professionals', 999);
+    add_action('admin_init', 'pdr_handle_create_pages'); // Adiciona o handler para criar páginas
 }
 
 // Adiciona as capacidades necessárias ao papel 'professional'.
@@ -140,6 +140,29 @@ function pdr_render_shortcodes_help_page() {
 // Função para a página de boas-vindas.
 function pdr_welcome_page_content() {
     include plugin_dir_path(__FILE__) . '/welcome-page.php';
+}
+
+// Função para lidar com a criação de páginas.
+function pdr_handle_create_pages() {
+    $search_page_id = get_option('pdr_search_page_id');
+    $page_exists = $search_page_id && get_post_status($search_page_id);
+
+    if (isset($_POST['pdr_create_pages_submit']) && check_admin_referer('pdr_create_pages', 'pdr_create_pages_nonce')) {
+        if (isset($_POST['create_search_page']) && !$page_exists) {
+            // Cria a página de pesquisa de serviços
+            $page_id = wp_insert_post([
+                'post_title' => __('Pesquisa de Serviços', 'professional-directory'),
+                'post_content' => '[pdr_search_form][pdr_search_results]',
+                'post_status' => 'publish',
+                'post_type' => 'page'
+            ]);
+            if ($page_id) {
+                update_option('pdr_search_page_id', $page_id);
+                wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-welcome-page&created=true'));
+                exit;
+            }
+        }
+    }
 }
 
 // Inicialização
