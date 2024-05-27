@@ -40,41 +40,70 @@ class PDR_Users {
     }
 
     public static function add_custom_user_profile_fields($user) {
-        // Código para adicionar campos personalizados ao perfil do usuário
-        ?>
-        <h3><?php _e("Informações Adicionais", "your_textdomain"); ?></h3>
+        // Verifica se o usuário atual é administrador
+        if (current_user_can('administrator') && in_array('professional', (array) $user->roles)) {
+            $commission_type = get_user_meta($user->ID, 'pdr_commission_type', true);
+            $commission_view = get_user_meta($user->ID, 'pdr_commission_view', true);
+            $commission_approval = get_user_meta($user->ID, 'pdr_commission_approval', true);
+            ?>
+            <h3><?php _e('Configurações de Comissão', 'professional-directory'); ?></h3>
+            <table class="form-table">
+                <tr>
+                    <th><label for="commission_type"><?php _e('Tipo de Comissão', 'professional-directory'); ?></label></th>
+                    <td>
+                        <select id="commission_type" name="commission_type">
+                            <option value="view" <?php selected($commission_type, 'view'); ?>><?php _e('Por Visualização', 'professional-directory'); ?></option>
+                            <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php _e('Por Pesquisa Aprovada', 'professional-directory'); ?></option>
+                            <option value="both" <?php selected($commission_type, 'both'); ?>><?php _e('Combinação das Duas', 'professional-directory'); ?></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="commission_view">
+                    <th><label for="commission_view"><?php _e('Comissão por Visualização', 'professional-directory'); ?></th>
+                    <td>
+                        <input type="text" name="commission_view" id="commission_view" value="<?php echo esc_attr($commission_view); ?>" />
+                    </td>
+                </tr>
+                <tr class="commission_approval">
+                    <th><label for="commission_approval"><?php _e('Comissão por Pesquisa Aprovada', 'professional-directory'); ?></th>
+                    <td>
+                        <input type="text" name="commission_approval" id="commission_approval" value="<?php echo esc_attr($commission_approval); ?>" />
+                    </td>
+                </tr>
+            </table>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    function toggleCommissionFields() {
+                        const type = document.getElementById('commission_type').value;
+                        document.querySelector('.commission_view').style.display = (type === 'view' || type === 'both') ? 'table-row' : 'none';
+                        document.querySelector('.commission_approval').style.display = (type === 'approval' || type === 'both') ? 'table-row' : 'none';
+                    }
 
-        <table class="form-table">
-            <tr>
-                <th>
-                    <label for="telefone"><?php _e("Telefone"); ?></label>
-                </th>
-                <td>
-                    <input type="text" name="telefone" id="telefone" value="<?php echo esc_attr(get_the_author_meta('telefone', $user->ID)); ?>" class="regular-text" /><br />
-                    <span class="description"><?php _e("Por favor insira seu telefone."); ?></span>
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <label for="social"><?php _e("Rede Social"); ?></label>
-                </th>
-                <td>
-                    <input type="text" name="social" id="social" value="<?php echo esc_attr(get_the_author_meta('social', $user->ID)); ?>" class="regular-text" /><br />
-                    <span class="description"><?php _e("Por favor insira sua rede social."); ?></span>
-                </td>
-            </tr>
-        </table>
-        <?php
+                    document.getElementById('commission_type').addEventListener('change', toggleCommissionFields);
+                    toggleCommissionFields();
+                });
+            </script>
+            <?php
+        }
     }
 
     public static function save_custom_user_profile_fields($user_id) {
         // Código para salvar os campos personalizados
-        if (!current_user_can('edit_user', $user_id)) {
+        if (!current_user_can('administrator')) {
             return false;
         }
 
-        update_user_meta($user_id, 'telefone', $_POST['telefone']);
-        update_user_meta($user_id, 'social', $_POST['social']);
+        if (isset($_POST['commission_type'])) {
+            update_user_meta($user_id, 'pdr_commission_type', sanitize_text_field($_POST['commission_type']));
+        }
+
+        if (isset($_POST['commission_view'])) {
+            update_user_meta($user_id, 'pdr_commission_view', sanitize_text_field($_POST['commission_view']));
+        }
+
+        if (isset($_POST['commission_approval'])) {
+            update_user_meta($user_id, 'pdr_commission_approval', sanitize_text_field($_POST['commission_approval']));
+        }
     }
 
     public static function hideAdminColorSchemeForProfessionals() {
@@ -98,3 +127,4 @@ class PDR_Users {
 
 // Chama o método register_hooks na inicialização do plugin
 PDR_Users::register_hooks();
+?>
