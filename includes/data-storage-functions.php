@@ -59,10 +59,16 @@ function store_search_data($data) {
         $data['search_date'] = current_time('mysql');
     }
 
-    $commission_view = str_replace(',', '.', get_option('pdr_general_commission_view', '0.05'));
-    $commission_approval = str_replace(',', '.', get_option('pdr_general_commission_approval', '0.10'));
-    $commission_view_float = number_format(floatval($commission_view), 2, '.', '');
-    $commission_approval_float = number_format(floatval($commission_approval), 2, '.', '');
+    // Verifica o tipo de comissão e aplica os valores correspondentes
+    $commission_type = get_option('pdr_commission_type', 'view');
+    $commission_view = $commission_approval = 0.00;
+
+    if ($commission_type === 'view' || $commission_type === 'both') {
+        $commission_view = number_format(floatval(str_replace(',', '.', get_option('pdr_general_commission_view', '0.05'))), 2, '.', '');
+    }
+    if ($commission_type === 'approval' || $commission_type === 'both') {
+        $commission_approval = number_format(floatval(str_replace(',', '.', get_option('pdr_general_commission_approval', '0.10'))), 2, '.', '');
+    }
 
     $insertData = [
         'service_type' => $data['service_type'],
@@ -72,8 +78,8 @@ function store_search_data($data) {
         'author_id' => $data['author_id'],
         'contact_id' => $data['contact_id'],
         'search_status' => $data['search_status'] ?? 'pending',
-        'commission_value_view' => $commission_view_float,
-        'commission_value_approval' => $commission_approval_float
+        'commission_value_view' => $commission_view,
+        'commission_value_approval' => $commission_approval
     ];
 
     if (!$wpdb->insert($searchDataTable, $insertData)) {
