@@ -93,18 +93,25 @@ class PDR_Users {
         if (!current_user_can('administrator')) {
             return false;
         }
-
-        update_user_meta($user_id, 'pdr_override_commission', isset($_POST['override_commission']) ? 'yes' : 'no');
-        if (isset($_POST['commission_type'])) {
-            update_user_meta($user_id, 'pdr_commission_type', sanitize_text_field($_POST['commission_type']));
-        }
-        if (isset($_POST['commission_view'])) {
-            update_user_meta($user_id, 'pdr_commission_view', sanitize_text_field($_POST['commission_view']));
-        }
-        if (isset($_POST['commission_approval'])) {
-            update_user_meta($user_id, 'pdr_commission_approval', sanitize_text_field($_POST['commission_approval']));
+    
+        // Verifica se o checkbox 'override_commission' foi marcado e salva a opção
+        $override_commission = isset($_POST['override_commission']) ? 'yes' : 'no';
+        update_user_meta($user_id, 'pdr_override_commission', $override_commission);
+    
+        // Salva as outras configurações de comissão somente se o override está ativo
+        if ($override_commission === 'yes') {
+            if (isset($_POST['commission_type'])) {
+                update_user_meta($user_id, 'pdr_commission_type', sanitize_text_field($_POST['commission_type']));
+            }
+            if (isset($_POST['commission_view'])) {
+                update_user_meta($user_id, 'pdr_commission_view', sanitize_text_field($_POST['commission_view']));
+            }
+            if (isset($_POST['commission_approval'])) {
+                update_user_meta($user_id, 'pdr_commission_approval', sanitize_text_field($_POST['commission_approval']));
+            }
         }
     }
+    
 
     public static function register_hooks() {
         add_action('show_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
