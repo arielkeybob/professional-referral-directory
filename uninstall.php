@@ -59,7 +59,7 @@ if ($delete_data === 'yes') {
         'pdr_commission_view',
         'pdr_commission_approval',
         'pdr_override_commission',
-        'pdr_override_commission'
+        
     ];
 
     foreach ($meta_keys_to_delete as $meta_key) {

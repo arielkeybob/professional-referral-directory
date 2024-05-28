@@ -8,14 +8,12 @@ function adicionar_ou_atualizar_contato($dados) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdr_contacts';
     if (!isset($dados['email']) || empty($dados['email'])) {
-        // Tratar erro ou retornar valor que indique falha
         return false;
     }
     $email = $dados['email'];
-    $name = $dados['name'] ?? ''; // Assume que 'name' pode não estar definido
+    $name = $dados['name'] ?? '';
 
     $contact = $wpdb->get_row($wpdb->prepare("SELECT contact_id FROM $table_name WHERE email = %s", $email));
-
     if ($contact) {
         $wpdb->update($table_name, ['default_name' => $name], ['email' => $email]);
         return $contact->contact_id;
@@ -25,10 +23,6 @@ function adicionar_ou_atualizar_contato($dados) {
     }
 }
 
-
-/**
- * Cria ou atualiza a relação entre contato e autor.
- */
 /**
  * Cria ou atualiza a relação entre contato e autor na tabela 'wp_pdr_author_contact_relations'.
  */
@@ -36,32 +30,18 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'a
     global $wpdb;
     $relationTable = $wpdb->prefix . 'pdr_author_contact_relations';
 
-    // Verificar se já existe uma relação para o par contato-autor
     $existingRelation = $wpdb->get_row($wpdb->prepare(
         "SELECT author_contact_id FROM $relationTable WHERE contact_id = %d AND author_id = %d",
         $contactId, $authorId
     ));
-
-    // Se não existir, cria uma nova relação
     if (!$existingRelation) {
-        $data = [
-            'contact_id' => $contactId,
-            'author_id' => $authorId,
-            'status' => $status,
-        ];
-        
-        // Se um nome personalizado foi fornecido, inclua-o nos dados
+        $data = ['contact_id' => $contactId, 'author_id' => $authorId, 'status' => $status];
         if ($customName !== null) {
             $data['custom_name'] = $customName;
         }
-
         $wpdb->insert($relationTable, $data);
     }
-    // Se a relação já existir, não fazemos nada
 }
-
-
-
 
 /**
  * Armazena os dados da pesquisa associando-os automaticamente a um contato.
@@ -70,26 +50,30 @@ function store_search_data($data) {
     global $wpdb;
     $searchDataTable = $wpdb->prefix . 'pdr_search_data';
     
-    // Assegura que os campos necessários estão presentes
     if (!isset($data['service_type'], $data['service_location'], $data['contact_id'], $data['author_id'])) {
         error_log('Dados necessários ausentes para inserção em wp_pdr_search_data.');
         return false;
     }
 
-    // Adiciona a data atual se não for fornecida
     if (!isset($data['search_date'])) {
         $data['search_date'] = current_time('mysql');
     }
 
-    // Inserir dados da pesquisa na tabela, incluindo o status da pesquisa
+    $commission_view = str_replace(',', '.', get_option('pdr_general_commission_view', '0.05'));
+    $commission_approval = str_replace(',', '.', get_option('pdr_general_commission_approval', '0.10'));
+    $commission_view_float = number_format(floatval($commission_view), 2, '.', '');
+    $commission_approval_float = number_format(floatval($commission_approval), 2, '.', '');
+
     $insertData = [
         'service_type' => $data['service_type'],
         'service_location' => $data['service_location'],
         'search_date' => $data['search_date'],
-        'service_id' => $data['service_id'] ?? 0, // Adiciona 0 se service_id não estiver definido
+        'service_id' => $data['service_id'] ?? 0,
         'author_id' => $data['author_id'],
         'contact_id' => $data['contact_id'],
-        'search_status' => $data['search_status'] ?? 'pending', // Usa 'pending' como padrão se não definido
+        'search_status' => $data['search_status'] ?? 'pending',
+        'commission_value_view' => $commission_view_float,
+        'commission_value_approval' => $commission_approval_float
     ];
 
     if (!$wpdb->insert($searchDataTable, $insertData)) {
@@ -97,8 +81,6 @@ function store_search_data($data) {
         return false;
     }
 
-    return true; // Sucesso
+    error_log("Dados de pesquisa inseridos com sucesso, ID: " . $wpdb->insert_id);
+    return true;
 }
-
-
-// Aqui, você pode adicionar quaisquer outras funções relacionadas ao armazenamento de dados que seu plugin necessite.

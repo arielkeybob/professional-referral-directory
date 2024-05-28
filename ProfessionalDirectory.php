@@ -17,6 +17,7 @@ define('PDR_MAIN_FILE', __FILE__);
 
 define( 'PDR_VERSION', '1.1.2' ); // Substitua 1.0.0 pela versão atual do seu plugin
 
+include_once(plugin_dir_path(__FILE__) . 'insert_test_data.php');
 
 // Inclusões de Arquivos Principais do Plugin
 
