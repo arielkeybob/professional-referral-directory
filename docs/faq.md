@@ -5,7 +5,7 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 ## Perguntas Gerais
 
 ### Q: O que o plugin ProfessionalDirectory faz?
-**A:** O plugin permite criar e gerenciar um diretório de serviços profissionais no WordPress, incluindo a funcionalidade de busca e categorização de serviços.
+**A:** O plugin permite criar e gerenciar um diretório de serviços profissionais no WordPress, incluindo a funcionalidade de busca e categorização de serviços, além de gerenciar comissões para os serviços visualizados ou aprovados.
 
 ### Q: Em quais versões do WordPress o plugin é compatível?
 **A:** O plugin é compatível com as versões mais recentes do WordPress. Recomendamos sempre manter seu WordPress atualizado.
@@ -29,6 +29,16 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 
 ### Q: O que acontece se o usuário não optar por criar uma conta?
 **A:** Se o usuário não optar por criar uma conta, ele ainda poderá realizar a pesquisa e ver os resultados fornecendo apenas o nome e o email.
+
+## Gestão de Comissões
+
+### Q: Como são gerenciadas as comissões no ProfessionalDirectory?
+**A:** O plugin permite a configuração de comissões de duas formas:
+- **Configurações Globais de Comissão:** Aplicam-se a todos os profissionais e podem ser configuradas para comissões por visualização, por pesquisa aprovada, ou ambas.
+- **Configurações Específicas de Comissão:** Permite que profissionais com a permissão adequada sobrescrevam as configurações globais para suas próprias comissões. Esta opção deve ser habilitada por cada profissional em seu perfil.
+
+### Q: O que acontece se um profissional sobrescrever as configurações de comissão?
+**A:** Se um profissional optar por sobrescrever as configurações de comissão, as comissões aplicadas serão as definidas em seu perfil, em vez das configurações globais. Isto permite uma maior flexibilidade e personalização.
 
 ## Problemas e Soluções
 

@@ -12,6 +12,7 @@ ProfessionalDirectory é um plugin WordPress robusto e flexível destinado a cri
 - **Formulário de Busca e Resultados (Shortcodes):** Facilita a implementação de formulários de busca no front-end e a exibição dos resultados da pesquisa.
 - **Funcionalidade de Envio de E-mail:** Envia automaticamente e-mails para profissionais com base nas ações do usuário no site. Isso permite que o profissional receba uma notificação sempre que seu serviço for visualizado.
 - **Dashboard do Profissional e do Administrador:** Permite visualizar métricas de pesquisa dos serviços em períodos selecionados.
+- **Sistema de Comissões Dinâmico:** Inclui funcionalidades para calcular e aplicar comissões por visualizações de serviço e pesquisas aprovadas, com configurações específicas por usuário e configurações gerais.
 
 ## Configuração de E-mail SMTP
 

@@ -24,6 +24,23 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
 
 - Administradores podem adicionar, editar e excluir qualquer Service da mesma forma, mas têm acesso a todos os services listados no painel.
 
+## Sistema de Comissões
+
+O ProfessionalDirectory oferece um sistema flexível de comissões que pode ser configurado tanto globalmente quanto individualmente para cada profissional. Existem três tipos principais de comissões:
+
+- **Por Visualização:** Comissão gerada cada vez que um serviço é visualizado.
+- **Por Pesquisa Aprovada:** Comissão atribuída quando uma pesquisa resulta em uma contratação ou outro critério de "aprovação" definido.
+- **Combinação das Duas:** Aplica comissões tanto por visualizações quanto por pesquisas aprovadas.
+
+### Configurações Globais de Comissão
+
+- Acesse `Dashboard > Configurações de Comissão` para definir as taxas de comissão padrão que se aplicam a todos os profissionais, a menos que especificado de outra forma.
+
+### Configurações Específicas de Comissão
+
+- Profissionais podem ter taxas de comissão específicas que sobrescrevem as configurações globais, se a opção "Sobrescrever configurações gerais de comissão" estiver ativada em seus perfis.
+- Essas configurações são acessadas e gerenciadas na página de perfil de cada profissional.
+
 ## Utilizando Shortcodes
 
 ### Formulário de Busca
