@@ -52,21 +52,18 @@ function store_search_data($data) {
     global $wpdb;
     $searchDataTable = $wpdb->prefix . 'pdr_search_data';
     
-    // Verifica se todos os campos necessários estão presentes
     if (!isset($data['service_type'], $data['service_location'], $data['contact_id'], $data['author_id'])) {
         error_log('Dados necessários ausentes para inserção em wp_pdr_search_data.');
         return false;
     }
 
-    // Adiciona a data atual se não for fornecida
     if (!isset($data['search_date'])) {
         $data['search_date'] = current_time('mysql');
     }
 
-    // Calcula as comissões com base nas configurações do autor, se houver sobrescrição
-    $commissions = calculate_commissions($data['author_id']);
+    // Calculate commissions considering the author's settings
+    $commissions = calculate_commissions($data['author_id'], $data['search_status']);
 
-    // Prepara os dados para inserção, incluindo os valores de comissão
     $insertData = [
         'service_type' => $data['service_type'],
         'service_location' => $data['service_location'],
@@ -79,13 +76,11 @@ function store_search_data($data) {
         'commission_value_approval' => $commissions['approval']
     ];
 
-    // Insere os dados na tabela
     if (!$wpdb->insert($searchDataTable, $insertData)) {
         error_log('Erro ao inserir dados em wp_pdr_search_data: ' . $wpdb->last_error);
         return false;
     }
 
-    // Loga o ID do registro inserido para referência futura
     error_log("Dados de pesquisa inseridos com sucesso, ID: " . $wpdb->insert_id);
     return true;
 }
