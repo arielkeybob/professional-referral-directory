@@ -19,31 +19,31 @@ function pdr_save_contact_details_ajax_handler() {
     $contact_id = intval($_POST['contact_id']);
     $author_id = get_current_user_id();
     $custom_name = sanitize_text_field($_POST['custom_name']);
+    $new_status = sanitize_text_field($_POST['contact_status']); // Garanta que este campo esteja sendo enviado corretamente
+    $errors = false;
 
-    // Atualiza o nome customizado do contato se o autor bate com o atual
     $updated = $wpdb->update(
         "{$wpdb->prefix}pdr_author_contact_relations",
-        ['custom_name' => $custom_name],
+        [
+            'custom_name' => $custom_name,
+            'status' => $new_status // Assegure que está atualizando o status
+        ],
         ['contact_id' => $contact_id, 'author_id' => $author_id]
     );
 
-    if (!$updated) {
+    if (!$updated && $wpdb->last_error) {
         error_log('Erro ao atualizar o contato: ' . $wpdb->last_error);
         wp_send_json_error(['message' => 'Erro ao atualizar o contato.']);
         exit;
     }
 
-    $errors = false;
-
     foreach ($_POST['searches'] as $search_id => $search_status) {
         $search_id_sanitized = intval($search_id);
         $status_sanitized = sanitize_text_field($search_status);
 
-        // Recalcular comissões baseado no novo status
         require_once('commission-calculator.php');
         $commissions = calculate_commissions($author_id, $status_sanitized);
 
-        // Atualiza o status da pesquisa e a comissão no banco de dados
         $search_updated = $wpdb->update("{$wpdb->prefix}pdr_search_data", [
             'search_status' => $status_sanitized,
             'commission_value_view' => $commissions['view'],
@@ -53,11 +53,9 @@ function pdr_save_contact_details_ajax_handler() {
             'author_id' => $author_id
         ]);
 
-        if (!$search_updated) {
+        if (!$search_updated && $wpdb->last_error) {
             error_log("Erro ao atualizar o status da pesquisa ID $search_id: " . $wpdb->last_error);
             $errors = true;
-        } else {
-            error_log("Pesquisa ID $search_id atualizada para status $status_sanitized com comissões: View = {$commissions['view']}, Approval = {$commissions['approval']}");
         }
     }
 
@@ -69,3 +67,5 @@ function pdr_save_contact_details_ajax_handler() {
 
     exit;
 }
+
+
