@@ -51,6 +51,28 @@ Os status de contato são utilizados para classificar a relação atual entre o 
 2. **Author-Contact Relation**: Registra a relação entre o prestador de serviço e o cliente potencial, incluindo interações e status personalizados.
 
 
+## Termos Adicionais
+
+### Inquiry Form
+O **Inquiry Form** é o formulário preenchido pelos usuários para iniciar um inquiry. Este formulário captura informações essenciais como tipo de serviço, localização e outras preferências que ajudam a filtrar e encontrar os serviços adequados dentro do diretório.
+
+### Inquiry Results
+**Inquiry Results** refere-se aos resultados exibidos após um usuário submeter o **Inquiry Form**. Esses resultados são listagens de serviços que correspondem às especificações fornecidas pelo usuário no formulário. Os resultados permitem que o usuário explore as opções disponíveis e possivelmente inicie um inquiry com um ou mais Service Providers.
+
+
+## Configurações de Referral Fee
+
+O plugin Professional Directory oferece duas áreas distintas para a configuração de Referral Fees, permitindo uma flexibilidade entre configurações gerais e específicas para cada Service Provider.
+
+### General Referral Fee Settings
+
+Esta seção é acessada através das configurações gerais do plugin. Aqui, o Site Owner pode definir as taxas de referral fee que serão aplicadas de maneira padrão a todos os Service Providers. Estas configurações servem como base a menos que especificamente sobrescritas nas configurações individuais de um Service Provider.
+
+### Service Provider-Specific Referral Fee Settings
+
+Localizada na página de perfil de cada Service Provider, acessível pelo Site Owner, esta seção permite configurar taxas de referral fee específicas que sobrepõem as configurações gerais. Estas configurações permitem uma customização detalhada das taxas baseadas em critérios ou acordos específicos com cada Service Provider.
+
+
 ## Implementação de Termos
 
 A implementação destes termos deve ser refletida em todas as interfaces do usuário, documentação interna e externa, e no código do plugin, garantindo que a terminologia seja consistente e compreendida por todos os usuários e desenvolvedores envolvidos.
