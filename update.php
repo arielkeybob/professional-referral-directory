@@ -22,15 +22,17 @@ function pdr_rename_table() {
 
 // Função para verificar e executar atualizações
 function pdr_update_plugin() {
-    $current_version = get_option('pdr_db_version', '1.0.0');
-    $new_version = PDR_VERSION;
+    $current_version = get_option('pdr_plugin_version', '1.0.0');
+    $new_version = '1.1.0';
 
     if (version_compare($current_version, $new_version, '<')) {
         // Execute o código de atualização necessário
         pdr_rename_table();
         
-        // Atualize a versão do banco de dados no banco de dados
-        update_option('pdr_db_version', $new_version);
+        // Atualize a versão do plugin no banco de dados
+        update_option('pdr_plugin_version', $new_version);
     }
 }
 add_action('admin_init', 'pdr_update_plugin');
+
+       

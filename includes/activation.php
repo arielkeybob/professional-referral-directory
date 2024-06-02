@@ -106,10 +106,12 @@ function pdrCreateAuthorContactRelationsTable() {
 }
 
 // Verificação e atualização da versão do plugin
-function pdrCheckVersion() {
-    if (get_option('pdr_version') !== PDR_VERSION) {
-        // Atualizações necessárias para a nova versão do plugin
-        update_option('pdr_version', PDR_VERSION);
+if (!function_exists('pdrCheckVersion')) {
+    function pdrCheckVersion() {
+        if (get_option('pdr_version') !== PDR_VERSION) {
+            // Atualizações necessárias para a nova versão do plugin
+            update_option('pdr_version', PDR_VERSION);
+        }
     }
 }
 
