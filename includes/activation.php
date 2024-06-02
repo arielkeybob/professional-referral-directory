@@ -73,8 +73,8 @@ function pdrCreateInquiryDataTable() {
             author_id BIGINT UNSIGNED,
             contact_id BIGINT UNSIGNED,
             inquiry_status VARCHAR(100) NOT NULL DEFAULT 'pending',
-            commission_value_view DECIMAL(10, 2) DEFAULT 0.00,
-            commission_value_approval DECIMAL(10, 2) DEFAULT 0.00,
+            referral_fee_value_view DECIMAL(10, 2) DEFAULT 0.00,
+            referral_fee_value_approval DECIMAL(10, 2) DEFAULT 0.00,
             is_paid BOOLEAN DEFAULT FALSE,
             FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE SET NULL,
             FOREIGN KEY (service_id) REFERENCES {$wpdb->posts}(ID) ON DELETE CASCADE

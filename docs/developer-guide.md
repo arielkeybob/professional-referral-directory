@@ -20,7 +20,7 @@ O Professional Directory segue uma estrutura padrão de plugins do WordPress, qu
 
 ## Banco de Dados
 
-O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados relacionados aos serviços, contatos, inquires e comissões.
+O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados relacionados aos serviços, contatos, inquires e Referral Fees.
 
 ### Tabelas
 
@@ -37,9 +37,9 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
   - `author_id`: ID do autor do serviço.
   - `contact_id`: ID do contato que realizou o inquiry.
   - `inquiry_status`: Status do inquiry (pending, negotiated, converted, not interested).
-  - `referral_fee_view`: Valor da comissão por visualização.
-  - `referral_fee_approval`: Valor da comissão por aprovação.
-  - `is_paid`: Indica se a comissão foi paga.
+  - `referral_fee_view`: Valor da Referral Fee por visualização.
+  - `referral_fee_approval`: Valor da Referral Fee por aprovação.
+  - `is_paid`: Indica se a Referral Fee foi paga.
 
 - **wp_pdr_author_contact_relations**: Relaciona contatos a autores.
   - `author_contact_id`: ID único da relação.
@@ -51,11 +51,11 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
 
 1. **Recebimento do Inquiry:** Dados são recebidos via AJAX e processados.
 2. **Criação/Atualização de Contato:** Verifica se o contato existe e atualiza/cria conforme necessário.
-3. **Registro do Inquiry:** Dados do inquiry são armazenados, incluindo o cálculo de comissões baseado no status do inquiry e configurações do autor.
+3. **Registro do Inquiry:** Dados do inquiry são armazenados, incluindo o cálculo de Referral Fees baseado no status do inquiry e configurações do autor.
 
-### Cálculo de Comissões
+### Cálculo de Referral Fees
 
-O cálculo de comissões é realizado com base no status do inquiry e nas configurações definidas globalmente ou por usuário. As comissões podem ser por visualização ou por inquiry aprovado, e são ajustadas conforme o resultado do inquiry e as preferências do usuário.
+O cálculo de Referral Fees é realizado com base no status do inquiry e nas configurações definidas globalmente ou por usuário. As Referral Fees podem ser por visualização ou por inquiry aprovado, e são ajustadas conforme o resultado do inquiry e as preferências do usuário.
 
 ## Padrões de Código
 

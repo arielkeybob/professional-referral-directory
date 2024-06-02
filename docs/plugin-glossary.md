@@ -8,7 +8,7 @@ Este documento fornece uma visão geral dos termos e conceitos utilizados no plu
 
 ## Tipos de Usuários
 
-- **Site Owner**: Administrador ou dono do site que configura e gerencia o plugin. Responsável por definir as configurações globais de comissão e gerenciar todos os aspectos do diretório.
+- **Site Owner**: Administrador ou dono do site que configura e gerencia o plugin. Responsável por definir as configurações globais de Referral Fee e gerenciar todos os aspectos do diretório.
 
 - **Visitor**: Usuário que acessa o site e realiza inquires sem necessariamente criar uma conta. Não possui capacidades especiais até que se registre.
 

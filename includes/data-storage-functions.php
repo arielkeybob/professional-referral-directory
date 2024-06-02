@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-require_once('commission-calculator.php');
+require_once('referral-fee-calculator.php');
 
 /**
  * Adiciona ou atualiza um contato na tabela 'pdr_contacts'.
@@ -61,8 +61,8 @@ function store_inquiry_data($data) {
         $data['inquiry_date'] = current_time('mysql');
     }
 
-    // Calculate commissions considering the author's settings
-    $commissions = calculate_commissions($data['author_id'], $data['inquiry_status']);
+    // Calculate Referral Fee considering the author's settings
+    $referralFees = calculate_referral_fees($data['author_id'], $data['inquiry_status']);
 
     $insertData = [
         'service_type' => $data['service_type'],
@@ -72,8 +72,8 @@ function store_inquiry_data($data) {
         'author_id' => $data['author_id'],
         'contact_id' => $data['contact_id'],
         'inquiry_status' => $data['inquiry_status'] ?? 'pending',
-        'commission_value_view' => $commissions['view'],
-        'commission_value_approval' => $commissions['approval']
+        'referral_fee_value_view' => $referralFees['view'],
+        'referral_fee_value_approval' => $referralFees['approval']
     ];
 
     if (!$wpdb->insert($inquiryDataTable, $insertData)) {

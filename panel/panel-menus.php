@@ -2,7 +2,7 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
-require_once plugin_dir_path(__FILE__) . 'commission-settings.php'; // Certifique-se de incluir o arquivo onde a função está definida
+require_once plugin_dir_path(__FILE__) . 'referral-fee-settings.php'; // Certifique-se de incluir o arquivo onde a função está definida
 
 // Adiciona capacidades ao papel 'professional' e registra menus e submenus.
 function pdr_initialize_panel_menus() {
@@ -40,14 +40,14 @@ function pdr_register_menus() {
         'pdr_welcome_page_content'
     );
 
-    // Submenu de Comissões.
+    // Submenu de Referral Fee.
     add_submenu_page(
         'edit.php?post_type=professional_service',
-        __('Comissões', 'professionaldirectory'),
-        __('Comissões', 'professionaldirectory'),
+        __('Referral Fees', 'professionaldirectory'),
+        __('Referral Fees', 'professionaldirectory'),
         'manage_options',
-        'pdr-commissions-page',
-        'pdr_commissions_settings_page' // Esta é a função correta a ser chamada
+        'pdr-referral-fee-page',
+        'pdr_referral_fees_settings_page' // Esta é a função correta a ser chamada
     );
 
     // Adiciona um menu para o Dashboard do Professional

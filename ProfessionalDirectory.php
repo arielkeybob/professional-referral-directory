@@ -42,6 +42,21 @@ include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
 require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
 
+
+
+// Verificação e execução do script de atualização
+function pdrCheckVersion() {
+    $installed_ver = get_option('pdr_db_version');
+    if ($installed_ver != PDR_VERSION) {
+        require_once(plugin_dir_path(__FILE__) . 'update.php');
+        pdr_update_plugin(); // Função do update.php
+        update_option('pdr_db_version', PDR_VERSION);
+    }
+}
+add_action('plugins_loaded', 'pdrCheckVersion');
+
+
+
 // Inclui as classes do plugin
 
 function pdrActivate() {
