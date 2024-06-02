@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
     <h1><?php echo esc_html__('Professional Dashboard ', 'professionaldirectory'); ?></h1>
 
     <div class="row"> <!-- Início da row -->
-        <!-- Seção de Total de Pesquisas por Serviço -->
+        <!-- Seção de Total de Inquiries por Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-header"><?php echo esc_html__('Total Inquiries by Service.', 'professionaldirectory'); ?></div>
@@ -43,7 +43,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
             </div>
         </div>
 
-        <!-- Seção de Distribuição das Pesquisas por Tipo de Serviço -->
+        <!-- Seção de Distribuição das Inquiries por Tipo de Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-header"><?php echo esc_html__('Distribution of Inquiries by Service Type', 'professionaldirectory'); ?></div>
@@ -56,7 +56,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
 </div>
  <!-- Fim da row -->
 
-    <!-- Seção de Pesquisas Recentes -->
+    <!-- Seção de Inquiries Recentes -->
     <div class="card mb-4 w-100"> <!-- Classe w-100 para largura total -->
     <div class="card-header"><?php echo esc_html__('Recent Inquiries', 'professionaldirectory'); ?></div>
     <div class="card-body">
@@ -119,7 +119,7 @@ jQuery(document).ready(function($) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Número de Pesquisas',
+                label: 'Número de Inquiries',
                 data: data,
                 backgroundColor: 'rgba(0, 123, 255, 0.5)'
             }]

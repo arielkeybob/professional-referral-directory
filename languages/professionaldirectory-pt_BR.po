@@ -127,7 +127,7 @@ msgstr "Data"
 
 #: panel/templates/dashboard-template-admin.php:34
 msgid "Date of Last Inquiry"
-msgstr "Data da Última Pesquisa"
+msgstr "Data da Última Inquiry"
 
 #: includes/class-pdr-metaboxes.php:69
 msgid "Desejo receber notificações por e-mail para este serviço"

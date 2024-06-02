@@ -4,7 +4,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 // Função para registrar e definir as configurações
 function pdr_register_commission_settings() {
     // Registra as configurações com sanitização adequada
-    register_setting('pdr_commission_options', 'pdr_commission_type', 'sanitize_text_field');
+    register_setting('pdr_commission_options', 'pdr_referral_fee_type', 'sanitize_text_field');
     register_setting('pdr_commission_options', 'pdr_general_commission_view', 'sanitize_text_field');
     register_setting('pdr_commission_options', 'pdr_general_commission_approval', 'sanitize_text_field');
 }
@@ -21,7 +21,7 @@ function pdr_commissions_settings_page() {
             settings_fields('pdr_commission_options');  // Define o grupo de opções que essa página vai editar
             do_settings_sections('pdr_commission_options');  // Imprime as seções e seus campos
             // Obtenha os valores atuais das configurações
-            $commission_type = get_option('pdr_commission_type', 'view');
+            $commission_type = get_option('pdr_referral_fee_type', 'view');
             $general_commission_view = get_option('pdr_general_commission_view', '');
             $general_commission_approval = get_option('pdr_general_commission_approval', '');
             ?>
@@ -29,7 +29,7 @@ function pdr_commissions_settings_page() {
                 <tr valign="top">
                     <th scope="row"><?php echo esc_html__('Tipo de Comissão', 'professional-directory'); ?></th>
                     <td>
-                        <select id="commission_type" name="pdr_commission_type">
+                        <select id="commission_type" name="pdr_referral_fee_type">
                             <option value="view" <?php selected($commission_type, 'view'); ?>><?php echo esc_html__('Por Visualização', 'professional-directory'); ?></option>
                             <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php echo esc_html__('Por inquiry Aprovada', 'professional-directory'); ?></option>
                             <option value="both" <?php selected($commission_type, 'both'); ?>><?php echo esc_html__('Combinação das Duas', 'professional-directory'); ?></option>

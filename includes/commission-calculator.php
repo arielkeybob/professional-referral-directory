@@ -2,7 +2,7 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 function calculate_commissions($author_id = null, $inquiry_status = 'pending') {
-    $commission_type = get_option('pdr_commission_type', 'both'); // Default to 'both' if not set
+    $commission_type = get_option('pdr_referral_fee_type', 'both'); // Default to 'both' if not set
 
     $view_commission = 0.00;
     $approval_commission = 0.00;
@@ -11,7 +11,7 @@ function calculate_commissions($author_id = null, $inquiry_status = 'pending') {
     $use_author_settings = $author_id && get_user_meta($author_id, 'pdr_override_commission', true) === 'yes';
 
     if ($use_author_settings) {
-        $commission_type = get_user_meta($author_id, 'pdr_commission_type', true) ?: $commission_type; // Usa tipo de comissão do usuário se disponível
+        $commission_type = get_user_meta($author_id, 'pdr_referral_fee_type', true) ?: $commission_type; // Usa tipo de comissão do usuário se disponível
     }
 
     if ($commission_type === 'view' || $commission_type === 'both') {

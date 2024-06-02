@@ -160,7 +160,7 @@ function pdr_handle_create_pages() {
         if (isset($_POST['create_inquiry_page']) && !$page_exists) {
             // Cria a página de Inquiry de serviços
             $page_id = wp_insert_post([
-                'post_title' => __('Pesquisa de Serviços', 'professional-directory'),
+                'post_title' => __('Inquiry de Serviços', 'professional-directory'),
                 'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
                 'post_status' => 'publish',
                 'post_type' => 'page'

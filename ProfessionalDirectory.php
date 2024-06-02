@@ -3,7 +3,7 @@
 Plugin Name: ProfessionalDirectory
 Plugin URI: http://arielsouza.com.br/professionaldirectory
 Description: Manages a directory of professional services and listings.
-Version: 1.1.3
+Version: 1.1.5
 Author: Ariel Souza
 Author URI: arielsouza.com.br
 License: GPLv2 or later
@@ -15,11 +15,11 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 define('PDR_MAIN_FILE', __FILE__);
 
-define( 'PDR_VERSION', '1.1.4' ); 
+define( 'PDR_VERSION', '1.1.5' ); 
 
 
 // Inclusões de Arquivos Principais do Plugin
-
+require_once plugin_dir_path(__FILE__) . 'update.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-cpt.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-taxonomies.php';

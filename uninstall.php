@@ -26,7 +26,7 @@ if ($delete_data === 'yes') {
     $options_to_delete = [
         'pdr_version',
         'pdr_delete_data_on_uninstall',
-        'pdr_commission_type',
+        'pdr_referral_fee_type',
         'pdr_general_commission_view',
         'pdr_general_commission_approval',
         'pdr_google_maps_api_key',
@@ -55,7 +55,7 @@ if ($delete_data === 'yes') {
 
     // Potencialmente, você pode querer deletar metadados do usuário relacionados ao plugin
     $meta_keys_to_delete = [
-        'pdr_commission_type',
+        'pdr_referral_fee_type',
         'pdr_commission_view',
         'pdr_commission_approval',
         'pdr_override_commission',

@@ -35,7 +35,7 @@ class PDR_Users {
 
     public static function add_custom_user_profile_fields($user) {
         if (current_user_can('administrator') && in_array('professional', (array) $user->roles)) {
-            $commission_type = get_user_meta($user->ID, 'pdr_commission_type', true);
+            $commission_type = get_user_meta($user->ID, 'pdr_referral_fee_type', true);
             $commission_view = get_user_meta($user->ID, 'pdr_commission_view', true);
             $commission_approval = get_user_meta($user->ID, 'pdr_commission_approval', true);
             $override_commission = get_user_meta($user->ID, 'pdr_override_commission', true) == 'yes';
@@ -53,7 +53,7 @@ class PDR_Users {
                     <td>
                         <select id="commission_type" name="commission_type">
                             <option value="view" <?php selected($commission_type, 'view'); ?>><?php _e('Por Visualização', 'professional-directory'); ?></option>
-                            <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php _e('Por Pesquisa Aprovada', 'professional-directory'); ?></option>
+                            <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php _e('Por Inquiry Aprovada', 'professional-directory'); ?></option>
                             <option value="both" <?php selected($commission_type, 'both'); ?>><?php _e('Combinação das Duas', 'professional-directory'); ?></option>
                         </select>
                     </td>
@@ -65,7 +65,7 @@ class PDR_Users {
                     </td>
                 </tr>
                 <tr class="commission_approval commission_settings" style="display: <?php echo $override_commission && ($commission_type === 'approval' || $commission_type === 'both') ? '' : 'none'; ?>">
-                    <th><label for="commission_approval"><?php _e('Comissão por Pesquisa Aprovada', 'professional-directory'); ?></label></th>
+                    <th><label for="commission_approval"><?php _e('Comissão por Inquiry Aprovada', 'professional-directory'); ?></label></th>
                     <td>
                         <input type="text" name="commission_approval" id="commission_approval" value="<?php echo esc_attr($commission_approval); ?>" />
                     </td>
@@ -101,7 +101,7 @@ class PDR_Users {
         // Salva as outras configurações de comissão somente se o override está ativo
         if ($override_commission === 'yes') {
             if (isset($_POST['commission_type'])) {
-                update_user_meta($user_id, 'pdr_commission_type', sanitize_text_field($_POST['commission_type']));
+                update_user_meta($user_id, 'pdr_referral_fee_type', sanitize_text_field($_POST['commission_type']));
             }
             if (isset($_POST['commission_view'])) {
                 update_user_meta($user_id, 'pdr_commission_view', sanitize_text_field($_POST['commission_view']));

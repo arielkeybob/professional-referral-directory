@@ -61,24 +61,28 @@ function pdrCreateInquiryDataTable() {
     // Certifique-se de que a tabela de contatos seja criada primeiro.
     pdrCreateContactsTable(); // Chame a função para criar a tabela de contatos aqui.
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        service_type VARCHAR(255) NOT NULL,
-        service_location VARCHAR(255),
-        inquiry_date DATETIME NOT NULL,
-        service_id BIGINT UNSIGNED,
-        author_id BIGINT UNSIGNED,
-        contact_id BIGINT UNSIGNED,
-        inquiry_status VARCHAR(100) NOT NULL DEFAULT 'pending',
-        commission_value_view DECIMAL(10, 2) DEFAULT 0.00,
-        commission_value_approval DECIMAL(10, 2) DEFAULT 0.00,
-        is_paid BOOLEAN DEFAULT FALSE,
-        FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE SET NULL,
-        FOREIGN KEY (service_id) REFERENCES {$wpdb->posts}(ID) ON DELETE CASCADE
-    ) $charset_collate;";
+    // Verifica se as tabelas não existem antes de criar a nova tabela
+    $old_table_name = $wpdb->prefix . 'pdr_search_data';
+    if ($wpdb->get_var("SHOW TABLES LIKE '$old_table_name'") != $old_table_name && $wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+            id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            service_type VARCHAR(255) NOT NULL,
+            service_location VARCHAR(255),
+            inquiry_date DATETIME NOT NULL,
+            service_id BIGINT UNSIGNED,
+            author_id BIGINT UNSIGNED,
+            contact_id BIGINT UNSIGNED,
+            inquiry_status VARCHAR(100) NOT NULL DEFAULT 'pending',
+            commission_value_view DECIMAL(10, 2) DEFAULT 0.00,
+            commission_value_approval DECIMAL(10, 2) DEFAULT 0.00,
+            is_paid BOOLEAN DEFAULT FALSE,
+            FOREIGN KEY (contact_id) REFERENCES {$wpdb->prefix}pdr_contacts(contact_id) ON DELETE SET NULL,
+            FOREIGN KEY (service_id) REFERENCES {$wpdb->posts}(ID) ON DELETE CASCADE
+        ) $charset_collate;";
 
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
 }
 
 function pdrCreateAuthorContactRelationsTable() {
@@ -123,6 +127,7 @@ function pdrActivatePlugin() {
     pdr_initialize_user_roles();
     wp_cache_flush();
     pdr_clear_transients(); // Limpa todos os transients
+    pdr_rename_table(); // Renomeia a tabela, se necessário
     pdrCreateInquiryDataTable();
     pdrCreateAuthorContactRelationsTable();
     pdrCheckVersion();
