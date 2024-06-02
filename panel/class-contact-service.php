@@ -38,27 +38,27 @@ class ContactService {
         return $this->wpdb->get_row($query);
     }
 
-    public function getSearchesByContactId($contactId, $authorId) {
+    public function getInquiriesByContactId($contactId, $authorId) {
         $query = $this->wpdb->prepare(
-            "SELECT * FROM {$this->wpdb->prefix}pdr_search_data WHERE contact_id = %d AND author_id = %d",
+            "SELECT * FROM {$this->wpdb->prefix}pdr_inquiry_data WHERE contact_id = %d AND author_id = %d",
             $contactId,
             $authorId
         );
         return $this->wpdb->get_results($query);
     }
 
-    public function getTotalSearchesByService($service_id) {
-        $query = $this->wpdb->prepare("SELECT COUNT(*) FROM {$this->wpdb->prefix}pdr_search_data WHERE service_id = %d", $service_id);
+    public function getTotalInquiriesByService($service_id) {
+        $query = $this->wpdb->prepare("SELECT COUNT(*) FROM {$this->wpdb->prefix}pdr_inquiry_data WHERE service_id = %d", $service_id);
         return (int) $this->wpdb->get_var($query);
     }
 
-    public function getRecentSearches($limit = 5) {
-        $query = $this->wpdb->prepare("SELECT * FROM {$this->wpdb->prefix}pdr_search_data ORDER BY search_date DESC LIMIT %d", $limit);
+    public function getRecentInquiries($limit = 5) {
+        $query = $this->wpdb->prepare("SELECT * FROM {$this->wpdb->prefix}pdr_inquiry_data ORDER BY inquiry_date DESC LIMIT %d", $limit);
         return $this->wpdb->get_results($query, ARRAY_A);
     }
 
-    public function getSearchesDistributionByServiceType() {
-        $query = "SELECT service_type, COUNT(*) as total FROM {$this->wpdb->prefix}pdr_search_data GROUP BY service_type";
+    public function getInquiriesDistributionByServiceType() {
+        $query = "SELECT service_type, COUNT(*) as total FROM {$this->wpdb->prefix}pdr_inquiry_data GROUP BY service_type";
         return $this->wpdb->get_results($query, ARRAY_A);
     }
 
@@ -69,16 +69,16 @@ class ContactService {
         return $this->wpdb->get_results($query, ARRAY_A);
     }
 
-    public function getRecentSearchesForUser($limit = 10) {
+    public function getRecentInquiriesForUser($limit = 10) {
         $current_user_id = get_current_user_id();
         $query = $this->wpdb->prepare(
-            "SELECT sd.service_type, sd.search_date, p.post_title, c.default_name AS name, c.email, sd.service_location, sd.contact_id
-             FROM {$this->wpdb->prefix}pdr_search_data AS sd
+            "SELECT sd.service_type, sd.inquiry_date, p.post_title, c.default_name AS name, c.email, sd.service_location, sd.contact_id
+             FROM {$this->wpdb->prefix}pdr_inquiry_data AS sd
              INNER JOIN {$this->wpdb->prefix}pdr_author_contact_relations AS acr ON sd.contact_id = acr.contact_id
              INNER JOIN {$this->wpdb->prefix}pdr_contacts AS c ON acr.contact_id = c.contact_id
              INNER JOIN {$this->wpdb->posts} AS p ON sd.service_id = p.ID
              WHERE acr.author_id = %d
-             ORDER BY sd.search_date DESC 
+             ORDER BY sd.inquiry_date DESC 
              LIMIT %d", 
              $current_user_id, $limit
         );

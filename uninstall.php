@@ -12,7 +12,7 @@ $delete_data = get_option('pdr_delete_data_on_uninstall', 'no');
 if ($delete_data === 'yes') {
     // Deleta as tabelas personalizadas do plugin
     $tables_to_drop = [
-        "{$wpdb->prefix}pdr_search_data",
+        "{$wpdb->prefix}pdr_inquiry_data",
         "{$wpdb->prefix}pdr_author_contact_relations",
         "{$wpdb->prefix}pdr_contacts"
     ];

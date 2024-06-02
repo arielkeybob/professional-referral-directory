@@ -26,16 +26,16 @@
             <button id="load-data"><?php _e('Load Data', 'professionaldirectory'); ?></button>
         </div>
         <div>
-            <input type="checkbox" id="show-services-without-search">
-            <label for="show-services-without-search"><?php _e('Also show services without searches in the period', 'professionaldirectory'); ?></label>
+            <input type="checkbox" id="show-services-without-Inquiry">
+            <label for="show-services-without-Inquiry"><?php _e('Also show services without inquiries in the period', 'professionaldirectory'); ?></label>
         </div>
         <table id="services-data">
             <thead>
                 <tr>
                     <th><?php _e('Service Name', 'professionaldirectory'); ?></th>
-                    <th><?php _e('Number of Searches', 'professionaldirectory'); ?></th>
+                    <th><?php _e('Number of Inquiries', 'professionaldirectory'); ?></th>
                     <th><?php _e('Author Name', 'professionaldirectory'); ?></th>
-                    <th><?php _e('Date of Last Search', 'professionaldirectory'); ?></th>
+                    <th><?php _e('Date of Last Inquiry', 'professionaldirectory'); ?></th>
                 </tr>
             </thead>
             <tbody>

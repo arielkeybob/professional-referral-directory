@@ -42,8 +42,8 @@ if (isset($_POST['pdr_export_data']) && current_user_can('manage_options')) {
     // Exporta a tabela pdr_contacts
     export_table($wpdb->prefix . 'pdr_contacts', ['contact_id', 'email', 'default_name'], $output);
 
-    // Exporta a tabela pdr_search_data
-    export_table($wpdb->prefix . 'pdr_search_data', ['id', 'service_type', 'service_location', 'search_date', 'service_id', 'author_id', 'contact_id', 'search_status'], $output);
+    // Exporta a tabela pdr_inquiry_data
+    export_table($wpdb->prefix . 'pdr_inquiry_data', ['id', 'service_type', 'service_location', 'inquiry_date', 'service_id', 'author_id', 'contact_id', 'inquiry_status'], $output);
 
     // Exporta a tabela pdr_author_contact_relations
     export_table($wpdb->prefix . 'pdr_author_contact_relations', ['author_contact_id', 'contact_id', 'author_id', 'status', 'custom_name'], $output);

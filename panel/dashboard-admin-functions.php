@@ -10,20 +10,20 @@ function fetch_admin_dashboard_data() {
 
     // Obter os parâmetros do POST
     $period = isset($_POST['period']) ? sanitize_text_field($_POST['period']) : '';
-    $includeNoSearch = isset($_POST['include_no_search']) ? filter_var($_POST['include_no_search'], FILTER_VALIDATE_BOOLEAN) : false;
+    $includeNoInquiry = isset($_POST['include_no_inquiry']) ? filter_var($_POST['include_no_inquiry'], FILTER_VALIDATE_BOOLEAN) : false;
     $startDate = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
     $endDate = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
 
     // Nome da tabela
-    $table_name = $wpdb->prefix . 'pdr_search_data';
+    $table_name = $wpdb->prefix . 'pdr_inquiry_data';
 
     // Construindo a consulta SQL
     $sql = "
         SELECT 
             p.ID as post_id,
             p.post_title as service_name,
-            COUNT(*) as search_count,
-            MAX(s.search_date) as last_search,
+            COUNT(*) as inquiry_count,
+            MAX(s.inquiry_date) as last_inquiry,
             u.display_name as author_name
         FROM $table_name s
         INNER JOIN {$wpdb->posts} p ON s.service_id = p.ID
@@ -33,24 +33,24 @@ function fetch_admin_dashboard_data() {
     // Adicionando condições com base no período
     switch ($period) {
         case 'today':
-            $sql .= " AND DATE(s.search_date) = CURDATE()";
+            $sql .= " AND DATE(s.inquiry_date) = CURDATE()";
             break;
         case 'last_week':
-            $sql .= " AND DATE(s.search_date) >= CURDATE() - INTERVAL 7 DAY";
+            $sql .= " AND DATE(s.inquiry_date) >= CURDATE() - INTERVAL 7 DAY";
             break;
         case 'last_month':
-            $sql .= " AND DATE(s.search_date) >= CURDATE() - INTERVAL 1 MONTH";
+            $sql .= " AND DATE(s.inquiry_date) >= CURDATE() - INTERVAL 1 MONTH";
             break;
         case 'this_year':
-            $sql .= " AND YEAR(s.search_date) = YEAR(CURDATE())";
+            $sql .= " AND YEAR(s.inquiry_date) = YEAR(CURDATE())";
             break;
         case 'custom':
-            $sql .= $wpdb->prepare(" AND DATE(s.search_date) BETWEEN %s AND %s", $startDate, $endDate);
+            $sql .= $wpdb->prepare(" AND DATE(s.inquiry_date) BETWEEN %s AND %s", $startDate, $endDate);
             break;
     }
 
-    // Considerar 'includeNoSearch'
-    if (!$includeNoSearch) {
+    // Considerar 'includeNoInquiry'
+    if (!$includeNoInquiry) {
         $sql .= " AND p.post_status = 'publish'";
     }
 

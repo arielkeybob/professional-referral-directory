@@ -153,20 +153,20 @@ function pdr_welcome_page_content() {
 
 // Função para lidar com a criação de páginas.
 function pdr_handle_create_pages() {
-    $search_page_id = get_option('pdr_search_page_id');
-    $page_exists = $search_page_id && get_post_status($search_page_id);
+    $inquiry_page_id = get_option('pdr_inquiry_page_id');
+    $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
     if (isset($_POST['pdr_create_pages_submit']) && check_admin_referer('pdr_create_pages', 'pdr_create_pages_nonce')) {
-        if (isset($_POST['create_search_page']) && !$page_exists) {
-            // Cria a página de pesquisa de serviços
+        if (isset($_POST['create_inquiry_page']) && !$page_exists) {
+            // Cria a página de Inquiry de serviços
             $page_id = wp_insert_post([
                 'post_title' => __('Pesquisa de Serviços', 'professional-directory'),
-                'post_content' => '[pdr_search_form][pdr_search_results]',
+                'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
                 'post_status' => 'publish',
                 'post_type' => 'page'
             ]);
             if ($page_id) {
-                update_option('pdr_search_page_id', $page_id);
+                update_option('pdr_inquiry_page_id', $page_id);
                 wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-welcome-page&created=true'));
                 exit;
             }

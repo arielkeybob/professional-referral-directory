@@ -46,41 +46,41 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'a
 }
 
 /**
- * Armazena os dados da pesquisa associando-os automaticamente a um contato.
+ * Armazena os dados do Inquiry associando-os automaticamente a um contato.
  */
-function store_search_data($data) {
+function store_inquiry_data($data) {
     global $wpdb;
-    $searchDataTable = $wpdb->prefix . 'pdr_search_data';
+    $inquiryDataTable = $wpdb->prefix . 'pdr_inquiry_data';
     
     if (!isset($data['service_type'], $data['service_location'], $data['contact_id'], $data['author_id'])) {
-        error_log('Dados necessários ausentes para inserção em wp_pdr_search_data.');
+        error_log('Dados necessários ausentes para inserção em wp_pdr_inquiry_data.');
         return false;
     }
 
-    if (!isset($data['search_date'])) {
-        $data['search_date'] = current_time('mysql');
+    if (!isset($data['inquiry_date'])) {
+        $data['inquiry_date'] = current_time('mysql');
     }
 
     // Calculate commissions considering the author's settings
-    $commissions = calculate_commissions($data['author_id'], $data['search_status']);
+    $commissions = calculate_commissions($data['author_id'], $data['inquiry_status']);
 
     $insertData = [
         'service_type' => $data['service_type'],
         'service_location' => $data['service_location'],
-        'search_date' => $data['search_date'],
+        'inquiry_date' => $data['inquiry_date'],
         'service_id' => $data['service_id'] ?? 0,
         'author_id' => $data['author_id'],
         'contact_id' => $data['contact_id'],
-        'search_status' => $data['search_status'] ?? 'pending',
+        'inquiry_status' => $data['inquiry_status'] ?? 'pending',
         'commission_value_view' => $commissions['view'],
         'commission_value_approval' => $commissions['approval']
     ];
 
-    if (!$wpdb->insert($searchDataTable, $insertData)) {
-        error_log('Erro ao inserir dados em wp_pdr_search_data: ' . $wpdb->last_error);
+    if (!$wpdb->insert($inquiryDataTable, $insertData)) {
+        error_log('Erro ao inserir dados em wp_pdr_inquiry_data: ' . $wpdb->last_error);
         return false;
     }
 
-    error_log("Dados de pesquisa inseridos com sucesso, ID: " . $wpdb->insert_id);
+    error_log("Dados de Inquiry inseridos com sucesso, ID: " . $wpdb->insert_id);
     return true;
 }

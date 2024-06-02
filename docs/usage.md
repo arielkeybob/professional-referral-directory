@@ -4,7 +4,7 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
 
 ## Criando e Gerenciando Services
 
-### Para Profissionais
+### Para Service Providers
 
 1. **Adicionando um Novo Service:**
    - Acesse `Services > Adicionar Novo`.
@@ -20,38 +20,38 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
    - Acesse `Dashboard`.
    - Filtre pelo período ou serviço desejado.
 
-### Para Administradores
+### Para Site Owners
 
-- Administradores podem adicionar, editar e excluir qualquer Service da mesma forma, mas têm acesso a todos os services listados no painel.
+- Site Owners podem adicionar, editar e excluir qualquer Service da mesma forma, mas têm acesso a todos os services listados no painel.
 
-## Sistema de Comissões
+## Sistema de Referral Fees
 
-O ProfessionalDirectory oferece um sistema flexível de comissões que pode ser configurado tanto globalmente quanto individualmente para cada profissional. Existem três tipos principais de comissões:
+O ProfessionalDirectory oferece um sistema flexível de referral fees que pode ser configurado tanto globalmente quanto individualmente para cada Service Provider. Existem três tipos principais de referral fees:
 
-- **Por Visualização:** Comissão gerada cada vez que um serviço é visualizado.
-- **Por Pesquisa Aprovada:** Comissão atribuída quando uma pesquisa resulta em uma contratação ou outro critério de "aprovação" definido.
-- **Combinação das Duas:** Aplica comissões tanto por visualizações quanto por pesquisas aprovadas.
+- **Por Visualização:** Taxa gerada cada vez que um serviço é visualizado.
+- **Por Inquiry Aprovado:** Taxa atribuída quando um inquiry resulta em uma contratação ou outro critério de "aprovação" definido.
+- **Combinação das Duas:** Aplica taxas tanto por visualizações quanto por inquiries aprovados.
 
-### Configurações Globais de Comissão
+### Configurações Globais de Referral Fee
 
-- Acesse `Dashboard > Configurações de Comissão` para definir as taxas de comissão padrão que se aplicam a todos os profissionais, a menos que especificado de outra forma.
+- Acesse `Dashboard > Configurações de Referral Fee` para definir as taxas de referral fee padrão que se aplicam a todos os Service Providers, a menos que especificado de outra forma.
 
-### Configurações Específicas de Comissão
+### Configurações Específicas de Referral Fee
 
-- Profissionais podem ter taxas de comissão específicas que sobrescrevem as configurações globais, se a opção "Sobrescrever configurações gerais de comissão" estiver ativada em seus perfis.
-- Essas configurações são acessadas e gerenciadas na página de perfil de cada profissional.
+- Service Providers podem ter taxas de referral fee específicas que sobrescrevem as configurações globais, se a opção "Sobrescrever configurações gerais de referral fee" estiver ativada em seus perfis.
+- Essas configurações são acessadas e gerenciadas na página de perfil de cada Service Provider.
 
 ## Utilizando Shortcodes
 
-### Formulário de Busca
+### Inquiry Form
 
-- Use o shortcode `[pdr_search_form]` para adicionar o formulário de busca em qualquer página ou post.
+- Use o shortcode `[pdr_inquiry_form]` para adicionar o formulário de inquiry em qualquer página ou post.
 - O formulário permite que os usuários busquem services por tipo e localização.
 
-### Resultados da Pesquisa
+### Inquiry Results
 
 - Após a busca, os resultados são exibidos na mesma página.
-- Inclua o shortcode `[pdr_search_results]` na página onde deseja exibir os resultados.
+- Inclua o shortcode `[pdr_inquiry_results]` na página onde deseja exibir os resultados.
 
 ## Configuração de E-mail SMTP
 
@@ -59,7 +59,7 @@ Para garantir o envio eficaz de notificações e outros e-mails pelo plugin, é 
 
 ## Dicas de Uso
 
-- **Perfis de Professional:** Encoraje os profissionais a manterem seus perfis atualizados para aumentar a relevância nos resultados de busca.
+- **Perfis de Service Provider:** Encoraje os Service Providers a manterem seus perfis atualizados para aumentar a relevância nos resultados de inquiry.
 - **Categorização Adequada:** Utilize a taxonomia “Service Type” para categorizar os services de forma eficiente.
 
 ## Suporte

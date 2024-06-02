@@ -5,7 +5,7 @@ defined('ABSPATH') or die('No script kiddies please!');
  * Handler para salvar detalhes de contato via AJAX.
  *
  * Esta função é chamada através de uma requisição AJAX para salvar os detalhes do contato
- * e atualizar o status das pesquisas associadas, incluindo o cálculo e ajuste das comissões.
+ * e atualizar o status dos Inquiries associadas, incluindo o cálculo e ajuste das comissões.
  */
 function pdr_save_contact_details_ajax_handler() {
     check_ajax_referer('update_contact_' . $_POST['contact_id'], 'nonce');
@@ -37,30 +37,30 @@ function pdr_save_contact_details_ajax_handler() {
         exit;
     }
 
-    foreach ($_POST['searches'] as $search_id => $search_status) {
-        $search_id_sanitized = intval($search_id);
-        $status_sanitized = sanitize_text_field($search_status);
+    foreach ($_POST['inquiries'] as $inquiry_id => $inquiry_status) {
+        $inquiry_id_sanitized = intval($inquiry_id);
+        $status_sanitized = sanitize_text_field($inquiry_status);
 
         require_once('commission-calculator.php');
         $commissions = calculate_commissions($author_id, $status_sanitized);
 
-        $search_updated = $wpdb->update("{$wpdb->prefix}pdr_search_data", [
-            'search_status' => $status_sanitized,
+        $inquiry_updated = $wpdb->update("{$wpdb->prefix}pdr_inquiry_data", [
+            'inquiry_status' => $status_sanitized,
             'commission_value_view' => $commissions['view'],
             'commission_value_approval' => ($status_sanitized === 'approved') ? $commissions['approval'] : 0.00
         ], [
-            'id' => $search_id_sanitized,
+            'id' => $inquiry_id_sanitized,
             'author_id' => $author_id
         ]);
 
-        if (!$search_updated && $wpdb->last_error) {
-            error_log("Erro ao atualizar o status da pesquisa ID $search_id: " . $wpdb->last_error);
+        if (!$inquiry_updated && $wpdb->last_error) {
+            error_log("Erro ao atualizar o status do Inquiry ID $inquiry_id: " . $wpdb->last_error);
             $errors = true;
         }
     }
 
     if ($errors) {
-        wp_send_json_error(['message' => 'Erro ao atualizar o status de algumas ou todas as pesquisas.']);
+        wp_send_json_error(['message' => 'Erro ao atualizar o status de algumas ou todas os Inquiries.']);
     } else {
         wp_send_json_success(['message' => 'Informações atualizadas com sucesso.']);
     }

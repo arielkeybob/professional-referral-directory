@@ -31,7 +31,7 @@ function pdr_commissions_settings_page() {
                     <td>
                         <select id="commission_type" name="pdr_commission_type">
                             <option value="view" <?php selected($commission_type, 'view'); ?>><?php echo esc_html__('Por Visualização', 'professional-directory'); ?></option>
-                            <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php echo esc_html__('Por Pesquisa Aprovada', 'professional-directory'); ?></option>
+                            <option value="approval" <?php selected($commission_type, 'approval'); ?>><?php echo esc_html__('Por inquiry Aprovada', 'professional-directory'); ?></option>
                             <option value="both" <?php selected($commission_type, 'both'); ?>><?php echo esc_html__('Combinação das Duas', 'professional-directory'); ?></option>
                         </select>
                     </td>
@@ -44,10 +44,10 @@ function pdr_commissions_settings_page() {
                     </td>
                 </tr>
                 <tr valign="top" class="commission_approval">
-                    <th scope="row"><?php echo esc_html__('Comissão Geral por Pesquisa Aprovada', 'professional-directory'); ?></th>
+                    <th scope="row"><?php echo esc_html__('Comissão Geral por inquiry Aprovada', 'professional-directory'); ?></th>
                     <td>
                         <input type="text" name="pdr_general_commission_approval" value="<?php echo esc_attr($general_commission_approval); ?>" />
-                        <p class="description"><?php echo esc_html__('Defina a comissão geral por pesquisa aprovada.', 'professional-directory'); ?></p>
+                        <p class="description"><?php echo esc_html__('Defina a comissão geral por inquiry aprovada.', 'professional-directory'); ?></p>
                     </td>
                 </tr>
             </table>

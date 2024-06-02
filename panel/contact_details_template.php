@@ -71,29 +71,29 @@
                         </div>
                     </div>
 
-                    <!-- Associated Searches -->
-                    <?php if (!empty($searches)) : ?>
-                        <div class="contact-searches">
-                            <h2><?php echo esc_html__('Associated Searches', 'professionaldirectory'); ?></h2>
+                    <!-- Associated Inquiries -->
+                    <?php if (!empty($inquiries)) : ?>
+                        <div class="contact-inquiries">
+                            <h2><?php echo esc_html__('Associated Inquiries', 'professionaldirectory'); ?></h2>
                             <div class="row"> <!-- Garante que os cards estarão em uma estrutura de grid -->
-                                <?php foreach ($searches as $search) : ?>
+                                <?php foreach ($inquiries as $inquiry) : ?>
                                     <div class="col s12 m6 l4"> <!-- Cards lado a lado conforme o tamanho da tela -->
                                         <div class="card">
                                             <div class="card-content">
-                                                <span class="card-title"><?php echo get_the_title($search->service_id); ?></span>
+                                                <span class="card-title"><?php echo get_the_title($inquiry->service_id); ?></span>
 
-                                                <p><strong><?php echo esc_html__('Search Date:', 'professionaldirectory'); ?></strong> <?php echo esc_html($search->search_date); ?></p>
-                                                <p><strong><?php echo esc_html__('Service Type:', 'professionaldirectory'); ?></strong> <?php echo esc_html($search->service_type); ?></p>
+                                                <p><strong><?php echo esc_html__('Inquiry Date:', 'professionaldirectory'); ?></strong> <?php echo esc_html($inquiry->inquiry_date); ?></p>
+                                                <p><strong><?php echo esc_html__('Service Type:', 'professionaldirectory'); ?></strong> <?php echo esc_html($inquiry->service_type); ?></p>
 
                                                 <div class="input-field">
-                                                    <select name="searches[<?php echo esc_attr($search->id); ?>]" id="search_status_<?php echo esc_attr($search->id); ?>">
+                                                    <select name="inquiries[<?php echo esc_attr($inquiry->id); ?>]" id="inquiry_status_<?php echo esc_attr($inquiry->id); ?>">
                                                         <option value="" disabled selected><?php echo esc_html__('Choose Status', 'professionaldirectory'); ?></option>
                                                         <?php foreach (['pending', 'approved', 'rejected'] as $option) : ?>
-                                                            <option value="<?php echo esc_attr($option); ?>" <?php echo selected($search->search_status, $option, false); ?>><?php echo esc_html(ucfirst($option)); ?>
+                                                            <option value="<?php echo esc_attr($option); ?>" <?php echo selected($inquiry->inquiry_status, $option, false); ?>><?php echo esc_html(ucfirst($option)); ?>
                                                             </option>
                                                         <?php endforeach; ?>
                                                     </select>
-                                                    <label for="search_status_<?php echo esc_attr($search->id); ?>"><?php echo esc_html__('Search Status:', 'professionaldirectory'); ?></label>
+                                                    <label for="inquiry_status_<?php echo esc_attr($inquiry->id); ?>"><?php echo esc_html__('Inquiry Status:', 'professionaldirectory'); ?></label>
                                                 </div>
                                             </div>
                                         </div>

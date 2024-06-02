@@ -3,15 +3,15 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data-storage-functions.php';
 
-class PDR_Search_Results {
+class PDR_Inquiry_Results {
     public function __construct() {
-        add_shortcode('pdr_search_results', array($this, 'render_search_results'));
-        add_action('wp_ajax_pdr_search', array($this, 'handle_ajax_search'));
-        add_action('wp_ajax_nopriv_pdr_search', array($this, 'handle_ajax_search'));
+        add_shortcode('pdr_inquiry_results', array($this, 'render_inquiry_results'));
+        add_action('wp_ajax_pdr_inquiry', array($this, 'handle_ajax_inquiry'));
+        add_action('wp_ajax_nopriv_pdr_inquiry', array($this, 'handle_ajax_inquiry'));
     }
 
-    public function handle_ajax_search() {
-        error_log('Iniciando handle_ajax_search');
+    public function handle_ajax_inquiry() {
+        error_log('Iniciando handle_ajax_inquiry');
     
         $service_type = isset($_POST['service_type']) ? sanitize_text_field($_POST['service_type']) : '';
         $service_location = isset($_POST['service_location']) ? sanitize_text_field($_POST['service_location']) : '';
@@ -76,7 +76,7 @@ class PDR_Search_Results {
             ob_start();
     
             $template_choice = get_option('pdr_template_choice', 'template-1');
-            $template_file = 'search-result-' . $template_choice . '.php';
+            $template_file = 'inquiry-result-' . $template_choice . '.php';
     
             while ($query->have_posts()) {
                 $query->the_post();
@@ -91,12 +91,12 @@ class PDR_Search_Results {
                     'contact_id' => $contactId,
                     'service_id' => $service_id,
                     'author_id' => $author_id,
-                    'search_date' => current_time('mysql'),
-                    'search_status' => 'pending',
+                    'inquiry_date' => current_time('mysql'),
+                    'inquiry_status' => 'pending',
                 ];
     
-                if (!store_search_data($data_to_store)) {
-                    error_log('Failed to store search data.');
+                if (!store_inquiry_data($data_to_store)) {
+                    error_log('Failed to store inquiry data.');
                 }
     
                 createOrUpdateContactAuthorRelation($contactId, $author_id, 'active', null);
@@ -116,13 +116,13 @@ class PDR_Search_Results {
     
     
 
-    public function render_search_results() {
+    public function render_inquiry_results() {
         ob_start();
         ?>
-        <div id="pdr-search-results"></div>
+        <div id="pdr-inquiry-results"></div>
         <?php
         return ob_get_clean();
     }
 }
 
-new PDR_Search_Results();
+new PDR_Inquiry_Results();

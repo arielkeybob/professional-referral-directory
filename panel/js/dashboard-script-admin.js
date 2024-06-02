@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         loadDataButton.addEventListener('click', function() {
             const period = periodSelector.value;
-            const includeNoSearch = document.getElementById('show-services-without-search').checked;
+            const includeNoInquiry = document.getElementById('show-services-without-inquiry').checked;
             const startDate = document.getElementById('start-date').value;
             const endDate = document.getElementById('end-date').value;
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'action': 'fetch_admin_dashboard_data',
                 'nonce': pdrAjax.ajax_nonce,
                 'period': period,
-                'include_no_search': includeNoSearch,
+                'include_no_inquiry': includeNoInquiry,
                 'start_date': startDate,
                 'end_date': endDate
             };
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     response.data.forEach(function(service) {
                         const row = servicesTableBody.insertRow();
                         row.insertCell(0).textContent = service.service_name; // Nome do serviço
-                        row.insertCell(1).textContent = service.search_count; // Quantidade de pesquisas
+                        row.insertCell(1).textContent = service.inquiry_count; // Quantidade de Inquirys
                         row.insertCell(2).textContent = service.author_name; // Nome do autor
-                        row.insertCell(3).textContent = service.last_search; // Data da última pesquisa
+                        row.insertCell(3).textContent = service.last_inquiry; // Data da última inquiry
                     });
                 } else {
                     // Lidar com erros ou dados vazios

@@ -16,7 +16,7 @@
                 'edit_item'             => __('Edit Service', 'professionaldirectory'),
                 'view_item'             => __('View Service', 'professionaldirectory'),
                 'all_items'             => __('All Services', 'professionaldirectory'),
-                'search_items'          => __('Search Services', 'professionaldirectory'),
+                'inquiring_items'          => __('Inquiry Services', 'professionaldirectory'),
                 'parent_item_colon'     => __('Parent Services:', 'professionaldirectory'),
                 'not_found'             => __('No services found.', 'professionaldirectory'),
                 'not_found_in_trash'    => __('No services found in Trash.', 'professionaldirectory'),

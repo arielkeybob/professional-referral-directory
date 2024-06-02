@@ -53,9 +53,9 @@ function pdrCreateContactsTable() {
     dbDelta($sql);
 }
 
-function pdrCreateSearchDataTable() {
+function pdrCreateInquiryDataTable() {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'pdr_search_data';
+    $table_name = $wpdb->prefix . 'pdr_inquiry_data';
     $charset_collate = $wpdb->get_charset_collate();
 
     // Certifique-se de que a tabela de contatos seja criada primeiro.
@@ -65,11 +65,11 @@ function pdrCreateSearchDataTable() {
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_type VARCHAR(255) NOT NULL,
         service_location VARCHAR(255),
-        search_date DATETIME NOT NULL,
+        inquiry_date DATETIME NOT NULL,
         service_id BIGINT UNSIGNED,
         author_id BIGINT UNSIGNED,
         contact_id BIGINT UNSIGNED,
-        search_status VARCHAR(100) NOT NULL DEFAULT 'pending',
+        inquiry_status VARCHAR(100) NOT NULL DEFAULT 'pending',
         commission_value_view DECIMAL(10, 2) DEFAULT 0.00,
         commission_value_approval DECIMAL(10, 2) DEFAULT 0.00,
         is_paid BOOLEAN DEFAULT FALSE,
@@ -123,7 +123,7 @@ function pdrActivatePlugin() {
     pdr_initialize_user_roles();
     wp_cache_flush();
     pdr_clear_transients(); // Limpa todos os transients
-    pdrCreateSearchDataTable();
+    pdrCreateInquiryDataTable();
     pdrCreateAuthorContactRelationsTable();
     pdrCheckVersion();
     pdrStartSession();

@@ -9,20 +9,20 @@ defined('ABSPATH') or die('No script kiddies please!');
     <h2><?php _e('Available Shortcodes', 'professional-directory'); ?></h2>
 
     <div class="shortcode-section">
-        <h3><?php _e('Search Form', 'professional-directory'); ?></h3>
-        <p><?php _e('This shortcode displays a search form that allows users to search for professional services based on service type and location.', 'professional-directory'); ?></p>
+        <h3><?php _e('Inquiry Form', 'professional-directory'); ?></h3>
+        <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for professional services based on service type and location.', 'professional-directory'); ?></p>
         <div class="shortcode-display">
-            <code>[pdr_search_form]</code>
-            <button onclick="copyToClipboard(this, '[pdr_search_form]')"><?php _e('Copy', 'professional-directory'); ?></button>
+            <code>[pdr_inquiry_form]</code>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'professional-directory'); ?></button>
         </div>
     </div>
 
     <div class="shortcode-section">
-        <h3><?php _e('Search Results', 'professional-directory'); ?></h3>
-        <p><?php _e('This shortcode displays the search results. Use it on the page that will show the services searched for by users.', 'professional-directory'); ?></p>
+        <h3><?php _e('Inquiry Results', 'professional-directory'); ?></h3>
+        <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'professional-directory'); ?></p>
         <div class="shortcode-display">
-            <code>[pdr_search_results]</code>
-            <button onclick="copyToClipboard(this, '[pdr_search_results]')"><?php _e('Copy', 'professional-directory'); ?></button>
+            <code>[pdr_inquiry_results]</code>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'professional-directory'); ?></button>
         </div>
     </div>
 

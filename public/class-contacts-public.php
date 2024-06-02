@@ -4,41 +4,41 @@ defined('ABSPATH') or die('No script kiddies please!');
 class Contatos_Public {
     public function __construct() {
         // Adicione aqui ações e filtros relevantes, como enfileirar scripts ou estilos.
-        add_shortcode('formulario_pesquisa_contato', array($this, 'renderizar_formulario_pesquisa'));
-        add_action('wp_ajax_processar_formulario_pesquisa', array($this, 'processar_formulario_pesquisa'));
-        add_action('wp_ajax_nopriv_processar_formulario_pesquisa', array($this, 'processar_formulario_pesquisa'));
+        add_shortcode('contact_inquiry_form', array($this, 'render_inquiry_form'));
+        add_action('wp_ajax_process_inquiry_form', array($this, 'process_inquiry_form'));
+        add_action('wp_ajax_nopriv_process_inquiry_form', array($this, 'process_inquiry_form'));
     }
 
     /**
-     * Renderiza o formulário de pesquisa no frontend através de um shortcode.
+     * Renderiza o formulário de Inquiry no frontend através de um shortcode.
      */
-    public function renderizar_formulario_pesquisa() {
+    public function render_inquiry_form() {
         // Aqui você pode incluir o HTML do formulário, ou incluir um arquivo de template.
         ob_start(); // Inicia o buffer de saída
         ?>
-        <form id="formulario-pesquisa-contato" action="" method="post">
+        <form id="formulario-inquiry-contato" action="" method="post">
             <!-- Campos do formulário -->
             <input type="text" name="nome" placeholder="Seu Nome" required>
             <input type="email" name="email" placeholder="Seu Email" required>
             <!-- Adicione mais campos conforme necessário -->
-            <input type="submit" value="Enviar Pesquisa">
+            <input type="submit" value="Inquiry">
         </form>
         <?php
         return ob_get_clean(); // Retorna o conteúdo do buffer e finaliza o buffer.
     }
 
     /**
-     * Processa a submissão do formulário de pesquisa.
+     * Processa a submissão do formulário de Inquiry.
      */
-    public function processar_formulario_pesquisa() {
-        check_ajax_referer('seguranca_formulario_pesquisa', 'nonce');
+    public function process_inquiry_form() {
+        check_ajax_referer('seguranca_inquiry_form', 'nonce');
 
-        // Recupere os dados do formulário de pesquisa. Valide e sanitize conforme necessário.
+        // Recupere os dados do formulário de Inquiry. Valide e sanitize conforme necessário.
         $nome = sanitize_text_field($_POST['nome']);
         $email = sanitize_email($_POST['email']);
         // Processa os dados conforme necessário, por exemplo, salvar no banco de dados.
 
-        wp_send_json_success(array('mensagem' => 'Pesquisa recebida com sucesso!'));
+        wp_send_json_success(array('mensagem' => 'Inquiry recebida com sucesso!'));
         wp_die(); // Finaliza a execução no contexto AJAX.
     }
 
@@ -60,7 +60,7 @@ class Contatos_Public {
             'seuPlugin',
             array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('seguranca_formulario_pesquisa')
+                'nonce' => wp_create_nonce('seguranca_inquiry_form')
             )
         );
     }

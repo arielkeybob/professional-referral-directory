@@ -1,4 +1,4 @@
-#pdr-search-results {
+#pdr-inquiry-results {
   display: flex;
   padding: 20px;
   max-width: 1200px;
@@ -60,7 +60,7 @@ a.read-more:hover {
   color: var(--pdr-button-text-hover-color);
 }
 
-#pdr-search-results p{
+#pdr-inquiry-results p{
 margin:5px;
 }
 

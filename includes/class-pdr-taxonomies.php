@@ -13,7 +13,7 @@ class PDR_Taxonomies {
         $labels = array(
             'name'              => _x( 'Service Types', 'taxonomy general name', 'professionaldirectory' ),
             'singular_name'     => _x( 'Service Type', 'taxonomy singular name', 'professionaldirectory' ),
-            'search_items'      => __( 'Search Service Types', 'professionaldirectory' ),
+            'inquiring_items'      => __( 'Service Types', 'professionaldirectory' ),
             'all_items'         => __( 'All Service Types', 'professionaldirectory' ),
             'parent_item'       => __( 'Parent Service Type', 'professionaldirectory' ),
             'parent_item_colon' => __( 'Parent Service Type:', 'professionaldirectory' ),
@@ -50,7 +50,7 @@ class PDR_Taxonomies {
         $labels = array(
             'name'              => _x( 'Service Locations', 'taxonomy general name', 'professionaldirectory' ),
             'singular_name'     => _x( 'Service Location', 'taxonomy singular name', 'professionaldirectory' ),
-            'search_items'      => __( 'Search Service Locations', 'professionaldirectory' ),
+            'inquiring_items'      => __( 'Inquiry Service Locations', 'professionaldirectory' ),
             'all_items'         => __( 'All Service Locations', 'professionaldirectory' ),
             'parent_item'       => __( 'Parent Service Location', 'professionaldirectory' ),
             'parent_item_colon' => __( 'Parent Service Location:', 'professionaldirectory' ),

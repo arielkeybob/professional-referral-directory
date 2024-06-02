@@ -24,15 +24,15 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
         <!-- Seção de Total de Pesquisas por Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header"><?php echo esc_html__('Total Searches by Service.', 'professionaldirectory'); ?></div>
+                <div class="card-header"><?php echo esc_html__('Total Inquiries by Service.', 'professionaldirectory'); ?></div>
                 <div class="card-body">
                     <?php
                     $services = pdr_get_services_by_current_user();
                     if (!empty($services)) {
                         echo '<ul>';
                         foreach ($services as $service) {
-                            $total_searches = pdr_get_total_searches_by_service($service['ID']);
-                            echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Search:', 'professionaldirectory') . ' ' . esc_html($total_searches) . '</li>';
+                            $total_inquiries = pdr_get_total_inquiries_by_service($service['ID']);
+                            echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Inquiry:', 'professionaldirectory') . ' ' . esc_html($total_inquiries) . '</li>';
                         }
                         echo '</ul>';
                     } else {
@@ -46,7 +46,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
         <!-- Seção de Distribuição das Pesquisas por Tipo de Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header"><?php echo esc_html__('Distribution of Searches by Service Type', 'professionaldirectory'); ?></div>
+                <div class="card-header"><?php echo esc_html__('Distribution of Inquiries by Service Type', 'professionaldirectory'); ?></div>
                 <div class="card-body">
                     <canvas id="chartServiceTypeDistribution"></canvas>
                 </div>
@@ -58,26 +58,26 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
 
     <!-- Seção de Pesquisas Recentes -->
     <div class="card mb-4 w-100"> <!-- Classe w-100 para largura total -->
-    <div class="card-header"><?php echo esc_html__('Recent Searches', 'professionaldirectory'); ?></div>
+    <div class="card-header"><?php echo esc_html__('Recent Inquiries', 'professionaldirectory'); ?></div>
     <div class="card-body">
         <?php
-        $recent_searches = pdr_get_recent_searches_for_user();
-        if (!empty($recent_searches)) {
-            echo '<table id="recentSearchesTable" class="display">';
+        $recent_inquiries = pdr_get_recent_inquiries_for_user();
+        if (!empty($recent_inquiries)) {
+            echo '<table id="recentInquiriesTable" class="display">';
             echo '<thead><tr><th>' . esc_html__('User Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Address', 'professionaldirectory') . '</th><th>' . esc_html__('Service', 'professionaldirectory') . '</th><th>' . esc_html__('Type', 'professionaldirectory') . '</th><th>' . esc_html__('Date', 'professionaldirectory') . '</th></tr></thead><tbody>';
-            foreach ($recent_searches as $search) {
+            foreach ($recent_inquiries as $inquiry) {
                 $details_url = wp_nonce_url(
-                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $search['contact_id']], admin_url('admin.php')),
-                    'view_contact_details_' . $search['contact_id'],
+                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $inquiry['contact_id']], admin_url('admin.php')),
+                    'view_contact_details_' . $inquiry['contact_id'],
                     'contact_nonce'
                 );
                 echo '<tr>';
-                echo '<td><a href="' . esc_url($details_url) . '">' . esc_html($search['name']) . '</a></td>'; // Link para os detalhes do contato
-                echo '<td>' . esc_html($search['email']) . '</td>';
-                echo '<td>' . esc_html($search['service_location']) . '</td>';
-                echo '<td>' . esc_html($search['post_title']) . '</td>';
-                echo '<td>' . esc_html($search['service_type']) . '</td>';
-                echo '<td>' . esc_html($search['search_date']) . '</td>';
+                echo '<td><a href="' . esc_url($details_url) . '">' . esc_html($inquiry['name']) . '</a></td>'; // Link para os detalhes do contato
+                echo '<td>' . esc_html($inquiry['email']) . '</td>';
+                echo '<td>' . esc_html($inquiry['service_location']) . '</td>';
+                echo '<td>' . esc_html($inquiry['post_title']) . '</td>';
+                echo '<td>' . esc_html($inquiry['service_type']) . '</td>';
+                echo '<td>' . esc_html($inquiry['inquiry_date']) . '</td>';
                 echo '</tr>';
             }
             echo '</tbody></table>';
@@ -100,7 +100,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
 
 <script>
 jQuery(document).ready(function($) {
-    $('#recentSearchesTable').DataTable(); // Inicializa a DataTable
+    $('#recentInquiriesTable').DataTable(); // Inicializa a DataTable
 });
 </script>
 
@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 
 <script>
 jQuery(document).ready(function($) {
-    var serviceTypeData = <?php echo json_encode(pdr_get_searches_distribution_by_service_type()); ?>;
+    var serviceTypeData = <?php echo json_encode(pdr_get_inquiries_distribution_by_service_type()); ?>;
     var labels = serviceTypeData.map(function(item) { return item.service_type; });
     var data = serviceTypeData.map(function(item) { return item.total; });
 

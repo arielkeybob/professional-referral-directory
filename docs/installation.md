@@ -18,11 +18,11 @@ Antes de instalar o plugin, certifique-se de que você tem:
 ## Configuração Inicial
 
 Após a instalação e ativação, o plugin ProfessionalDirectory automaticamente:
-- Cria o user Role “Professional”.
+- Cria o user Role “Service Provider”.
 - Cria o Post Type “Services”.
 - Cria a taxonomia “Service Type”.
 - Cria a taxonomia “Service Location”.
-- Cria shortcodes para o search form e resultados de pesquisa (veja como usar os shortcodes em [Uso](usage.md)).
+- Cria shortcodes para o inquiry form e inquiry results (veja como usar os shortcodes em [Uso](usage.md)).
 
 ## Configuração Adicional para Envio de E-mails
 
@@ -32,7 +32,7 @@ Para garantir o funcionamento adequado do envio de e-mails pelo plugin, é recom
 
 ## Verificações Pós-Instalação
 
-1. **Verifique o Role “Professional”:** Acesse `Usuários > Perfis` e confirme se o role “Professional” foi criado.
+1. **Verifique o Role “Service Provider”:** Acesse `Usuários > Perfis` e confirme se o role “Service Provider” foi criado.
 2. **Verifique o Post Type “Services”:** Verifique se o novo tipo de post “Services” está disponível no painel.
 3. **Verifique a Taxonomia “Service Type”:** Confirme se a taxonomia está disponível e associada ao Post Type “Services”.
 4. **Verifique a Taxonomia “Service Location”:** Confirme se a taxonomia está disponível e associada ao Post Type “Services”.

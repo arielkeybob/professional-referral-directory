@@ -1,12 +1,12 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-class PDR_Search_Form {
+class PDR_Inquiry_Form {
     public function __construct() {
-        add_shortcode('pdr_search_form', array($this, 'render_search_form'));
+        add_shortcode('pdr_inquiry_form', array($this, 'render_inquiry_form'));
     }
 
-    public function render_search_form() {
+    public function render_inquiry_form() {
         global $wpdb; // A classe global do WordPress para operações no banco de dados
     
         if (is_user_logged_in()) {
@@ -23,8 +23,8 @@ class PDR_Search_Form {
         ob_start();
         ?>
         <!-- Formulário de Filtro (Etapa 1) -->
-        <form id="pdr-search-form" method="post">
-            <div id="pdr-initial-search">
+        <form id="pdr-inquiry-form" method="post">
+            <div id="pdr-initial-inquiry">
                 <select name="service_type">
                     <option value=""><?php echo esc_html__('Select a Service Type', 'professionaldirectory'); ?></option>
                     <?php
@@ -57,13 +57,13 @@ class PDR_Search_Form {
                     ?>
                 </select>
     
-                <button type="button" id="pdr-search-btn"><?php echo esc_html__('Next', 'professionaldirectory'); ?></button>
+                <button type="button" id="pdr-inquiry-btn"><?php echo esc_html__('Next', 'professionaldirectory'); ?></button>
             </div>
     
             <!-- Formulário de Informações Pessoais (Etapa 2) -->
             <div id="pdr-personal-info-form" style="display:none;">
                 <?php if ($logged_in): ?>
-                    <p><?php _e('You are searching as: ', 'professionaldirectory'); echo esc_html($name); ?></p>
+                    <p><?php _e('You are inquiring as: ', 'professionaldirectory'); echo esc_html($name); ?></p>
                     <input type="hidden" name="name" value="<?php echo esc_attr($name); ?>">
                     <input type="hidden" name="email" value="<?php echo esc_attr($email); ?>">
                     <a href="<?php echo wp_logout_url(get_permalink()); ?>"><?php _e('Change user', 'professionaldirectory'); ?></a>
@@ -94,8 +94,8 @@ class PDR_Search_Form {
                 }
             });
     
-            document.getElementById('pdr-search-btn').addEventListener('click', function() {
-                document.getElementById('pdr-initial-search').style.display = 'none';
+            document.getElementById('pdr-inquiry-btn').addEventListener('click', function() {
+                document.getElementById('pdr-initial-inquiry').style.display = 'none';
                 document.getElementById('pdr-personal-info-form').style.display = 'block';
             });
         </script>
@@ -105,4 +105,4 @@ class PDR_Search_Form {
     
 }
 
-new PDR_Search_Form();
+new PDR_Inquiry_Form();

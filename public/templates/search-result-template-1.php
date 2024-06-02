@@ -2,7 +2,7 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 
-// Em search-result-template-1.php
+// Em inquiry-result-template-1.php
 include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php');
 
 ?>

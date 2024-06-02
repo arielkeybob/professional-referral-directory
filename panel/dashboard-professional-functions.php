@@ -8,35 +8,35 @@ require_once plugin_dir_path(__FILE__) . 'class-contact-service.php';
 $contactService = new ContactService();
 
 /**
- * Busca o total de pesquisas por um serviço específico.
+ * Busca o total de Inquirys por um serviço específico.
  *
  * @param int $service_id ID do serviço.
- * @return int Total de pesquisas para o serviço.
+ * @return int Total de Inquirys para o serviço.
  */
-function pdr_get_total_searches_by_service($service_id) {
+function pdr_get_total_inquiries_by_service($service_id) {
     global $contactService;
-    return $contactService->getTotalSearchesByService($service_id);
+    return $contactService->getTotalInquiriesByService($service_id);
 }
 
 /**
- * Recupera as pesquisas mais recentes.
+ * Recupera os Inquiries mais recentes.
  *
- * @param int $limit Número de pesquisas a serem retornadas.
- * @return array Lista das pesquisas mais recentes.
+ * @param int $limit Número de Inquirys a serem retornadas.
+ * @return array Lista dos Inquiries mais recentes.
  */
-function pdr_get_recent_searches($limit = 5) {
+function pdr_get_recent_inquiries($limit = 5) {
     global $contactService;
-    return $contactService->getRecentSearches($limit);
+    return $contactService->getRecentInquiries($limit);
 }
 
 /**
- * Calcula a distribuição das pesquisas por tipo de serviço.
+ * Calcula a distribuição dos Inquiries por tipo de serviço.
  *
- * @return array Distribuição das pesquisas.
+ * @return array Distribuição dos Inquiries.
  */
-function pdr_get_searches_distribution_by_service_type() {
+function pdr_get_inquiries_distribution_by_service_type() {
     global $contactService;
-    return $contactService->getSearchesDistributionByServiceType();
+    return $contactService->getInquiriesDistributionByServiceType();
 }
 
 /**
@@ -50,12 +50,12 @@ function pdr_get_services_by_current_user() {
 }
 
 /**
- * Recupera as pesquisas mais recentes associadas ao usuário atual.
+ * Recupera os Inquiries mais recentes associadas ao usuário atual.
  *
- * @param int $limit Número de pesquisas a serem retornadas.
- * @return array Lista das pesquisas mais recentes do usuário.
+ * @param int $limit Número de Inquirys a serem retornadas.
+ * @return array Lista dos Inquiries mais recentes do usuário.
  */
-function pdr_get_recent_searches_for_user($limit = 10) {
+function pdr_get_recent_inquiries_for_user($limit = 10) {
     global $contactService;
-    return $contactService->getRecentSearchesForUser($limit);
+    return $contactService->getRecentInquiriesForUser($limit);
 }

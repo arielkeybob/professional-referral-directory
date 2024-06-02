@@ -15,8 +15,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 define('PDR_MAIN_FILE', __FILE__);
 
-define( 'PDR_VERSION', '1.1.3' ); // Substitua 1.0.0 pela versão atual do seu plugin
-
+define( 'PDR_VERSION', '1.1.4' ); 
 
 
 // Inclusões de Arquivos Principais do Plugin
@@ -28,8 +27,8 @@ require_once plugin_dir_path(__FILE__) . 'panel/class-panel-restrictions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-pdr-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
-require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-form.php';
-require_once plugin_dir_path(__FILE__) . 'public/class-pdr-search-results.php';
+require_once plugin_dir_path(__FILE__) . 'public/class-pdr-inquiry-form.php';
+require_once plugin_dir_path(__FILE__) . 'public/class-pdr-inquiry-results.php';
 //require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php'; //Já é incluido diretamente no panel/panel-menus.php
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
 require_once plugin_dir_path(__FILE__) . 'panel/dashboard-professional-functions.php';

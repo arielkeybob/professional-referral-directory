@@ -27,28 +27,28 @@ jQuery(document).ready(function($) {
     });
     */
 
-    // Atualizar status da pesquisa via AJAX
-    $('.search_status').change(function() {
-        var searchId = $(this).data('search-id');
+    // Atualizar status do Inquiry via AJAX
+    $('.inquiry_status').change(function() {
+        var inquiryId = $(this).data('inquiry-id');
         var newStatus = $(this).val();
-        console.log('Atualizando status da pesquisa:', searchId, newStatus);
+        console.log('Atualizando status do Inquiry:', inquiryId, newStatus);
 
         $.ajax({
             url: pdrPanelAjax.ajax_url,
             method: 'POST',
             data: {
-                action: 'salvar_status_pesquisa',
-                search_id: searchId,
-                search_status: newStatus
+                action: 'save_inquiry_status',
+                inquiry_id: inquiryId,
+                inquiry_status: newStatus
                 // Removido: security: pdrPanelAjax.ajax_nonce
             },
             success: function(response) {
-                console.log('Resposta do salvar_status_pesquisa:', response);
-                alert('Status da pesquisa atualizado com sucesso.');
+                console.log('Resposta do save_inquiry_status:', response);
+                alert('Status do Inquiry atualizado com sucesso.');
             },
             error: function(xhr, status, error) {
-                console.error('Erro no salvar_status_pesquisa:', xhr, status, error);
-                alert('Erro ao atualizar status da pesquisa.');
+                console.error('Erro no save_inquiry_status:', xhr, status, error);
+                alert('Erro ao atualizar status do Inquiry.');
             }
         });
     });

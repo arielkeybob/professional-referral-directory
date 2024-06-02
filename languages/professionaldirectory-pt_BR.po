@@ -74,8 +74,8 @@ msgid "All Services"
 msgstr "Todos os Serviços"
 
 #: panel/templates/dashboard-template-admin.php:26
-msgid "Also show services without searches in the period"
-msgstr "Mostrar também serviços sem pesquisas no período"
+msgid "Also show services without inquiries in the period"
+msgstr "Mostrar também serviços sem inquiries no período"
 
 #: panel/class-settings-page.php:15 panel/class-settings-page.php:76
 msgid "API Settings"
@@ -126,7 +126,7 @@ msgid "Date"
 msgstr "Data"
 
 #: panel/templates/dashboard-template-admin.php:34
-msgid "Date of Last Search"
+msgid "Date of Last Inquiry"
 msgstr "Data da Última Pesquisa"
 
 #: includes/class-pdr-metaboxes.php:69
@@ -134,8 +134,8 @@ msgid "Desejo receber notificações por e-mail para este serviço"
 msgstr "Desejo receber notificações por e-mail para este serviço"
 
 #: panel/templates/dashboard-template-professional.php:52
-msgid "Distribution of Searches by Service Type"
-msgstr "Distribuição de Pesquisas por Tipo de Serviço"
+msgid "Distribution of Inquiries by Service Type"
+msgstr "Distribuição de inquiries por Tipo de Serviço"
 
 #: includes/class-pdr-cpt.php:18
 msgid "Edit Service"
@@ -149,7 +149,7 @@ msgstr "Editar Localização de Serviço"
 msgid "Edit Service Type"
 msgstr "Editar Tipo de Serviço"
 
-#: public/class-pdr-search-form.php:73
+#: public/class-pdr-inquiry-form.php:73
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Email"
 msgstr "Email"
@@ -238,7 +238,7 @@ msgstr "Nome da Nova Localização de Serviço"
 msgid "New Service Type Name"
 msgstr "Nome do Novo Tipo de Serviço"
 
-#: public/class-pdr-search-form.php:67
+#: public/class-pdr-inquiry-form.php:67
 msgid "Next"
 msgstr "Próximo"
 
@@ -246,7 +246,7 @@ msgstr "Próximo"
 msgid "No recent results found."
 msgstr "Nenhum resultado recente encontrado."
 
-#: public/class-pdr-search-results.php:137
+#: public/class-pdr-inquiry-results.php:137
 #: panel/templates/dashboard-template-professional.php:42
 msgid "No service found."
 msgstr "Nenhum serviço encontrado."
@@ -259,13 +259,13 @@ msgstr "Nenhum serviço encontrado na Lixeira."
 msgid "No services found."
 msgstr "Nenhum serviço encontrado."
 
-#: public/class-pdr-search-form.php:72
+#: public/class-pdr-inquiry-form.php:72
 msgid "Nome"
 msgstr "Nome"
 
 #: panel/templates/dashboard-template-admin.php:32
-msgid "Number of Searches"
-msgstr "Número de Pesquisas"
+msgid "Number of Inquiries"
+msgstr "Número de inquiries"
 
 #: includes/class-pdr-cpt.php:25
 msgctxt ""
@@ -363,13 +363,13 @@ msgstr "Painel Profissional "
 msgid "ProfessionalDirectory"
 msgstr "Diretório Profissional"
 
-#: public/templates/search-result-template-1.php:50
+#: public/templates/inquiry-result-template-1.php:50
 msgid "Read more"
 msgstr "Ler mais"
 
 #: panel/templates/dashboard-template-professional.php:64
-msgid "Recent Searches"
-msgstr "Pesquisas Recentes"
+msgid "Recent Inquiries"
+msgstr "inquiries Recentes"
 
 #: panel/class-settings-page.php:373
 msgid "Remove Logo"
@@ -397,30 +397,30 @@ msgid "Services list navigation"
 msgstr "Navegação da lista de serviços"
 
 #: includes/class-pdr-taxonomies.php:55
-msgid "Search Service Locations"
+msgid "Inquiry Service Locations"
 msgstr "Buscar Localizações de Serviço"
 
 #: includes/class-pdr-taxonomies.php:18
-msgid "Search Service Types"
+msgid "Service Types"
 msgstr "Buscar Tipos de Serviço"
 
 #: includes/class-pdr-cpt.php:21
-msgid "Search Services"
+msgid "Inquiry Services"
 msgstr "Buscar Serviços"
 
 #: panel/templates/dashboard-template-professional.php:38
-msgid "Search:"
+msgid "Inquiry:"
 msgstr "Buscar:"
 
 #: panel/class-settings-page.php:196
 msgid "Secondary Color"
 msgstr "Cor Secundária"
 
-#: public/class-pdr-search-form.php:51
+#: public/class-pdr-inquiry-form.php:51
 msgid "Select a Location"
 msgstr "Selecione uma Localização"
 
-#: public/class-pdr-search-form.php:35
+#: public/class-pdr-inquiry-form.php:35
 msgid "Select a Service Type"
 msgstr "Selecione um Tipo de Serviço"
 
@@ -436,7 +436,7 @@ msgstr "Serviço"
 msgid "Service Location"
 msgstr "Localização de Serviço"
 
-#: public/templates/search-result-template-1.php:31
+#: public/templates/inquiry-result-template-1.php:31
 msgid "Service Locations:"
 msgstr "Localizações de Serviço:"
 
@@ -448,7 +448,7 @@ msgstr "Nome do Serviço"
 msgid "Service Type"
 msgstr "Tipo de Serviço"
 
-#: public/templates/search-result-template-1.php:27
+#: public/templates/inquiry-result-template-1.php:27
 msgid "Service Types:"
 msgstr "Tipos de Serviço:"
 
@@ -456,7 +456,7 @@ msgstr "Tipos de Serviço:"
 msgid "Settings"
 msgstr "Configurações"
 
-#: public/class-pdr-search-form.php:74
+#: public/class-pdr-inquiry-form.php:74
 msgid "Submit"
 msgstr "Enviar"
 
@@ -516,8 +516,8 @@ msgid "Today"
 msgstr "Hoje"
 
 #: panel/templates/dashboard-template-professional.php:30
-msgid "Total Searches by Service."
-msgstr "Total de Pesquisas por Serviço."
+msgid "Total Inquiries by Service."
+msgstr "Total de inquiries por Serviço."
 
 #: panel/templates/dashboard-template-professional.php:70
 msgid "Type"
@@ -539,8 +539,8 @@ msgstr "Carregar Logo"
 msgid "Upload or remove the panel logo."
 msgstr "Carregar ou remover o logo do painel."
 
-#: public/class-pdr-search-results.php:143
-msgid "Use the search form to find services."
+#: public/class-pdr-inquiry-results.php:143
+msgid "Use the Inquiry form to find services."
 msgstr "Use o formulário de busca para encontrar serviços."
 
 #: panel/templates/dashboard-template-professional.php:70

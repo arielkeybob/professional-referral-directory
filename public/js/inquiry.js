@@ -23,17 +23,17 @@ window.initAutocomplete = function() {
 
 jQuery(document).ready(function($) {
     // Exibir campos de nome e e-mail ao clicar em "Next"
-    $('#pdr-search-btn').click(function() {
+    $('#pdr-inquiry-btn').click(function() {
         $('#pdr-personal-info-form').show();
         $(this).hide(); // Esconde o botão "Next" após o clique
     });
 
     // Evento de submissão do formulário de busca
-    $('#pdr-search-form').on('submit', function(e) {
+    $('#pdr-inquiry-form').on('submit', function(e) {
         e.preventDefault();
 
         var formData = {
-            'action': 'pdr_search',
+            'action': 'pdr_inquiry',
             'service_type': $('select[name="service_type"]').val(),
             'service_location': $('select[name="service_location"]').val(),
             'name': $('input[name="name"]').val(),
@@ -54,19 +54,19 @@ jQuery(document).ready(function($) {
                     displayResults(response.data);
                 } else {
                     // Tratar casos de falha na busca
-                    $('#pdr-search-results').html('<p>' + response.data + '</p>');
+                    $('#pdr-inquiry-results').html('<p>' + response.data + '</p>');
                 }
             },
             error: function() {
                 // Tratamento de erro
-                $('#pdr-search-results').html('<p>Erro ao processar a busca.</p>');
+                $('#pdr-inquiry-results').html('<p>Erro ao processar a busca.</p>');
             }
         });
     });
 
     // Função para exibir os resultados da busca
     function displayResults(data) {
-        var resultsContainer = $('#pdr-search-results');
+        var resultsContainer = $('#pdr-inquiry-results');
         resultsContainer.empty();
 
         // Insere o HTML retornado diretamente no container de resultados

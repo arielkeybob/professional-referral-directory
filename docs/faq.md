@@ -5,7 +5,7 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 ## Perguntas Gerais
 
 ### Q: O que o plugin ProfessionalDirectory faz?
-**A:** O plugin permite criar e gerenciar um diretório de serviços profissionais no WordPress, incluindo a funcionalidade de busca e categorização de serviços, além de gerenciar comissões para os serviços visualizados ou aprovados.
+**A:** O plugin permite criar e gerenciar um diretório de serviços profissionais no WordPress, incluindo a funcionalidade de busca e categorização de serviços, além de gerenciar referral fees para os serviços visualizados ou aprovados.
 
 ### Q: Em quais versões do WordPress o plugin é compatível?
 **A:** O plugin é compatível com as versões mais recentes do WordPress. Recomendamos sempre manter seu WordPress atualizado.
@@ -16,29 +16,29 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 **A:** Acesse `Services > Adicionar Novo` no painel administrativo do WordPress e preencha os detalhes necessários.
 
 ### Q: Quem pode criar e gerenciar serviços?
-**A:** Usuários com o role “Professional” e administradores podem criar e gerenciar serviços.
+**A:** Usuários com o role “Service Provider” e administradores podem criar e gerenciar serviços.
 
 ### Q: Quem pode cadastrar Locations e Service Types?
-**A:** Até a versão 1.1.2, somente administradores do site podem cadastrar Locations e Service Types. Estamos estudando a viabilidade de permitir que os Professionals também possam fazer esse cadastro.
+**A:** Até a versão 1.1.2, somente administradores do site podem cadastrar Locations e Service Types. Estamos estudando a viabilidade de permitir que os Service Providers também possam fazer esse cadastro.
 
-### Q: Como funciona a pesquisa de serviços sem login?
-**A:** Usuários podem pesquisar serviços sem fazer login. Porém eles devem fornecer o nome e email para realizar a pesquisa. Opcionalmente, eles podem criar uma conta durante o processo de pesquisa.
+### Q: Como funciona o inquiry de serviços sem login?
+**A:** Usuários podem realizar inquiries de serviços sem fazer login. Porém eles devem fornecer o nome e email para realizar o inquiry. Opcionalmente, eles podem criar uma conta durante o processo de inquiry.
 
-### Q: Como criar uma conta durante a pesquisa de serviços?
-**A:** Durante a pesquisa, os usuários têm a opção de criar uma conta marcando a opção "Create an account" e fornecendo uma senha. Se a conta for criada com sucesso, o usuário será automaticamente logado.
+### Q: Como criar uma conta durante o inquiry de serviços?
+**A:** Durante o inquiry, os usuários têm a opção de criar uma conta marcando a opção "Create an account" e fornecendo uma senha. Se a conta for criada com sucesso, o usuário será automaticamente logado.
 
 ### Q: O que acontece se o usuário não optar por criar uma conta?
-**A:** Se o usuário não optar por criar uma conta, ele ainda poderá realizar a pesquisa e ver os resultados fornecendo apenas o nome e o email.
+**A:** Se o usuário não optar por criar uma conta, ele ainda poderá realizar o inquiry e ver os resultados fornecendo apenas o nome e o email.
 
-## Gestão de Comissões
+## Gestão de Referral Fees
 
-### Q: Como são gerenciadas as comissões no ProfessionalDirectory?
-**A:** O plugin permite a configuração de comissões de duas formas:
-- **Configurações Globais de Comissão:** Aplicam-se a todos os profissionais e podem ser configuradas para comissões por visualização, por pesquisa aprovada, ou ambas.
-- **Configurações Específicas de Comissão:** Permite que profissionais com a permissão adequada sobrescrevam as configurações globais para suas próprias comissões. Esta opção deve ser habilitada por cada profissional em seu perfil.
+### Q: Como são gerenciadas as referral fees no ProfessionalDirectory?
+**A:** O plugin permite a configuração de referral fees de duas formas:
+- **Configurações Globais de Referral Fee:** Aplicam-se a todos os Service Providers e podem ser configuradas para referral fees por visualização, por inquiry aprovado, ou ambas.
+- **Configurações Específicas de Referral Fee:** Permite que Service Providers com a permissão adequada sobrescrevam as configurações globais para suas próprias referral fees. Esta opção deve ser habilitada por cada Service Provider em seu perfil.
 
-### Q: O que acontece se um profissional sobrescrever as configurações de comissão?
-**A:** Se um profissional optar por sobrescrever as configurações de comissão, as comissões aplicadas serão as definidas em seu perfil, em vez das configurações globais. Isto permite uma maior flexibilidade e personalização.
+### Q: O que acontece se um Service Provider sobrescrever as configurações de referral fee?
+**A:** Se um Service Provider optar por sobrescrever as configurações de referral fee, as referral fees aplicadas serão as definidas em seu perfil, em vez das configurações globais. Isto permite uma maior flexibilidade e personalização.
 
 ## Problemas e Soluções
 

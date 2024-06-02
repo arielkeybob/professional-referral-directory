@@ -64,16 +64,16 @@ $template_choice = get_option('pdr_template_choice', 'template-1');
 $template_number = str_replace('template-', '', $template_choice); // Isso irá extrair o número do template
 
 // Verifica se os arquivos existem antes de tentar enfileirá-los
-$css_file = plugins_url("/public/css/search-result-template-{$template_number}.css", PDR_MAIN_FILE);
-$js_file = plugins_url("/public/js/search-result-template-{$template_number}.js", PDR_MAIN_FILE);
+$css_file = plugins_url("/public/css/inquiry-result-template-{$template_number}.css", PDR_MAIN_FILE);
+$js_file = plugins_url("/public/js/inquiry-result-template-{$template_number}.js", PDR_MAIN_FILE);
 
 // Enfileira o CSS
-if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/css/search-result-template-{$template_number}.css")) {
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/css/inquiry-result-template-{$template_number}.css")) {
     echo '<link rel="stylesheet" href="' . esc_url($css_file) . '" type="text/css" />';
 }
 
 // Enfileira o JS
-if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/js/search-result-template-{$template_number}.js")) {
+if (file_exists(plugin_dir_path(PDR_MAIN_FILE) . "public/js/inquiry-result-template-{$template_number}.js")) {
     echo '<script src="' . esc_url($js_file) . '"></script>';
 }
 

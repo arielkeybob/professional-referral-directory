@@ -1,5 +1,5 @@
 /* Estilo Geral do Formulário */
-#pdr-search-form {
+#pdr-inquiry-form {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -9,8 +9,8 @@
 }
 
 /* Estilo dos campos de seleção e input */
-#pdr-search-form select,
-#pdr-search-form input {
+#pdr-inquiry-form select,
+#pdr-inquiry-form input {
     width: 100%;
     padding: 10px 15px;
     margin-bottom: 15px;
@@ -20,15 +20,15 @@
 }
 
 /* Estilo ao focar nos campos */
-#pdr-search-form select:focus,
-#pdr-search-form input:focus {
+#pdr-inquiry-form select:focus,
+#pdr-inquiry-form input:focus {
     outline: none;
     border-color: var(--pdr-button-hover-color);
     box-shadow: 0 0 0 3px var(--pdr-button-color);
 }
 
 /* Estilo do Botão */
-#pdr-search-form button {
+#pdr-inquiry-form button {
     background-color: var(--pdr-button-color);
     color: var(--pdr-button-text-color);
     padding: 10px 15px;
@@ -40,7 +40,7 @@
 }
 
 /* Efeito hover no botão */
-#pdr-search-form button:hover {
+#pdr-inquiry-form button:hover {
     background-color: var(--pdr-button-hover-color);
     color: var(--pdr-button-text-hover-color);
 }
