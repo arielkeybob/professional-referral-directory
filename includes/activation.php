@@ -144,11 +144,11 @@ register_activation_hook(__FILE__, 'pdrActivatePlugin');
 // Redirecionamento para a página de boas-vindas após a ativação do plugin
 add_action('admin_init', 'pdr_plugin_redirect_welcome');
 function pdr_plugin_redirect_welcome() {
-    // Verifique se a opção existe e, em caso afirmativo, redirecione para a página de boas-vindas
     if (get_option('pdr_plugin_activated', false)) {
-        delete_option('pdr_plugin_activated'); // Remova a opção para evitar redirecionamentos futuros
-        wp_redirect(admin_url('edit.php?post_type=pdr_service&page=pdr-welcome-page'));
+        delete_option('pdr_plugin_activated');
+        wp_redirect(admin_url('admin.php?page=pdr-setup-wizard'));
         exit;
     }
 }
+
 ?>

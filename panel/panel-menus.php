@@ -30,16 +30,6 @@ function pdr_register_menus() {
     // Instancia a classe PDR_Settings aqui para uso nos callbacks.
     $pdr_plugin_settings = new PDR_Settings();
 
-    // Submenu de Boas-vindas.
-    add_submenu_page(
-        'edit.php?post_type=pdr_service',
-        __('Boas-vindas', 'referralhub'),
-        __('Boas-vindas', 'referralhub'),
-        'manage_options',
-        'pdr-welcome-page',
-        'pdr_welcome_page_content'
-    );
-
     // Submenu de Referral Fee.
     add_submenu_page(
         'edit.php?post_type=pdr_service',
@@ -110,6 +100,16 @@ function pdr_register_menus() {
         'pdr-contact-details',
         'pdr_contact_details_page_content'
     );
+
+    // Adiciona o submenu de configuração
+    add_submenu_page(
+        'edit.php?post_type=pdr_service',
+        __('Setup Wizard', 'referralhub'),
+        __('Setup Wizard', 'referralhub'),
+        'manage_options',
+        'pdr-setup-wizard',
+        'pdr_setup_wizard_page_content'
+    );
 }
 
 function pdr_dashboard_admin_page_content() {
@@ -146,9 +146,9 @@ function pdr_render_shortcodes_help_page() {
     include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-// Função para a página de boas-vindas.
-function pdr_welcome_page_content() {
-    include plugin_dir_path(__FILE__) . '/welcome-page.php';
+// Função para a página de configuração.
+function pdr_setup_wizard_page_content() {
+    include plugin_dir_path(__FILE__) . '/setup-wizard.php';
 }
 
 // Função para lidar com a criação de páginas.
@@ -167,7 +167,7 @@ function pdr_handle_create_pages() {
             ]);
             if ($page_id) {
                 update_option('pdr_inquiry_page_id', $page_id);
-                wp_redirect(admin_url('edit.php?post_type=pdr_service&page=pdr-welcome-page&created=true'));
+                wp_redirect(admin_url('admin.php?page=pdr-setup-wizard&created=true'));
                 exit;
             }
         }
