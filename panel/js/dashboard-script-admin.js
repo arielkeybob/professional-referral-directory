@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Preparar os dados para a requisição AJAX
             const data = {
                 'action': 'fetch_admin_dashboard_data',
-                'nonce': pdrAjax.ajax_nonce,
+                'nonce': rhbAjax.ajax_nonce,
                 'period': period,
                 'include_no_inquiry': includeNoInquiry,
                 'start_date': startDate,
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // Enviar a requisição AJAX
-            jQuery.post(pdrAjax.ajax_url, data, function(response) {
+            jQuery.post(rhbAjax.ajax_url, data, function(response) {
                 if (response.success) {
                     // Limpar a tabela existente
                     servicesTableBody.innerHTML = '';

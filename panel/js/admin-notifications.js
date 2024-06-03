@@ -1,7 +1,7 @@
-jQuery(document).on('click', '.pdr-notification button.notice-dismiss', function() {
-    var notificationId = jQuery(this).closest('.pdr-notification').data('notification-id');
+jQuery(document).on('click', '.rhb-notification button.notice-dismiss', function() {
+    var notificationId = jQuery(this).closest('.rhb-notification').data('notification-id');
     jQuery.post(ajaxurl, {
-        action: 'pdr_notification_fechada',
+        action: 'rhb_notification_fechada',
         notification_id: notificationId
     });
 });

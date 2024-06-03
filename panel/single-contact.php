@@ -10,7 +10,7 @@ $contactService = new ContactService();
 $contact_id = isset($_GET['contact_id']) ? intval($_GET['contact_id']) : 0;
 
 // Segurança: Verifique permissões e nonce.
-if (!current_user_can('view_pdr_contacts') || !isset($_GET['contact_nonce']) || !wp_verify_nonce($_GET['contact_nonce'], 'view_contact_details_' . $_GET['contact_id'])) {
+if (!current_user_can('view_rhb_contacts') || !isset($_GET['contact_nonce']) || !wp_verify_nonce($_GET['contact_nonce'], 'view_contact_details_' . $_GET['contact_id'])) {
     wp_die(__('Você não tem permissão para acessar esta página.', 'referralhub'));
 }
 

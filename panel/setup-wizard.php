@@ -2,20 +2,20 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Verificar se a página já existe
-$inquiry_page_id = get_option('pdr_inquiry_page_id');
+$inquiry_page_id = get_option('rhb_inquiry_page_id');
 $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_submit']) && check_admin_referer('pdr_create_pages', 'pdr_create_pages_nonce')) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
     if (isset($_POST['create_inquiry_page']) && !$page_exists) {
         // Cria a página de Inquiry de serviços
         $page_id = wp_insert_post([
             'post_title' => __('Inquiry de Serviços', 'referralhub'),
-            'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
+            'post_content' => '[rhb_inquiry_form][rhb_inquiry_results]',
             'post_status' => 'publish',
             'post_type' => 'page'
         ]);
         if ($page_id) {
-            update_option('pdr_inquiry_page_id', $page_id);
+            update_option('rhb_inquiry_page_id', $page_id);
             $page_exists = true;
             $message = __('Página de Inquiry de serviços criada com sucesso.', 'referralhub');
         }
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_subm
 }
 
 if (isset($_GET['skip'])) {
-    update_option('pdr_setup_wizard_completed', true);
+    update_option('rhb_setup_wizard_completed', true);
     wp_redirect(admin_url());
     exit;
 }
@@ -122,18 +122,18 @@ if (isset($_GET['skip'])) {
                 </div>
             <?php endif; ?>
             <form method="post" action="">
-                <?php wp_nonce_field('pdr_create_pages', 'pdr_create_pages_nonce'); ?>
+                <?php wp_nonce_field('rhb_create_pages', 'rhb_create_pages_nonce'); ?>
                 <p>
                     <input type="checkbox" id="create_inquiry_page" name="create_inquiry_page" value="1" <?php disabled($page_exists); ?>>
                     <label for="create_inquiry_page"><?php _e('Automatically create the inquiry page', 'referralhub'); ?></label>
                 </p>
                 <p>
-                    <input type="submit" name="pdr_create_pages_submit" class="button button-primary" value="<?php _e('Create Pages', 'referralhub'); ?>" <?php disabled($page_exists); ?>>
+                    <input type="submit" name="rhb_create_pages_submit" class="button button-primary" value="<?php _e('Create Pages', 'referralhub'); ?>" <?php disabled($page_exists); ?>>
                 </p>
             </form>
         </div>
         <div class="setup-footer">
-            <a href="<?php echo admin_url('edit.php?post_type=pdr_service'); ?>"><?php _e('Skip setup', 'referralhub'); ?></a>
+            <a href="<?php echo admin_url('edit.php?post_type=rhb_service'); ?>"><?php _e('Skip setup', 'referralhub'); ?></a>
         </div>
     </div>
 </body>

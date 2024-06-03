@@ -12,8 +12,8 @@ defined('ABSPATH') or die('No script kiddies please!');
         <h3><?php _e('Inquiry Form', 'referralhub'); ?></h3>
         <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for Service Providers based on service type and location.', 'referralhub'); ?></p>
         <div class="shortcode-display">
-            <code>[pdr_inquiry_form]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'referralhub'); ?></button>
+            <code>[rhb_inquiry_form]</code>
+            <button onclick="copyToClipboard(this, '[rhb_inquiry_form]')"><?php _e('Copy', 'referralhub'); ?></button>
         </div>
     </div>
 
@@ -21,8 +21,8 @@ defined('ABSPATH') or die('No script kiddies please!');
         <h3><?php _e('Inquiry Results', 'referralhub'); ?></h3>
         <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'referralhub'); ?></p>
         <div class="shortcode-display">
-            <code>[pdr_inquiry_results]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'referralhub'); ?></button>
+            <code>[rhb_inquiry_results]</code>
+            <button onclick="copyToClipboard(this, '[rhb_inquiry_results]')"><?php _e('Copy', 'referralhub'); ?></button>
         </div>
     </div>
 

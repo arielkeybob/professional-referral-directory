@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
 }
 
 // Verifica se a solicitação para exportar dados foi feita
-if (isset($_POST['pdr_export_data']) && current_user_can('manage_options')) {
+if (isset($_POST['rhb_export_data']) && current_user_can('manage_options')) {
     global $wpdb;
 
-    $filename = 'pdr-data-export-' . date('Y-m-d') . '.csv';
+    $filename = 'rhb-data-export-' . date('Y-m-d') . '.csv';
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename=' . $filename);
     header('Pragma: no-cache');
@@ -39,14 +39,14 @@ if (isset($_POST['pdr_export_data']) && current_user_can('manage_options')) {
         fputcsv($output, []);
     }
 
-    // Exporta a tabela pdr_contacts
-    export_table($wpdb->prefix . 'pdr_contacts', ['contact_id', 'email', 'default_name'], $output);
+    // Exporta a tabela rhb_contacts
+    export_table($wpdb->prefix . 'rhb_contacts', ['contact_id', 'email', 'default_name'], $output);
 
-    // Exporta a tabela pdr_inquiry_data
-    export_table($wpdb->prefix . 'pdr_inquiry_data', ['id', 'service_type', 'service_location', 'inquiry_date', 'service_id', 'author_id', 'contact_id', 'inquiry_status'], $output);
+    // Exporta a tabela rhb_inquiry_data
+    export_table($wpdb->prefix . 'rhb_inquiry_data', ['id', 'service_type', 'service_location', 'inquiry_date', 'service_id', 'author_id', 'contact_id', 'inquiry_status'], $output);
 
-    // Exporta a tabela pdr_author_contact_relations
-    export_table($wpdb->prefix . 'pdr_author_contact_relations', ['author_contact_id', 'contact_id', 'author_id', 'status', 'custom_name'], $output);
+    // Exporta a tabela rhb_author_contact_relations
+    export_table($wpdb->prefix . 'rhb_author_contact_relations', ['author_contact_id', 'contact_id', 'author_id', 'status', 'custom_name'], $output);
 
     fclose($output);
     exit;

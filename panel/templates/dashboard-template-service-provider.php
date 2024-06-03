@@ -27,11 +27,11 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
                 <div class="card-header"><?php echo esc_html__('Total Inquiries by Service.', 'referralhub'); ?></div>
                 <div class="card-body">
                     <?php
-                    $services = pdr_get_services_by_current_user();
+                    $services = rhb_get_services_by_current_user();
                     if (!empty($services)) {
                         echo '<ul>';
                         foreach ($services as $service) {
-                            $total_inquiries = pdr_get_total_inquiries_by_service($service['ID']);
+                            $total_inquiries = rhb_get_total_inquiries_by_service($service['ID']);
                             echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Inquiry:', 'referralhub') . ' ' . esc_html($total_inquiries) . '</li>';
                         }
                         echo '</ul>';
@@ -61,13 +61,13 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
     <div class="card-header"><?php echo esc_html__('Recent Inquiries', 'referralhub'); ?></div>
     <div class="card-body">
         <?php
-        $recent_inquiries = pdr_get_recent_inquiries_for_user();
+        $recent_inquiries = rhb_get_recent_inquiries_for_user();
         if (!empty($recent_inquiries)) {
             echo '<table id="recentInquiriesTable" class="display">';
             echo '<thead><tr><th>' . esc_html__('User Name', 'referralhub') . '</th><th>' . esc_html__('Email', 'referralhub') . '</th><th>' . esc_html__('Address', 'referralhub') . '</th><th>' . esc_html__('Service', 'referralhub') . '</th><th>' . esc_html__('Type', 'referralhub') . '</th><th>' . esc_html__('Date', 'referralhub') . '</th></tr></thead><tbody>';
             foreach ($recent_inquiries as $inquiry) {
                 $details_url = wp_nonce_url(
-                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $inquiry['contact_id']], admin_url('admin.php')),
+                    add_query_arg(['page' => 'rhb-contact-details', 'contact_id' => $inquiry['contact_id']], admin_url('admin.php')),
                     'view_contact_details_' . $inquiry['contact_id'],
                     'contact_nonce'
                 );
@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 
 <script>
 jQuery(document).ready(function($) {
-    var serviceTypeData = <?php echo json_encode(pdr_get_inquiries_distribution_by_service_type()); ?>;
+    var serviceTypeData = <?php echo json_encode(rhb_get_inquiries_distribution_by_service_type()); ?>;
     var labels = serviceTypeData.map(function(item) { return item.service_type; });
     var data = serviceTypeData.map(function(item) { return item.total; });
 

@@ -5,7 +5,7 @@
 
  defined('ABSPATH') or die('No script kiddies please!');
 
-class PDR_Taxonomies {
+class RHB_Taxonomies {
     /**
      * Registra a taxonomia Tipo de Serviço.
      */
@@ -40,7 +40,7 @@ class PDR_Taxonomies {
             ),
         );
 
-        register_taxonomy('service_type', 'pdr_service', $args);
+        register_taxonomy('service_type', 'rhb_service', $args);
     }
 
     /**
@@ -77,7 +77,7 @@ class PDR_Taxonomies {
             ),
         );
 
-        register_taxonomy('service_location', 'pdr_service', $args);
+        register_taxonomy('service_location', 'rhb_service', $args);
     }
 
     /**
@@ -90,4 +90,4 @@ class PDR_Taxonomies {
 }
 
 // Hook para iniciar a classe e registrar as taxonomias
-add_action('init', ['PDR_Taxonomies', 'init']);
+add_action('init', ['RHB_Taxonomies', 'init']);

@@ -2,20 +2,20 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Verificar se a página já existe
-$inquiry_page_id = get_option('pdr_inquiry_page_id');
+$inquiry_page_id = get_option('rhb_inquiry_page_id');
 $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_submit']) && check_admin_referer('pdr_create_pages', 'pdr_create_pages_nonce')) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
     if (isset($_POST['create_inquiry_page']) && !$page_exists) {
         // Cria a página de Inquiry de serviços
         $page_id = wp_insert_post([
             'post_title' => __('Inquiry de Serviços', 'referralhub'),
-            'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
+            'post_content' => '[rhb_inquiry_form][rhb_inquiry_results]',
             'post_status' => 'publish',
             'post_type' => 'page'
         ]);
         if ($page_id) {
-            update_option('pdr_inquiry_page_id', $page_id);
+            update_option('rhb_inquiry_page_id', $page_id);
             $page_exists = true;
             $message = __('Página de Inquiry de serviços criada com sucesso.', 'referralhub');
         }
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_subm
             <p><?php _e('Siga os passos abaixo para configurar as páginas principais e ajustar as configurações do plugin.', 'referralhub'); ?></p>
 
             <form method="post" action="">
-                <?php wp_nonce_field('pdr_create_pages', 'pdr_create_pages_nonce'); ?>
+                <?php wp_nonce_field('rhb_create_pages', 'rhb_create_pages_nonce'); ?>
                 <h3><?php _e('Criar Páginas Automáticas', 'referralhub'); ?></h3>
                 <?php if (isset($message)): ?>
                     <div class="notice notice-success is-dismissible">
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_subm
                     <label for="create_inquiry_page"><?php _e('Criar página de Inquiry de serviços automaticamente', 'referralhub'); ?></label>
                 </p>
                 <p>
-                    <input type="submit" name="pdr_create_pages_submit" class="button button-primary" value="<?php _e('Criar Páginas', 'referralhub'); ?>" <?php disabled($page_exists); ?>>
+                    <input type="submit" name="rhb_create_pages_submit" class="button button-primary" value="<?php _e('Criar Páginas', 'referralhub'); ?>" <?php disabled($page_exists); ?>>
                 </p>
             </form>
             

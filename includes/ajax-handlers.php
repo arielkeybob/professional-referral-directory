@@ -7,10 +7,10 @@ defined('ABSPATH') or die('No script kiddies please!');
  * Esta função é chamada através de uma requisição AJAX para salvar os detalhes do contato
  * e atualizar o status dos Inquiries associadas, incluindo o cálculo e ajuste das Referral Fees.
  */
-function pdr_save_contact_details_ajax_handler() {
+function rhb_save_contact_details_ajax_handler() {
     check_ajax_referer('update_contact_' . $_POST['contact_id'], 'nonce');
 
-    if (!current_user_can('view_pdr_contacts')) {
+    if (!current_user_can('view_rhb_contacts')) {
         wp_send_json_error(['message' => 'Permissão insuficiente.']);
         exit;
     }
@@ -23,7 +23,7 @@ function pdr_save_contact_details_ajax_handler() {
     $errors = false;
 
     $updated = $wpdb->update(
-        "{$wpdb->prefix}pdr_author_contact_relations",
+        "{$wpdb->prefix}rhb_author_contact_relations",
         [
             'custom_name' => $custom_name,
             'status' => $new_status // Assegure que está atualizando o status
@@ -44,7 +44,7 @@ function pdr_save_contact_details_ajax_handler() {
         require_once('referral-fee-calculator.php');
         $referralFees = calculate_referral_fees($author_id, $status_sanitized);
 
-        $inquiry_updated = $wpdb->update("{$wpdb->prefix}pdr_inquiry_data", [
+        $inquiry_updated = $wpdb->update("{$wpdb->prefix}rhb_inquiry_data", [
             'inquiry_status' => $status_sanitized,
             'referral_fee_value_view' => $referralFees['view'],
             'referral_fee_value_agreement_reached' => ($status_sanitized === 'agreement_reached') ? $referralFees['agreement_reached'] : 0.00

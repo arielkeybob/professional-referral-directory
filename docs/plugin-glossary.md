@@ -18,7 +18,7 @@ Este documento fornece uma visão geral dos termos e conceitos utilizados no plu
 
 
 ### Inquiry
-Um inquiry no contexto do Diretório Profissional refere-se à ação realizada por um visitante ou usuário registrado quando eles procuram e interagem com as listagens fornecidas pelos prestadores de serviços. Um inquiry pode levar a comunicação, negociação e, potencialmente, a um acordo contratual entre o usuário e o prestador de serviços.
+Um inquiry no contexto do plugin refere-se à ação realizada por um visitante ou usuário registrado quando eles procuram e interagem com as listagens fornecidas pelos prestadores de serviços. Um inquiry pode levar a comunicação, negociação e, potencialmente, a um acordo contratual entre o usuário e o prestador de serviços.
 
 
 ## Status de Inquiry

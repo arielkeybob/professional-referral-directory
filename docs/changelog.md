@@ -2,6 +2,21 @@
 
 This file documents all the significant changes made in each version of the ReferralHub plugin.
 
+## [1.1.6] - 2024-06-02
+### Added
+- Introduced a new Setup Wizard for an improved onboarding experience.
+- Added a submenu link for the Setup Wizard to allow users to access it later.
+- Updated various function names, variables, and other identifiers to use the new `rhb` prefix, reflecting the plugin's rebranding to ReferralHub.
+
+### Changed
+- Removed the old "pdr-welcome-page" and its submenu.
+- Updated terminology in line with the new plugin structure and goals.
+- Changed "Service Provider" to "Prestador de Serviços" in the Brazilian Portuguese translation.
+- Updated the database schema and options to use the new `rhb` prefix.
+
+### Fixed
+- Minor bug fixes and performance improvements.
+
 ## [1.1.5] - 2024-06-01
 ### Changed
 - Terminology update: 

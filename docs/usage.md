@@ -45,13 +45,13 @@ O ReferralHub oferece um sistema flexível de referral fees que pode ser configu
 
 ### Inquiry Form
 
-- Use o shortcode `[pdr_inquiry_form]` para adicionar o formulário de inquiry em qualquer página ou post.
+- Use o shortcode `[rhb_inquiry_form]` para adicionar o formulário de inquiry em qualquer página ou post.
 - O formulário permite que os usuários busquem services por tipo e localização.
 
 ### Inquiry Results
 
 - Após a busca, os resultados são exibidos na mesma página.
-- Inclua o shortcode `[pdr_inquiry_results]` na página onde deseja exibir os resultados.
+- Inclua o shortcode `[rhb_inquiry_results]` na página onde deseja exibir os resultados.
 
 ## Configuração de E-mail SMTP
 

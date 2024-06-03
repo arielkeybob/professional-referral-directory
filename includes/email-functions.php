@@ -2,18 +2,18 @@
     defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a função de captura de dados do formulário
-require_once plugin_dir_path(PDR_MAIN_FILE) . 'public/form-data-functions.php';
+require_once plugin_dir_path(RHB_MAIN_FILE) . 'public/form-data-functions.php';
 
 function send_email_to_service_author($post_id) {
     // Captura os dados do usuário a partir do formulário
     $user_data = get_form_data();
 
-    // Verifica a preferência de e-mail do profissional
-    $email_preference = get_post_meta($post_id, '_pdr_email_preference', true);
+    // Verifica a preferência de e-mail do service provider
+    $email_preference = get_post_meta($post_id, '_rhb_email_preference', true);
 
-    // Se o profissional optou por não receber e-mails, retorna sem enviar
+    // Se o service provider optou por não receber e-mails, retorna sem enviar
     if ($email_preference != '1') {
-        return; // Encerra a função se o profissional optou por não receber e-mails
+        return; // Encerra a função se o service provider optou por não receber e-mails
     }
 
     // Obtém o e-mail do autor do post
@@ -44,8 +44,8 @@ function send_admin_notification_emails($post_id) {
     $user_data = get_form_data();
 
     // Recupera e-mails adicionais das configurações do plugin
-    $selected_admins = get_option('pdr_selected_admins', []);
-    $manual_emails = explode(',', get_option('pdr_manual_emails', ''));
+    $selected_admins = get_option('rhb_selected_admins', []);
+    $manual_emails = explode(',', get_option('rhb_manual_emails', ''));
 
     // Prepara o assunto e a mensagem para os administradores
     $subject = "Admin Notification: Service Inquiry for " . get_the_title($post_id);

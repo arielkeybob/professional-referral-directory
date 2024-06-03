@@ -13,7 +13,7 @@ $contactService = new ContactService();
  * @param int $service_id ID do serviço.
  * @return int Total de Inquirys para o serviço.
  */
-function pdr_get_total_inquiries_by_service($service_id) {
+function rhb_get_total_inquiries_by_service($service_id) {
     global $contactService;
     return $contactService->getTotalInquiriesByService($service_id);
 }
@@ -24,7 +24,7 @@ function pdr_get_total_inquiries_by_service($service_id) {
  * @param int $limit Número de Inquirys a serem retornadas.
  * @return array Lista dos Inquiries mais recentes.
  */
-function pdr_get_recent_inquiries($limit = 5) {
+function rhb_get_recent_inquiries($limit = 5) {
     global $contactService;
     return $contactService->getRecentInquiries($limit);
 }
@@ -34,7 +34,7 @@ function pdr_get_recent_inquiries($limit = 5) {
  *
  * @return array Distribuição dos Inquiries.
  */
-function pdr_get_inquiries_distribution_by_service_type() {
+function rhb_get_inquiries_distribution_by_service_type() {
     global $contactService;
     return $contactService->getInquiriesDistributionByServiceType();
 }
@@ -44,7 +44,7 @@ function pdr_get_inquiries_distribution_by_service_type() {
  *
  * @return array Serviços do usuário atual.
  */
-function pdr_get_services_by_current_user() {
+function rhb_get_services_by_current_user() {
     global $contactService;
     return $contactService->getServicesByCurrentUser();
 }
@@ -55,7 +55,7 @@ function pdr_get_services_by_current_user() {
  * @param int $limit Número de Inquirys a serem retornadas.
  * @return array Lista dos Inquiries mais recentes do usuário.
  */
-function pdr_get_recent_inquiries_for_user($limit = 10) {
+function rhb_get_recent_inquiries_for_user($limit = 10) {
     global $contactService;
     return $contactService->getRecentInquiriesForUser($limit);
 }

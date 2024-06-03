@@ -2,10 +2,10 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 
-class PDR_Geolocation {
+class RHB_Geolocation {
 
     public static function geocode_address($address) {
-        $api_key = get_option('pdr_google_maps_api_key');
+        $api_key = get_option('rhb_google_maps_api_key');
         $address = urlencode($address);
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$api_key}";
 

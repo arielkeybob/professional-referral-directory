@@ -16,7 +16,7 @@ class Contatos_Admin_Page {
 
     public function render() {
         // Verifica se o usuário atual tem permissão para visualizar esta página.
-        if (!current_user_can('view_pdr_contacts')) {
+        if (!current_user_can('view_rhb_contacts')) {
             wp_die(__('Você não tem permissão para acessar esta página.', 'referralhub'));
         }
 
@@ -41,7 +41,7 @@ class Contatos_Admin_Page {
                 $display_name = (!empty($contact['custom_name'])) ? $contact['custom_name'] : $contact['default_name'];
                 
                 $details_url = wp_nonce_url(
-                    add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $contact['contact_id']], admin_url('admin.php')),
+                    add_query_arg(['page' => 'rhb-contact-details', 'contact_id' => $contact['contact_id']], admin_url('admin.php')),
                     'view_contact_details_' . $contact['contact_id'],
                     'contact_nonce'
                 );

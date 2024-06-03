@@ -1,7 +1,7 @@
 <?php
     defined('ABSPATH') or die('No script kiddies please!');
     
-function pdr_obter_notificacoes_ativas() {
+function rhb_obter_notificacoes_ativas() {
     $caminho_json = plugin_dir_path( __FILE__ ) . 'notifications/notifications.json';
     $notificacoes = json_decode( file_get_contents( $caminho_json ), true );
     return array_filter($notificacoes, function($notification) {
@@ -10,8 +10,8 @@ function pdr_obter_notificacoes_ativas() {
 }
 
 
-add_action('admin_notices', 'pdr_exibir_notificacoes_admin');
-function pdr_exibir_notificacoes_admin() {
+add_action('admin_notices', 'rhb_exibir_notificacoes_admin');
+function rhb_exibir_notificacoes_admin() {
     global $pagenow;
 
     // Verifica se o usuário tem permissão de administração
@@ -23,19 +23,19 @@ function pdr_exibir_notificacoes_admin() {
     $screen = get_current_screen();
 
     // Verifica se está na tela de configurações do plugin ou no dashboard
-    if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'pdr_service') {
-        if ($_GET['page'] != 'pdr-general-settings' && $_GET['page'] != 'dashboard-admin') {
+    if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'rhb_service') {
+        if ($_GET['page'] != 'rhb-general-settings' && $_GET['page'] != 'dashboard-admin') {
             return;
         }
     } else {
         return;
     }
 
-    $notificacoes = pdr_obter_notificacoes_ativas();
+    $notificacoes = rhb_obter_notificacoes_ativas();
     foreach ($notificacoes as $notification) {
         // Verifica se a notificação já foi fechada pelo usuário
-        if (!isset($_SESSION['pdr_notification_fechada_' . $notification['id']])) {
-            echo "<div class='notice notice-info is-dismissible pdr-notification' data-notification-id='{$notification['id']}'><p><strong>{$notification['titulo']}</strong></p><p>{$notification['mensagem']}</p></div>";
+        if (!isset($_SESSION['rhb_notification_fechada_' . $notification['id']])) {
+            echo "<div class='notice notice-info is-dismissible rhb-notification' data-notification-id='{$notification['id']}'><p><strong>{$notification['titulo']}</strong></p><p>{$notification['mensagem']}</p></div>";
         }
     }
 }

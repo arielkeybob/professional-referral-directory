@@ -24,12 +24,12 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
 
 ### Tabelas
 
-- **wp_pdr_contacts**: Armazena dados de contatos.
+- **wp_rhb_contacts**: Armazena dados de contatos.
   - `contact_id`: ID único para o contato.
   - `email`: Email do contato.
   - `default_name`: Nome padrão do contato.
 
-- **wp_pdr_inquiry_data**: Armazena dados dos inquiries realizados.
+- **wp_rhb_inquiry_data**: Armazena dados dos inquiries realizados.
   - `id`: ID único do inquiry.
   - `service_type`, `service_location`: Tipo e localização do serviço inquirido.
   - `inquiry_date`: Data do inquiry.
@@ -41,7 +41,7 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
   - `referral_fee_value_agreement_reached`: Valor da Referral Fee por acordo alcançado.
   - `is_paid`: Indica se a Referral Fee foi paga.
 
-- **wp_pdr_author_contact_relations**: Relaciona contatos a autores.
+- **wp_rhb_author_contact_relations**: Relaciona contatos a autores.
   - `author_contact_id`: ID único da relação.
   - `contact_id`, `author_id`: IDs do contato e do autor.
   - `status`: Status do contato (initial inquiry, engaged, converted, not interested, archived).

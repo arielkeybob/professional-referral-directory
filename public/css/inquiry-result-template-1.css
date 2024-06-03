@@ -1,4 +1,4 @@
-#pdr-inquiry-results {
+#rhb-inquiry-results {
   display: flex;
   padding: 20px;
   max-width: 1200px;
@@ -51,16 +51,16 @@ a.read-more {
   width: 100%;
   padding: 15px;
   text-align: center;
-  background: var(--pdr-button-color);;
-  color: var(--pdr-button-text-color);
+  background: var(--rhb-button-color);;
+  color: var(--rhb-button-text-color);
 }
 
 a.read-more:hover {
-  background: var(--pdr-button-hover-color);;
-  color: var(--pdr-button-text-hover-color);
+  background: var(--rhb-button-hover-color);;
+  color: var(--rhb-button-text-hover-color);
 }
 
-#pdr-inquiry-results p{
+#rhb-inquiry-results p{
 margin:5px;
 }
 
@@ -91,12 +91,12 @@ p.service-taxonomy.service-type {
 }
 
 .service-content, .service-author-details, .service-author-details a{
-  font-family: var(--pdr-body-font-family);
-  color: var(--pdr-body-color);
+  font-family: var(--rhb-body-font-family);
+  color: var(--rhb-body-color);
 }
 
 .service-title{
-  font-family: var(--pdr-title-font-family);
-  color: var(--pdr-title-color);
+  font-family: var(--rhb-title-font-family);
+  color: var(--rhb-title-color);
 }
 

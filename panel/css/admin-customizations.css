@@ -4,7 +4,7 @@
 /* Geral */
 body, html, #wpcontent, #wpfooter, #wpbody-content {
     font-family: 'Roboto', sans-serif;
-    color: var(--pdr-text-color);
+    color: var(--rhb-text-color);
     background-color: #ffffff;
     padding-top: 3px !important;
 }
@@ -14,11 +14,11 @@ body, html, #wpcontent, #wpfooter, #wpbody-content {
 
 /* Links */
 a, #adminmenu a, .wrap a {
-    color: var(--pdr-accent-color);
+    color: var(--rhb-accent-color);
 }
 
 a:hover, #adminmenu a:hover {
-    color: var(--pdr-accent-color);
+    color: var(--rhb-accent-color);
     text-decoration: underline;
 }
 
@@ -27,17 +27,17 @@ a:hover, #adminmenu a:hover {
 #adminmenu .wp-submenu a:hover, 
 #adminmenu a:hover, 
 #adminmenu li.menu-top>a:focus {
-    color: var(--pdr-accent-color);
+    color: var(--rhb-accent-color);
 }
 
 /* Admin Menu */
 #adminmenuback, #adminmenuwrap, #adminmenu {
-    background-color: var(--pdr-primary-color); /* Tom de azul moderno */
+    background-color: var(--rhb-primary-color); /* Tom de azul moderno */
     width: 17%; /* Largura do menu ajustada */
 }
 
 #adminmenu .wp-submenu, #adminmenu {
-    background-color: var(--pdr-primary-color);
+    background-color: var(--rhb-primary-color);
     width: 100%;
 }
 
@@ -50,7 +50,7 @@ a:hover, #adminmenu a:hover {
 #adminmenu li.menu-top:hover, 
 #adminmenu li.opensub>a.menu-top, 
 #adminmenu li>a.menu-top:focus {
-    background: var(--pdr-secondary-color);
+    background: var(--rhb-secondary-color);
     color: #fff;
 }
 
@@ -103,7 +103,7 @@ a:hover, #adminmenu a:hover {
 }*/
 
 .button {
-    background-color: var(--pdr-primary-color) !important;
+    background-color: var(--rhb-primary-color) !important;
     color: #fff !important;
     border: none !important;
     padding: 10px 20px;
@@ -113,7 +113,7 @@ a:hover, #adminmenu a:hover {
 }
 
 .button:hover {
-    background-color: var(--pdr-secondary-color) !important;
+    background-color: var(--rhb-secondary-color) !important;
 }
 
 /* Estilos gerais para a página de perfil e ajustes */
@@ -126,23 +126,23 @@ a:hover, #adminmenu a:hover {
 }
 
 .wrap h1, .wrap h2, .wrap h3 {
-    color: var(--pdr-text-color);
+    color: var(--rhb-text-color);
     padding-bottom: 10px;
     border-bottom: 2px solid #eee;
     margin-bottom: 20px;
 }
 .form-wrap p, p.description, p.help, span.description{
-    color: var(--pdr-text-color);
+    color: var(--rhb-text-color);
 }
 
 input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=inquiry], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea {
-    border-color: var(--pdr-primary-color);
-    color: var(--pdr-text-color);
+    border-color: var(--rhb-primary-color);
+    color: var(--rhb-text-color);
 }
 .form-table th {
     width: 20%;
     font-weight: 600;
-    color: var(--pdr-text-color);
+    color: var(--rhb-text-color);
 }
 
 .form-table td, 
@@ -199,7 +199,7 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 
 
 #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
-    background: var(--pdr-secondary-color);
+    background: var(--rhb-secondary-color);
     color: #fff;
 }
 
@@ -209,19 +209,19 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
     padding: 5px 20px;
 }
 
-div#pdr-custom-logo {
+div#rhb-custom-logo {
     width: 17%;
-    background-color: var(--pdr-primary-color);
+    background-color: var(--rhb-primary-color);
     min-height: 80px;
 }
 
-div#pdr-custom-user, #pdr-custom-admin-bar {
+div#rhb-custom-user, #rhb-custom-admin-bar {
     display: flex !important;
     align-content: center;
     justify-content: flex-end !important;
 }
 
-#pdr-custom-admin-bar{
+#rhb-custom-admin-bar{
     padding: 0 !important;
     background-color: #ffffff;
     color: white;
@@ -233,7 +233,7 @@ div#pdr-custom-user, #pdr-custom-admin-bar {
     z-index: 99999;
 }
 
-div#pdr-custom-user{
+div#rhb-custom-user{
     box-sizing: border-box;
     padding: 0 60px;
 }
@@ -419,13 +419,13 @@ td.title.column-title.has-row-actions.column-primary.page-title {
 }
 
 
-.pdr-dash-notifications img, .pdr-icon-help img {
+.rhb-dash-notifications img, .rhb-icon-help img {
     padding: 16px;
     background: #f4f4f4;
     box-sizing: content-box;
 }
 
-.pdr-dash-notifications img:hover, .pdr-icon-help img:hover {
+.rhb-dash-notifications img:hover, .rhb-icon-help img:hover {
     padding: 16px;
     background: #f8f8f8;
 }

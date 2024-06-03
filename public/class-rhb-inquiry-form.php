@@ -1,9 +1,9 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-class PDR_Inquiry_Form {
+class RHB_Inquiry_Form {
     public function __construct() {
-        add_shortcode('pdr_inquiry_form', array($this, 'render_inquiry_form'));
+        add_shortcode('rhb_inquiry_form', array($this, 'render_inquiry_form'));
     }
 
     public function render_inquiry_form() {
@@ -23,8 +23,8 @@ class PDR_Inquiry_Form {
         ob_start();
         ?>
         <!-- Formulário de Filtro (Etapa 1) -->
-        <form id="pdr-inquiry-form" method="post">
-            <div id="pdr-initial-inquiry">
+        <form id="rhb-inquiry-form" method="post">
+            <div id="rhb-initial-inquiry">
                 <select name="service_type">
                     <option value=""><?php echo esc_html__('Select a Service Type', 'referralhub'); ?></option>
                     <?php
@@ -57,11 +57,11 @@ class PDR_Inquiry_Form {
                     ?>
                 </select>
     
-                <button type="button" id="pdr-inquiry-btn"><?php echo esc_html__('Next', 'referralhub'); ?></button>
+                <button type="button" id="rhb-inquiry-btn"><?php echo esc_html__('Next', 'referralhub'); ?></button>
             </div>
     
             <!-- Formulário de Informações Pessoais (Etapa 2) -->
-            <div id="pdr-personal-info-form" style="display:none;">
+            <div id="rhb-personal-info-form" style="display:none;">
                 <?php if ($logged_in): ?>
                     <p><?php _e('You are inquiring as: ', 'referralhub'); echo esc_html($name); ?></p>
                     <input type="hidden" name="name" value="<?php echo esc_attr($name); ?>">
@@ -94,9 +94,9 @@ class PDR_Inquiry_Form {
                 }
             });
     
-            document.getElementById('pdr-inquiry-btn').addEventListener('click', function() {
-                document.getElementById('pdr-initial-inquiry').style.display = 'none';
-                document.getElementById('pdr-personal-info-form').style.display = 'block';
+            document.getElementById('rhb-inquiry-btn').addEventListener('click', function() {
+                document.getElementById('rhb-initial-inquiry').style.display = 'none';
+                document.getElementById('rhb-personal-info-form').style.display = 'block';
             });
         </script>
         <?php
@@ -105,4 +105,4 @@ class PDR_Inquiry_Form {
     
 }
 
-new PDR_Inquiry_Form();
+new RHB_Inquiry_Form();

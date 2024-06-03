@@ -2,7 +2,7 @@
     defined('ABSPATH') or die('No script kiddies please!');
     // Se este arquivo for chamado diretamente, aborte.
     
-    class PDR_CPT {
+    class RHB_CPT {
 
         public static function register_service_cpt() {
             $labels = [
@@ -40,7 +40,7 @@
                 'show_in_menu'       => true,
                 'query_var'          => true,
                 'rewrite'            => ['slug' => 'service'],
-                'capability_type'    => 'pdr_service',
+                'capability_type'    => 'rhb_service',
                 'capabilities' => array(
                     'publish_posts'       => 'publish_service_provider_services',
                     'edit_posts'          => 'edit_service_provider_services',
@@ -60,7 +60,7 @@
                 'menu_icon'          => 'dashicons-portfolio',
             ];
 
-            register_post_type('pdr_service', $args);
+            register_post_type('rhb_service', $args);
         }
 
         public static function add_admin_capabilities() {
@@ -69,7 +69,7 @@
     
             // Verifica se o papel existe antes de tentar adicionar capacidades
             if ($admin_role) {
-                // Capacidades para o tipo de postagem 'pdr_service'
+                // Capacidades para o tipo de postagem 'rhb_service'
                 $caps = [
                     'edit_service_provider_service',
                     'read_service_provider_service',
@@ -122,6 +122,6 @@
 }
 
     // Registrar o Custom Post Type e a Taxonomia no hook 'init'
-    add_action('init', ['PDR_CPT', 'register_service_cpt']);
-add_action('init', ['PDR_CPT', 'add_admin_capabilities']);
-add_action('init', ['PDR_CPT', 'set_service_capabilities']);
+    add_action('init', ['RHB_CPT', 'register_service_cpt']);
+add_action('init', ['RHB_CPT', 'add_admin_capabilities']);
+add_action('init', ['RHB_CPT', 'set_service_capabilities']);

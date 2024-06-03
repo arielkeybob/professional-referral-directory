@@ -7,14 +7,14 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 global $wpdb;
 
 // Verifica a opção do usuário para saber se deve deletar os dados
-$delete_data = get_option('pdr_delete_data_on_uninstall', 'no');
+$delete_data = get_option('rhb_delete_data_on_uninstall', 'no');
 
 if ($delete_data === 'yes') {
     // Deleta as tabelas personalizadas do plugin
     $tables_to_drop = [
-        "{$wpdb->prefix}pdr_inquiry_data",
-        "{$wpdb->prefix}pdr_author_contact_relations",
-        "{$wpdb->prefix}pdr_contacts"
+        "{$wpdb->prefix}rhb_inquiry_data",
+        "{$wpdb->prefix}rhb_author_contact_relations",
+        "{$wpdb->prefix}rhb_contacts"
     ];
 
     foreach ($tables_to_drop as $table) {
@@ -23,29 +23,29 @@ if ($delete_data === 'yes') {
 
     // Deleta as opções do plugin
     $options_to_delete = [
-        'pdr_version',
-        'pdr_delete_data_on_uninstall',
-        'pdr_referral_fee_type',
-        'pdr_general_referral_fee_view',
-        'pdr_general_referral_fee_agreement_reached',
-        'pdr_google_maps_api_key',
-        'pdr_selected_admins',
-        'pdr_manual_emails',
-        'pdr_button_color',
-        'pdr_button_text_color',
-        'pdr_button_hover_color',
-        'pdr_button_text_hover_color',
-        'pdr_title_font_family',
-        'pdr_title_color',
-        'pdr_body_font_family',
-        'pdr_body_color',
-        'pdr_template_choice',
-        'pdr_primary_color',
-        'pdr_secondary_color',
-        'pdr_text_color',
-        'pdr_accent_color',
-        'pdr_panel_logo',
-        'pdr_export_data'
+        'rhb_version',
+        'rhb_delete_data_on_uninstall',
+        'rhb_referral_fee_type',
+        'rhb_general_referral_fee_view',
+        'rhb_general_referral_fee_agreement_reached',
+        'rhb_google_maps_api_key',
+        'rhb_selected_admins',
+        'rhb_manual_emails',
+        'rhb_button_color',
+        'rhb_button_text_color',
+        'rhb_button_hover_color',
+        'rhb_button_text_hover_color',
+        'rhb_title_font_family',
+        'rhb_title_color',
+        'rhb_body_font_family',
+        'rhb_body_color',
+        'rhb_template_choice',
+        'rhb_primary_color',
+        'rhb_secondary_color',
+        'rhb_text_color',
+        'rhb_accent_color',
+        'rhb_panel_logo',
+        'rhb_export_data'
     ];
 
     foreach ($options_to_delete as $option) {
@@ -54,10 +54,10 @@ if ($delete_data === 'yes') {
 
     // Potencialmente, você pode querer deletar metadados do usuário relacionados ao plugin
     $meta_keys_to_delete = [
-        'pdr_referral_fee_type',
-        'pdr_referral_fee_view',
-        'pdr_referral_fee_agreement_reached',
-        'pdr_override_referral_fee',
+        'rhb_referral_fee_type',
+        'rhb_referral_fee_view',
+        'rhb_referral_fee_agreement_reached',
+        'rhb_override_referral_fee',
     ];
 
     foreach ($meta_keys_to_delete as $meta_key) {

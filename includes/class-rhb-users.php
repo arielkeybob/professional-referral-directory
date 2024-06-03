@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-class PDR_Users {
+class RHB_Users {
 
     public static function initialize_user_roles() {
         // Criação e configuração do papel 'service_provider'
@@ -35,10 +35,10 @@ class PDR_Users {
 
     public static function add_custom_user_profile_fields($user) {
         if (current_user_can('administrator') && in_array('service_provider', (array) $user->roles)) {
-            $referral_fee_type = get_user_meta($user->ID, 'pdr_referral_fee_type', true);
-            $referral_fee_view = get_user_meta($user->ID, 'pdr_referral_fee_view', true);
-            $referral_fee_agreement_reached = get_user_meta($user->ID, 'pdr_referral_fee_agreement_reached', true);
-            $override_referral_fee = get_user_meta($user->ID, 'pdr_override_referral_fee', true) == 'yes';
+            $referral_fee_type = get_user_meta($user->ID, 'rhb_referral_fee_type', true);
+            $referral_fee_view = get_user_meta($user->ID, 'rhb_referral_fee_view', true);
+            $referral_fee_agreement_reached = get_user_meta($user->ID, 'rhb_referral_fee_agreement_reached', true);
+            $override_referral_fee = get_user_meta($user->ID, 'rhb_override_referral_fee', true) == 'yes';
             ?>
             <h3><?php _e('Referral Fee Settings', 'referralhub'); ?></h3>
             <table class="form-table">
@@ -96,18 +96,18 @@ class PDR_Users {
     
         // Verifica se o checkbox 'override_referral_fee' foi marcado e salva a opção
         $override_referral_fee = isset($_POST['override_referral_fee']) ? 'yes' : 'no';
-        update_user_meta($user_id, 'pdr_override_referral_fee', $override_referral_fee);
+        update_user_meta($user_id, 'rhb_override_referral_fee', $override_referral_fee);
     
         // Salva as outras configurações de Referral Fee somente se o override está ativo
         if ($override_referral_fee === 'yes') {
             if (isset($_POST['referral_fee_type'])) {
-                update_user_meta($user_id, 'pdr_referral_fee_type', sanitize_text_field($_POST['referral_fee_type']));
+                update_user_meta($user_id, 'rhb_referral_fee_type', sanitize_text_field($_POST['referral_fee_type']));
             }
             if (isset($_POST['referral_fee_view'])) {
-                update_user_meta($user_id, 'pdr_referral_fee_view', sanitize_text_field($_POST['referral_fee_view']));
+                update_user_meta($user_id, 'rhb_referral_fee_view', sanitize_text_field($_POST['referral_fee_view']));
             }
             if (isset($_POST['referral_fee_agreement_reached'])) {
-                update_user_meta($user_id, 'pdr_referral_fee_agreement_reached', sanitize_text_field($_POST['referral_fee_agreement_reached']));
+                update_user_meta($user_id, 'rhb_referral_fee_agreement_reached', sanitize_text_field($_POST['referral_fee_agreement_reached']));
             }
         }
     }
@@ -121,5 +121,5 @@ class PDR_Users {
     }
 }
 
-PDR_Users::register_hooks();
+RHB_Users::register_hooks();
 ?>

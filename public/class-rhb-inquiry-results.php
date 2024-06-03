@@ -3,11 +3,11 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data-storage-functions.php';
 
-class PDR_Inquiry_Results {
+class RHB_Inquiry_Results {
     public function __construct() {
-        add_shortcode('pdr_inquiry_results', array($this, 'render_inquiry_results'));
-        add_action('wp_ajax_pdr_inquiry', array($this, 'handle_ajax_inquiry'));
-        add_action('wp_ajax_nopriv_pdr_inquiry', array($this, 'handle_ajax_inquiry'));
+        add_shortcode('rhb_inquiry_results', array($this, 'render_inquiry_results'));
+        add_action('wp_ajax_rhb_inquiry', array($this, 'handle_ajax_inquiry'));
+        add_action('wp_ajax_nopriv_rhb_inquiry', array($this, 'handle_ajax_inquiry'));
     }
 
     public function handle_ajax_inquiry() {
@@ -54,7 +54,7 @@ class PDR_Inquiry_Results {
         error_log('contactId: ' . $contactId);
     
         $args = [
-            'post_type' => 'pdr_service',
+            'post_type' => 'rhb_service',
             'tax_query' => [
                 'relation' => 'AND',
                 [
@@ -75,7 +75,7 @@ class PDR_Inquiry_Results {
         if ($query->have_posts()) {
             ob_start();
     
-            $template_choice = get_option('pdr_template_choice', 'template-1');
+            $template_choice = get_option('rhb_template_choice', 'template-1');
             $template_file = 'inquiry-result-' . $template_choice . '.php';
     
             while ($query->have_posts()) {
@@ -101,7 +101,7 @@ class PDR_Inquiry_Results {
     
                 createOrUpdateContactAuthorRelation($contactId, $author_id, 'active', null);
     
-                include plugin_dir_path(PDR_MAIN_FILE) . 'public/templates/' . $template_file;
+                include plugin_dir_path(RHB_MAIN_FILE) . 'public/templates/' . $template_file;
             }
     
             $html = ob_get_clean();
@@ -119,10 +119,10 @@ class PDR_Inquiry_Results {
     public function render_inquiry_results() {
         ob_start();
         ?>
-        <div id="pdr-inquiry-results"></div>
+        <div id="rhb-inquiry-results"></div>
         <?php
         return ob_get_clean();
     }
 }
 
-new PDR_Inquiry_Results();
+new RHB_Inquiry_Results();

@@ -7,13 +7,13 @@ jQuery(document).ready(function($) {
         console.log('Atualizando status do contato:', contactId, newStatus);
 
         $.ajax({
-            url: pdrPanelAjax.ajax_url,
+            url: rhbPanelAjax.ajax_url,
             method: 'POST',
             data: {
                 action: 'salvar_status_contato',
                 contact_id: contactId,
                 contact_status: newStatus
-                // Removido: security: pdrPanelAjax.ajax_nonce
+                // Removido: security: rhbPanelAjax.ajax_nonce
             },
             success: function(response) {
                 console.log('Resposta do salvar_status_contato:', response);
@@ -34,13 +34,13 @@ jQuery(document).ready(function($) {
         console.log('Atualizando status do Inquiry:', inquiryId, newStatus);
 
         $.ajax({
-            url: pdrPanelAjax.ajax_url,
+            url: rhbPanelAjax.ajax_url,
             method: 'POST',
             data: {
                 action: 'save_inquiry_status',
                 inquiry_id: inquiryId,
                 inquiry_status: newStatus
-                // Removido: security: pdrPanelAjax.ajax_nonce
+                // Removido: security: rhbPanelAjax.ajax_nonce
             },
             success: function(response) {
                 console.log('Resposta do save_inquiry_status:', response);

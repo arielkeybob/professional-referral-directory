@@ -20,7 +20,7 @@ ReferralHub é um plugin WordPress desenvolvido para criar e gerenciar um diret�
 
 O plugin inclui um sistema flexível de referral fees que pode ser configurado globalmente ou individualmente por Service Provider:
 - **Configurações Globais de Referral Fee:** Definidas nas configurações gerais do plugin, aplicam-se a todos os Service Providers a menos que seja especificado de outra forma.
-- **Configurações Específicas de Referral Fee:** Permitidas a nível de Service Provider individual quando a opção "override" está marcada, permitindo que diferentes profissionais tenham taxas de referral fee distintas.
+- **Configurações Específicas de Referral Fee:** Permitidas a nível de Service Provider individual quando a opção "override" está marcada, permitindo que diferentes service providers tenham taxas de referral fee distintas.
 
 Atualmente, as referral fees são calculadas com base em visualizações ou contratações resultantes de inquires, mas não há integração com um gateway de pagamento para automatizar o processamento e o recebimento destas referral fees. A implementação de tal funcionalidade está em consideração para futuras atualizações.
 

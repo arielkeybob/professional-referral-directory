@@ -15,7 +15,7 @@ function fetch_admin_dashboard_data() {
     $endDate = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
 
     // Nome da tabela
-    $table_name = $wpdb->prefix . 'pdr_inquiry_data';
+    $table_name = $wpdb->prefix . 'rhb_inquiry_data';
 
     // Construindo a consulta SQL
     $sql = "

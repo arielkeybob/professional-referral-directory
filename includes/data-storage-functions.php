@@ -4,11 +4,11 @@ defined('ABSPATH') or die('No script kiddies please!');
 require_once('referral-fee-calculator.php');
 
 /**
- * Adiciona ou atualiza um contato na tabela 'pdr_contacts'.
+ * Adiciona ou atualiza um contato na tabela 'rhb_contacts'.
  */
 function adicionar_ou_atualizar_contato($dados) {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'pdr_contacts';
+    $table_name = $wpdb->prefix . 'rhb_contacts';
     if (!isset($dados['email']) || empty($dados['email'])) {
         return false;
     }
@@ -26,11 +26,11 @@ function adicionar_ou_atualizar_contato($dados) {
 }
 
 /**
- * Cria ou atualiza a relação entre contato e autor na tabela 'wp_pdr_author_contact_relations'.
+ * Cria ou atualiza a relação entre contato e autor na tabela 'wp_rhb_author_contact_relations'.
  */
 function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'active', $customName = null) {
     global $wpdb;
-    $relationTable = $wpdb->prefix . 'pdr_author_contact_relations';
+    $relationTable = $wpdb->prefix . 'rhb_author_contact_relations';
 
     $existingRelation = $wpdb->get_row($wpdb->prepare(
         "SELECT author_contact_id FROM $relationTable WHERE contact_id = %d AND author_id = %d",
@@ -50,10 +50,10 @@ function createOrUpdateContactAuthorRelation($contactId, $authorId, $status = 'a
  */
 function store_inquiry_data($data) {
     global $wpdb;
-    $inquiryDataTable = $wpdb->prefix . 'pdr_inquiry_data';
+    $inquiryDataTable = $wpdb->prefix . 'rhb_inquiry_data';
     
     if (!isset($data['service_type'], $data['service_location'], $data['contact_id'], $data['author_id'])) {
-        error_log('Dados necessários ausentes para inserção em wp_pdr_inquiry_data.');
+        error_log('Dados necessários ausentes para inserção em wp_rhb_inquiry_data.');
         return false;
     }
 
@@ -77,7 +77,7 @@ function store_inquiry_data($data) {
     ];
 
     if (!$wpdb->insert($inquiryDataTable, $insertData)) {
-        error_log('Erro ao inserir dados em wp_pdr_inquiry_data: ' . $wpdb->last_error);
+        error_log('Erro ao inserir dados em wp_rhb_inquiry_data: ' . $wpdb->last_error);
         return false;
     }
 

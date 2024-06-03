@@ -3,7 +3,7 @@
 /*
 window.initAutocomplete = function() {
     var autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('pdr_service_location'),
+        document.getElementById('rhb_service_location'),
         {types: ['geocode']}
     );
 
@@ -15,25 +15,25 @@ window.initAutocomplete = function() {
         }
 
         // Atualize os campos de latitude e longitude
-        document.getElementById('pdr_latitude_display').textContent = place.geometry.location.lat();
-        document.getElementById('pdr_longitude_display').textContent = place.geometry.location.lng();
+        document.getElementById('rhb_latitude_display').textContent = place.geometry.location.lat();
+        document.getElementById('rhb_longitude_display').textContent = place.geometry.location.lng();
     });
 };
 */
 
 jQuery(document).ready(function($) {
     // Exibir campos de nome e e-mail ao clicar em "Next"
-    $('#pdr-inquiry-btn').click(function() {
-        $('#pdr-personal-info-form').show();
+    $('#rhb-inquiry-btn').click(function() {
+        $('#rhb-personal-info-form').show();
         $(this).hide(); // Esconde o botão "Next" após o clique
     });
 
     // Evento de submissão do formulário de busca
-    $('#pdr-inquiry-form').on('submit', function(e) {
+    $('#rhb-inquiry-form').on('submit', function(e) {
         e.preventDefault();
 
         var formData = {
-            'action': 'pdr_inquiry',
+            'action': 'rhb_inquiry',
             'service_type': $('select[name="service_type"]').val(),
             'service_location': $('select[name="service_location"]').val(),
             'name': $('input[name="name"]').val(),
@@ -54,19 +54,19 @@ jQuery(document).ready(function($) {
                     displayResults(response.data);
                 } else {
                     // Tratar casos de falha na busca
-                    $('#pdr-inquiry-results').html('<p>' + response.data + '</p>');
+                    $('#rhb-inquiry-results').html('<p>' + response.data + '</p>');
                 }
             },
             error: function() {
                 // Tratamento de erro
-                $('#pdr-inquiry-results').html('<p>Erro ao processar a busca.</p>');
+                $('#rhb-inquiry-results').html('<p>Erro ao processar a busca.</p>');
             }
         });
     });
 
     // Função para exibir os resultados da busca
     function displayResults(data) {
-        var resultsContainer = $('#pdr-inquiry-results');
+        var resultsContainer = $('#rhb-inquiry-results');
         resultsContainer.empty();
 
         // Insere o HTML retornado diretamente no container de resultados
