@@ -1,6 +1,6 @@
 <?php
 /**
- * Classe para gerenciar as taxonomias do ProfessionalDirectory.
+ * Classe para gerenciar as taxonomias do ReferralHub.
  */
 
  defined('ABSPATH') or die('No script kiddies please!');
@@ -11,17 +11,17 @@ class PDR_Taxonomies {
      */
     public static function register_service_type_taxonomy() {
         $labels = array(
-            'name'              => _x( 'Service Types', 'taxonomy general name', 'professionaldirectory' ),
-            'singular_name'     => _x( 'Service Type', 'taxonomy singular name', 'professionaldirectory' ),
-            'inquiring_items'      => __( 'Service Types', 'professionaldirectory' ),
-            'all_items'         => __( 'All Service Types', 'professionaldirectory' ),
-            'parent_item'       => __( 'Parent Service Type', 'professionaldirectory' ),
-            'parent_item_colon' => __( 'Parent Service Type:', 'professionaldirectory' ),
-            'edit_item'         => __( 'Edit Service Type', 'professionaldirectory' ),
-            'update_item'       => __( 'Update Service Type', 'professionaldirectory' ),
-            'add_new_item'      => __( 'Add New Service Type', 'professionaldirectory' ),
-            'new_item_name'     => __( 'New Service Type Name', 'professionaldirectory' ),
-            'menu_name'         => __( 'Service Type', 'professionaldirectory' ),
+            'name'              => _x( 'Service Types', 'taxonomy general name', 'referralhub' ),
+            'singular_name'     => _x( 'Service Type', 'taxonomy singular name', 'referralhub' ),
+            'inquiring_items'      => __( 'Service Types', 'referralhub' ),
+            'all_items'         => __( 'All Service Types', 'referralhub' ),
+            'parent_item'       => __( 'Parent Service Type', 'referralhub' ),
+            'parent_item_colon' => __( 'Parent Service Type:', 'referralhub' ),
+            'edit_item'         => __( 'Edit Service Type', 'referralhub' ),
+            'update_item'       => __( 'Update Service Type', 'referralhub' ),
+            'add_new_item'      => __( 'Add New Service Type', 'referralhub' ),
+            'new_item_name'     => __( 'New Service Type Name', 'referralhub' ),
+            'menu_name'         => __( 'Service Type', 'referralhub' ),
         );
 
         $args = array(
@@ -48,17 +48,17 @@ class PDR_Taxonomies {
      */
     public static function register_service_location_taxonomy() { 
         $labels = array(
-            'name'              => _x( 'Service Locations', 'taxonomy general name', 'professionaldirectory' ),
-            'singular_name'     => _x( 'Service Location', 'taxonomy singular name', 'professionaldirectory' ),
-            'inquiring_items'      => __( 'Inquiry Service Locations', 'professionaldirectory' ),
-            'all_items'         => __( 'All Service Locations', 'professionaldirectory' ),
-            'parent_item'       => __( 'Parent Service Location', 'professionaldirectory' ),
-            'parent_item_colon' => __( 'Parent Service Location:', 'professionaldirectory' ),
-            'edit_item'         => __( 'Edit Service Location', 'professionaldirectory' ),
-            'update_item'       => __( 'Update Service Location', 'professionaldirectory' ),
-            'add_new_item'      => __( 'Add New Service Location', 'professionaldirectory' ),
-            'new_item_name'     => __( 'New Service Location Name', 'professionaldirectory' ),
-            'menu_name'         => __( 'Service Location', 'professionaldirectory' ),
+            'name'              => _x( 'Service Locations', 'taxonomy general name', 'referralhub' ),
+            'singular_name'     => _x( 'Service Location', 'taxonomy singular name', 'referralhub' ),
+            'inquiring_items'      => __( 'Inquiry Service Locations', 'referralhub' ),
+            'all_items'         => __( 'All Service Locations', 'referralhub' ),
+            'parent_item'       => __( 'Parent Service Location', 'referralhub' ),
+            'parent_item_colon' => __( 'Parent Service Location:', 'referralhub' ),
+            'edit_item'         => __( 'Edit Service Location', 'referralhub' ),
+            'update_item'       => __( 'Update Service Location', 'referralhub' ),
+            'add_new_item'      => __( 'Add New Service Location', 'referralhub' ),
+            'new_item_name'     => __( 'New Service Location Name', 'referralhub' ),
+            'menu_name'         => __( 'Service Location', 'referralhub' ),
         );
     
         $args = array(

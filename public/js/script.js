@@ -1,1 +1,1 @@
-// Public JavaScript for Professional Directory Plugin
+// Public JavaScript for ReferralHub Plugin

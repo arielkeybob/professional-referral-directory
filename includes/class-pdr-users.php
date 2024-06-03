@@ -40,32 +40,32 @@ class PDR_Users {
             $referral_fee_approval = get_user_meta($user->ID, 'pdr_referral_fee_approval', true);
             $override_referral_fee = get_user_meta($user->ID, 'pdr_override_referral_fee', true) == 'yes';
             ?>
-            <h3><?php _e('Referral Fee Settings', 'professionaldirectory'); ?></h3>
+            <h3><?php _e('Referral Fee Settings', 'referralhub'); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="override_referral_fee"><?php _e('Sobrescrever configurações gerais de Referral Fee', 'professionaldirectory'); ?></label></th>
+                    <th><label for="override_referral_fee"><?php _e('Sobrescrever configurações gerais de Referral Fee', 'referralhub'); ?></label></th>
                     <td>
                         <input type="checkbox" name="override_referral_fee" id="override_referral_fee" value="yes" <?php checked($override_referral_fee, true); ?> />
                     </td>
                 </tr>
                 <tr class="referral_fee_settings" style="display: <?php echo $override_referral_fee ? '' : 'none'; ?>">
-                    <th><label for="referral_fee_type"><?php _e('Referral Fee Type', 'professionaldirectory'); ?></label></th>
+                    <th><label for="referral_fee_type"><?php _e('Referral Fee Type', 'referralhub'); ?></label></th>
                     <td>
                         <select id="referral_fee_type" name="referral_fee_type">
-                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php _e('Por Visualização', 'professionaldirectory'); ?></option>
-                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php _e('Por Inquiry Aprovada', 'professionaldirectory'); ?></option>
-                            <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php _e('Combination of Both', 'professionaldirectory'); ?></option>
+                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php _e('Por Visualização', 'referralhub'); ?></option>
+                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php _e('Por Inquiry Aprovada', 'referralhub'); ?></option>
+                            <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php _e('Combination of Both', 'referralhub'); ?></option>
                         </select>
                     </td>
                 </tr>
                 <tr class="referral_fee_view referral_fee_settings" style="display: <?php echo $override_referral_fee && ($referral_fee_type === 'view' || $referral_fee_type === 'both') ? '' : 'none'; ?>">
-                    <th><label for="referral_fee_view"><?php _e('Per View', 'professionaldirectory'); ?></label></th>
+                    <th><label for="referral_fee_view"><?php _e('Per View', 'referralhub'); ?></label></th>
                     <td>
                         <input type="text" name="referral_fee_view" id="referral_fee_view" value="<?php echo esc_attr($referral_fee_view); ?>" />
                     </td>
                 </tr>
                 <tr class="referral_fee_approval referral_fee_settings" style="display: <?php echo $override_referral_fee && ($referral_fee_type === 'approval' || $referral_fee_type === 'both') ? '' : 'none'; ?>">
-                    <th><label for="referral_fee_approval"><?php _e('Per Approved Inquiry', 'professionaldirectory'); ?></label></th>
+                    <th><label for="referral_fee_approval"><?php _e('Per Approved Inquiry', 'referralhub'); ?></label></th>
                     <td>
                         <input type="text" name="referral_fee_approval" id="referral_fee_approval" value="<?php echo esc_attr($referral_fee_approval); ?>" />
                     </td>

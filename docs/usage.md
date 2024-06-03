@@ -1,6 +1,6 @@
-# Uso do ProfessionalDirectory
+# Uso do ReferralHub
 
-Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalDirectory no seu site WordPress.
+Este guia fornece instruções detalhadas sobre como usar o plugin ReferralHub no seu site WordPress.
 
 ## Criando e Gerenciando Services
 
@@ -26,7 +26,7 @@ Este guia fornece instruções detalhadas sobre como usar o plugin ProfessionalD
 
 ## Sistema de Referral Fees
 
-O ProfessionalDirectory oferece um sistema flexível de referral fees que pode ser configurado tanto globalmente quanto individualmente para cada Service Provider. Existem três tipos principais de referral fees:
+O ReferralHub oferece um sistema flexível de referral fees que pode ser configurado tanto globalmente quanto individualmente para cada Service Provider. Existem três tipos principais de referral fees:
 
 - **Por Visualização:** Taxa gerada cada vez que um serviço é visualizado.
 - **Por Inquiry Aprovado:** Taxa atribuída quando um inquiry resulta em uma contratação ou outro critério de "aprovação" definido.
@@ -64,7 +64,7 @@ Para garantir o envio eficaz de notificações e outros e-mails pelo plugin, é 
 
 ## Suporte
 
-Se precisar de assistência adicional ou tiver dúvidas sobre o uso do ProfessionalDirectory, consulte a seção [FAQ](faq.md) ou entre em contato através do suporte.
+Se precisar de assistência adicional ou tiver dúvidas sobre o uso do ReferralHub, consulte a seção [FAQ](faq.md) ou entre em contato através do suporte.
 
 ---
 

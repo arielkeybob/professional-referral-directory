@@ -1,6 +1,6 @@
-# Glossário de Termos do Plugin Professional Directory
+# Glossário de Termos do Plugin ReferralHub
 
-Este documento fornece uma visão geral dos termos e conceitos utilizados no plugin Professional Directory, facilitando a compreensão e o desenvolvimento.
+Este documento fornece uma visão geral dos termos e conceitos utilizados no plugin ReferralHub, facilitando a compreensão e o desenvolvimento.
 
 ## Termos Gerais
 
@@ -62,7 +62,7 @@ O **Inquiry Form** é o formulário preenchido pelos usuários para iniciar um i
 
 ## Configurações de Referral Fee
 
-O plugin Professional Directory oferece duas áreas distintas para a configuração de Referral Fees, permitindo uma flexibilidade entre configurações gerais e específicas para cada Service Provider.
+O plugin ReferralHub oferece duas áreas distintas para a configuração de Referral Fees, permitindo uma flexibilidade entre configurações gerais e específicas para cada Service Provider.
 
 ### General Referral Fee Settings
 

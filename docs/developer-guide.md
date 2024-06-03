@@ -1,10 +1,10 @@
-# Guia do Desenvolvedor para Professional Directory
+# Guia do Desenvolvedor para ReferralHub
 
-Bem-vindo ao guia do desenvolvedor do Professional Directory. Este documento fornece uma visão geral da arquitetura do plugin, padrões de código e práticas recomendadas para contribuir ou estender o plugin, além de uma descrição detalhada do fluxo de dados e das funções principais.
+Bem-vindo ao guia do desenvolvedor do ReferralHub. Este documento fornece uma visão geral da arquitetura do plugin, padrões de código e práticas recomendadas para contribuir ou estender o plugin, além de uma descrição detalhada do fluxo de dados e das funções principais.
 
 ## Estrutura do Plugin
 
-O Professional Directory segue uma estrutura padrão de plugins do WordPress, que inclui diretórios específicos para administração, lógica de negócios e apresentação, assim como arquivos para ativação e manuseio de eventos.
+O ReferralHub segue uma estrutura padrão de plugins do WordPress, que inclui diretórios específicos para administração, lógica de negócios e apresentação, assim como arquivos para ativação e manuseio de eventos.
 
 ### Diretórios Principais
 
@@ -14,7 +14,7 @@ O Professional Directory segue uma estrutura padrão de plugins do WordPress, qu
 
 ### Arquivos Principais
 
-- `ProfessionalDirectory.php`: Arquivo principal do plugin para inicialização e configuração básica.
+- `ReferralHub.php`: Arquivo principal do plugin para inicialização e configuração básica.
 - `activation.php`: Gerencia a ativação do plugin e a criação de tabelas.
 - `ajax-handlers.php`: Contém os manipuladores para as requisições AJAX.
 
@@ -66,7 +66,7 @@ O plugin segue as [Normas de Codificação do WordPress](https://developer.wordp
 
 ## Contribuições
 
-Para contribuir com o Professional Directory, siga estes passos:
+Para contribuir com o ReferralHub, siga estes passos:
 
 1. **Fork o Repositório:** Faça um fork do repositório no GitHub.
 2. **Faça suas Mudanças:** Trabalhe em uma branch separada para suas contribuições.

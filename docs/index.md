@@ -1,6 +1,6 @@
-# Bem-vindo à Documentação do ProfessionalDirectory
+# Bem-vindo à Documentação do ReferralHub
 
-Este é o guia oficial para o plugin ProfessionalDirectory. Aqui, você encontrará tudo o que precisa saber para instalar, configurar e utilizar o plugin de forma eficiente.
+Este é o guia oficial para o plugin ReferralHub. Aqui, você encontrará tudo o que precisa saber para instalar, configurar e utilizar o plugin de forma eficiente.
 
 ## Conteúdo
 
@@ -14,7 +14,7 @@ Este é o guia oficial para o plugin ProfessionalDirectory. Aqui, você encontra
 
 ## Introdução
 
-ProfessionalDirectory é um plugin WordPress desenvolvido para criar e gerenciar um diretório de serviços profissionais. Com funcionalidades como a criação de tipos de post personalizados, taxonomias, e formulários de busca, este plugin é ideal para sites que necessitam de um diretório de serviços detalhado e fácil de usar.
+ReferralHub é um plugin WordPress desenvolvido para criar e gerenciar um diretório de serviços profissionais. Com funcionalidades como a criação de tipos de post personalizados, taxonomias, e formulários de busca, este plugin é ideal para sites que necessitam de um diretório de serviços detalhado e fácil de usar.
 
 ## Referral Fees
 

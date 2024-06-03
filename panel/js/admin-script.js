@@ -1,4 +1,4 @@
-// Admin JavaScript for Professional Directory Plugin
+// Admin JavaScript for ReferralHub Plugin
 document.addEventListener('DOMContentLoaded', function() {
     var editButton = document.getElementById('edit-name');
     var customNameInput = document.getElementById('custom_name');

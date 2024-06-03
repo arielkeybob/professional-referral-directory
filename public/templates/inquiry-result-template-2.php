@@ -12,16 +12,16 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
     <div class="service-content">
         <p class="service-excerpt"><?php the_excerpt(); ?></p>
         <p class="service-taxonomy service-type">
-            <strong><?php _e('Service Types:', 'professionaldirectory'); ?></strong>
+            <strong><?php _e('Service Types:', 'referralhub'); ?></strong>
             <?php echo pdr_get_taxonomy_terms_as_string('service_type'); ?>
         </p>
         <p class="service-taxonomy service-location">
-            <strong><?php _e('Service Locations:', 'professionaldirectory'); ?></strong>
+            <strong><?php _e('Service Locations:', 'referralhub'); ?></strong>
             <?php echo pdr_get_taxonomy_terms_as_string('service_location'); ?>
         </p>
     </div>
     <a class="read-more" href="<?php the_permalink(); ?>">
-        <?php _e('Read more', 'professionaldirectory'); ?>
+        <?php _e('Read more', 'referralhub'); ?>
     </a>
     <div class="service-author-details">
         <p class="author-name">

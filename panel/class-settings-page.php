@@ -11,14 +11,14 @@ class PDR_Settings {
         $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'general_settings';
         ?>
         <div class="wrap">
-            <h2><?php echo esc_html__('Settings', 'professionaldirectory'); ?></h2>
+            <h2><?php echo esc_html__('Settings', 'referralhub'); ?></h2>
             <h2 class="nav-tab-wrapper">
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('General Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'professionaldirectory'); ?></a>
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
-                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=advanced_settings" class="nav-tab <?php echo $active_tab == 'advanced_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Advanced', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('General Settings', 'referralhub'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'referralhub'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'referralhub'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'referralhub'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'referralhub'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=advanced_settings" class="nav-tab <?php echo $active_tab == 'advanced_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Advanced', 'referralhub'); ?></a>
             </h2>
             <form method="post" action="options.php">
                 <?php
@@ -56,14 +56,14 @@ class PDR_Settings {
         
         add_settings_section(
             'pdr_general_settings_section', 
-            __('General Settings', 'professionaldirectory'), 
+            __('General Settings', 'referralhub'), 
             null, 
             'pdr_general_settings'
         );
     
         add_settings_field(
             'pdr_general_option', 
-            __('General Option', 'professionaldirectory'), 
+            __('General Option', 'referralhub'), 
             array($this, 'general_option_callback'), 
             'pdr_general_settings', 
             'pdr_general_settings_section'
@@ -72,7 +72,7 @@ class PDR_Settings {
         // Adiciona a nova configuração para deletar dados na desinstalação
         add_settings_field(
             'pdr_delete_data_on_uninstall',
-            __('Delete Data on Uninstall', 'professionaldirectory'),
+            __('Delete Data on Uninstall', 'referralhub'),
             array($this, 'delete_data_on_uninstall_callback'),
             'pdr_general_settings',
             'pdr_general_settings_section'
@@ -83,14 +83,14 @@ class PDR_Settings {
     
         add_settings_section(
             'pdr_api_settings_section',
-            __('API Settings', 'professionaldirectory'),
+            __('API Settings', 'referralhub'),
             null,
             'pdr_api_settings'
         );
     
         add_settings_field(
             'pdr_google_maps_api_key',
-            __('Google Maps API Key', 'professionaldirectory'),
+            __('Google Maps API Key', 'referralhub'),
             array($this, 'google_maps_api_key_callback'),
             'pdr_api_settings',
             'pdr_api_settings_section'
@@ -102,14 +102,14 @@ class PDR_Settings {
     
         add_settings_section(
             'pdr_email_settings_section',
-            __('Email Settings', 'professionaldirectory'),
+            __('Email Settings', 'referralhub'),
             null,
             'pdr_email_settings'
         );
     
         add_settings_field(
             'pdr_selected_admins',
-            __('Admins to Receive Emails', 'professionaldirectory'),
+            __('Admins to Receive Emails', 'referralhub'),
             array($this, 'selected_admins_callback'),
             'pdr_email_settings',
             'pdr_email_settings_section'
@@ -117,7 +117,7 @@ class PDR_Settings {
     
         add_settings_field(
             'pdr_manual_emails',
-            __('Additional Emails', 'professionaldirectory'),
+            __('Additional Emails', 'referralhub'),
             array($this, 'manual_emails_callback'),
             'pdr_email_settings',
             'pdr_email_settings_section'
@@ -136,21 +136,21 @@ class PDR_Settings {
 
         add_settings_section(
             'pdr_style_settings_section', 
-            __('Frontend Style', 'professionaldirectory'), 
+            __('Frontend Style', 'referralhub'), 
             null, 
             'pdr_style_settings'
         );
 
         // Lista de configurações de estilo
         $style_settings = [
-            'button_color' => __('Button Color', 'professionaldirectory'),
-            'button_text_color' => __('Button Text Color', 'professionaldirectory'),
-            'button_hover_color' => __('Button Hover Color', 'professionaldirectory'),
-            'button_text_hover_color' => __('Button Text Hover Color', 'professionaldirectory'),
-            'title_font_family' => __('Title Font Family', 'professionaldirectory'),
-            'title_color' => __('Title Color', 'professionaldirectory'),
-            'body_font_family' => __('Body Font Family', 'professionaldirectory'),
-            'body_color' => __('Body Color', 'professionaldirectory')
+            'button_color' => __('Button Color', 'referralhub'),
+            'button_text_color' => __('Button Text Color', 'referralhub'),
+            'button_hover_color' => __('Button Hover Color', 'referralhub'),
+            'button_text_hover_color' => __('Button Text Hover Color', 'referralhub'),
+            'title_font_family' => __('Title Font Family', 'referralhub'),
+            'title_color' => __('Title Color', 'referralhub'),
+            'body_font_family' => __('Body Font Family', 'referralhub'),
+            'body_color' => __('Body Color', 'referralhub')
         ];
 
         foreach ($style_settings as $setting_name => $setting_label) {
@@ -166,7 +166,7 @@ class PDR_Settings {
         // Adicionar o campo de escolha do template
         add_settings_field(
             'pdr_template_choice',
-            __('Template Choice', 'professionaldirectory'),
+            __('Template Choice', 'referralhub'),
             array($this, 'template_choice_callback'),
             'pdr_style_settings',
             'pdr_style_settings_section'
@@ -181,7 +181,7 @@ class PDR_Settings {
 
         add_settings_section(
             'pdr_panel_style_section',
-            __('Panel Style Settings', 'professionaldirectory'),
+            __('Panel Style Settings', 'referralhub'),
             null,
             'pdr_panel_style_settings'
         );
@@ -189,7 +189,7 @@ class PDR_Settings {
         // Adicionando campos
         add_settings_field(
             'pdr_primary_color',
-            __('Primary Color', 'professionaldirectory'),
+            __('Primary Color', 'referralhub'),
             array($this, 'primary_color_callback'),
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
@@ -197,7 +197,7 @@ class PDR_Settings {
 
         add_settings_field(
             'pdr_secondary_color',
-            __('Secondary Color', 'professionaldirectory'),
+            __('Secondary Color', 'referralhub'),
             array($this, 'secondary_color_callback'),
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
@@ -205,7 +205,7 @@ class PDR_Settings {
 
         add_settings_field(
             'pdr_text_color',
-            __('Text Color', 'professionaldirectory'),
+            __('Text Color', 'referralhub'),
             array($this, 'text_color_callback'),
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
@@ -213,7 +213,7 @@ class PDR_Settings {
 
         add_settings_field(
             'pdr_accent_color',
-            __('Accent Color', 'professionaldirectory'),
+            __('Accent Color', 'referralhub'),
             array($this, 'accent_color_callback'),
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
@@ -221,7 +221,7 @@ class PDR_Settings {
 
         add_settings_field(
             'pdr_panel_logo',
-            __('Panel Logo', 'professionaldirectory'),
+            __('Panel Logo', 'referralhub'),
             array($this, 'panel_logo_callback'),
             'pdr_panel_style_settings',
             'pdr_panel_style_section'
@@ -232,14 +232,14 @@ class PDR_Settings {
     
         add_settings_section(
             'pdr_advanced_settings_section', 
-            __('Tools', 'professionaldirectory'), 
+            __('Tools', 'referralhub'), 
             null, 
             'pdr_advanced_settings'
         );
     
         add_settings_field(
             'pdr_export_data', 
-            __('Export Data', 'professionaldirectory'), 
+            __('Export Data', 'referralhub'), 
             array($this, 'export_data_callback'), 
             'pdr_advanced_settings', 
             'pdr_advanced_settings_section'
@@ -257,10 +257,10 @@ class PDR_Settings {
         $option = get_option('pdr_delete_data_on_uninstall', 'no');
         ?>
         <select name="pdr_delete_data_on_uninstall">
-            <option value="yes" <?php selected($option, 'yes'); ?>><?php _e('Yes', 'professionaldirectory'); ?></option>
-            <option value="no" <?php selected($option, 'no'); ?>><?php _e('No', 'professionaldirectory'); ?></option>
+            <option value="yes" <?php selected($option, 'yes'); ?>><?php _e('Yes', 'referralhub'); ?></option>
+            <option value="no" <?php selected($option, 'no'); ?>><?php _e('No', 'referralhub'); ?></option>
         </select>
-        <p class="description"><?php _e('Choose whether to delete all plugin data when the plugin is uninstalled.', 'professionaldirectory'); ?></p>
+        <p class="description"><?php _e('Choose whether to delete all plugin data when the plugin is uninstalled.', 'referralhub'); ?></p>
         <?php
     }
 
@@ -269,16 +269,16 @@ public function export_data_callback() {
     ?>
     <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
         <input type="hidden" name="action" value="pdr_export_data" />
-        <?php submit_button(__('Export Data (Coming Soon)', 'professionaldirectory'), 'secondary', '', false, array('disabled' => 'disabled')); ?>
+        <?php submit_button(__('Export Data (Coming Soon)', 'referralhub'), 'secondary', '', false, array('disabled' => 'disabled')); ?>
     </form>
-    <p class="description"><?php _e('This feature will be available in a future update.', 'professionaldirectory'); ?></p>
+    <p class="description"><?php _e('This feature will be available in a future update.', 'referralhub'); ?></p>
     <?php
 }
 
     // Callbacks API Options
     public function google_maps_api_key_callback() {
         $api_key = get_option('pdr_google_maps_api_key');
-        echo "<input type='text' name='pdr_google_maps_api_key' value='" . esc_attr($api_key) . "' placeholder='" . esc_attr__('Enter the Google Maps API Key', 'professionaldirectory') . "' />";
+        echo "<input type='text' name='pdr_google_maps_api_key' value='" . esc_attr($api_key) . "' placeholder='" . esc_attr__('Enter the Google Maps API Key', 'referralhub') . "' />";
     }
 
     // Callbacks Email Options
@@ -302,8 +302,8 @@ public function export_data_callback() {
     
     public function manual_emails_callback() {
         $manual_emails = get_option('pdr_manual_emails', '');
-        echo "<input type='text' name='pdr_manual_emails' value='" . esc_attr($manual_emails) . "' style='width: 50%;' placeholder='" . esc_attr__('email1@example.com, email2@example.com', 'professionaldirectory') . "' />";
-        echo "<p>" . esc_html__('Enter additional emails separated by commas.', 'professionaldirectory') . "</p>";
+        echo "<input type='text' name='pdr_manual_emails' value='" . esc_attr($manual_emails) . "' style='width: 50%;' placeholder='" . esc_attr__('email1@example.com, email2@example.com', 'referralhub') . "' />";
+        echo "<p>" . esc_html__('Enter additional emails separated by commas.', 'referralhub') . "</p>";
     }
 
     // Callbacks Frontend Style options
@@ -436,9 +436,9 @@ public function export_data_callback() {
         $image_url = wp_get_attachment_url($logo_id);
         ?>
         <input type="hidden" id="pdr_panel_logo" name="pdr_panel_logo" value="<?php echo esc_attr($logo_id); ?>" />
-        <input type="button" id="pdr_panel_logo_button" class="button" value="<?php _e('Upload Logo', 'professionaldirectory'); ?>" />
-        <input type="button" id="pdr_panel_logo_remove_button" class="button" value="<?php _e('Remove Logo', 'professionaldirectory'); ?>" <?php echo $logo_id ? '' : 'style="display:none;"'; ?> />
-        <span class="description"><?php _e('Upload or remove the panel logo.', 'professionaldirectory'); ?></span>
+        <input type="button" id="pdr_panel_logo_button" class="button" value="<?php _e('Upload Logo', 'referralhub'); ?>" />
+        <input type="button" id="pdr_panel_logo_remove_button" class="button" value="<?php _e('Remove Logo', 'referralhub'); ?>" <?php echo $logo_id ? '' : 'style="display:none;"'; ?> />
+        <span class="description"><?php _e('Upload or remove the panel logo.', 'referralhub'); ?></span>
         <div id="pdr_panel_logo_preview" style="min-height: 100px;">
             <?php if($image_url): ?>
                 <img style="max-width:250px;" src="<?php echo esc_url($image_url); ?>" />

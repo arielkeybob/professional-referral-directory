@@ -16,7 +16,7 @@ class PDR_Metaboxes {
         /*
         add_meta_box(
             'pdr_service_location',
-            __('Service Location', 'professionaldirectory'),
+            __('Service Location', 'referralhub'),
             [self::class, 'render_location_meta_box'],
             'pdr_service', // Tipo de post
             'side',
@@ -27,7 +27,7 @@ class PDR_Metaboxes {
         // Novo metabox para preferência de recebimento de e-mail
         add_meta_box(
             'pdr_email_preference',
-            __('Preferência de Recebimento de E-mail', 'professionaldirectory'),
+            __('Preferência de Recebimento de E-mail', 'referralhub'),
             [self::class, 'render_email_preference_meta_box'],
             'pdr_service', // Tipo de post
             'side',
@@ -45,10 +45,10 @@ class PDR_Metaboxes {
         $latitude = get_post_meta($post->ID, '_pdr_service_latitude', true);
         $longitude = get_post_meta($post->ID, '_pdr_service_longitude', true);
 
-        echo '<label for="pdr_service_location">' . esc_html__('Address:', 'professionaldirectory') . '</label>';
+        echo '<label for="pdr_service_location">' . esc_html__('Address:', 'referralhub') . '</label>';
         echo '<input type="text" id="pdr_service_location" name="pdr_service_location" value="' . esc_attr($location) . '" class="widefat" />';
-        echo '<p>' . esc_html__('Latitude:', 'professionaldirectory') . ' <span id="pdr_latitude_display">' . esc_html($latitude) . '</span></p>';
-        echo '<p>' . esc_html__('Longitude:', 'professionaldirectory') . ' <span id="pdr_longitude_display">' . esc_html($longitude) . '</span></p>';
+        echo '<p>' . esc_html__('Latitude:', 'referralhub') . ' <span id="pdr_latitude_display">' . esc_html($latitude) . '</span></p>';
+        echo '<p>' . esc_html__('Longitude:', 'referralhub') . ' <span id="pdr_longitude_display">' . esc_html($longitude) . '</span></p>';
         
     }
     */
@@ -63,7 +63,7 @@ class PDR_Metaboxes {
         // Checkbox para a preferência de e-mail
         echo '<label>';
         echo '<input type="checkbox" name="pdr_email_preference" value="1"' . checked($email_preference, '1', false) . '>';
-        esc_html_e('Desejo receber notificações por e-mail para este serviço', 'professionaldirectory');
+        esc_html_e('Desejo receber notificações por e-mail para este serviço', 'referralhub');
         echo '</label>';
     }
 

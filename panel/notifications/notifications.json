@@ -2,7 +2,7 @@
     {
         "id": "1",
         "titulo": "Attention: Plugin Under Development",
-        "mensagem": "This plugin is currently in active development. Some features may not be available or are being tested and optimized. We appreciate your understanding and patience. If you encounter any issues, please report them to us on our GitHub page to help improve the plugin. [GitHub Repository](https://github.com/arielkeybob/professional-referral-directory)",
+        "mensagem": "This plugin is currently in active development. Some features may not be available or are being tested and optimized. We appreciate your understanding and patience. If you encounter any issues, please report them to us on our GitHub page to help improve the plugin. [GitHub Repository](https://github.com/arielkeybob/referralhub)",
         "trigger": "on_activation",
         "status": "ativo"
     },

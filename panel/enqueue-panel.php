@@ -2,16 +2,16 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Função para enfileirar estilos específicos
-function professionaldirectory_enqueue_admin_styles($hook_suffix) {
+function referralhub_enqueue_admin_styles($hook_suffix) {
     if (strpos($hook_suffix, 'pdr') !== false) {
-        wp_enqueue_style('professionaldirectory-admin-style', plugins_url('/panel/css/admin-style.css', PDR_MAIN_FILE));
+        wp_enqueue_style('referralhub-admin-style', plugins_url('/panel/css/admin-style.css', PDR_MAIN_FILE));
         wp_enqueue_style('pdr-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', PDR_MAIN_FILE));
         wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
     }
 }
 
 // Função para enfileirar scripts específicos
-function professionaldirectory_enqueue_admin_scripts($hook_suffix) {
+function referralhub_enqueue_admin_scripts($hook_suffix) {
     if (strpos($hook_suffix, 'pdr') !== false) {
         wp_enqueue_script('dashboard-script-admin', plugins_url('/panel/js/dashboard-script-admin.js', PDR_MAIN_FILE), array('jquery'), null, true);
         wp_enqueue_script('pdr-admin-notifications', plugins_url('/panel/js/admin-notifications.js', PDR_MAIN_FILE), array('jquery'), null, true);
@@ -51,8 +51,8 @@ function pdr_enqueue_notyf($hook_suffix) {
 }
 
 // Ação para enfileirar scripts e estilos no painel admin
-add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_styles');
-add_action('admin_enqueue_scripts', 'professionaldirectory_enqueue_admin_scripts');
+add_action('admin_enqueue_scripts', 'referralhub_enqueue_admin_styles');
+add_action('admin_enqueue_scripts', 'referralhub_enqueue_admin_scripts');
 add_action('admin_enqueue_scripts', 'pdr_enqueue_material_icons');
 add_action('admin_enqueue_scripts', 'pdr_enqueue_notyf');
 

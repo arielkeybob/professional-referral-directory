@@ -1,6 +1,6 @@
-# Changelog for ProfessionalDirectory
+# Changelog for ReferralHub
 
-This file documents all the significant changes made in each version of the ProfessionalDirectory plugin.
+This file documents all the significant changes made in each version of the ReferralHub plugin.
 
 ## [1.1.3] - 2024-05-29
 ### Added

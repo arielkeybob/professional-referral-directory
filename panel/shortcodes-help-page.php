@@ -3,26 +3,26 @@ defined('ABSPATH') or die('No script kiddies please!');
 ?>
 
 <div class="wrap">
-    <h1><?php _e('Plugin ProfessionalDirectory Shortcodes Help', 'professionaldirectory'); ?></h1>
-    <p><?php _e('Here you will find detailed instructions on how to use the available shortcodes in the ProfessionalDirectory plugin to enhance the functionality of your WordPress site.', 'professionaldirectory'); ?></p>
+    <h1><?php _e('Plugin ReferralHub Shortcodes Help', 'referralhub'); ?></h1>
+    <p><?php _e('Here you will find detailed instructions on how to use the available shortcodes in the ReferralHub plugin to enhance the functionality of your WordPress site.', 'referralhub'); ?></p>
 
-    <h2><?php _e('Available Shortcodes', 'professionaldirectory'); ?></h2>
+    <h2><?php _e('Available Shortcodes', 'referralhub'); ?></h2>
 
     <div class="shortcode-section">
-        <h3><?php _e('Inquiry Form', 'professionaldirectory'); ?></h3>
-        <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for Service Providers based on service type and location.', 'professionaldirectory'); ?></p>
+        <h3><?php _e('Inquiry Form', 'referralhub'); ?></h3>
+        <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for Service Providers based on service type and location.', 'referralhub'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_inquiry_form]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'professionaldirectory'); ?></button>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'referralhub'); ?></button>
         </div>
     </div>
 
     <div class="shortcode-section">
-        <h3><?php _e('Inquiry Results', 'professionaldirectory'); ?></h3>
-        <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'professionaldirectory'); ?></p>
+        <h3><?php _e('Inquiry Results', 'referralhub'); ?></h3>
+        <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'referralhub'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_inquiry_results]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'professionaldirectory'); ?></button>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'referralhub'); ?></button>
         </div>
     </div>
 
@@ -30,9 +30,9 @@ defined('ABSPATH') or die('No script kiddies please!');
         // Function to copy the shortcode and change the button text
         function copyToClipboard(btn, shortcode) {
             navigator.clipboard.writeText(shortcode);
-            btn.textContent = '<?php echo esc_js(__('Copied!', 'professionaldirectory')); ?>';
+            btn.textContent = '<?php echo esc_js(__('Copied!', 'referralhub')); ?>';
             setTimeout(function() {
-                btn.textContent = '<?php echo esc_js(__('Copy', 'professionaldirectory')); ?>';
+                btn.textContent = '<?php echo esc_js(__('Copy', 'referralhub')); ?>';
             }, 3000);
         }
     </script>

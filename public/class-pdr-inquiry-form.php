@@ -26,7 +26,7 @@ class PDR_Inquiry_Form {
         <form id="pdr-inquiry-form" method="post">
             <div id="pdr-initial-inquiry">
                 <select name="service_type">
-                    <option value=""><?php echo esc_html__('Select a Service Type', 'professionaldirectory'); ?></option>
+                    <option value=""><?php echo esc_html__('Select a Service Type', 'referralhub'); ?></option>
                     <?php
                     // Recupera os termos da taxonomia 'service_type'
                     $terms = get_terms(array(
@@ -42,7 +42,7 @@ class PDR_Inquiry_Form {
                 </select>
     
                 <select name="service_location">
-                    <option value=""><?php echo esc_html__('Select a Location', 'professionaldirectory'); ?></option>
+                    <option value=""><?php echo esc_html__('Select a Location', 'referralhub'); ?></option>
                     <?php
                     // Recupera os termos da taxonomia 'service_location'
                     $terms = get_terms(array(
@@ -57,31 +57,31 @@ class PDR_Inquiry_Form {
                     ?>
                 </select>
     
-                <button type="button" id="pdr-inquiry-btn"><?php echo esc_html__('Next', 'professionaldirectory'); ?></button>
+                <button type="button" id="pdr-inquiry-btn"><?php echo esc_html__('Next', 'referralhub'); ?></button>
             </div>
     
             <!-- Formulário de Informações Pessoais (Etapa 2) -->
             <div id="pdr-personal-info-form" style="display:none;">
                 <?php if ($logged_in): ?>
-                    <p><?php _e('You are inquiring as: ', 'professionaldirectory'); echo esc_html($name); ?></p>
+                    <p><?php _e('You are inquiring as: ', 'referralhub'); echo esc_html($name); ?></p>
                     <input type="hidden" name="name" value="<?php echo esc_attr($name); ?>">
                     <input type="hidden" name="email" value="<?php echo esc_attr($email); ?>">
-                    <a href="<?php echo wp_logout_url(get_permalink()); ?>"><?php _e('Change user', 'professionaldirectory'); ?></a>
+                    <a href="<?php echo wp_logout_url(get_permalink()); ?>"><?php _e('Change user', 'referralhub'); ?></a>
                 <?php else: ?>
-                    <input type="text" name="name" placeholder="<?php echo esc_attr__('Name', 'professionaldirectory'); ?>" required>
-                    <input type="email" name="email" placeholder="<?php echo esc_attr__('Email', 'professionaldirectory'); ?>" required>
-                    <p><a href="<?php echo wp_login_url(get_permalink()); ?>"><?php _e('Already have an account? Log in', 'professionaldirectory'); ?></a></p>
+                    <input type="text" name="name" placeholder="<?php echo esc_attr__('Name', 'referralhub'); ?>" required>
+                    <input type="email" name="email" placeholder="<?php echo esc_attr__('Email', 'referralhub'); ?>" required>
+                    <p><a href="<?php echo wp_login_url(get_permalink()); ?>"><?php _e('Already have an account? Log in', 'referralhub'); ?></a></p>
                     <label>
                         <input type="checkbox" name="create_account" id="create-account">
-                        <?php _e('Create an account', 'professionaldirectory'); ?>
+                        <?php _e('Create an account', 'referralhub'); ?>
                     </label>
                     <div id="account-info" style="display: none;">
-                        <input type="password" name="password" placeholder="<?php echo esc_attr__('Password', 'professionaldirectory'); ?>">
-                        <input type="password" name="confirm_password" placeholder="<?php echo esc_attr__('Confirm Password', 'professionaldirectory'); ?>">
+                        <input type="password" name="password" placeholder="<?php echo esc_attr__('Password', 'referralhub'); ?>">
+                        <input type="password" name="confirm_password" placeholder="<?php echo esc_attr__('Confirm Password', 'referralhub'); ?>">
                     </div>
                 <?php endif; ?>
     
-                <button type="submit"><?php echo esc_html__('Submit', 'professionaldirectory'); ?></button>
+                <button type="submit"><?php echo esc_html__('Submit', 'referralhub'); ?></button>
             </div>
         </form>
         <script>

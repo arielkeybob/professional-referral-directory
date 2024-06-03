@@ -1,6 +1,6 @@
-# Contribuindo para o ProfessionalDirectory
+# Contribuindo para o ReferralHub
 
-Agradecemos seu interesse em contribuir para o ProfessionalDirectory! Este guia ajudará você a entender como pode contribuir para o desenvolvimento e aprimoramento deste plugin.
+Agradecemos seu interesse em contribuir para o ReferralHub! Este guia ajudará você a entender como pode contribuir para o desenvolvimento e aprimoramento deste plugin.
 
 ## Como Contribuir
 
@@ -36,6 +36,6 @@ Agradecemos seu interesse em contribuir para o ProfessionalDirectory! Este guia 
 
 ---
 
-Sua participação é essencial para manter o ProfessionalDirectory atualizado e eficiente. Agradecemos todas as formas de contribuição!
+Sua participação é essencial para manter o ReferralHub atualizado e eficiente. Agradecemos todas as formas de contribuição!
 
 Desenvolvido por Ariel Souza

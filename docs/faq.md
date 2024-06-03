@@ -1,10 +1,10 @@
-# Perguntas Frequentes (FAQ) do ProfessionalDirectory
+# Perguntas Frequentes (FAQ) do ReferralHub
 
-Este documento contém respostas para as perguntas mais frequentes sobre o plugin ProfessionalDirectory.
+Este documento contém respostas para as perguntas mais frequentes sobre o plugin ReferralHub.
 
 ## Perguntas Gerais
 
-### Q: O que o plugin ProfessionalDirectory faz?
+### Q: O que o plugin ReferralHub faz?
 **A:** O plugin permite criar e gerenciar um diretório de serviços profissionais no WordPress, incluindo a funcionalidade de busca e categorização de serviços, além de gerenciar referral fees para os serviços visualizados ou aprovados.
 
 ### Q: Em quais versões do WordPress o plugin é compatível?
@@ -32,7 +32,7 @@ Este documento contém respostas para as perguntas mais frequentes sobre o plugi
 
 ## Gestão de Referral Fees
 
-### Q: Como são gerenciadas as referral fees no ProfessionalDirectory?
+### Q: Como são gerenciadas as referral fees no ReferralHub?
 **A:** O plugin permite a configuração de referral fees de duas formas:
 - **Configurações Globais de Referral Fee:** Aplicam-se a todos os Service Providers e podem ser configuradas para referral fees por visualização, por inquiry aprovado, ou ambas.
 - **Configurações Específicas de Referral Fee:** Permite que Service Providers com a permissão adequada sobrescrevam as configurações globais para suas próprias referral fees. Esta opção deve ser habilitada por cada Service Provider em seu perfil.

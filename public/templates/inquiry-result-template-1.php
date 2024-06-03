@@ -22,11 +22,11 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
         <h3 class="service-title"><?php the_title(); ?></h3>
         <p class="service-excerpt"><?php the_excerpt(); ?></p>
         <p class="service-taxonomy service-type">
-            <strong><?php _e('Service Types:', 'professionaldirectory'); ?></strong> 
+            <strong><?php _e('Service Types:', 'referralhub'); ?></strong> 
             <?php echo pdr_get_taxonomy_terms_as_string('service_type'); ?>
         </p>
         <p class="service-taxonomy service-location">
-            <strong><?php _e('Service Locations:', 'professionaldirectory'); ?></strong> 
+            <strong><?php _e('Service Locations:', 'referralhub'); ?></strong> 
             <?php echo pdr_get_taxonomy_terms_as_string('service_location'); ?>
         </p>
     </div>
@@ -45,6 +45,6 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
 
 
     <a class="read-more" href="<?php the_permalink(); ?>">
-        <?php _e('Read more', 'professionaldirectory'); ?>
+        <?php _e('Read more', 'referralhub'); ?>
     </a>
 </div>

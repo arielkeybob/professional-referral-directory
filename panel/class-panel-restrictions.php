@@ -1,7 +1,7 @@
 <?php
     defined('ABSPATH') or die('No script kiddies please!');
 
-class ProfessionalDirectory_Admin {
+class ReferralHub_Admin {
     // Construtor da classe
     public function __construct() {
         add_action('pre_get_posts', [$this, 'restrict_service_view']);
@@ -38,4 +38,4 @@ class ProfessionalDirectory_Admin {
 }
 
 // Instanciar a classe
-new ProfessionalDirectory_Admin();
+new ReferralHub_Admin();

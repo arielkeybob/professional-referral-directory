@@ -33,8 +33,8 @@ function pdr_register_menus() {
     // Submenu de Boas-vindas.
     add_submenu_page(
         'edit.php?post_type=pdr_service',
-        __('Boas-vindas', 'professionaldirectory'),
-        __('Boas-vindas', 'professionaldirectory'),
+        __('Boas-vindas', 'referralhub'),
+        __('Boas-vindas', 'referralhub'),
         'manage_options',
         'pdr-welcome-page',
         'pdr_welcome_page_content'
@@ -43,8 +43,8 @@ function pdr_register_menus() {
     // Submenu de Referral Fee.
     add_submenu_page(
         'edit.php?post_type=pdr_service',
-        __('Referral Fees', 'professionaldirectory'),
-        __('Referral Fees', 'professionaldirectory'),
+        __('Referral Fees', 'referralhub'),
+        __('Referral Fees', 'referralhub'),
         'manage_options',
         'pdr-referral-fee-page',
         'pdr_referral_fees_settings_page' // Esta é a função correta a ser chamada
@@ -52,8 +52,8 @@ function pdr_register_menus() {
 
     // Adiciona um menu para o Provider Dashboard
     add_menu_page(
-        __('Provider Dashboard', 'professionaldirectory'),
-        __('Dashboard', 'professionaldirectory'),
+        __('Provider Dashboard', 'referralhub'),
+        __('Dashboard', 'referralhub'),
         'view_pdr_dashboard',
         'pdr-service-provider-dashboard',
         'pdr_dashboard_page_content',
@@ -63,8 +63,8 @@ function pdr_register_menus() {
 
     // Menu de Gerenciamento de Contatos como um menu principal.
     add_menu_page(
-        __('Gerenciamento de Contatos', 'professionaldirectory'),
-        __('Contatos', 'professionaldirectory'),
+        __('Gerenciamento de Contatos', 'referralhub'),
+        __('Contatos', 'referralhub'),
         'view_pdr_contacts',
         'pdr-contacts',
         'pdr_contacts_page_content',
@@ -74,8 +74,8 @@ function pdr_register_menus() {
 
     add_submenu_page(
         'edit.php?post_type=pdr_service',
-        __('Dashboard do Admin', 'professionaldirectory'),
-        __('Dashboard do Admin', 'professionaldirectory'),
+        __('Dashboard do Admin', 'referralhub'),
+        __('Dashboard do Admin', 'referralhub'),
         'manage_options',
         'dashboard-admin',
         'pdr_dashboard_admin_page_content'
@@ -84,8 +84,8 @@ function pdr_register_menus() {
     // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
         'edit.php?post_type=pdr_service',
-        __('Ajuda de Shortcodes', 'professionaldirectory'),
-        __('Ajuda de Shortcodes', 'professionaldirectory'),
+        __('Ajuda de Shortcodes', 'referralhub'),
+        __('Ajuda de Shortcodes', 'referralhub'),
         'manage_options',
         'pdr-shortcodes-help',
         'pdr_render_shortcodes_help_page'
@@ -94,8 +94,8 @@ function pdr_register_menus() {
     // Submenu de Configurações Gerais utilizando a instância de PDR_Settings.
     add_submenu_page(
         'edit.php?post_type=pdr_service',
-        __('Configurações Gerais', 'professionaldirectory'),
-        __('Configurações', 'professionaldirectory'),
+        __('Configurações Gerais', 'referralhub'),
+        __('Configurações', 'referralhub'),
         'manage_options',
         'pdr-general-settings',
         [$pdr_plugin_settings, 'settings_page']
@@ -104,7 +104,7 @@ function pdr_register_menus() {
     // Registra a página de detalhes do contato como uma página 'fantasma'
     add_submenu_page(
         null, // Não exibe no menu
-        __('Detalhes do Contato', 'professionaldirectory'),
+        __('Detalhes do Contato', 'referralhub'),
         null, // Não exibe no menu
         'view_pdr_contacts',
         'pdr-contact-details',
@@ -117,7 +117,7 @@ function pdr_dashboard_admin_page_content() {
 }
 
 function pdr_dashboard_page_content() {
-    // Inclui o arquivo que contém o conteúdo do dashboard do professional
+    // Inclui o arquivo que contém o conteúdo do dashboard do Service Provider
     include plugin_dir_path(__FILE__) . 'templates/dashboard-template-service-provider.php';
 }
 
@@ -160,7 +160,7 @@ function pdr_handle_create_pages() {
         if (isset($_POST['create_inquiry_page']) && !$page_exists) {
             // Cria a página de Inquiry de serviços
             $page_id = wp_insert_post([
-                'post_title' => __('Inquiry de Serviços', 'professionaldirectory'),
+                'post_title' => __('Inquiry de Serviços', 'referralhub'),
                 'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
                 'post_status' => 'publish',
                 'post_type' => 'page'

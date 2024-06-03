@@ -17,7 +17,7 @@ class Contatos_Admin_Page {
     public function render() {
         // Verifica se o usuário atual tem permissão para visualizar esta página.
         if (!current_user_can('view_pdr_contacts')) {
-            wp_die(__('Você não tem permissão para acessar esta página.', 'professionaldirectory'));
+            wp_die(__('Você não tem permissão para acessar esta página.', 'referralhub'));
         }
 
         $current_user_id = get_current_user_id();
@@ -27,13 +27,13 @@ class Contatos_Admin_Page {
 
         // Início da renderização da página de gerenciamento de contatos.
         echo '<div class="wrap">';
-        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'professionaldirectory') . '</h1>';
+        echo '<h1>' . esc_html__('Gerenciamento de Contatos', 'referralhub') . '</h1>';
 
         // Verifica se foram encontrados contatos e os exibe em uma tabela.
         if (!empty($contacts)) {
             echo '<table class="wp-list-table widefat fixed striped">';
             echo '<thead>';
-            echo '<tr><th>' . esc_html__('Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Ações', 'professionaldirectory') . '</th></tr>';
+            echo '<tr><th>' . esc_html__('Name', 'referralhub') . '</th><th>' . esc_html__('Email', 'referralhub') . '</th><th>' . esc_html__('Ações', 'referralhub') . '</th></tr>';
             echo '</thead>';
             echo '<tbody>';
 
@@ -49,14 +49,14 @@ class Contatos_Admin_Page {
                 echo '<tr>';
                 echo '<td>' . esc_html($display_name) . '</td>';
                 echo '<td>' . esc_html($contact['email']) . '</td>';
-                echo '<td><a href="' . esc_url($details_url) . '" class="button-secondary">' . __('Ver Detalhes', 'professionaldirectory') . '</a></td>';
+                echo '<td><a href="' . esc_url($details_url) . '" class="button-secondary">' . __('Ver Detalhes', 'referralhub') . '</a></td>';
                 echo '</tr>';
             }
 
             echo '</tbody>';
             echo '</table>';
         } else {
-            echo '<p>' . esc_html__('Nenhum contato encontrado.', 'professionaldirectory') . '</p>';
+            echo '<p>' . esc_html__('Nenhum contato encontrado.', 'referralhub') . '</p>';
         }
 
         echo '</div>'; // Fim da div wrap.

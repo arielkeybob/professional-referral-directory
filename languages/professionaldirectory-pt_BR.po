@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfessionalDirectory\n"
+"Project-Id-Version: ReferralHub\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-16 22:04+0000\n"
 "PO-Revision-Date: 2024-02-16 22:05+0000\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.6.6; wp-6.4.3\n"
-"X-Domain: professionaldirectory"
+"X-Domain: referralhub"
 
 #: panel/class-settings-page.php:212
 msgid "Accent Color"
@@ -188,8 +188,8 @@ msgid "Google Maps API Key"
 msgstr "Chave da API do Google Maps"
 
 #. URI of the plugin
-msgid "http://arielsouza.com.br/professionaldirectory"
-msgstr "http://arielsouza.com.br/professionaldirectory"
+msgid "http://arielsouza.com.br/referralhub"
+msgstr "http://arielsouza.com.br/referralhub"
 
 #: panel/templates/dashboard-template-admin.php:14
 msgid "Last Month"
@@ -360,7 +360,7 @@ msgid "Service Provider Dashboard "
 msgstr "Painel Profissional "
 
 #. Name of the plugin
-msgid "ProfessionalDirectory"
+msgid "ReferralHub"
 msgstr "Diretório Profissional"
 
 #: public/templates/inquiry-result-template-1.php:50

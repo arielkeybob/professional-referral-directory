@@ -1,6 +1,6 @@
-# Instalação do ProfessionalDirectory
+# Instalação do ReferralHub
 
-Este documento descreve como instalar e configurar o plugin ProfessionalDirectory no seu site WordPress.
+Este documento descreve como instalar e configurar o plugin ReferralHub no seu site WordPress.
 
 ## Pré-requisitos
 
@@ -10,14 +10,14 @@ Antes de instalar o plugin, certifique-se de que você tem:
 
 ## Instalação Padrão
 
-1. **Baixar o Plugin:** Baixe o arquivo zip do plugin ProfessionalDirectory.
+1. **Baixar o Plugin:** Baixe o arquivo zip do plugin ReferralHub.
 2. **Acessar o Painel WordPress:** Faça login no seu painel administrativo do WordPress.
-3. **Carregar o Plugin:** Vá para `Plugins > Adicionar Novo > Enviar Plugin` e carregue o arquivo zip do ProfessionalDirectory.
+3. **Carregar o Plugin:** Vá para `Plugins > Adicionar Novo > Enviar Plugin` e carregue o arquivo zip do ReferralHub.
 4. **Instalar e Ativar:** Após o upload, clique em `Instalar Agora` e, em seguida, `Ativar` o plugin.
 
 ## Configuração Inicial
 
-Após a instalação e ativação, o plugin ProfessionalDirectory automaticamente:
+Após a instalação e ativação, o plugin ReferralHub automaticamente:
 - Cria o user Role “Service Provider”.
 - Cria o Post Type “Services”.
 - Cria a taxonomia “Service Type”.

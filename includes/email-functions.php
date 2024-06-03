@@ -26,9 +26,9 @@ function send_email_to_service_author($post_id) {
     $service_location = sanitize_text_field($user_data['service_location']);
 
     // Prepara o assunto e a mensagem
-    $subject = __("Service Inquiry:", "professional_directory") . " " . get_the_title($post_id);
+    $subject = __("Service Inquiry:", "referral_hub") . " " . get_the_title($post_id);
     $message = sprintf(
-        __("Name: %s\nEmail: %s\nService Type: %s\nLocation: %s\n\nService Found: %s\nPost ID: %s", "professionaldirectory"),
+        __("Name: %s\nEmail: %s\nService Type: %s\nLocation: %s\n\nService Found: %s\nPost ID: %s", "referralhub"),
         $name, $email, $service_type, $service_location, get_the_title($post_id), $post_id
     );
 

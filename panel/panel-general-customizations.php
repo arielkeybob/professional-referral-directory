@@ -7,7 +7,7 @@ function pdr_adjust_dashboard_menu() {
 
     // Checa se o usuário atual é 'service_provider'
     if (current_user_can('service_provider')) {
-        // Muda a URL do Dashboard para a página do dashboard do professional
+        // Muda a URL do Dashboard para a página do dashboard do Service Provider
         $submenu['index.php'][0][2] = 'admin.php?page=pdr-service-provider-dashboard';
         // Remove o submenu "Home" indesejado
         unset($submenu['index.php'][0]);

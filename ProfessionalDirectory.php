@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: ProfessionalDirectory
-Plugin URI: http://arielsouza.com.br/professionaldirectory
+Plugin Name: ReferralHub
+Plugin URI: http://arielsouza.com.br/referralhub
 Description: Manages a directory of Service Providers and listings.
 Version: 1.1.5
 Author: Ariel Souza
 Author URI: arielsouza.com.br
 License: GPLv2 or later
-Text Domain: professionaldirectory
+Text Domain: referralhub
 */
 
 // Prevenção contra acesso direto ao arquivo.

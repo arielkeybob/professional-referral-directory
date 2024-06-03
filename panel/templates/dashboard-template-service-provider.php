@@ -18,13 +18,13 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
 </style>
 <!-- Início do Dashboard -->
 <div class="wrap">
-    <h1><?php echo esc_html__('Service Provider Dashboard ', 'professionaldirectory'); ?></h1>
+    <h1><?php echo esc_html__('Service Provider Dashboard ', 'referralhub'); ?></h1>
 
     <div class="row"> <!-- Início da row -->
         <!-- Seção de Total de Inquiries por Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header"><?php echo esc_html__('Total Inquiries by Service.', 'professionaldirectory'); ?></div>
+                <div class="card-header"><?php echo esc_html__('Total Inquiries by Service.', 'referralhub'); ?></div>
                 <div class="card-body">
                     <?php
                     $services = pdr_get_services_by_current_user();
@@ -32,11 +32,11 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
                         echo '<ul>';
                         foreach ($services as $service) {
                             $total_inquiries = pdr_get_total_inquiries_by_service($service['ID']);
-                            echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Inquiry:', 'professionaldirectory') . ' ' . esc_html($total_inquiries) . '</li>';
+                            echo '<li>' . esc_html($service['post_title']) . ' - ' . esc_html__('Inquiry:', 'referralhub') . ' ' . esc_html($total_inquiries) . '</li>';
                         }
                         echo '</ul>';
                     } else {
-                        echo '<p>' . esc_html__('No service found.', 'professionaldirectory') . '</p>';
+                        echo '<p>' . esc_html__('No service found.', 'referralhub') . '</p>';
                     }
                     ?>
                 </div>
@@ -46,7 +46,7 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
         <!-- Seção de Distribuição das Inquiries por Tipo de Serviço -->
         <div class="col-md-6">
             <div class="card mb-4">
-                <div class="card-header"><?php echo esc_html__('Distribution of Inquiries by Service Type', 'professionaldirectory'); ?></div>
+                <div class="card-header"><?php echo esc_html__('Distribution of Inquiries by Service Type', 'referralhub'); ?></div>
                 <div class="card-body">
                     <canvas id="chartServiceTypeDistribution"></canvas>
                 </div>
@@ -58,13 +58,13 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
 
     <!-- Seção de Inquiries Recentes -->
     <div class="card mb-4 w-100"> <!-- Classe w-100 para largura total -->
-    <div class="card-header"><?php echo esc_html__('Recent Inquiries', 'professionaldirectory'); ?></div>
+    <div class="card-header"><?php echo esc_html__('Recent Inquiries', 'referralhub'); ?></div>
     <div class="card-body">
         <?php
         $recent_inquiries = pdr_get_recent_inquiries_for_user();
         if (!empty($recent_inquiries)) {
             echo '<table id="recentInquiriesTable" class="display">';
-            echo '<thead><tr><th>' . esc_html__('User Name', 'professionaldirectory') . '</th><th>' . esc_html__('Email', 'professionaldirectory') . '</th><th>' . esc_html__('Address', 'professionaldirectory') . '</th><th>' . esc_html__('Service', 'professionaldirectory') . '</th><th>' . esc_html__('Type', 'professionaldirectory') . '</th><th>' . esc_html__('Date', 'professionaldirectory') . '</th></tr></thead><tbody>';
+            echo '<thead><tr><th>' . esc_html__('User Name', 'referralhub') . '</th><th>' . esc_html__('Email', 'referralhub') . '</th><th>' . esc_html__('Address', 'referralhub') . '</th><th>' . esc_html__('Service', 'referralhub') . '</th><th>' . esc_html__('Type', 'referralhub') . '</th><th>' . esc_html__('Date', 'referralhub') . '</th></tr></thead><tbody>';
             foreach ($recent_inquiries as $inquiry) {
                 $details_url = wp_nonce_url(
                     add_query_arg(['page' => 'pdr-contact-details', 'contact_id' => $inquiry['contact_id']], admin_url('admin.php')),
@@ -82,7 +82,7 @@ require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
             }
             echo '</tbody></table>';
         } else {
-            echo '<p>' . esc_html__('No recent results found.', 'professionaldirectory') . '</p>';
+            echo '<p>' . esc_html__('No recent results found.', 'referralhub') . '</p>';
         }
         ?>
     </div>
