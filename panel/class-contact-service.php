@@ -64,7 +64,7 @@ class ContactService {
 
     public function getServicesByCurrentUser() {
         $current_user_id = get_current_user_id();
-        $post_type = 'professional_service';
+        $post_type = 'pdr_service';
         $query = $this->wpdb->prepare("SELECT ID, post_title FROM {$this->wpdb->posts} WHERE post_type = %s AND post_author = %d", $post_type, $current_user_id);
         return $this->wpdb->get_results($query, ARRAY_A);
     }

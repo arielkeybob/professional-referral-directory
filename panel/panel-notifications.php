@@ -23,7 +23,7 @@ function pdr_exibir_notificacoes_admin() {
     $screen = get_current_screen();
 
     // Verifica se está na tela de configurações do plugin ou no dashboard
-    if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'professional_service') {
+    if ($pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'pdr_service') {
         if ($_GET['page'] != 'pdr-general-settings' && $_GET['page'] != 'dashboard-admin') {
             return;
         }

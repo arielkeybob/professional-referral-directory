@@ -45,7 +45,7 @@ msgstr ""
 msgid "Additional Emails"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Address"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Button Text Hover Color"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Date"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Desejo receber notificações por e-mail para este serviço"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:52
+#: panel/templates/dashboard-template-service-provider.php:52
 msgid "Distribution of Inquiries by Service Type"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgid "Edit Service Type"
 msgstr ""
 
 #: public/class-pdr-inquiry-form.php:73
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Email"
 msgstr ""
 
@@ -173,7 +173,7 @@ msgid "http://arielsouza.com.br/professionaldirectory"
 msgstr ""
 
 #. Description of the plugin
-msgid "Manages a directory of professional services and listings."
+msgid "Manages a directory of Service Providers and listings."
 msgstr ""
 
 #: includes/email-functions.php:34
@@ -204,12 +204,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:83
+#: panel/templates/dashboard-template-service-provider.php:83
 msgid "No recent results found."
 msgstr ""
 
 #: public/class-pdr-inquiry-results.php:137
-#: panel/templates/dashboard-template-professional.php:42
+#: panel/templates/dashboard-template-service-provider.php:42
 msgid "No service found."
 msgstr ""
 
@@ -313,8 +313,8 @@ msgstr ""
 msgid "Primary Color"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:24
-msgid "Professional Dashboard "
+#: panel/templates/dashboard-template-service-provider.php:24
+msgid "Service Provider Dashboard "
 msgstr ""
 
 #. Name of the plugin
@@ -325,7 +325,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:64
+#: panel/templates/dashboard-template-service-provider.php:64
 msgid "Recent Inquiries"
 msgstr ""
 
@@ -366,7 +366,7 @@ msgstr ""
 msgid "Inquiry Services"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:38
+#: panel/templates/dashboard-template-service-provider.php:38
 msgid "Inquiry:"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "Select a Service Type"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Service"
 msgstr ""
 
@@ -457,11 +457,11 @@ msgstr ""
 msgid "Title Font Family"
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:30
+#: panel/templates/dashboard-template-service-provider.php:30
 msgid "Total Inquiries by Service."
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Type"
 msgstr ""
 
@@ -485,7 +485,7 @@ msgstr ""
 msgid "Use the Inquiry form to find services."
 msgstr ""
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "User Name"
 msgstr ""
 

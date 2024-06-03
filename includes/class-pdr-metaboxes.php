@@ -18,7 +18,7 @@ class PDR_Metaboxes {
             'pdr_service_location',
             __('Service Location', 'professionaldirectory'),
             [self::class, 'render_location_meta_box'],
-            'professional_service', // Tipo de post
+            'pdr_service', // Tipo de post
             'side',
             'default'
         );
@@ -29,7 +29,7 @@ class PDR_Metaboxes {
             'pdr_email_preference',
             __('Preferência de Recebimento de E-mail', 'professionaldirectory'),
             [self::class, 'render_email_preference_meta_box'],
-            'professional_service', // Tipo de post
+            'pdr_service', // Tipo de post
             'side',
             'high'
         );

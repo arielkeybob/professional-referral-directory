@@ -3,26 +3,26 @@ defined('ABSPATH') or die('No script kiddies please!');
 ?>
 
 <div class="wrap">
-    <h1><?php _e('Plugin ProfessionalDirectory Shortcodes Help', 'professional-directory'); ?></h1>
-    <p><?php _e('Here you will find detailed instructions on how to use the available shortcodes in the ProfessionalDirectory plugin to enhance the functionality of your WordPress site.', 'professional-directory'); ?></p>
+    <h1><?php _e('Plugin ProfessionalDirectory Shortcodes Help', 'professionaldirectory'); ?></h1>
+    <p><?php _e('Here you will find detailed instructions on how to use the available shortcodes in the ProfessionalDirectory plugin to enhance the functionality of your WordPress site.', 'professionaldirectory'); ?></p>
 
-    <h2><?php _e('Available Shortcodes', 'professional-directory'); ?></h2>
+    <h2><?php _e('Available Shortcodes', 'professionaldirectory'); ?></h2>
 
     <div class="shortcode-section">
-        <h3><?php _e('Inquiry Form', 'professional-directory'); ?></h3>
-        <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for professional services based on service type and location.', 'professional-directory'); ?></p>
+        <h3><?php _e('Inquiry Form', 'professionaldirectory'); ?></h3>
+        <p><?php _e('This shortcode displays a inquiry form that allows users to inquiry for Service Providers based on service type and location.', 'professionaldirectory'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_inquiry_form]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'professional-directory'); ?></button>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_form]')"><?php _e('Copy', 'professionaldirectory'); ?></button>
         </div>
     </div>
 
     <div class="shortcode-section">
-        <h3><?php _e('Inquiry Results', 'professional-directory'); ?></h3>
-        <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'professional-directory'); ?></p>
+        <h3><?php _e('Inquiry Results', 'professionaldirectory'); ?></h3>
+        <p><?php _e('This shortcode displays the inquiry results. Use it on the page that will show the services inquired for by users.', 'professionaldirectory'); ?></p>
         <div class="shortcode-display">
             <code>[pdr_inquiry_results]</code>
-            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'professional-directory'); ?></button>
+            <button onclick="copyToClipboard(this, '[pdr_inquiry_results]')"><?php _e('Copy', 'professionaldirectory'); ?></button>
         </div>
     </div>
 
@@ -30,9 +30,9 @@ defined('ABSPATH') or die('No script kiddies please!');
         // Function to copy the shortcode and change the button text
         function copyToClipboard(btn, shortcode) {
             navigator.clipboard.writeText(shortcode);
-            btn.textContent = '<?php echo esc_js(__('Copied!', 'professional-directory')); ?>';
+            btn.textContent = '<?php echo esc_js(__('Copied!', 'professionaldirectory')); ?>';
             setTimeout(function() {
-                btn.textContent = '<?php echo esc_js(__('Copy', 'professional-directory')); ?>';
+                btn.textContent = '<?php echo esc_js(__('Copy', 'professionaldirectory')); ?>';
             }, 3000);
         }
     </script>

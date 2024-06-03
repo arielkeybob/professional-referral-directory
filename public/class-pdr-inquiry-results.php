@@ -54,7 +54,7 @@ class PDR_Inquiry_Results {
         error_log('contactId: ' . $contactId);
     
         $args = [
-            'post_type' => 'professional_service',
+            'post_type' => 'pdr_service',
             'tax_query' => [
                 'relation' => 'AND',
                 [

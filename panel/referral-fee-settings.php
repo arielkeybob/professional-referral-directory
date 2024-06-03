@@ -15,7 +15,7 @@ add_action('admin_init', 'pdr_register_referral_fee_settings');
 function pdr_referral_fees_settings_page() {
     ?>
     <div class="wrap">
-        <h1><?php echo esc_html__('Referral Fee Settings', 'professional-directory'); ?></h1>
+        <h1><?php echo esc_html__('Referral Fee Settings', 'professionaldirectory'); ?></h1>
         <form method="post" action="options.php">
             <?php
             settings_fields('pdr_referral_fee_options');  // Define o grupo de opções que essa página vai editar
@@ -27,31 +27,31 @@ function pdr_referral_fees_settings_page() {
             ?>
             <table class="form-table">
                 <tr valign="top">
-                    <th scope="row"><?php echo esc_html__('Referral Fee Type', 'professional-directory'); ?></th>
+                    <th scope="row"><?php echo esc_html__('Referral Fee Type', 'professionaldirectory'); ?></th>
                     <td>
                         <select id="referral_fee_type" name="pdr_referral_fee_type">
-                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php echo esc_html__('Por Visualização', 'professional-directory'); ?></option>
-                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php echo esc_html__('Por inquiry Aprovada', 'professional-directory'); ?></option>
-                            <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php echo esc_html__('Combinação das Duas', 'professional-directory'); ?></option>
+                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php echo esc_html__('Por Visualização', 'professionaldirectory'); ?></option>
+                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php echo esc_html__('Por inquiry Aprovada', 'professionaldirectory'); ?></option>
+                            <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php echo esc_html__('Combinação das Duas', 'professionaldirectory'); ?></option>
                         </select>
                     </td>
                 </tr>
                 <tr valign="top" class="referral_fee_view">
-                    <th scope="row"><?php echo esc_html__('Per View', 'professional-directory'); ?></th>
+                    <th scope="row"><?php echo esc_html__('Per View', 'professionaldirectory'); ?></th>
                     <td>
                         <input type="text" name="pdr_general_referral_fee_view" value="<?php echo esc_attr($general_referral_fee_view); ?>" />
-                        <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por visualização de serviço.', 'professional-directory'); ?></p>
+                        <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por visualização de serviço.', 'professionaldirectory'); ?></p>
                     </td>
                 </tr>
                 <tr valign="top" class="referral_fee_approval">
-                    <th scope="row"><?php echo esc_html__('Per Approved Inquiry', 'professional-directory'); ?></th>
+                    <th scope="row"><?php echo esc_html__('Per Approved Inquiry', 'professionaldirectory'); ?></th>
                     <td>
                         <input type="text" name="pdr_general_referral_fee_approval" value="<?php echo esc_attr($general_referral_fee_approval); ?>" />
-                        <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por inquiry aprovada.', 'professional-directory'); ?></p>
+                        <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por inquiry aprovada.', 'professionaldirectory'); ?></p>
                     </td>
                 </tr>
             </table>
-            <?php submit_button(__('Salvar Configurações', 'professional-directory'), 'primary', 'submit'); ?>
+            <?php submit_button(__('Salvar Configurações', 'professionaldirectory'), 'primary', 'submit'); ?>
         </form>
     </div>
     <style>

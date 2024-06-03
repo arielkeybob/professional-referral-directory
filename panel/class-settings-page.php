@@ -13,12 +13,12 @@ class PDR_Settings {
         <div class="wrap">
             <h2><?php echo esc_html__('Settings', 'professionaldirectory'); ?></h2>
             <h2 class="nav-tab-wrapper">
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('General Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
-                <a href="?post_type=professional_service&page=pdr-general-settings&tab=advanced_settings" class="nav-tab <?php echo $active_tab == 'advanced_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Advanced', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('General Settings', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=api_settings" class="nav-tab <?php echo $active_tab == 'api_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('API Settings', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=email_settings" class="nav-tab <?php echo $active_tab == 'email_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Email Settings', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=style_settings" class="nav-tab <?php echo $active_tab == 'style_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Frontend Style', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=panel_style" class="nav-tab <?php echo $active_tab == 'panel_style' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Panel Style', 'professionaldirectory'); ?></a>
+                <a href="?post_type=pdr_service&page=pdr-general-settings&tab=advanced_settings" class="nav-tab <?php echo $active_tab == 'advanced_settings' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__('Advanced', 'professionaldirectory'); ?></a>
             </h2>
             <form method="post" action="options.php">
                 <?php

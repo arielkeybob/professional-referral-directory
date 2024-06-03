@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_subm
     if (isset($_POST['create_inquiry_page']) && !$page_exists) {
         // Cria a página de Inquiry de serviços
         $page_id = wp_insert_post([
-            'post_title' => __('Inquiry de Serviços', 'professional-directory'),
+            'post_title' => __('Inquiry de Serviços', 'professionaldirectory'),
             'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
             'post_status' => 'publish',
             'post_type' => 'page'
@@ -17,42 +17,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pdr_create_pages_subm
         if ($page_id) {
             update_option('pdr_inquiry_page_id', $page_id);
             $page_exists = true;
-            $message = __('Página de Inquiry de serviços criada com sucesso.', 'professional-directory');
+            $message = __('Página de Inquiry de serviços criada com sucesso.', 'professionaldirectory');
         }
     }
 }
 ?>
 
 <div class="wrap">
-    <h1><?php _e('Bem-vindo ao Professional Directory', 'professional-directory'); ?></h1>
-    <p><?php _e('Obrigado por instalar o Professional Directory! Aqui estão algumas informações para você começar.', 'professional-directory'); ?></p>
+    <h1><?php _e('Bem-vindo ao Professional Directory', 'professionaldirectory'); ?></h1>
+    <p><?php _e('Obrigado por instalar o Professional Directory! Aqui estão algumas informações para você começar.', 'professionaldirectory'); ?></p>
 
-    <h2><?php _e('Ações Iniciais', 'professional-directory'); ?></h2>
-    <p><?php _e('Algumas configurações para ajustar o plugin às suas necessidades.', 'professional-directory'); ?></p>
+    <h2><?php _e('Ações Iniciais', 'professionaldirectory'); ?></h2>
+    <p><?php _e('Algumas configurações para ajustar o plugin às suas necessidades.', 'professionaldirectory'); ?></p>
 
-    <h2><?php _e('Criar Páginas Automáticas', 'professional-directory'); ?></h2>
+    <h2><?php _e('Criar Páginas Automáticas', 'professionaldirectory'); ?></h2>
     <?php if (isset($message)): ?>
         <div class="notice notice-success is-dismissible">
             <p><?php echo $message; ?></p>
         </div>
     <?php elseif (isset($_GET['created']) && $_GET['created'] === 'true'): ?>
         <div class="notice notice-success is-dismissible">
-            <p><?php _e('Página de Inquiry de serviços criada com sucesso.', 'professional-directory'); ?></p>
+            <p><?php _e('Página de Inquiry de serviços criada com sucesso.', 'professionaldirectory'); ?></p>
         </div>
     <?php endif; ?>
     <form method="post" action="">
         <?php wp_nonce_field('pdr_create_pages', 'pdr_create_pages_nonce'); ?>
         <p>
             <input type="checkbox" id="create_inquiry_page" name="create_inquiry_page" value="1" <?php disabled($page_exists); ?>>
-            <label for="create_inquiry_page"><?php _e('Criar página de Inquiry de serviços automaticamente', 'professional-directory'); ?></label>
+            <label for="create_inquiry_page"><?php _e('Criar página de Inquiry de serviços automaticamente', 'professionaldirectory'); ?></label>
         </p>
         <p>
-            <input type="submit" name="pdr_create_pages_submit" class="button button-primary" value="<?php _e('Criar Páginas', 'professional-directory'); ?>" <?php disabled($page_exists); ?>>
+            <input type="submit" name="pdr_create_pages_submit" class="button button-primary" value="<?php _e('Criar Páginas', 'professionaldirectory'); ?>" <?php disabled($page_exists); ?>>
         </p>
     </form>
 
-    <h2><?php _e('Suporte', 'professional-directory'); ?></h2>
-    <p><?php _e('Consulte a documentação ou entre em contato com o suporte para obter ajuda.', 'professional-directory'); ?></p>
+    <h2><?php _e('Suporte', 'professionaldirectory'); ?></h2>
+    <p><?php _e('Consulte a documentação ou entre em contato com o suporte para obter ajuda.', 'professionaldirectory'); ?></p>
 </div>
 
 <style>

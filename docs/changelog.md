@@ -5,7 +5,7 @@ This file documents all the significant changes made in each version of the Prof
 ## [1.1.3] - 2024-05-29
 ### Added
 - Introduced a Referral Fee system, allowing site owners to charge Referral Fees for views or approved inquiries.
-- Implementation of Global Referral Fee Settings and Specific Referral Fee Settings, allowing Referral Fee configurations at the site level and individually for each professional.
+- Implementation of Global Referral Fee Settings and Specific Referral Fee Settings, allowing Referral Fee configurations at the site level and individually for each Service Provider.
 - Added conditional Referral Fee functionality based on the inquiry status (approved or not).
 
 ### Fixed
@@ -30,7 +30,7 @@ This file documents all the significant changes made in each version of the Prof
 
 ## [1.1.0] - Initial Release
 ### Added
-- Core functionality for managing professional service listings.
+- Core functionality for managing Service Providers listings.
 - Basic inquiry and filter options.
 
 ---

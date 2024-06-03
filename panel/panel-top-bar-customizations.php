@@ -4,7 +4,7 @@
 // includes\panel-top-bar-customizations.php
 
 function pdrRemoveAdminBar() {
-    if (current_user_can('professional')) {
+    if (current_user_can('service_provider')) {
         show_admin_bar(false);
     }
 }

@@ -2,7 +2,7 @@
 /*
 Plugin Name: ProfessionalDirectory
 Plugin URI: http://arielsouza.com.br/professionaldirectory
-Description: Manages a directory of professional services and listings.
+Description: Manages a directory of Service Providers and listings.
 Version: 1.1.5
 Author: Ariel Souza
 Author URI: arielsouza.com.br
@@ -31,7 +31,7 @@ require_once plugin_dir_path(__FILE__) . 'public/class-pdr-inquiry-form.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-pdr-inquiry-results.php';
 //require_once plugin_dir_path(__FILE__) . 'panel/class-settings-page.php'; //Já é incluido diretamente no panel/panel-menus.php
 require_once plugin_dir_path(__FILE__) . 'includes/data-storage-functions.php';
-require_once plugin_dir_path(__FILE__) . 'panel/dashboard-professional-functions.php';
+require_once plugin_dir_path(__FILE__) . 'panel/dashboard-service-provider-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/activation.php'; // Inclusão do novo arquivo de ativação
 require_once plugin_dir_path(__FILE__) . 'panel/panel-menus.php';
 require_once plugin_dir_path(__FILE__) . 'public/enqueue-public.php';

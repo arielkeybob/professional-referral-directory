@@ -44,7 +44,7 @@ msgstr "Adicionar Novo Tipo de Serviço"
 msgid "Additional Emails"
 msgstr "Emails Adicionais"
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Address"
 msgstr "Endereço"
 
@@ -121,7 +121,7 @@ msgstr "Cor do Texto do Botão ao Passar o Mouse"
 msgid "Custom"
 msgstr "Personalizado"
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Date"
 msgstr "Data"
 
@@ -133,7 +133,7 @@ msgstr "Data da Última Inquiry"
 msgid "Desejo receber notificações por e-mail para este serviço"
 msgstr "Desejo receber notificações por e-mail para este serviço"
 
-#: panel/templates/dashboard-template-professional.php:52
+#: panel/templates/dashboard-template-service-provider.php:52
 msgid "Distribution of Inquiries by Service Type"
 msgstr "Distribuição de inquiries por Tipo de Serviço"
 
@@ -150,7 +150,7 @@ msgid "Edit Service Type"
 msgstr "Editar Tipo de Serviço"
 
 #: public/class-pdr-inquiry-form.php:73
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Email"
 msgstr "Email"
 
@@ -204,7 +204,7 @@ msgid "Load Data"
 msgstr "Carregar Dados"
 
 #. Description of the plugin
-msgid "Manages a directory of professional services and listings."
+msgid "Manages a directory of Service Providers and listings."
 msgstr "Gerencia um diretório de serviços profissionais e listagens."
 
 #: includes/email-functions.php:34
@@ -242,12 +242,12 @@ msgstr "Nome do Novo Tipo de Serviço"
 msgid "Next"
 msgstr "Próximo"
 
-#: panel/templates/dashboard-template-professional.php:83
+#: panel/templates/dashboard-template-service-provider.php:83
 msgid "No recent results found."
 msgstr "Nenhum resultado recente encontrado."
 
 #: public/class-pdr-inquiry-results.php:137
-#: panel/templates/dashboard-template-professional.php:42
+#: panel/templates/dashboard-template-service-provider.php:42
 msgid "No service found."
 msgstr "Nenhum serviço encontrado."
 
@@ -355,8 +355,8 @@ msgstr "Preferência de Recebimento de E-mail"
 msgid "Primary Color"
 msgstr "Cor Primária"
 
-#: panel/templates/dashboard-template-professional.php:24
-msgid "Professional Dashboard "
+#: panel/templates/dashboard-template-service-provider.php:24
+msgid "Service Provider Dashboard "
 msgstr "Painel Profissional "
 
 #. Name of the plugin
@@ -367,7 +367,7 @@ msgstr "Diretório Profissional"
 msgid "Read more"
 msgstr "Ler mais"
 
-#: panel/templates/dashboard-template-professional.php:64
+#: panel/templates/dashboard-template-service-provider.php:64
 msgid "Recent Inquiries"
 msgstr "inquiries Recentes"
 
@@ -408,7 +408,7 @@ msgstr "Buscar Tipos de Serviço"
 msgid "Inquiry Services"
 msgstr "Buscar Serviços"
 
-#: panel/templates/dashboard-template-professional.php:38
+#: panel/templates/dashboard-template-service-provider.php:38
 msgid "Inquiry:"
 msgstr "Buscar:"
 
@@ -428,7 +428,7 @@ msgstr "Selecione um Tipo de Serviço"
 msgid "Select Period:"
 msgstr "Selecionar Período:"
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Service"
 msgstr "Serviço"
 
@@ -515,11 +515,11 @@ msgstr "Família de Fonte do Título"
 msgid "Today"
 msgstr "Hoje"
 
-#: panel/templates/dashboard-template-professional.php:30
+#: panel/templates/dashboard-template-service-provider.php:30
 msgid "Total Inquiries by Service."
 msgstr "Total de inquiries por Serviço."
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "Type"
 msgstr "Tipo"
 
@@ -543,7 +543,7 @@ msgstr "Carregar ou remover o logo do painel."
 msgid "Use the Inquiry form to find services."
 msgstr "Use o formulário de busca para encontrar serviços."
 
-#: panel/templates/dashboard-template-professional.php:70
+#: panel/templates/dashboard-template-service-provider.php:70
 msgid "User Name"
 msgstr "Nome do Usuário"
 

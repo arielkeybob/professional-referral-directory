@@ -1,7 +1,7 @@
 <?php
     defined('ABSPATH') or die('No script kiddies please!');
 
-require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
+require_once __DIR__ . '/../../panel/dashboard-service-provider-functions.php';
 
 // Enfileiramento do Bootstrap e Chart.js no admin do WordPress deve ser feito em outra parte do plugin, não diretamente aqui
 
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../panel/dashboard-professional-functions.php';
 </style>
 <!-- Início do Dashboard -->
 <div class="wrap">
-    <h1><?php echo esc_html__('Professional Dashboard ', 'professionaldirectory'); ?></h1>
+    <h1><?php echo esc_html__('Service Provider Dashboard ', 'professionaldirectory'); ?></h1>
 
     <div class="row"> <!-- Início da row -->
         <!-- Seção de Total de Inquiries por Serviço -->

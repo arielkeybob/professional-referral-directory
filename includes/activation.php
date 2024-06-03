@@ -147,7 +147,7 @@ function pdr_plugin_redirect_welcome() {
     // Verifique se a opção existe e, em caso afirmativo, redirecione para a página de boas-vindas
     if (get_option('pdr_plugin_activated', false)) {
         delete_option('pdr_plugin_activated'); // Remova a opção para evitar redirecionamentos futuros
-        wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-welcome-page'));
+        wp_redirect(admin_url('edit.php?post_type=pdr_service&page=pdr-welcome-page'));
         exit;
     }
 }

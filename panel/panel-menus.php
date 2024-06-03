@@ -4,21 +4,21 @@ defined('ABSPATH') or die('No script kiddies please!');
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
 require_once plugin_dir_path(__FILE__) . 'referral-fee-settings.php'; // Certifique-se de incluir o arquivo onde a função está definida
 
-// Adiciona capacidades ao papel 'professional' e registra menus e submenus.
+// Adiciona capacidades ao papel 'service_provider' e registra menus e submenus.
 function pdr_initialize_panel_menus() {
     add_action('admin_menu', 'pdr_register_menus');
     add_action('init', 'pdr_add_roles_and_capabilities');
-    add_action('admin_menu', 'pdr_remove_default_dashboard_for_professionals', 999);
+    add_action('admin_menu', 'pdr_remove_default_dashboard_for_service_providers', 999);
     add_action('admin_init', 'pdr_handle_create_pages'); // Adiciona o handler para criar páginas
 }
 
-// Adiciona as capacidades necessárias ao papel 'professional'.
+// Adiciona as capacidades necessárias ao papel 'service_provider'.
 function pdr_add_roles_and_capabilities() {
-    $role = get_role('professional');
+    $role = get_role('service_provider');
 
     // Verifica se o papel existe antes de tentar adicionar capacidades.
     if ($role) {
-        // Adiciona a capacidade de ver o dashboard do professional e os contatos.
+        // Adiciona a capacidade de ver o dashboard do Service Provider e os contatos.
         $role->add_cap('view_pdr_dashboard');
         $role->add_cap('view_pdr_contacts');
         // Adicione outras capacidades conforme necessário aqui.
@@ -32,7 +32,7 @@ function pdr_register_menus() {
 
     // Submenu de Boas-vindas.
     add_submenu_page(
-        'edit.php?post_type=professional_service',
+        'edit.php?post_type=pdr_service',
         __('Boas-vindas', 'professionaldirectory'),
         __('Boas-vindas', 'professionaldirectory'),
         'manage_options',
@@ -42,7 +42,7 @@ function pdr_register_menus() {
 
     // Submenu de Referral Fee.
     add_submenu_page(
-        'edit.php?post_type=professional_service',
+        'edit.php?post_type=pdr_service',
         __('Referral Fees', 'professionaldirectory'),
         __('Referral Fees', 'professionaldirectory'),
         'manage_options',
@@ -50,12 +50,12 @@ function pdr_register_menus() {
         'pdr_referral_fees_settings_page' // Esta é a função correta a ser chamada
     );
 
-    // Adiciona um menu para o Dashboard do Professional
+    // Adiciona um menu para o Provider Dashboard
     add_menu_page(
-        __('Dashboard do Professional', 'professionaldirectory'),
-        __('Dashboard Professional', 'professionaldirectory'),
+        __('Provider Dashboard', 'professionaldirectory'),
+        __('Dashboard', 'professionaldirectory'),
         'view_pdr_dashboard',
-        'pdr-professional-dashboard',
+        'pdr-service-provider-dashboard',
         'pdr_dashboard_page_content',
         'dashicons-businessman',
         3
@@ -73,7 +73,7 @@ function pdr_register_menus() {
     );
 
     add_submenu_page(
-        'edit.php?post_type=professional_service',
+        'edit.php?post_type=pdr_service',
         __('Dashboard do Admin', 'professionaldirectory'),
         __('Dashboard do Admin', 'professionaldirectory'),
         'manage_options',
@@ -83,7 +83,7 @@ function pdr_register_menus() {
 
     // Submenu de Ajuda de Shortcodes.
     add_submenu_page(
-        'edit.php?post_type=professional_service',
+        'edit.php?post_type=pdr_service',
         __('Ajuda de Shortcodes', 'professionaldirectory'),
         __('Ajuda de Shortcodes', 'professionaldirectory'),
         'manage_options',
@@ -93,7 +93,7 @@ function pdr_register_menus() {
 
     // Submenu de Configurações Gerais utilizando a instância de PDR_Settings.
     add_submenu_page(
-        'edit.php?post_type=professional_service',
+        'edit.php?post_type=pdr_service',
         __('Configurações Gerais', 'professionaldirectory'),
         __('Configurações', 'professionaldirectory'),
         'manage_options',
@@ -118,12 +118,12 @@ function pdr_dashboard_admin_page_content() {
 
 function pdr_dashboard_page_content() {
     // Inclui o arquivo que contém o conteúdo do dashboard do professional
-    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-professional.php';
+    include plugin_dir_path(__FILE__) . 'templates/dashboard-template-service-provider.php';
 }
 
-function pdr_remove_default_dashboard_for_professionals() {
-    // Verifica se o usuário atual tem o papel de 'professional'
-    if (current_user_can('professional')) {
+function pdr_remove_default_dashboard_for_service_providers() {
+    // Verifica se o usuário atual tem o papel de 'service_provider'
+    if (current_user_can('service_provider')) {
         // Remove o Dashboard padrão
         remove_menu_page('index.php');
     }
@@ -160,14 +160,14 @@ function pdr_handle_create_pages() {
         if (isset($_POST['create_inquiry_page']) && !$page_exists) {
             // Cria a página de Inquiry de serviços
             $page_id = wp_insert_post([
-                'post_title' => __('Inquiry de Serviços', 'professional-directory'),
+                'post_title' => __('Inquiry de Serviços', 'professionaldirectory'),
                 'post_content' => '[pdr_inquiry_form][pdr_inquiry_results]',
                 'post_status' => 'publish',
                 'post_type' => 'page'
             ]);
             if ($page_id) {
                 update_option('pdr_inquiry_page_id', $page_id);
-                wp_redirect(admin_url('edit.php?post_type=professional_service&page=pdr-welcome-page&created=true'));
+                wp_redirect(admin_url('edit.php?post_type=pdr_service&page=pdr-welcome-page&created=true'));
                 exit;
             }
         }

@@ -40,17 +40,17 @@
                 'show_in_menu'       => true,
                 'query_var'          => true,
                 'rewrite'            => ['slug' => 'service'],
-                'capability_type'    => 'professional_service',
+                'capability_type'    => 'pdr_service',
                 'capabilities' => array(
-                    'publish_posts'       => 'publish_professional_services',
-                    'edit_posts'          => 'edit_professional_services',
-                    'edit_others_posts'   => 'edit_others_professional_services',
-                    'delete_posts'        => 'delete_professional_services',
-                    'delete_others_posts' => 'delete_others_professional_services',
-                    'read_private_posts'  => 'read_private_professional_services',
-                    'edit_post'           => 'edit_professional_service',
-                    'delete_post'         => 'delete_professional_service',
-                    'read_post'           => 'read_professional_service',
+                    'publish_posts'       => 'publish_service_provider_services',
+                    'edit_posts'          => 'edit_service_provider_services',
+                    'edit_others_posts'   => 'edit_others_service_provider_services',
+                    'delete_posts'        => 'delete_service_provider_services',
+                    'delete_others_posts' => 'delete_others_service_provider_services',
+                    'read_private_posts'  => 'read_private_service_provider_services',
+                    'edit_post'           => 'edit_service_provider_service',
+                    'delete_post'         => 'delete_service_provider_service',
+                    'read_post'           => 'read_service_provider_service',
                 ),
                 'map_meta_cap'        => true,
                 'has_archive'         => true,
@@ -60,7 +60,7 @@
                 'menu_icon'          => 'dashicons-portfolio',
             ];
 
-            register_post_type('professional_service', $args);
+            register_post_type('pdr_service', $args);
         }
 
         public static function add_admin_capabilities() {
@@ -69,22 +69,22 @@
     
             // Verifica se o papel existe antes de tentar adicionar capacidades
             if ($admin_role) {
-                // Capacidades para o tipo de postagem 'professional_service'
+                // Capacidades para o tipo de postagem 'pdr_service'
                 $caps = [
-                    'edit_professional_service',
-                    'read_professional_service',
-                    'delete_professional_service',
-                    'edit_professional_services',
-                    'edit_others_professional_services',
-                    'publish_professional_services',
-                    'read_private_professional_services',
-                    'delete_professional_services',
-                    'delete_private_professional_services',
-                    'delete_published_professional_services',
-                    'delete_others_professional_services',
-                    'edit_private_professional_services',
-                    'edit_published_professional_services',
-                    'create_professional_services'
+                    'edit_service_provider_service',
+                    'read_service_provider_service',
+                    'delete_service_provider_service',
+                    'edit_service_provider_services',
+                    'edit_others_service_provider_services',
+                    'publish_service_provider_services',
+                    'read_private_service_provider_services',
+                    'delete_service_provider_services',
+                    'delete_private_service_provider_services',
+                    'delete_published_service_provider_services',
+                    'delete_others_service_provider_services',
+                    'edit_private_service_provider_services',
+                    'edit_published_service_provider_services',
+                    'create_service_provider_services'
                 ];
     
                 foreach ($caps as $cap) {
@@ -98,24 +98,24 @@
 
 
         public static function set_service_capabilities() {
-            $professional = get_role('professional');
-            if ($professional) {
-                $professional_capabilities = [
-                    'publish_professional_services',
-                    'edit_professional_services',
-                    'edit_professional_service',
-                    'edit_published_professional_services',
+            $service_provider = get_role('service_provider');
+            if ($service_provider) {
+                $service_provider_capabilities = [
+                    'publish_service_provider_services',
+                    'edit_service_provider_services',
+                    'edit_service_provider_service',
+                    'edit_published_service_provider_services',
                     // Adicione mais capacidades conforme necessário
                 ];
 
-            foreach ($professional_capabilities as $cap) {
-                $professional->add_cap($cap);
+            foreach ($service_provider_capabilities as $cap) {
+                $service_provider->add_cap($cap);
             }
 
-            // Removendo capacidades não desejadas para o papel 'professional'
-            $professional->remove_cap('edit_others_professional_services');
-            $professional->remove_cap('delete_others_professional_services');
-            $professional->remove_cap('read_private_professional_services');
+            // Removendo capacidades não desejadas para o papel 'service_provider'
+            $service_provider->remove_cap('edit_others_service_provider_services');
+            $service_provider->remove_cap('delete_others_service_provider_services');
+            $service_provider->remove_cap('read_private_service_provider_services');
         }
         
     }

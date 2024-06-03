@@ -36,11 +36,11 @@ class PDR_Taxonomies {
                 'manage_terms' => 'manage_options', // Utiliza a capacidade 'manage_options' para gerenciar termos
                 'edit_terms'   => 'manage_options',
                 'delete_terms' => 'manage_options',
-                'assign_terms' => 'edit_professional_services', // Capacidade para atribuir termos
+                'assign_terms' => 'edit_service_provider_services', // Capacidade para atribuir termos
             ),
         );
 
-        register_taxonomy('service_type', 'professional_service', $args);
+        register_taxonomy('service_type', 'pdr_service', $args);
     }
 
     /**
@@ -73,11 +73,11 @@ class PDR_Taxonomies {
                 'manage_terms' => 'manage_options', // Utiliza a capacidade 'manage_options' para gerenciar termos
                 'edit_terms'   => 'manage_options',
                 'delete_terms' => 'manage_options',
-                'assign_terms' => 'edit_professional_services', // Capacidade para atribuir termos
+                'assign_terms' => 'edit_service_provider_services', // Capacidade para atribuir termos
             ),
         );
 
-        register_taxonomy('service_location', 'professional_service', $args);
+        register_taxonomy('service_location', 'pdr_service', $args);
     }
 
     /**
