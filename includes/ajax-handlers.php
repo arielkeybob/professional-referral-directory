@@ -47,7 +47,7 @@ function pdr_save_contact_details_ajax_handler() {
         $inquiry_updated = $wpdb->update("{$wpdb->prefix}pdr_inquiry_data", [
             'inquiry_status' => $status_sanitized,
             'referral_fee_value_view' => $referralFees['view'],
-            'referral_fee_value_approval' => ($status_sanitized === 'approved') ? $referralFees['approval'] : 0.00
+            'referral_fee_value_agreement_reached' => ($status_sanitized === 'agreement_reached') ? $referralFees['agreement_reached'] : 0.00
         ], [
             'id' => $inquiry_id_sanitized,
             'author_id' => $author_id
@@ -60,12 +60,11 @@ function pdr_save_contact_details_ajax_handler() {
     }
 
     if ($errors) {
-        wp_send_json_error(['message' => 'Erro ao atualizar o status de algumas ou todas os Inquiries.']);
+        wp_send_json_error(['message' => 'Erro ao atualizar o status de algumas ou todas as Inquiries.']);
     } else {
         wp_send_json_success(['message' => 'Informações atualizadas com sucesso.']);
     }
 
     exit;
 }
-
-
+?>

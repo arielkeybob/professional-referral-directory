@@ -2,6 +2,18 @@
 
 This file documents all the significant changes made in each version of the ReferralHub plugin.
 
+## [1.1.5] - 2024-06-01
+### Changed
+- Terminology update: 
+  - "Search" to "Inquiry"
+  - "Search Date" to "Inquiry Date"
+  - "Search Status" to "Inquiry Status"
+  - "Commission Value View" to "Referral Fee Value View"
+  - "Commission Value Approval" to "Referral Fee Value Agreement Reached"
+  - "Approved Inquiry" status to "Agreement Reached"
+  - "Approved" status to "Agreement Reached"
+- Updated all references to the old terms throughout the plugin's codebase, database, and documentation to reflect the new terminology.
+
 ## [1.1.3] - 2024-05-29
 ### Added
 - Introduced a Referral Fee system, allowing site owners to charge Referral Fees for views or approved inquiries.

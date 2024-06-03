@@ -88,8 +88,8 @@
                                                 <div class="input-field">
                                                     <select name="inquiries[<?php echo esc_attr($inquiry->id); ?>]" id="inquiry_status_<?php echo esc_attr($inquiry->id); ?>">
                                                         <option value="" disabled selected><?php echo esc_html__('Choose Status', 'referralhub'); ?></option>
-                                                        <?php foreach (['pending', 'approved', 'rejected'] as $option) : ?>
-                                                            <option value="<?php echo esc_attr($option); ?>" <?php echo selected($inquiry->inquiry_status, $option, false); ?>><?php echo esc_html(ucfirst($option)); ?>
+                                                        <?php foreach (['pending_response', 'in_negotiation', 'agreement_reached', 'no_deal'] as $option) : ?>
+                                                            <option value="<?php echo esc_attr($option); ?>" <?php echo selected($inquiry->inquiry_status, $option, false); ?>><?php echo esc_html(ucfirst(str_replace('_', ' ', $option))); ?>
                                                             </option>
                                                         <?php endforeach; ?>
                                                     </select>

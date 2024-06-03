@@ -22,13 +22,12 @@ if ($delete_data === 'yes') {
     }
 
     // Deleta as opções do plugin
-    // Deleta as opções do plugin
     $options_to_delete = [
         'pdr_version',
         'pdr_delete_data_on_uninstall',
         'pdr_referral_fee_type',
         'pdr_general_referral_fee_view',
-        'pdr_general_referral_fee_approval',
+        'pdr_general_referral_fee_agreement_reached',
         'pdr_google_maps_api_key',
         'pdr_selected_admins',
         'pdr_manual_emails',
@@ -57,9 +56,8 @@ if ($delete_data === 'yes') {
     $meta_keys_to_delete = [
         'pdr_referral_fee_type',
         'pdr_referral_fee_view',
-        'pdr_referral_fee_approval',
+        'pdr_referral_fee_agreement_reached',
         'pdr_override_referral_fee',
-        
     ];
 
     foreach ($meta_keys_to_delete as $meta_key) {

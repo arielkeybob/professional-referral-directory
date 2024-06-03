@@ -6,7 +6,7 @@ function pdr_register_referral_fee_settings() {
     // Registra as configurações com sanitização adequada
     register_setting('pdr_referral_fee_options', 'pdr_referral_fee_type', 'sanitize_text_field');
     register_setting('pdr_referral_fee_options', 'pdr_general_referral_fee_view', 'sanitize_text_field');
-    register_setting('pdr_referral_fee_options', 'pdr_general_referral_fee_approval', 'sanitize_text_field');
+    register_setting('pdr_referral_fee_options', 'pdr_general_referral_fee_agreement_reached', 'sanitize_text_field');
 }
 
 // Adiciona a função de registro no hook admin_init
@@ -23,7 +23,7 @@ function pdr_referral_fees_settings_page() {
             // Obtenha os valores atuais das configurações
             $referral_fee_type = get_option('pdr_referral_fee_type', 'view');
             $general_referral_fee_view = get_option('pdr_general_referral_fee_view', '');
-            $general_referral_fee_approval = get_option('pdr_general_referral_fee_approval', '');
+            $general_referral_fee_agreement_reached = get_option('pdr_general_referral_fee_agreement_reached', '');
             ?>
             <table class="form-table">
                 <tr valign="top">
@@ -31,7 +31,7 @@ function pdr_referral_fees_settings_page() {
                     <td>
                         <select id="referral_fee_type" name="pdr_referral_fee_type">
                             <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php echo esc_html__('Por Visualização', 'referralhub'); ?></option>
-                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php echo esc_html__('Por inquiry Aprovada', 'referralhub'); ?></option>
+                            <option value="agreement_reached" <?php selected($referral_fee_type, 'agreement_reached'); ?>><?php echo esc_html__('Por Agreement Reached', 'referralhub'); ?></option>
                             <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php echo esc_html__('Combinação das Duas', 'referralhub'); ?></option>
                         </select>
                     </td>
@@ -43,10 +43,10 @@ function pdr_referral_fees_settings_page() {
                         <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por visualização de serviço.', 'referralhub'); ?></p>
                     </td>
                 </tr>
-                <tr valign="top" class="referral_fee_approval">
-                    <th scope="row"><?php echo esc_html__('Per Approved Inquiry', 'referralhub'); ?></th>
+                <tr valign="top" class="referral_fee_agreement_reached">
+                    <th scope="row"><?php echo esc_html__('Per Agreement Reached', 'referralhub'); ?></th>
                     <td>
-                        <input type="text" name="pdr_general_referral_fee_approval" value="<?php echo esc_attr($general_referral_fee_approval); ?>" />
+                        <input type="text" name="pdr_general_referral_fee_agreement_reached" value="<?php echo esc_attr($general_referral_fee_agreement_reached); ?>" />
                         <p class="description"><?php echo esc_html__('Defina a Referral Fee geral por inquiry aprovada.', 'referralhub'); ?></p>
                     </td>
                 </tr>
@@ -61,7 +61,7 @@ function pdr_referral_fees_settings_page() {
         .form-table th {
             width: 200px;
         }
-        .referral_fee_view, .referral_fee_approval {
+        .referral_fee_view, .referral_fee_agreement_reached {
             display: none;
         }
     </style>
@@ -70,7 +70,7 @@ function pdr_referral_fees_settings_page() {
             function toggleReferralFeeFields() {
                 const type = document.getElementById('referral_fee_type').value;
                 document.querySelector('.referral_fee_view').style.display = (type === 'view' || type === 'both') ? 'table-row' : 'none';
-                document.querySelector('.referral_fee_approval').style.display = (type === 'approval' || type === 'both') ? 'table-row' : 'none';
+                document.querySelector('.referral_fee_agreement_reached').style.display = (type === 'agreement_reached' || type === 'both') ? 'table-row' : 'none';
             }
             document.getElementById('referral_fee_type').addEventListener('change', toggleReferralFeeFields);
             toggleReferralFeeFields();  // Garante que os campos corretos sejam mostrados inicialmente

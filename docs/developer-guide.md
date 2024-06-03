@@ -20,7 +20,7 @@ O ReferralHub segue uma estrutura padrão de plugins do WordPress, que inclui di
 
 ## Banco de Dados
 
-O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados relacionados aos serviços, contatos, inquires e Referral Fees.
+O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados relacionados aos serviços, contatos, inquiries e Referral Fees.
 
 ### Tabelas
 
@@ -29,16 +29,16 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
   - `email`: Email do contato.
   - `default_name`: Nome padrão do contato.
 
-- **wp_pdr_inquiry_data**: Armazena dados dos inquires realizados.
+- **wp_pdr_inquiry_data**: Armazena dados dos inquiries realizados.
   - `id`: ID único do inquiry.
   - `service_type`, `service_location`: Tipo e localização do serviço inquirido.
   - `inquiry_date`: Data do inquiry.
   - `service_id`: ID do serviço relacionado.
   - `author_id`: ID do autor do serviço.
   - `contact_id`: ID do contato que realizou o inquiry.
-  - `inquiry_status`: Status do inquiry (pending, negotiated, converted, not interested).
-  - `referral_fee_view`: Valor da Referral Fee por visualização.
-  - `referral_fee_approval`: Valor da Referral Fee por aprovação.
+  - `inquiry_status`: Status do inquiry (pending, in negotiation, agreement reached, no deal).
+  - `referral_fee_value_view`: Valor da Referral Fee por visualização.
+  - `referral_fee_value_agreement_reached`: Valor da Referral Fee por acordo alcançado.
   - `is_paid`: Indica se a Referral Fee foi paga.
 
 - **wp_pdr_author_contact_relations**: Relaciona contatos a autores.
@@ -47,7 +47,7 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
   - `status`: Status do contato (initial inquiry, engaged, converted, not interested, archived).
   - `custom_name`: Nome personalizado para o contato.
 
-### Fluxo de Gravação de Dados Durante os Inquires
+### Fluxo de Gravação de Dados Durante os Inquiries
 
 1. **Recebimento do Inquiry:** Dados são recebidos via AJAX e processados.
 2. **Criação/Atualização de Contato:** Verifica se o contato existe e atualiza/cria conforme necessário.
@@ -55,7 +55,7 @@ O plugin cria e utiliza várias tabelas no banco de dados para armazenar dados r
 
 ### Cálculo de Referral Fees
 
-O cálculo de Referral Fees é realizado com base no status do inquiry e nas configurações definidas globalmente ou por usuário. As Referral Fees podem ser por visualização ou por inquiry aprovado, e são ajustadas conforme o resultado do inquiry e as preferências do usuário.
+O cálculo de Referral Fees é realizado com base no status do inquiry e nas configurações definidas globalmente ou por usuário. As Referral Fees podem ser por visualização ou por inquiry com acordo alcançado, e são ajustadas conforme o resultado do inquiry e as preferências do usuário.
 
 ## Padrões de Código
 
@@ -71,7 +71,6 @@ Para contribuir com o ReferralHub, siga estes passos:
 1. **Fork o Repositório:** Faça um fork do repositório no GitHub.
 2. **Faça suas Mudanças:** Trabalhe em uma branch separada para suas contribuições.
 3. **Pull Request:** Envie um pull request com uma descrição clara de suas mudanças.
-
 
 ## Suporte
 

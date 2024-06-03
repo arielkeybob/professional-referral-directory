@@ -73,7 +73,7 @@ function store_inquiry_data($data) {
         'contact_id' => $data['contact_id'],
         'inquiry_status' => $data['inquiry_status'] ?? 'pending',
         'referral_fee_value_view' => $referralFees['view'],
-        'referral_fee_value_approval' => $referralFees['approval']
+        'referral_fee_value_agreement_reached' => $referralFees['agreement_reached']
     ];
 
     if (!$wpdb->insert($inquiryDataTable, $insertData)) {
@@ -84,3 +84,4 @@ function store_inquiry_data($data) {
     error_log("Dados de Inquiry inseridos com sucesso, ID: " . $wpdb->insert_id);
     return true;
 }
+?>

@@ -16,7 +16,7 @@ function pdr_rename_table() {
         $wpdb->query("ALTER TABLE $new_table_name CHANGE COLUMN search_date inquiry_date DATETIME NOT NULL");
         $wpdb->query("ALTER TABLE $new_table_name CHANGE COLUMN search_status inquiry_status VARCHAR(100) NOT NULL DEFAULT 'pending'");
         $wpdb->query("ALTER TABLE $new_table_name CHANGE COLUMN commission_value_view referral_fee_value_view DECIMAL(10, 2) DEFAULT 0.00");
-        $wpdb->query("ALTER TABLE $new_table_name CHANGE COLUMN commission_value_approval referral_fee_value_approval DECIMAL(10, 2) DEFAULT 0.00");
+        $wpdb->query("ALTER TABLE $new_table_name CHANGE COLUMN commission_value_approval referral_fee_value_agreement_reached DECIMAL(10, 2) DEFAULT 0.00");
     }
 }
 
@@ -34,5 +34,4 @@ function pdr_update_plugin() {
     }
 }
 add_action('admin_init', 'pdr_update_plugin');
-
-       
+?>

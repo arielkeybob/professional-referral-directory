@@ -37,13 +37,13 @@ class PDR_Users {
         if (current_user_can('administrator') && in_array('service_provider', (array) $user->roles)) {
             $referral_fee_type = get_user_meta($user->ID, 'pdr_referral_fee_type', true);
             $referral_fee_view = get_user_meta($user->ID, 'pdr_referral_fee_view', true);
-            $referral_fee_approval = get_user_meta($user->ID, 'pdr_referral_fee_approval', true);
+            $referral_fee_agreement_reached = get_user_meta($user->ID, 'pdr_referral_fee_agreement_reached', true);
             $override_referral_fee = get_user_meta($user->ID, 'pdr_override_referral_fee', true) == 'yes';
             ?>
             <h3><?php _e('Referral Fee Settings', 'referralhub'); ?></h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="override_referral_fee"><?php _e('Sobrescrever configurações gerais de Referral Fee', 'referralhub'); ?></label></th>
+                    <th><label for="override_referral_fee"><?php _e('Override Global Referral Fee Settings', 'referralhub'); ?></label></th>
                     <td>
                         <input type="checkbox" name="override_referral_fee" id="override_referral_fee" value="yes" <?php checked($override_referral_fee, true); ?> />
                     </td>
@@ -52,8 +52,8 @@ class PDR_Users {
                     <th><label for="referral_fee_type"><?php _e('Referral Fee Type', 'referralhub'); ?></label></th>
                     <td>
                         <select id="referral_fee_type" name="referral_fee_type">
-                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php _e('Por Visualização', 'referralhub'); ?></option>
-                            <option value="approval" <?php selected($referral_fee_type, 'approval'); ?>><?php _e('Por Inquiry Aprovada', 'referralhub'); ?></option>
+                            <option value="view" <?php selected($referral_fee_type, 'view'); ?>><?php _e('Per View', 'referralhub'); ?></option>
+                            <option value="agreement_reached" <?php selected($referral_fee_type, 'agreement_reached'); ?>><?php _e('Per Agreement Reached', 'referralhub'); ?></option>
                             <option value="both" <?php selected($referral_fee_type, 'both'); ?>><?php _e('Combination of Both', 'referralhub'); ?></option>
                         </select>
                     </td>
@@ -64,10 +64,10 @@ class PDR_Users {
                         <input type="text" name="referral_fee_view" id="referral_fee_view" value="<?php echo esc_attr($referral_fee_view); ?>" />
                     </td>
                 </tr>
-                <tr class="referral_fee_approval referral_fee_settings" style="display: <?php echo $override_referral_fee && ($referral_fee_type === 'approval' || $referral_fee_type === 'both') ? '' : 'none'; ?>">
-                    <th><label for="referral_fee_approval"><?php _e('Per Approved Inquiry', 'referralhub'); ?></label></th>
+                <tr class="referral_fee_agreement_reached referral_fee_settings" style="display: <?php echo $override_referral_fee && ($referral_fee_type === 'agreement_reached' || $referral_fee_type === 'both') ? '' : 'none'; ?>">
+                    <th><label for="referral_fee_agreement_reached"><?php _e('Per Agreement Reached', 'referralhub'); ?></label></th>
                     <td>
-                        <input type="text" name="referral_fee_approval" id="referral_fee_approval" value="<?php echo esc_attr($referral_fee_approval); ?>" />
+                        <input type="text" name="referral_fee_agreement_reached" id="referral_fee_agreement_reached" value="<?php echo esc_attr($referral_fee_agreement_reached); ?>" />
                     </td>
                 </tr>
             </table>
@@ -78,7 +78,7 @@ class PDR_Users {
                         const type = document.getElementById('referral_fee_type').value;
                         document.querySelectorAll('.referral_fee_settings').forEach(el => el.style.display = override ? '' : 'none');
                         document.querySelector('.referral_fee_view').style.display = (override && (type === 'view' || type === 'both')) ? '' : 'none';
-                        document.querySelector('.referral_fee_approval').style.display = (override && (type === 'approval' || type === 'both')) ? '' : 'none';
+                        document.querySelector('.referral_fee_agreement_reached').style.display = (override && (type === 'agreement_reached' || type === 'both')) ? '' : 'none';
                     }
                     document.getElementById('referral_fee_type').addEventListener('change', toggleReferralFeeSettings);
                     document.getElementById('override_referral_fee').addEventListener('change', toggleReferralFeeSettings);
@@ -106,8 +106,8 @@ class PDR_Users {
             if (isset($_POST['referral_fee_view'])) {
                 update_user_meta($user_id, 'pdr_referral_fee_view', sanitize_text_field($_POST['referral_fee_view']));
             }
-            if (isset($_POST['referral_fee_approval'])) {
-                update_user_meta($user_id, 'pdr_referral_fee_approval', sanitize_text_field($_POST['referral_fee_approval']));
+            if (isset($_POST['referral_fee_agreement_reached'])) {
+                update_user_meta($user_id, 'pdr_referral_fee_agreement_reached', sanitize_text_field($_POST['referral_fee_agreement_reached']));
             }
         }
     }
