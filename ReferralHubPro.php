@@ -3,7 +3,7 @@
 Plugin Name: ReferralHub
 Plugin URI: http://arielsouza.com.br/referralhub
 Description: Manages a directory of Service Providers and listings.
-Version: 1.1.6
+Version: 1.1.7
 Author: Ariel Souza
 Author URI: arielsouza.com.br
 License: GPLv2 or later
@@ -15,7 +15,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 define('RHB_MAIN_FILE', __FILE__);
 
-define( 'RHB_VERSION', '1.1.6' ); 
+define( 'RHB_VERSION', '1.1.7' ); 
 
 
 // Inclusões de Arquivos Principais do Plugin

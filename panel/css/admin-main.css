@@ -1,0 +1,45 @@
+.rhb-settings {
+    display: flex;
+}
+
+.rhb-settings-container {
+    display: flex;
+    width: 100%;
+}
+
+.rhb-settings-sidebar {
+    width: 200px;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.rhb-settings-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rhb-settings-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.rhb-settings-sidebar ul li a {
+    text-decoration: none;
+    color: #0073aa;
+}
+
+.rhb-settings-sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.rhb-settings-content {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.rhb-settings-section-content {
+    display: none;
+}
+
+.rhb-settings-section-content.active {
+    display: block;
+}

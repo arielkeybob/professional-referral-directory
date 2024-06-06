@@ -62,33 +62,24 @@ function rhb_register_menus() {
         6
     );
 
-    add_submenu_page(
-        'edit.php?post_type=rhb_service',
-        __('Dashboard do Admin', 'referralhub'),
-        __('Dashboard do Admin', 'referralhub'),
-        'manage_options',
-        'dashboard-admin',
-        'rhb_dashboard_admin_page_content'
-    );
-
-    // Submenu de Ajuda de Shortcodes.
-    add_submenu_page(
-        'edit.php?post_type=rhb_service',
-        __('Ajuda de Shortcodes', 'referralhub'),
-        __('Ajuda de Shortcodes', 'referralhub'),
-        'manage_options',
-        'rhb-shortcodes-help',
-        'rhb_render_shortcodes_help_page'
-    );
-
     // Submenu de Configurações Gerais utilizando a instância de RHB_Settings.
     add_submenu_page(
         'edit.php?post_type=rhb_service',
-        __('General Settings', 'referralhub'),
-        __('Settings', 'referralhub'),
+        __('Configurações Gerais', 'referralhub'),
+        __('Configurações', 'referralhub'),
         'manage_options',
         'rhb-general-settings',
-        [$rhb_plugin_settings, 'settings_page']
+        [$rhb_plugin_settings, 'render_settings_page']
+    );
+
+    // Submenu para Setup Wizard.
+    add_submenu_page(
+        'edit.php?post_type=rhb_service',
+        __('Setup Wizard', 'referralhub'),
+        __('Setup Wizard', 'referralhub'),
+        'manage_options',
+        'rhb-setup-wizard',
+        'rhb_setup_wizard_page_content'
     );
 
     // Registra a página de detalhes do contato como uma página 'fantasma'
@@ -99,16 +90,6 @@ function rhb_register_menus() {
         'view_rhb_contacts',
         'rhb-contact-details',
         'rhb_contact_details_page_content'
-    );
-
-    // Adiciona o submenu de configuração
-    add_submenu_page(
-        'edit.php?post_type=rhb_service',
-        __('Setup Wizard', 'referralhub'),
-        __('Setup Wizard', 'referralhub'),
-        'manage_options',
-        'rhb-setup-wizard',
-        'rhb_setup_wizard_page_content'
     );
 }
 
@@ -146,7 +127,7 @@ function rhb_render_shortcodes_help_page() {
     include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
 }
 
-// Função para a página de configuração.
+// Função para a página de Setup Wizard.
 function rhb_setup_wizard_page_content() {
     include plugin_dir_path(__FILE__) . '/setup-wizard.php';
 }
@@ -167,7 +148,7 @@ function rhb_handle_create_pages() {
             ]);
             if ($page_id) {
                 update_option('rhb_inquiry_page_id', $page_id);
-                wp_redirect(admin_url('admin.php?page=rhb-setup-wizard&created=true'));
+                wp_redirect(admin_url('edit.php?post_type=rhb_service&page=rhb-setup-wizard&created=true'));
                 exit;
             }
         }
