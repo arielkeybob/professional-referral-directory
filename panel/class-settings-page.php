@@ -50,16 +50,18 @@ class RHB_Settings {
         <div class="wrap">
             <h1><?php _e('ReferralHub Settings', 'referralhub'); ?></h1>
             <div class="rhb-settings">
+                <div class="rhb-top-bar">
+                    <button class="button rhb-save-button"><?php _e('Save Changes', 'referralhub'); ?></button>
+                </div>
                 <div class="rhb-settings-container">
                     <div class="rhb-settings-sidebar">
                         <ul>
-                            <?php foreach ($this->settings as $section_id => $section): ?>
-                                <li>
-                                    <a href="#<?php echo esc_attr($section_id); ?>" class="rhb-settings-tab">
-                                        <?php echo esc_html($section['title']); ?>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
+                            <li><a href="#general_settings" class="rhb-settings-tab"><i class="fas fa-cog"></i> <?php _e('General Settings', 'referralhub'); ?></a></li>
+                            <li><a href="#api_settings" class="rhb-settings-tab"><i class="fas fa-code"></i> <?php _e('API Settings', 'referralhub'); ?></a></li>
+                            <li><a href="#email_settings" class="rhb-settings-tab"><i class="fas fa-envelope"></i> <?php _e('Email Settings', 'referralhub'); ?></a></li>
+                            <li><a href="#style_settings" class="rhb-settings-tab"><i class="fas fa-paint-brush"></i> <?php _e('Frontend Style', 'referralhub'); ?></a></li>
+                            <li><a href="#panel_style" class="rhb-settings-tab"><i class="fas fa-tachometer-alt"></i> <?php _e('Panel Style', 'referralhub'); ?></a></li>
+                            <li><a href="#advanced_settings" class="rhb-settings-tab"><i class="fas fa-tools"></i> <?php _e('Advanced', 'referralhub'); ?></a></li>
                         </ul>
                     </div>
                     <div class="rhb-settings-content">
@@ -246,24 +248,17 @@ class RHB_Settings {
             )
         );
     }
-
     public function enqueue_assets($hook) {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
         }
         wp_enqueue_style('rhb-admin-css', plugin_dir_url(__FILE__) . 'css/admin-main.css', array(), '1.0.0');
         wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
     }
+
 }
 
 new RHB_Settings();
 ?>
-
-
-
-
-
-
-
-    
 

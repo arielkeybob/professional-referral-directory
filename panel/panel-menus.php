@@ -65,8 +65,8 @@ function rhb_register_menus() {
     // Submenu de Configurações Gerais utilizando a instância de RHB_Settings.
     add_submenu_page(
         'edit.php?post_type=rhb_service',
-        __('Configurações Gerais', 'referralhub'),
-        __('Configurações', 'referralhub'),
+        __('General Settings', 'referralhub'),
+        __('Settings', 'referralhub'),
         'manage_options',
         'rhb-general-settings',
         [$rhb_plugin_settings, 'render_settings_page']

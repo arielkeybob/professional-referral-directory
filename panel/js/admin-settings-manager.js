@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.rhb-settings-tab');
     const sections = document.querySelectorAll('.rhb-settings-section-content');
+    const saveButton = document.querySelector('.rhb-save-button');
+    const form = document.querySelector('form');
 
     tabs.forEach(tab => {
         tab.addEventListener('click', function(e) {
@@ -9,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             sections.forEach(section => {
                 if (section.id === target) {
-                    section.style.display = 'block';
+                    section.classList.add('active');
                 } else {
-                    section.style.display = 'none';
+                    section.classList.remove('active');
                 }
             });
 
@@ -25,4 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (tabs.length > 0) {
         tabs[0].click();
     }
+
+    saveButton.addEventListener('click', function() {
+        form.submit();
+    });
 });
