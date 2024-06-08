@@ -23,6 +23,9 @@ class RHB_Settings {
     }
 
     public function register_settings() {
+        // Registrar um único grupo de configurações
+        register_setting('rhb_settings_group', 'rhb_settings');
+    
         foreach ($this->settings as $section_id => $section) {
             add_settings_section(
                 $section_id,
@@ -30,7 +33,7 @@ class RHB_Settings {
                 '__return_false',
                 'rhb_settings_' . $section_id
             );
-
+    
             foreach ($section['fields'] as $field_id => $field) {
                 add_settings_field(
                     $field_id,
@@ -40,10 +43,11 @@ class RHB_Settings {
                     $section_id,
                     array('id' => $field_id, 'field' => $field)
                 );
-                register_setting('rhb_settings_' . $section_id, $field_id);
             }
         }
     }
+    
+    
 
     public function render_settings_page() {
         ?>
@@ -67,7 +71,9 @@ class RHB_Settings {
                     <div class="rhb-settings-content">
                         <form method="post" action="options.php">
                             <?php
-                            settings_fields('rhb_settings_' . $section_id);
+                            // Chamar settings_fields apenas uma vez
+                            settings_fields('rhb_settings_group');
+    
                             foreach ($this->settings as $section_id => $section) {
                                 echo "<div id='".esc_attr($section_id)."' class='rhb-settings-section-content'>";
                                 do_settings_sections('rhb_settings_' . $section_id);
@@ -82,33 +88,39 @@ class RHB_Settings {
         </div>
         <?php
     }
+    
+    
+    
+    
 
     public function render_field($args) {
         $field = $args['field'];
         $id = $args['id'];
-        $value = get_option($id, $field['default']);
-        
+        $options = get_option('rhb_settings');
+        $value = isset($options[$id]) ? $options[$id] : $field['default'];
+    
         switch ($field['type']) {
             case 'text':
-                echo "<input type='text' id='$id' name='$id' value='$value' class='regular-text' />";
+                echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' />";
                 break;
             case 'checkbox':
                 $checked = $value ? 'checked' : '';
-                echo "<input type='checkbox' id='$id' name='$id' value='1' $checked />";
+                echo "<input type='checkbox' id='$id' name='rhb_settings[$id]' value='1' $checked />";
                 break;
             case 'color':
-                echo "<input type='color' id='$id' name='$id' value='$value' />";
-                echo "<input type='text' id='{$id}_hex' name='{$id}_hex' class='color-hex-text-field' value='$value' placeholder='#ffffff' />";
+                echo "<input type='color' id='$id' name='rhb_settings[$id]' value='$value' />";
+                echo "<input type='text' id='{$id}_hex' name='rhb_settings[{$id}_hex]' class='color-hex-text-field' value='$value' placeholder='#ffffff' />";
                 break;
             case 'radio':
                 foreach ($field['options'] as $option_value => $option_label) {
                     $checked = $value == $option_value ? 'checked' : '';
-                    echo "<label><input type='radio' name='$id' value='$option_value' $checked /> $option_label</label><br />";
+                    echo "<label><input type='radio' name='rhb_settings[$id]' value='$option_value' $checked /> $option_label</label><br />";
                 }
                 break;
             // Adicione outros tipos de campos conforme necessário
         }
     }
+    
 
     private function get_settings() {
         return array(
@@ -261,4 +273,3 @@ class RHB_Settings {
 
 new RHB_Settings();
 ?>
-

@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             sections.forEach(section => {
                 if (section.id === target) {
-                    section.classList.add('active');
+                    section.style.display = 'block';
                 } else {
-                    section.classList.remove('active');
+                    section.style.display = 'none';
                 }
             });
 
@@ -21,10 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 tab.classList.remove('active');
             });
             this.classList.add('active');
+
+            // Armazena a aba ativa no localStorage
+            localStorage.setItem('rhbActiveTab', target);
         });
     });
 
-    if (tabs.length > 0) {
+    // Abre a aba armazenada no localStorage
+    const activeTab = localStorage.getItem('rhbActiveTab');
+    if (activeTab) {
+        document.querySelector(`.rhb-settings-tab[href="#${activeTab}"]`).click();
+    } else if (tabs.length > 0) {
         tabs[0].click();
     }
 
