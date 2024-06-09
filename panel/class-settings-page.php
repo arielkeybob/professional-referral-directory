@@ -53,7 +53,7 @@ class RHB_Settings {
             <h1><?php _e('ReferralHub Settings', 'referralhub'); ?></h1>
             <div class="rhb-settings">
                 <div class="rhb-top-bar">
-                    <button class="button rhb-save-button"><?php _e('Save Changes', 'referralhub'); ?></button>
+                    <button type="button" class="button rhb-save-button"><?php _e('Save Changes', 'referralhub'); ?></button>
                 </div>
                 <div class="rhb-settings-container">
                     <div class="rhb-settings-sidebar">
@@ -87,6 +87,7 @@ class RHB_Settings {
         </div>
         <?php
     }
+    
 
     public function render_field($args) {
         $field = $args['field'];
@@ -299,6 +300,7 @@ class RHB_Settings {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
         }
+        wp_enqueue_script('rhb-settings-page-colors', plugin_dir_url(__FILE__) . 'js/settings-page-colors.js', array('jquery'), '1.0.0', true);
         wp_enqueue_style('rhb-admin-css', plugin_dir_url(__FILE__) . 'css/admin-main.css', array(), '1.0.0');
         wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.rhb-settings-tab');
     const sections = document.querySelectorAll('.rhb-settings-section-content');
-    const saveButton = document.querySelector('.rhb-save-button');
+    const saveButtons = document.querySelectorAll('.rhb-save-button');
     const form = document.querySelector('form');
 
     tabs.forEach(tab => {
@@ -35,8 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
         tabs[0].click();
     }
 
-    saveButton.addEventListener('click', function() {
-        form.submit();
+    // Adiciona funcionalidade de salvamento para todos os botões save
+    saveButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Simula um clique no botão de envio do formulário
+            document.querySelector('form input[type="submit"]').click();
+        });
     });
 
     // Script para mostrar/ocultar campos de referral fee
@@ -66,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 multiple: false
             }).on('select', function() {
                 const attachment = customUploader.state().get('selection').first().toJSON();
-                document.getElementById(id).value = attachment.id;
+                document.getElementById(id).value = attachment.url;
                 document.getElementById(id + '_preview').src = attachment.url;
             }).open();
         });

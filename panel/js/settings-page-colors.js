@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     colorPickers.forEach(function(picker) {
         // Deriva o nome do campo de texto hexadecimal do nome do seletor de cor
-        var hexFieldName = picker.name + '_hex';
-        var hexField = document.querySelector('input[name="' + hexFieldName + '"]');
+        var hexFieldName = picker.name.replace('rhb_settings[', '').replace(']', '') + '_hex';
+        var hexField = document.querySelector('input[name="rhb_settings[' + hexFieldName + ']"]');
 
         // Quando o valor do seletor de cor muda, atualize o campo de texto hexadecimal
         picker.addEventListener('input', function() {
