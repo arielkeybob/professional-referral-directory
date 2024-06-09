@@ -38,4 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
     saveButton.addEventListener('click', function() {
         form.submit();
     });
+
+    // Script para mostrar/ocultar campos de referral fee
+    function toggleReferralFeeFields() {
+        const type = document.getElementById('rhb_referral_fee_type').value;
+        document.querySelector('input#rhb_general_referral_fee_view').closest('tr').style.display = (type === 'view' || type === 'both') ? 'table-row' : 'none';
+        document.querySelector('input#rhb_general_referral_fee_agreement_reached').closest('tr').style.display = (type === 'agreement_reached' || type === 'both') ? 'table-row' : 'none';
+    }
+
+    const referralFeeTypeField = document.getElementById('rhb_referral_fee_type');
+    if (referralFeeTypeField) {
+        referralFeeTypeField.addEventListener('change', toggleReferralFeeFields);
+        toggleReferralFeeFields();  // Garante que os campos corretos sejam mostrados inicialmente
+    }
 });

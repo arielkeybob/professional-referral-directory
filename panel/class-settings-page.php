@@ -46,8 +46,6 @@ class RHB_Settings {
             }
         }
     }
-    
-    
 
     public function render_settings_page() {
         ?>
@@ -65,6 +63,7 @@ class RHB_Settings {
                             <li><a href="#email_settings" class="rhb-settings-tab"><i class="fas fa-envelope"></i> <?php _e('Email Settings', 'referralhub'); ?></a></li>
                             <li><a href="#style_settings" class="rhb-settings-tab"><i class="fas fa-paint-brush"></i> <?php _e('Frontend Style', 'referralhub'); ?></a></li>
                             <li><a href="#panel_style" class="rhb-settings-tab"><i class="fas fa-tachometer-alt"></i> <?php _e('Panel Style', 'referralhub'); ?></a></li>
+                            <li><a href="#referral_fee_settings" class="rhb-settings-tab"><i class="fas fa-hand-holding-usd"></i> <?php _e('Referral Fees', 'referralhub'); ?></a></li>
                             <li><a href="#advanced_settings" class="rhb-settings-tab"><i class="fas fa-tools"></i> <?php _e('Advanced', 'referralhub'); ?></a></li>
                         </ul>
                     </div>
@@ -88,17 +87,13 @@ class RHB_Settings {
         </div>
         <?php
     }
-    
-    
-    
-    
 
     public function render_field($args) {
         $field = $args['field'];
         $id = $args['id'];
         $options = get_option('rhb_settings');
         $value = isset($options[$id]) ? $options[$id] : $field['default'];
-    
+
         switch ($field['type']) {
             case 'text':
                 echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' />";
@@ -111,6 +106,14 @@ class RHB_Settings {
                 echo "<input type='color' id='$id' name='rhb_settings[$id]' value='$value' />";
                 echo "<input type='text' id='{$id}_hex' name='rhb_settings[{$id}_hex]' class='color-hex-text-field' value='$value' placeholder='#ffffff' />";
                 break;
+            case 'select':
+                echo "<select id='$id' name='rhb_settings[$id]'>";
+                foreach ($field['options'] as $option_value => $option_label) {
+                    $selected = $value == $option_value ? 'selected' : '';
+                    echo "<option value='$option_value' $selected>$option_label</option>";
+                }
+                echo "</select>";
+                break;
             case 'radio':
                 foreach ($field['options'] as $option_value => $option_label) {
                     $checked = $value == $option_value ? 'checked' : '';
@@ -120,7 +123,6 @@ class RHB_Settings {
             // Adicione outros tipos de campos conforme necessário
         }
     }
-    
 
     private function get_settings() {
         return array(
@@ -248,6 +250,31 @@ class RHB_Settings {
                     )
                 )
             ),
+            'referral_fee_settings' => array(
+                'title' => __('Referral Fee Settings', 'referralhub'),
+                'fields' => array(
+                    'rhb_referral_fee_type' => array(
+                        'label' => __('Referral Fee Type', 'referralhub'),
+                        'type' => 'select',
+                        'options' => array(
+                            'view' => __('Per View', 'referralhub'),
+                            'agreement_reached' => __('Per Agreement Reached', 'referralhub'),
+                            'both' => __('Combination of Both', 'referralhub')
+                        ),
+                        'default' => 'view'
+                    ),
+                    'rhb_general_referral_fee_view' => array(
+                        'label' => __('Per View', 'referralhub'),
+                        'type' => 'text',
+                        'default' => ''
+                    ),
+                    'rhb_general_referral_fee_agreement_reached' => array(
+                        'label' => __('Per Agreement Reached', 'referralhub'),
+                        'type' => 'text',
+                        'default' => ''
+                    )
+                )
+            ),
             'advanced_settings' => array(
                 'title' => __('Advanced', 'referralhub'),
                 'fields' => array(
@@ -260,6 +287,8 @@ class RHB_Settings {
             )
         );
     }
+    
+    
     public function enqueue_assets($hook) {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
