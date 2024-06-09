@@ -75,7 +75,8 @@ class RHB_Inquiry_Results {
         if ($query->have_posts()) {
             ob_start();
     
-            $template_choice = get_option('rhb_template_choice', 'template-1');
+            $options = get_option('rhb_settings', []);
+            $template_choice = isset($options['rhb_template_choice']) ? $options['rhb_template_choice'] : 'template-1';
             $template_file = 'inquiry-result-' . $template_choice . '.php';
     
             while ($query->have_posts()) {
@@ -114,8 +115,6 @@ class RHB_Inquiry_Results {
         wp_die();
     }
     
-    
-
     public function render_inquiry_results() {
         ob_start();
         ?>

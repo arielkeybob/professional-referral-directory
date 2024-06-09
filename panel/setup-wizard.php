@@ -2,7 +2,8 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Verificar se a página já existe
-$inquiry_page_id = get_option('rhb_inquiry_page_id');
+$options = get_option('rhb_settings', []);
+$inquiry_page_id = isset($options['rhb_inquiry_page_id']) ? $options['rhb_inquiry_page_id'] : null;
 $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
@@ -15,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rhb_create_pages_subm
             'post_type' => 'page'
         ]);
         if ($page_id) {
-            update_option('rhb_inquiry_page_id', $page_id);
+            $options['rhb_inquiry_page_id'] = $page_id;
+            update_option('rhb_settings', $options);
             $page_exists = true;
             $message = __('Página de Inquiry de serviços criada com sucesso.', 'referralhub');
         }
@@ -23,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rhb_create_pages_subm
 }
 
 if (isset($_GET['skip'])) {
-    update_option('rhb_setup_wizard_completed', true);
+    $options['rhb_setup_wizard_completed'] = true;
+    update_option('rhb_settings', $options);
     wp_redirect(admin_url());
     exit;
 }

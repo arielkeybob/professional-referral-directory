@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') or die('No script kiddies please!');
+
 // Função auxiliar para obter termos de taxonomia como string
 function rhb_get_taxonomy_terms_as_string($taxonomy) {
     $terms = get_the_terms(get_the_ID(), $taxonomy);
@@ -57,10 +58,9 @@ function rhb_get_author_social_html() {
     return '';
 }
 
-
-
-//Enfileirando css e js do template
-$template_choice = get_option('rhb_template_choice', 'template-1');
+// Enfileirando css e js do template
+$options = get_option('rhb_settings', []);
+$template_choice = isset($options['rhb_template_choice']) ? $options['rhb_template_choice'] : 'template-1';
 $template_number = str_replace('template-', '', $template_choice); // Isso irá extrair o número do template
 
 // Verifica se os arquivos existem antes de tentar enfileirá-los
@@ -76,7 +76,3 @@ if (file_exists(plugin_dir_path(RHB_MAIN_FILE) . "public/css/inquiry-result-temp
 if (file_exists(plugin_dir_path(RHB_MAIN_FILE) . "public/js/inquiry-result-template-{$template_number}.js")) {
     echo '<script src="' . esc_url($js_file) . '"></script>';
 }
-
-
-
-

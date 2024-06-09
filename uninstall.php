@@ -7,7 +7,9 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 global $wpdb;
 
 // Verifica a opção do usuário para saber se deve deletar os dados
-$delete_data = get_option('rhb_delete_data_on_uninstall', 'no');
+$options = get_option('rhb_settings', []);
+$delete_data = isset($options['rhb_delete_data_on_uninstall']) ? $options['rhb_delete_data_on_uninstall'] : 'no';
+
 
 if ($delete_data === 'yes') {
     // Deleta as tabelas personalizadas do plugin

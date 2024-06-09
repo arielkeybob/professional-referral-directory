@@ -1,6 +1,6 @@
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
-    
+defined('ABSPATH') or die('No script kiddies please!');
+
 // includes\panel-top-bar-customizations.php
 
 function rhbRemoveAdminBar() {
@@ -26,7 +26,8 @@ function rhb_add_custom_admin_bar() {
         $avatar_url = get_avatar_url($current_user->ID);
 
         // Obtem o ID da imagem da logo salvo nas opções do tema
-        $logo_id = get_option('rhb_panel_logo');
+        $options = get_option('rhb_settings', []);
+        $logo_id = isset($options['rhb_panel_logo']) ? $options['rhb_panel_logo'] : '';
         // Obtem a URL da imagem a partir do ID
         $logo_url = wp_get_attachment_url($logo_id);
         
@@ -71,9 +72,6 @@ function rhb_add_custom_admin_bar() {
     }
 }
 add_action('in_admin_header', 'rhb_add_custom_admin_bar');
-
-
-
 
 function rhb_custom_admin_bar_scripts() {
     ?>

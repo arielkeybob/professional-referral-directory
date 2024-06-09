@@ -134,7 +134,8 @@ function rhb_setup_wizard_page_content() {
 
 // Função para lidar com a criação de páginas.
 function rhb_handle_create_pages() {
-    $inquiry_page_id = get_option('rhb_inquiry_page_id');
+    $options = get_option('rhb_settings', []);
+    $inquiry_page_id = isset($options['rhb_inquiry_page_id']) ? $options['rhb_inquiry_page_id'] : null;
     $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
     if (isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
@@ -147,7 +148,8 @@ function rhb_handle_create_pages() {
                 'post_type' => 'page'
             ]);
             if ($page_id) {
-                update_option('rhb_inquiry_page_id', $page_id);
+                $options['rhb_inquiry_page_id'] = $page_id;
+                update_option('rhb_settings', $options);
                 wp_redirect(admin_url('edit.php?post_type=rhb_service&page=rhb-setup-wizard&created=true'));
                 exit;
             }

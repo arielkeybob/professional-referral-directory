@@ -1,5 +1,5 @@
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a função de captura de dados do formulário
 require_once plugin_dir_path(RHB_MAIN_FILE) . 'public/form-data-functions.php';
@@ -44,8 +44,9 @@ function send_admin_notification_emails($post_id) {
     $user_data = get_form_data();
 
     // Recupera e-mails adicionais das configurações do plugin
-    $selected_admins = get_option('rhb_selected_admins', []);
-    $manual_emails = explode(',', get_option('rhb_manual_emails', ''));
+    $options = get_option('rhb_settings', []);
+    $selected_admins = isset($options['rhb_selected_admins']) ? $options['rhb_selected_admins'] : [];
+    $manual_emails = isset($options['rhb_manual_emails']) ? explode(',', $options['rhb_manual_emails']) : [];
 
     // Prepara o assunto e a mensagem para os administradores
     $subject = "Admin Notification: Service Inquiry for " . get_the_title($post_id);
@@ -65,4 +66,3 @@ function send_admin_notification_emails($post_id) {
 
     error_log('Enviando notificações para administradores. Post ID: ' . $post_id);
 }
-

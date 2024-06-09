@@ -2,7 +2,8 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 function calculate_referral_fees($author_id = null, $inquiry_status = 'pending') {
-    $referral_fee_type = get_option('rhb_referral_fee_type', 'both'); // Default to 'both' if not set
+    $options = get_option('rhb_settings', []);
+    $referral_fee_type = isset($options['rhb_referral_fee_type']) ? $options['rhb_referral_fee_type'] : 'both'; // Default to 'both' if not set
 
     $view_referral_fee = 0.00;
     $agreement_reached_referral_fee = 0.00;
@@ -15,13 +16,13 @@ function calculate_referral_fees($author_id = null, $inquiry_status = 'pending')
     }
 
     if ($referral_fee_type === 'view' || $referral_fee_type === 'both') {
-        $view_referral_fee = $use_author_settings ? get_user_meta($author_id, 'rhb_referral_fee_view', true) : get_option('rhb_general_referral_fee_view', '0.05');
+        $view_referral_fee = $use_author_settings ? get_user_meta($author_id, 'rhb_referral_fee_view', true) : (isset($options['rhb_general_referral_fee_view']) ? $options['rhb_general_referral_fee_view'] : '0.05');
     } else {
         $view_referral_fee = 0.00; // Não calcular Referral Fee por visualização se o tipo for 'agreement_reached' apenas
     }
 
     if (($referral_fee_type === 'agreement_reached' || $referral_fee_type === 'both') && $inquiry_status === 'agreement_reached') {
-        $agreement_reached_referral_fee = $use_author_settings ? get_user_meta($author_id, 'rhb_referral_fee_agreement_reached', true) : get_option('rhb_general_referral_fee_agreement_reached', '0.10');
+        $agreement_reached_referral_fee = $use_author_settings ? get_user_meta($author_id, 'rhb_referral_fee_agreement_reached', true) : (isset($options['rhb_general_referral_fee_agreement_reached']) ? $options['rhb_general_referral_fee_agreement_reached'] : '0.10');
     } else {
         $agreement_reached_referral_fee = 0.00; // Não calcular Referral Fee por acordo se não está aprovado ou se o tipo é 'view' apenas
     }

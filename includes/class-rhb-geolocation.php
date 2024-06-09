@@ -1,11 +1,11 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-
 class RHB_Geolocation {
 
     public static function geocode_address($address) {
-        $api_key = get_option('rhb_google_maps_api_key');
+        $options = get_option('rhb_settings', []);
+        $api_key = isset($options['rhb_google_maps_api_key']) ? $options['rhb_google_maps_api_key'] : '';
         $address = urlencode($address);
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$api_key}";
 
