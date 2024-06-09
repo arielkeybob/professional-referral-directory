@@ -51,4 +51,34 @@ document.addEventListener('DOMContentLoaded', function() {
         referralFeeTypeField.addEventListener('change', toggleReferralFeeFields);
         toggleReferralFeeFields();  // Garante que os campos corretos sejam mostrados inicialmente
     }
+
+    // Script para upload de mídia
+    const mediaButtons = document.querySelectorAll('button[id$="_button"]');
+    mediaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.id.replace('_button', '');
+            const customUploader = wp.media({
+                title: 'Select Image',
+                button: {
+                    text: 'Use this image'
+                },
+                multiple: false
+            }).on('select', function() {
+                const attachment = customUploader.state().get('selection').first().toJSON();
+                document.getElementById(id).value = attachment.id;
+                document.getElementById(id + '_preview').src = attachment.url;
+            }).open();
+        });
+    });
+
+    const removeButtons = document.querySelectorAll('button[id$="_remove"]');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.id.replace('_remove', '');
+            document.getElementById(id).value = '';
+            document.getElementById(id + '_preview').src = '';
+        });
+    });
 });

@@ -2,7 +2,7 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
-require_once plugin_dir_path(__FILE__) . 'referral-fee-settings.php'; // Certifique-se de incluir o arquivo onde a função está definida
+
 
 // Adiciona capacidades ao papel 'service_provider' e registra menus e submenus.
 function rhb_initialize_panel_menus() {
@@ -30,16 +30,7 @@ function rhb_register_menus() {
     // Instancia a classe RHB_Settings aqui para uso nos callbacks.
     $rhb_plugin_settings = new RHB_Settings();
 
-    // Submenu de Referral Fee.
-    add_submenu_page(
-        'edit.php?post_type=rhb_service',
-        __('Referral Fees', 'referralhub'),
-        __('Referral Fees', 'referralhub'),
-        'manage_options',
-        'rhb-referral-fee-page',
-        'rhb_referral_fees_settings_page' // Esta é a função correta a ser chamada
-    );
-
+    
     // Adiciona um menu para o Provider Dashboard
     add_menu_page(
         __('Provider Dashboard', 'referralhub'),

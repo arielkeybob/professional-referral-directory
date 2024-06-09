@@ -120,6 +120,13 @@ class RHB_Settings {
                     echo "<label><input type='radio' name='rhb_settings[$id]' value='$option_value' $checked /> $option_label</label><br />";
                 }
                 break;
+            case 'media':
+                $image_url = $value ? wp_get_attachment_url($value) : '';
+                echo "<input type='hidden' id='$id' name='rhb_settings[$id]' value='$value' />";
+                echo "<img id='{$id}_preview' src='$image_url' style='max-width:150px;' />";
+                echo "<button type='button' class='button' id='{$id}_button'>" . __('Upload Logo', 'referralhub') . "</button>";
+                echo "<button type='button' class='button' id='{$id}_remove'>" . __('Remove Logo', 'referralhub') . "</button>";
+                break;
             // Adicione outros tipos de campos conforme necessário
         }
     }
@@ -245,7 +252,7 @@ class RHB_Settings {
                     ),
                     'rhb_panel_logo' => array(
                         'label' => __('Panel Logo', 'referralhub'),
-                        'type' => 'text', // Implementar upload de imagem via Media Library
+                        'type' => 'media',
                         'default' => ''
                     )
                 )
@@ -287,8 +294,7 @@ class RHB_Settings {
             )
         );
     }
-    
-    
+
     public function enqueue_assets($hook) {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
@@ -296,9 +302,8 @@ class RHB_Settings {
         wp_enqueue_style('rhb-admin-css', plugin_dir_url(__FILE__) . 'css/admin-main.css', array(), '1.0.0');
         wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
+        wp_enqueue_media();
     }
-
 }
 
 new RHB_Settings();
-?>
