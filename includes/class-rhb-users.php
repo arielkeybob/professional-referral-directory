@@ -4,18 +4,17 @@ defined('ABSPATH') or die('No script kiddies please!');
 class RHB_Users {
 
     public static function initialize_user_roles() {
-        // Criação e configuração do papel 'service_provider'
         if (!get_role('service_provider')) {
             add_role(
                 'service_provider',
                 'Service Provider',
                 array(
-                    'read' => true, // Permite que o usuário leia
-                    'upload_files' => true, // Permite que o usuário faça upload de arquivos
+                    'read' => true,
+                    'upload_files' => true,
                 )
             );
         }
-        // Adiciona as capacidades ao papel 'service_provider' após a criação do papel.
+
         $role = get_role('service_provider');
         if ($role) {
             $capabilities = [
@@ -25,7 +24,8 @@ class RHB_Users {
                 'delete_rhb_services',
                 'edit_rhb_service',
                 'delete_rhb_service',
-                'read_rhb_service'
+                'read_rhb_service',
+                'edit_service_provider_services',
             ];
 
             foreach ($capabilities as $cap) {
@@ -43,7 +43,8 @@ class RHB_Users {
                 'delete_rhb_services',
                 'edit_rhb_service',
                 'delete_rhb_service',
-                'read_rhb_service'
+                'read_rhb_service',
+                'edit_service_provider_services',
             ];
 
             foreach ($capabilities as $cap) {
@@ -102,7 +103,7 @@ class RHB_Users {
                     }
                     document.getElementById('referral_fee_type').addEventListener('change', toggleReferralFeeSettings);
                     document.getElementById('override_referral_fee').addEventListener('change', toggleReferralFeeSettings);
-                    toggleReferralFeeSettings();  // Call on page load to set initial state
+                    toggleReferralFeeSettings();
                 });
             </script>
             <?php
@@ -114,11 +115,9 @@ class RHB_Users {
             return false;
         }
     
-        // Verifica se o checkbox 'override_referral_fee' foi marcado e salva a opção
         $override_referral_fee = isset($_POST['override_referral_fee']) ? 'yes' : 'no';
         update_user_meta($user_id, 'rhb_override_referral_fee', $override_referral_fee);
     
-        // Salva as outras configurações de Referral Fee somente se o override está ativo
         if ($override_referral_fee === 'yes') {
             if (isset($_POST['referral_fee_type'])) {
                 update_user_meta($user_id, 'rhb_referral_fee_type', sanitize_text_field($_POST['referral_fee_type']));
@@ -132,7 +131,6 @@ class RHB_Users {
         }
     }
     
-
     public static function register_hooks() {
         add_action('show_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
         add_action('edit_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
