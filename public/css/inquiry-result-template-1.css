@@ -5,6 +5,8 @@
   margin: auto;
   flex-direction: column;
   flex-wrap: wrap;
+  font-family: var(--rhb-body-font-family);
+  color: var(--rhb-body-color);
 }
 
 .service-result {
@@ -22,28 +24,33 @@
 .card-left {
   display: flex;
   flex-direction: column; /* Organiza os elementos verticalmente */
-  flex: 1; /* Permite que a coluna esquerda cresÃ§a conforme necessÃ¡rio */
-  align-items: flex-start; /* Alinha os itens Ã  esquerda */
+  flex: 1; /* Permite que a coluna esquerda cresça conforme necessário */
+  align-items: flex-start; /* Alinha os itens à esquerda */
+  border-right: solid 1px #e9e9e9;
 }
 
 .service-content {
-  flex: 1.8; /* DÃ¡ Ã  coluna direita mais espaÃ§o */
+  flex: 1.8; /* Dá à coluna direita mais espaço */
   padding: 15px 30px 15px 80px;
+  font-family: var(--rhb-body-font-family);
+  color: var(--rhb-body-color);
 }
 
 @media (max-width: 768px) {
   .service-result {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .card-left,
   .service-content {
-    flex-basis: 100%;
+      flex-basis: 100%;
   }
 }
 
 .service-author-details {
   padding: 15px;
+  font-family: var(--rhb-body-font-family);
+  color: var(--rhb-body-color);
 }
 
 a.read-more {
@@ -51,17 +58,19 @@ a.read-more {
   width: 100%;
   padding: 15px;
   text-align: center;
-  background: var(--rhb-button-color);;
+  background: var(--rhb-button-color);
   color: var(--rhb-button-text-color);
 }
 
 a.read-more:hover {
-  background: var(--rhb-button-hover-color);;
+  background: var(--rhb-button-hover-color);
   color: var(--rhb-button-text-hover-color);
 }
 
-#rhb-inquiry-results p{
-margin:5px;
+#rhb-inquiry-results p {
+  margin: 5px;
+  font-family: var(--rhb-body-font-family);
+  color: var(--rhb-body-color);
 }
 
 img.attachment-medium.size-medium.wp-post-image {
@@ -72,31 +81,22 @@ img.attachment-medium.size-medium.wp-post-image {
   width: 100%;
 }
 
-
 p.service-taxonomy.service-type {
   margin-top: 50px !important;
 }
 
-
-.card-left {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: flex-start;
-  border-right: solid 1px #e9e9e9;
+.service-title {
+  font-family: var(--rhb-title-font-family);
+  color: var(--rhb-title-color);
 }
 
 .service-author-details i {
   margin-right: 10px;
 }
 
-.service-content, .service-author-details, .service-author-details a{
+.service-content,
+.service-author-details,
+.service-author-details a {
   font-family: var(--rhb-body-font-family);
   color: var(--rhb-body-color);
 }
-
-.service-title{
-  font-family: var(--rhb-title-font-family);
-  color: var(--rhb-title-color);
-}
-

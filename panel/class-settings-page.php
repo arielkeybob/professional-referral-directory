@@ -93,7 +93,7 @@ class RHB_Settings {
         $id = $args['id'];
         $options = get_option('rhb_settings');
         $value = isset($options[$id]) ? $options[$id] : $field['default'];
-
+    
         switch ($field['type']) {
             case 'text':
                 echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' />";
@@ -127,6 +127,15 @@ class RHB_Settings {
                 echo "<button type='button' class='button' id='{$id}_button'>" . __('Upload Logo', 'referralhub') . "</button>";
                 echo "<button type='button' class='button' id='{$id}_remove'>" . __('Remove Logo', 'referralhub') . "</button>";
                 break;
+            case 'font':
+                $google_fonts = $this->get_google_fonts();
+                echo "<select id='$id' name='rhb_settings[$id]'>";
+                foreach ($google_fonts as $font) {
+                    $selected = $value == $font ? 'selected' : '';
+                    echo "<option value='$font' $selected>$font</option>";
+                }
+                echo "</select>";
+                break;
             case 'custom':
                 if (is_callable($field['callback'])) {
                     call_user_func($field['callback']);
@@ -135,6 +144,28 @@ class RHB_Settings {
             // Adicione outros tipos de campos conforme necessário
         }
     }
+    
+    private function get_google_fonts() {
+        // Esta lista pode ser gerada dinamicamente ou mantida manualmente
+        return array(
+            'Roboto',
+            'Open Sans',
+            'Lato',
+            'Montserrat',
+            'Oswald',
+            'Raleway',
+            'Merriweather',
+            'Ubuntu',
+            'PT Sans',
+            'Noto Sans',
+            'Nunito',
+            'Roboto Condensed',
+            'Source Sans Pro',
+            'Poppins',
+            'Playfair Display',
+        );
+    }
+    
 
     public function template_choice_callback() {
         $template_choice = get_option('rhb_settings')['rhb_template_choice'] ?? 'template-1';
@@ -255,7 +286,7 @@ class RHB_Settings {
                     ),
                     'rhb_title_font_family' => array(
                         'label' => __('Title Font Family', 'referralhub'),
-                        'type' => 'text',
+                        'type' => 'font', // Atualizado para usar o novo tipo de campo de fonte
                         'default' => ''
                     ),
                     'rhb_title_color' => array(
@@ -265,7 +296,7 @@ class RHB_Settings {
                     ),
                     'rhb_body_font_family' => array(
                         'label' => __('Body Font Family', 'referralhub'),
-                        'type' => 'text',
+                        'type' => 'font', // Atualizado para usar o novo tipo de campo de fonte
                         'default' => ''
                     ),
                     'rhb_body_color' => array(
@@ -277,7 +308,7 @@ class RHB_Settings {
                         'label' => __('Template Choice', 'referralhub'),
                         'type' => 'custom',
                         'callback' => array($this, 'template_choice_callback'),
-                        'default' => 'template-1'
+                        'default' => 'template-1',
                     )
                 )
             ),
@@ -349,6 +380,7 @@ class RHB_Settings {
         );
     }
 
+
     public function enqueue_assets($hook) {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
@@ -358,7 +390,10 @@ class RHB_Settings {
         wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
         wp_enqueue_media();
+        wp_enqueue_script('google-fonts-api', 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', array(), null, true);
     }
+    
+    
 }
 
 new RHB_Settings();
