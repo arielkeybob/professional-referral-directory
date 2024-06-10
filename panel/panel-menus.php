@@ -75,13 +75,14 @@ function rhb_register_menus() {
 
     // Registra a página de detalhes do contato como uma página 'fantasma'
     add_submenu_page(
-        null, // Não exibe no menu
+        'edit.php?post_type=rhb-contact-details', // Não exibe no menu
         __('Detalhes do Contato', 'referralhub'),
-        null, // Não exibe no menu
+        __('Detalhes do Contato', 'referralhub'), // Não exibe no menu
         'view_rhb_contacts',
         'rhb-contact-details',
         'rhb_contact_details_page_content'
     );
+    
 }
 
 function rhb_dashboard_admin_page_content() {
