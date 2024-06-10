@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <?php
-/*
+
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Função auxiliar para obter termos de taxonomia como string
@@ -77,4 +77,3 @@ if (file_exists(plugin_dir_path(RHB_MAIN_FILE) . "public/css/inquiry-result-temp
 if (file_exists(plugin_dir_path(RHB_MAIN_FILE) . "public/js/inquiry-result-template-{$template_number}.js")) {
     echo '<script src="' . esc_url($js_file) . '"></script>';
 }
-*/
