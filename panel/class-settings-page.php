@@ -6,20 +6,8 @@ class RHB_Settings {
 
     public function __construct() {
         $this->settings = $this->get_settings();
-        add_action('admin_menu', array($this, 'add_menu_page'));
         add_action('admin_init', array($this, 'register_settings'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
-    }
-
-    public function add_menu_page() {
-        add_menu_page(
-            __('ReferralHub Settings', 'referralhub'),
-            __('Settings', 'referralhub'),
-            'manage_options',
-            'rhb-settings',
-            array($this, 'render_settings_page'),
-            'dashicons-admin-generic'
-        );
     }
 
     public function register_settings() {
@@ -380,7 +368,6 @@ class RHB_Settings {
         );
     }
 
-
     public function enqueue_assets($hook) {
         if ($hook != 'rhb_service_page_rhb-general-settings') {
             return;
@@ -392,11 +379,7 @@ class RHB_Settings {
         wp_enqueue_media();
         wp_enqueue_script('google-fonts-api', 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', array(), null, true);
     }
-    
-    
 }
 
 new RHB_Settings();
 ?>
-
-

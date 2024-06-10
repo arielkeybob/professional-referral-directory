@@ -4,7 +4,7 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
 ?>
 
 <div class="service-result alternative-layout">
-    <span> Template 2</span>
+    
     <h3 class="service-title"><?php the_title(); ?></h3>
     <div class="service-thumbnail">
         <?php echo '<img src="' . rhb_get_service_thumbnail_url('medium') . '" alt="Service Thumbnail">'; ?>

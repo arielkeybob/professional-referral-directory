@@ -18,7 +18,7 @@ include_once(plugin_dir_path(__FILE__) . '../../includes/utility-functions.php')
     
 
     <div class="service-content">
-    <span> Template 1</span>
+    
         <h3 class="service-title"><?php the_title(); ?></h3>
         <p class="service-excerpt"><?php the_excerpt(); ?></p>
         <p class="service-taxonomy service-type">

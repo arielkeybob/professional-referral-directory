@@ -1,5 +1,5 @@
 <?php
-    defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') or die('No script kiddies please!');
 
 class ReferralHub_Admin {
     // Construtor da classe

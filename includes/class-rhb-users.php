@@ -18,17 +18,37 @@ class RHB_Users {
         // Adiciona as capacidades ao papel 'service_provider' após a criação do papel.
         $role = get_role('service_provider');
         if ($role) {
-            $role->add_cap('edit_services');
-            $role->add_cap('edit_published_services');
-            $role->add_cap('upload_files');
+            $capabilities = [
+                'edit_rhb_services',
+                'edit_published_rhb_services',
+                'publish_rhb_services',
+                'delete_rhb_services',
+                'edit_rhb_service',
+                'delete_rhb_service',
+                'read_rhb_service'
+            ];
+
+            foreach ($capabilities as $cap) {
+                $role->add_cap($cap);
+            }
         }
     }
 
     public static function cleanup_user_roles() {
         if ($role = get_role('service_provider')) {
-            $role->remove_cap('edit_services');
-            $role->remove_cap('edit_published_services');
-            $role->remove_cap('upload_files');
+            $capabilities = [
+                'edit_rhb_services',
+                'edit_published_rhb_services',
+                'publish_rhb_services',
+                'delete_rhb_services',
+                'edit_rhb_service',
+                'delete_rhb_service',
+                'read_rhb_service'
+            ];
+
+            foreach ($capabilities as $cap) {
+                $role->remove_cap($cap);
+            }
         }
         remove_role('service_provider');
     }

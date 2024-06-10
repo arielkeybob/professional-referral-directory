@@ -3,7 +3,6 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
 
-
 // Adiciona capacidades ao papel 'service_provider' e registra menus e submenus.
 function rhb_initialize_panel_menus() {
     add_action('admin_menu', 'rhb_register_menus');
@@ -30,7 +29,6 @@ function rhb_register_menus() {
     // Instancia a classe RHB_Settings aqui para uso nos callbacks.
     $rhb_plugin_settings = new RHB_Settings();
 
-    
     // Adiciona um menu para o Provider Dashboard
     add_menu_page(
         __('Provider Dashboard', 'referralhub'),
@@ -82,7 +80,6 @@ function rhb_register_menus() {
         'rhb-contact-details',
         'rhb_contact_details_page_content'
     );
-    
 }
 
 function rhb_dashboard_admin_page_content() {
