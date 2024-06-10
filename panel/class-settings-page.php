@@ -87,7 +87,6 @@ class RHB_Settings {
         </div>
         <?php
     }
-    
 
     public function render_field($args) {
         $field = $args['field'];
@@ -128,8 +127,65 @@ class RHB_Settings {
                 echo "<button type='button' class='button' id='{$id}_button'>" . __('Upload Logo', 'referralhub') . "</button>";
                 echo "<button type='button' class='button' id='{$id}_remove'>" . __('Remove Logo', 'referralhub') . "</button>";
                 break;
+            case 'custom':
+                if (is_callable($field['callback'])) {
+                    call_user_func($field['callback']);
+                }
+                break;
             // Adicione outros tipos de campos conforme necessário
         }
+    }
+
+    public function template_choice_callback() {
+        $template_choice = get_option('rhb_settings')['rhb_template_choice'] ?? 'template-1';
+        $templates = [
+            'template-1' => 'Template 1',
+            'template-2' => 'Template 2'
+        ];
+        ?>
+        <div class="template-choice-container">
+            <?php foreach ($templates as $template_value => $template_label): ?>
+                <label title="<?php echo esc_attr($template_label); ?>">
+                    <input type="radio" name="rhb_settings[rhb_template_choice]" value="<?php echo esc_attr($template_value); ?>" <?php checked($template_choice, $template_value); ?> />
+                    <img src="<?php echo plugin_dir_url(__FILE__) . 'img/' . esc_attr($template_value) . '.jpg'; ?>" alt="<?php echo esc_attr($template_label); ?>" class="template-thumbnail" />
+                    <span class="template-label"><?php echo esc_html($template_label); ?></span>
+                </label>
+            <?php endforeach; ?>
+        </div>
+        <style>
+            .template-choice-container {
+                display: flex;
+                gap: 20px;
+            }
+            .template-choice-container label {
+                display: block;
+                text-align: center;
+                cursor: pointer;
+                position: relative;
+            }
+            .template-choice-container input[type="radio"] {
+                display: none;
+            }
+            .template-thumbnail {
+                border: 2px solid transparent;
+                border-radius: 5px;
+                transition: border-color 0.3s;
+                width: 150px; /* Ajuste conforme necessário */
+                height: auto; /* Mantém a proporção da imagem */
+            }
+            .template-choice-container input[type="radio"]:checked + .template-thumbnail {
+                border-color: #007cba;
+            }
+            .template-label {
+                display: block;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+            .template-choice-container label:hover .template-thumbnail {
+                border-color: #555;
+            }
+        </style>
+        <?php
     }
 
     private function get_settings() {
@@ -219,12 +275,9 @@ class RHB_Settings {
                     ),
                     'rhb_template_choice' => array(
                         'label' => __('Template Choice', 'referralhub'),
-                        'type' => 'radio',
-                        'default' => 'template-1',
-                        'options' => array(
-                            'template-1' => 'Template 1',
-                            'template-2' => 'Template 2'
-                        )
+                        'type' => 'custom',
+                        'callback' => array($this, 'template_choice_callback'),
+                        'default' => 'template-1'
                     )
                 )
             ),
@@ -309,3 +362,6 @@ class RHB_Settings {
 }
 
 new RHB_Settings();
+?>
+
+
