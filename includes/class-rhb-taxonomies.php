@@ -7,7 +7,7 @@ class RHB_Taxonomies {
         $labels = array(
             'name'              => _x('Service Types', 'taxonomy general name', 'referralhub'),
             'singular_name'     => _x('Service Type', 'taxonomy singular name', 'referralhub'),
-            'inquiring_items'   => __('Service Types', 'referralhub'),
+            'search_items'      => __('Search Service Types', 'referralhub'),
             'all_items'         => __('All Service Types', 'referralhub'),
             'parent_item'       => __('Parent Service Type', 'referralhub'),
             'parent_item_colon' => __('Parent Service Type:', 'referralhub'),
@@ -27,10 +27,10 @@ class RHB_Taxonomies {
             'query_var'         => true,
             'rewrite'           => array('slug' => 'service-type'),
             'capabilities'      => array(
-                'manage_terms' => 'edit_service_provider_services',
-                'edit_terms'   => 'edit_service_provider_services',
-                'delete_terms' => 'edit_service_provider_services',
-                'assign_terms' => 'edit_service_provider_services',
+                'manage_terms' => 'manage_categories', // Apenas administradores
+                'edit_terms'   => 'manage_categories', // Apenas administradores
+                'delete_terms' => 'manage_categories', // Apenas administradores
+                'assign_terms' => 'edit_service_provider_services', // Service providers podem atribuir
             ),
         );
 
@@ -41,7 +41,7 @@ class RHB_Taxonomies {
         $labels = array(
             'name'              => _x('Service Locations', 'taxonomy general name', 'referralhub'),
             'singular_name'     => _x('Service Location', 'taxonomy singular name', 'referralhub'),
-            'inquiring_items'   => __('Inquiry Service Locations', 'referralhub'),
+            'search_items'      => __('Search Service Locations', 'referralhub'),
             'all_items'         => __('All Service Locations', 'referralhub'),
             'parent_item'       => __('Parent Service Location', 'referralhub'),
             'parent_item_colon' => __('Parent Service Location:', 'referralhub'),
@@ -61,10 +61,10 @@ class RHB_Taxonomies {
             'query_var'         => true,
             'rewrite'           => array('slug' => 'service-location'),
             'capabilities'      => array(
-                'manage_terms' => 'edit_service_provider_services',
-                'edit_terms'   => 'edit_service_provider_services',
-                'delete_terms' => 'edit_service_provider_services',
-                'assign_terms' => 'edit_service_provider_services',
+                'manage_terms' => 'manage_categories', // Apenas administradores
+                'edit_terms'   => 'manage_categories', // Apenas administradores
+                'delete_terms' => 'manage_categories', // Apenas administradores
+                'assign_terms' => 'edit_service_provider_services', // Service providers podem atribuir
             ),
         );
 
