@@ -10,7 +10,7 @@ This file documents all the significant changes made in each version of the Refe
 - Introduced a new settings panel for "Service Providers", centralizing various configuration options and improving usability.
 - Added the functionality to upload and manage a panel logo via media library in the settings.
 - Introduced a template selection for the frontend style with visual thumbnails for each template option.
-- Included new color and font settings for better customization of the inquiry form and result templates.
+
 
 ### Changed
 - Refined capability definitions for "Service Providers" to ensure permissions align with intended functionalities and allow for more effective administration of listed services.

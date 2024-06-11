@@ -35,6 +35,23 @@ class RHB_Settings {
         }
     }
 
+
+    public function selected_admins_callback() {
+        $options = get_option('rhb_settings');
+        $selected_admins = $options['rhb_selected_admins'] ?? [];
+        $admins = get_users(['role' => 'administrator']);
+    
+        echo '<select multiple name="rhb_settings[rhb_selected_admins][]" style="width: 100%;">';
+        foreach ($admins as $admin) {
+            $selected = in_array($admin->user_email, $selected_admins) ? 'selected' : '';
+            $admin_display = sprintf('%s (%s)', $admin->display_name, $admin->user_email);
+            echo '<option value="' . esc_attr($admin->user_email) . '" ' . $selected . '>' . esc_html($admin_display) . '</option>';
+        }
+        echo '</select>';
+    }
+    
+
+
     public function render_settings_page() {
         ?>
         <div class="wrap">
@@ -235,20 +252,22 @@ class RHB_Settings {
                 )
             ),
             'email_settings' => array(
-                'title' => __('Email Settings', 'referralhub'),
-                'fields' => array(
-                    'rhb_selected_admins' => array(
-                        'label' => __('Admins to Receive Emails', 'referralhub'),
-                        'type' => 'text', // Ajustar para múltipla seleção com jQuery
-                        'default' => ''
-                    ),
-                    'rhb_manual_emails' => array(
-                        'label' => __('Additional Emails', 'referralhub'),
-                        'type' => 'text',
-                        'default' => ''
-                    )
-                )
-            ),
+              'title' => __('Email Settings', 'referralhub'),
+                 'fields' => array(
+             'rhb_selected_admins' => array(
+            'label' => __('Admins to Receive Emails', 'referralhub'),
+            'type' => 'custom', // Mude o tipo para custom para usar o callback personalizado
+            'callback' => array($this, 'selected_admins_callback'),
+            'default' => []
+             ),
+            'rhb_manual_emails' => array(
+            'label' => __('Additional Emails', 'referralhub'),
+            'type' => 'text',
+            'default' => ''
+            )
+        )
+),
+
             'style_settings' => array(
                 'title' => __('Frontend Style', 'referralhub'),
                 'fields' => array(
