@@ -2,52 +2,40 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 class RHB_Users {
+    protected static $service_provider_caps = [
+        'edit_service_provider_service',
+        'read_service_provider_service',
+        'delete_service_provider_service',
+        'edit_service_provider_services',
+        'publish_service_provider_services',
+        'edit_published_service_provider_services',
+        'delete_service_provider_services',
+        'delete_published_service_provider_services',
+        'delete_posts',
+        'delete_published_posts',
+    ];
 
     public static function initialize_user_roles() {
         if (!get_role('service_provider')) {
             add_role(
                 'service_provider',
                 'Service Provider',
-                array(
-                    'read' => true,
-                    'upload_files' => true,
-                )
+                ['read' => true, 'upload_files' => true]
             );
         }
 
         $role = get_role('service_provider');
         if ($role) {
-            $capabilities = [
-                'edit_rhb_services',
-                'edit_published_rhb_services',
-                'publish_rhb_services',
-                'delete_rhb_services',
-                'edit_rhb_service',
-                'delete_rhb_service',
-                'read_rhb_service',
-                'edit_service_provider_services',
-            ];
-
-            foreach ($capabilities as $cap) {
+            foreach (self::$service_provider_caps as $cap) {
                 $role->add_cap($cap);
             }
         }
     }
 
     public static function cleanup_user_roles() {
-        if ($role = get_role('service_provider')) {
-            $capabilities = [
-                'edit_rhb_services',
-                'edit_published_rhb_services',
-                'publish_rhb_services',
-                'delete_rhb_services',
-                'edit_rhb_service',
-                'delete_rhb_service',
-                'read_rhb_service',
-                'edit_service_provider_services',
-            ];
-
-            foreach ($capabilities as $cap) {
+        $role = get_role('service_provider');
+        if ($role) {
+            foreach (self::$service_provider_caps as $cap) {
                 $role->remove_cap($cap);
             }
         }
@@ -114,10 +102,10 @@ class RHB_Users {
         if (!current_user_can('administrator')) {
             return false;
         }
-    
+
         $override_referral_fee = isset($_POST['override_referral_fee']) ? 'yes' : 'no';
         update_user_meta($user_id, 'rhb_override_referral_fee', $override_referral_fee);
-    
+
         if ($override_referral_fee === 'yes') {
             if (isset($_POST['referral_fee_type'])) {
                 update_user_meta($user_id, 'rhb_referral_fee_type', sanitize_text_field($_POST['referral_fee_type']));
@@ -130,14 +118,13 @@ class RHB_Users {
             }
         }
     }
-    
+
     public static function register_hooks() {
-        add_action('show_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
-        add_action('edit_user_profile', array(__CLASS__, 'add_custom_user_profile_fields'));
-        add_action('personal_options_update', array(__CLASS__, 'save_custom_user_profile_fields'));
-        add_action('edit_user_profile_update', array(__CLASS__, 'save_custom_user_profile_fields'));
+        add_action('show_user_profile', [__CLASS__, 'add_custom_user_profile_fields']);
+        add_action('edit_user_profile', [__CLASS__, 'add_custom_user_profile_fields']);
+        add_action('personal_options_update', [__CLASS__, 'save_custom_user_profile_fields']);
+        add_action('edit_user_profile_update', [__CLASS__, 'save_custom_user_profile_fields']);
     }
 }
 
 RHB_Users::register_hooks();
-?>
