@@ -20,8 +20,14 @@ class RHB_Inquiry_Form {
             $logged_in = false;
         }
     
+
+        $spinner_url = plugin_dir_url(dirname(__FILE__)) . '/public/img/spin-load-4.gif';
+
         ob_start();
         ?>
+
+        
+
         <!-- Formulário de Filtro (Etapa 1) -->
         <form id="rhb-inquiry-form" method="post">
             <div id="rhb-initial-inquiry">
@@ -70,7 +76,6 @@ class RHB_Inquiry_Form {
                 <?php else: ?>
                     <input type="text" name="name" placeholder="<?php echo esc_attr__('Name', 'referralhub'); ?>" required>
                     <input type="email" name="email" placeholder="<?php echo esc_attr__('Email', 'referralhub'); ?>" required>
-                    <p><a href="<?php echo wp_login_url(get_permalink()); ?>"><?php _e('Already have an account? Log in', 'referralhub'); ?></a></p>
                     <label>
                         <input type="checkbox" name="create_account" id="create-account">
                         <?php _e('Create an account', 'referralhub'); ?>
@@ -84,25 +89,14 @@ class RHB_Inquiry_Form {
                 <button type="submit"><?php echo esc_html__('Submit', 'referralhub'); ?></button>
             </div>
         </form>
-        <script>
-            document.getElementById('create-account').addEventListener('change', function() {
-                var accountInfo = document.getElementById('account-info');
-                if (this.checked) {
-                    accountInfo.style.display = 'block';
-                } else {
-                    accountInfo.style.display = 'none';
-                }
-            });
-    
-            document.getElementById('rhb-inquiry-btn').addEventListener('click', function() {
-                document.getElementById('rhb-initial-inquiry').style.display = 'none';
-                document.getElementById('rhb-personal-info-form').style.display = 'block';
-            });
-        </script>
+        <!-- Spinner de carregamento -->
+        <div id="loading-spinner" style="display: none;">
+            <img src="<?php echo $spinner_url; ?>" alt="Carregando..." />
+        </div>
         <?php
         return ob_get_clean();
     }
-    
 }
 
 new RHB_Inquiry_Form();
+?>

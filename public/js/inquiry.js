@@ -22,15 +22,15 @@ window.initAutocomplete = function() {
 */
 
 jQuery(document).ready(function($) {
-    // Exibir campos de nome e e-mail ao clicar em "Next"
     $('#rhb-inquiry-btn').click(function() {
         $('#rhb-personal-info-form').show();
         $(this).hide(); // Esconde o botão "Next" após o clique
     });
 
-    // Evento de submissão do formulário de busca
     $('#rhb-inquiry-form').on('submit', function(e) {
         e.preventDefault();
+
+        $('#loading-spinner').show(); // Mostra o spinner
 
         var formData = {
             'action': 'rhb_inquiry',
@@ -49,30 +49,23 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: formData,
             success: function(response) {
+                $('#loading-spinner').hide(); // Esconde o spinner
                 if (response.success) {
                     // Função para processar e exibir os resultados da busca
-                    displayResults(response.data);
+                    $('#rhb-inquiry-results').html(response.data);
                 } else {
                     // Tratar casos de falha na busca
                     $('#rhb-inquiry-results').html('<p>' + response.data + '</p>');
                 }
             },
             error: function() {
-                // Tratamento de erro
+                $('#loading-spinner').hide(); // Esconde o spinner
                 $('#rhb-inquiry-results').html('<p>Erro ao processar a busca.</p>');
             }
         });
     });
-
-    // Função para exibir os resultados da busca
-    function displayResults(data) {
-        var resultsContainer = $('#rhb-inquiry-results');
-        resultsContainer.empty();
-
-        // Insere o HTML retornado diretamente no container de resultados
-        resultsContainer.html(data);
-    }
 });
+
 
 
 
