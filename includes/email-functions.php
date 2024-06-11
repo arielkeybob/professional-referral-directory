@@ -5,19 +5,25 @@ defined('ABSPATH') or die('No script kiddies please!');
 require_once plugin_dir_path(RHB_MAIN_FILE) . 'public/form-data-functions.php';
 
 function send_email_to_service_author($post_id) {
+    error_log('Tentando enviar e-mail para o autor do serviço com post ID: ' . $post_id);
+    
     // Captura os dados do usuário a partir do formulário
     $user_data = get_form_data();
+    error_log('Dados do formulário capturados: ' . print_r($user_data, true));
 
     // Verifica a preferência de e-mail do service provider
     $email_preference = get_post_meta($post_id, '_rhb_email_preference', true);
+    error_log('Preferência de e-mail para o post ID ' . $post_id . ': ' . $email_preference);
 
     // Se o service provider optou por não receber e-mails, retorna sem enviar
     if ($email_preference != '1') {
+        error_log('O autor do post optou por não receber e-mails. Post ID: ' . $post_id);
         return; // Encerra a função se o service provider optou por não receber e-mails
     }
 
     // Obtém o e-mail do autor do post
     $author_email = get_the_author_meta('user_email', get_post_field('post_author', $post_id));
+    error_log('E-mail do autor do post: ' . $author_email);
 
     // Prepara os dados do e-mail
     $name = sanitize_text_field($user_data['name']);
@@ -33,15 +39,19 @@ function send_email_to_service_author($post_id) {
     );
 
     // Envia o e-mail
-    wp_mail($author_email, $subject, $message);
-
-    error_log('Enviando email para o autor do post. Post ID: ' . $post_id);
-    error_log('Dados do usuário: ' . print_r($user_data, true));
+    if (wp_mail($author_email, $subject, $message)) {
+        error_log('E-mail enviado com sucesso para ' . $author_email);
+    } else {
+        error_log('Falha ao enviar e-mail para ' . $author_email);
+    }
 }
 
 function send_admin_notification_emails($post_id) {
+    error_log('Tentando enviar notificações para os administradores para o post ID: ' . $post_id);
+
     // Captura os dados do usuário a partir do formulário
     $user_data = get_form_data();
+    error_log('Dados do usuário para notificação administrativa: ' . print_r($user_data, true));
 
     // Recupera e-mails adicionais das configurações do plugin
     $options = get_option('rhb_settings', []);
@@ -61,8 +71,10 @@ function send_admin_notification_emails($post_id) {
 
     // Envia o e-mail para cada admin
     foreach (array_merge($selected_admins, $manual_emails) as $admin_email) {
-        wp_mail(trim($admin_email), $subject, $message);
+        if (wp_mail(trim($admin_email), $subject, $message)) {
+            error_log('Notificação enviada com sucesso para ' . trim($admin_email));
+        } else {
+            error_log('Falha ao enviar notificação para ' . trim($admin_email));
+        }
     }
-
-    error_log('Enviando notificações para administradores. Post ID: ' . $post_id);
 }
