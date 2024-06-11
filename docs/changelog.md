@@ -2,6 +2,32 @@
 
 This file documents all the significant changes made in each version of the ReferralHub plugin.
 
+## [1.1.7] - 2024-06-10
+### Added
+- Implemented user role restrictions for creating new Service Types and Locations to enhance system security and data integrity.
+- Added new capabilities for "Service Providers" to view, edit, and delete their own media and service posts, enhancing their autonomy and facilitating relevant content management.
+- Implemented detailed capabilities for "Service Providers" including the ability to delete services and media they created themselves, ensuring full management capabilities within the plugin.
+- Introduced a new settings panel for "Service Providers", centralizing various configuration options and improving usability.
+- Added the functionality to upload and manage a panel logo via media library in the settings.
+- Introduced a template selection for the frontend style with visual thumbnails for each template option.
+- Included new color and font settings for better customization of the inquiry form and result templates.
+
+### Changed
+- Refined capability definitions for "Service Providers" to ensure permissions align with intended functionalities and allow for more effective administration of listed services.
+- Adjustments in access control methods to ensure that "Service Providers" have appropriate permissions without administrative intervention.
+- Relocated referral fee settings into the new settings panel, streamlining configuration processes and improving organizational efficiency.
+- Moved the Referral Fee settings to a new tab within the settings page for better organization.
+- Enhanced the functionality of the "Save Changes" button to ensure it works consistently across all tabs in the settings page.
+- Updated enqueue scripts and styles to ensure compatibility with the latest WordPress standards.
+
+### Fixed
+- Fixed bugs related to visibility and edit/delete capabilities of posts and media for "Service Providers", ensuring CRUD operations function as expected.
+- Security adjustments and performance optimizations to enhance the stability and reliability of the plugin.
+- Fixed deprecated `strpos` and `str_replace` warnings by ensuring non-null inputs in the functions.
+- Corrected the handling of color and font settings to update dynamically on the settings page.
+- Addressed the `map_meta_cap` notice by ensuring proper registration and capability assignment for the `rhb_service` post type.
+
+
 ## [1.1.6] - 2024-06-02
 ### Added
 - Introduced a new Setup Wizard for an improved onboarding experience.
