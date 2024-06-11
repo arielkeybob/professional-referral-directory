@@ -1,6 +1,6 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
-/*
+
 class RHB_Media_Restrictions {
 
     public static function init() {
@@ -38,7 +38,6 @@ class RHB_Media_Restrictions {
         return $allcaps;
     
 }
-
+}
 RHB_Media_Restrictions::init();
 ?>
-}*/
