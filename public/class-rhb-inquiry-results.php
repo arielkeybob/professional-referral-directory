@@ -77,14 +77,11 @@ class RHB_Inquiry_Results {
 
                 if (store_inquiry_data($data_to_store)) {
                     error_log("Dados de Inquiry inseridos com sucesso, ID: " . $wpdb->insert_id);
-                    // Agendar o envio de e-mails de forma assíncrona
-                    schedule_email_to_service_author($service_id, $data_to_store);
-                    schedule_admin_notification_emails($service_id, $data_to_store);
+                    schedule_email_to_service_author($service_id, $data_to_store); // Agendando o envio do e-mail
+                    schedule_admin_notification_emails($service_id, $data_to_store); // Agendando notificações para os administradores
                 } else {
                     error_log('Falha ao armazenar dados do inquiry.');
                 }
-
-                createOrUpdateContactAuthorRelation($contactId, $author_id, 'active', null);
 
                 include plugin_dir_path(RHB_MAIN_FILE) . 'public/templates/' . $template_file;
             }
