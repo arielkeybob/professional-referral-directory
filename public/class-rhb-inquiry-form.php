@@ -21,7 +21,7 @@ class RHB_Inquiry_Form {
         }
     
 
-        $spinner_url = plugin_dir_url(dirname(__FILE__)) . '/public/img/spin-load-4.gif';
+        $spinner_url = plugin_dir_url(dirname(__FILE__)) . '/public/img/spin-load-2.gif';
 
         ob_start();
         ?>

@@ -54,3 +54,11 @@
 #rhb-personal-info-form {
     display: block; /* Altere conforme necessário */
 }
+
+/* Spinner Gif */
+div#loading-spinner {
+    text-align: center;
+}
+#loading-spinner img {
+    width: 50px;
+}
