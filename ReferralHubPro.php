@@ -96,3 +96,14 @@ if (defined('DOING_AJAX') && DOING_AJAX) {
 }
 
 
+// Adiciona links adicionais na lista de plugins
+function rhb_add_plugin_action_links($links) {
+    $settings_link = '<a href="' . admin_url('edit.php?post_type=rhb_service&page=rhb-general-settings') . '">' . __('Settings', 'referralhub') . '</a>';
+    $docs_link = '<a href="https://github.com/arielkeybob/professional-referral-directory/tree/main/docs" target="_blank">' . __('Docs', 'referralhub') . '</a>';
+    
+    // Adiciona seus links no início do array de links
+    array_unshift($links, $settings_link, $docs_link);
+    return $links;
+}
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'rhb_add_plugin_action_links');
+

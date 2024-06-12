@@ -266,8 +266,7 @@ class RHB_Settings {
             'default' => ''
             )
         )
-),
-
+        ),
             'style_settings' => array(
                 'title' => __('Frontend Style', 'referralhub'),
                 'fields' => array(
