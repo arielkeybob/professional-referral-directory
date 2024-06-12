@@ -46,7 +46,7 @@
                         </div>
 
                         <!-- Inicialização do Materialize Select -->
-                        <!-- 
+                        
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
                                 var elems = document.querySelectorAll('select');
@@ -58,7 +58,7 @@
                                 select.style.width = instance.dropdownOptions.clientWidth + 'px';
                             });
                         </script>
-                        -->
+                        
                     </div>
 
                     <div class="row">
