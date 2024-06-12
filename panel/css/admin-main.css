@@ -159,3 +159,23 @@ form .submit {
 .rhb-notification {
     width: -webkit-fill-available;
 }
+
+.rhb-notification {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espaçamento entre notificações */
+}
+
+.rhb-notification-icon {
+    width: 50px; /* Largura da imagem */
+    height: 50px; /* Altura da imagem */
+    margin-right: 15px; /* Espaçamento entre a imagem e o texto */
+}
+
+.rhb-notification-content {
+    flex-grow: 1;
+}
