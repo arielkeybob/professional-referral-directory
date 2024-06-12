@@ -95,14 +95,20 @@ class RHB_Settings {
 
     public function render_field($args) {
         $field = $args['field'];
-        $id = $args['id'];
-        $options = get_option('rhb_settings');
-        $value = isset($options[$id]) ? $options[$id] : $field['default'];
+    $id = $args['id'];
+    $options = get_option('rhb_settings');
+    $value = $options[$id] ?? $field['default'];
+    $attributes = $field['attributes'] ?? [];
     
         switch ($field['type']) {
             case 'text':
                 echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' />";
                 break;
+                case 'number':
+                    $step = $attributes['step'] ?? 'any';
+                    $min = $attributes['min'] ?? '0';
+                    echo "<input type='number' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' step='$step' min='$min' />";
+                    break;
             case 'checkbox':
                 $checked = $value ? 'checked' : '';
                 echo "<input type='checkbox' id='$id' name='rhb_settings[$id]' value='1' $checked />";
@@ -349,30 +355,38 @@ class RHB_Settings {
                 )
             ),
             'referral_fee_settings' => array(
-                'title' => __('Referral Fee Settings', 'referralhub'),
-                'fields' => array(
-                    'rhb_referral_fee_type' => array(
-                        'label' => __('Referral Fee Type', 'referralhub'),
-                        'type' => 'select',
-                        'options' => array(
-                            'view' => __('Per View', 'referralhub'),
-                            'agreement_reached' => __('Per Agreement Reached', 'referralhub'),
-                            'both' => __('Combination of Both', 'referralhub')
-                        ),
-                        'default' => 'view'
-                    ),
-                    'rhb_general_referral_fee_view' => array(
-                        'label' => __('Per View', 'referralhub'),
-                        'type' => 'text',
-                        'default' => ''
-                    ),
-                    'rhb_general_referral_fee_agreement_reached' => array(
-                        'label' => __('Per Agreement Reached', 'referralhub'),
-                        'type' => 'text',
-                        'default' => ''
-                    )
-                )
+    'title' => __('Referral Fee Settings', 'referralhub'),
+    'fields' => array(
+        'rhb_referral_fee_type' => array(
+            'label' => __('Referral Fee Type', 'referralhub'),
+            'type' => 'select',
+            'options' => array(
+                'view' => __('Per View', 'referralhub'),
+                'agreement_reached' => __('Per Agreement Reached', 'referralhub'),
+                'both' => __('Combination of Both', 'referralhub')
             ),
+            'default' => 'view'
+        ),
+        'rhb_general_referral_fee_view' => array(
+            'label' => __('Per View', 'referralhub'),
+            'type' => 'number',
+            'default' => '0.00',
+            'attributes' => array(
+                'step' => '0.01',  // Permite valores decimais até duas casas
+                'min' => '0'       // Valor mínimo permitido
+            )
+        ),
+        'rhb_general_referral_fee_agreement_reached' => array(
+            'label' => __('Per Agreement Reached', 'referralhub'),
+            'type' => 'number',
+            'default' => '0.00',
+            'attributes' => array(
+                'step' => '0.01',  // Permite valores decimais até duas casas
+                'min' => '0'       // Valor mínimo permitido
+            )
+        )
+    )
+),
             'advanced_settings' => array(
                 'title' => __('Advanced', 'referralhub'),
                 'fields' => array(
