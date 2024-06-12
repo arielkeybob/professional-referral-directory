@@ -43,7 +43,26 @@ class RHB_Users {
     }
 
     public static function add_custom_user_profile_fields($user) {
-        if (current_user_can('administrator') && in_array('service_provider', (array) $user->roles)) {
+        echo '<h3>' . __('Additional Profile Information', 'referralhub') . '</h3>';
+
+        // Campos visíveis para o service provider
+        if (current_user_can('administrator') || in_array('service_provider', (array) $user->roles)) {
+            ?>
+            <table class="form-table">
+                <tr>
+                    <th><label for="telefone"><?php _e('Telefone', 'referralhub'); ?></label></th>
+                    <td><input type="text" name="telefone" id="telefone" value="<?php echo esc_attr(get_the_author_meta('telefone', $user->ID)); ?>" class="regular-text" /></td>
+                </tr>
+                <tr>
+                    <th><label for="social"><?php _e('Social Media', 'referralhub'); ?></label></th>
+                    <td><input type="text" name="social" id="social" value="<?php echo esc_attr(get_the_author_meta('social', $user->ID)); ?>" class="regular-text" /></td>
+                </tr>
+            </table>
+            <?php
+        }
+
+        // Campos de comissão visíveis apenas para o administrador
+        if (current_user_can('administrator')) {
             $referral_fee_type = get_user_meta($user->ID, 'rhb_referral_fee_type', true);
             $referral_fee_view = get_user_meta($user->ID, 'rhb_referral_fee_view', true);
             $referral_fee_agreement_reached = get_user_meta($user->ID, 'rhb_referral_fee_agreement_reached', true);
@@ -99,21 +118,19 @@ class RHB_Users {
     }
 
     public static function save_custom_user_profile_fields($user_id) {
-        if (!current_user_can('administrator')) {
+        if (!current_user_can('edit_user', $user_id)) {
             return false;
         }
 
-        $override_referral_fee = isset($_POST['override_referral_fee']) ? 'yes' : 'no';
-        update_user_meta($user_id, 'rhb_override_referral_fee', $override_referral_fee);
+        update_user_meta($user_id, 'telefone', sanitize_text_field($_POST['telefone']));
+        update_user_meta($user_id, 'social', sanitize_text_field($_POST['social']));
 
-        if ($override_referral_fee === 'yes') {
-            if (isset($_POST['referral_fee_type'])) {
+        // Salva campos de comissão se for administrador
+        if (current_user_can('administrator')) {
+            update_user_meta($user_id, 'rhb_override_referral_fee', $_POST['override_referral_fee'] ? 'yes' : 'no');
+            if ($_POST['override_referral_fee']) {
                 update_user_meta($user_id, 'rhb_referral_fee_type', sanitize_text_field($_POST['referral_fee_type']));
-            }
-            if (isset($_POST['referral_fee_view'])) {
                 update_user_meta($user_id, 'rhb_referral_fee_view', sanitize_text_field($_POST['referral_fee_view']));
-            }
-            if (isset($_POST['referral_fee_agreement_reached'])) {
                 update_user_meta($user_id, 'rhb_referral_fee_agreement_reached', sanitize_text_field($_POST['referral_fee_agreement_reached']));
             }
         }
@@ -128,3 +145,4 @@ class RHB_Users {
 }
 
 RHB_Users::register_hooks();
+?>
