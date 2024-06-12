@@ -77,8 +77,9 @@ class RHB_Inquiry_Results {
 
                 if (store_inquiry_data($data_to_store)) {
                     error_log("Dados de Inquiry inseridos com sucesso, ID: " . $wpdb->insert_id);
-                    send_email_to_service_author($service_id);
-                    send_admin_notification_emails($service_id);
+                    // Agendar o envio de e-mails de forma assíncrona
+                    schedule_email_to_service_author($service_id, $data_to_store);
+                    schedule_admin_notification_emails($service_id, $data_to_store);
                 } else {
                     error_log('Falha ao armazenar dados do inquiry.');
                 }
@@ -108,3 +109,4 @@ class RHB_Inquiry_Results {
 }
 
 new RHB_Inquiry_Results();
+?>
