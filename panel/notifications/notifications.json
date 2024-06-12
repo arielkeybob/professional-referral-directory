@@ -2,7 +2,7 @@
     {
         "id": "23",
         "titulo": "Attention: 1 - Plugin Under Development",
-        "mensagem": "This plugin is currently in active development. Some features may not be available or are being tested and optimized. We appreciate your understanding and patience. If you encounter any issues, please report them to us on our GitHub page to help improve the plugin. [GitHub Repository](https://github.com/arielkeybob/referralhub)",
+        "mensagem": "This plugin is currently in active development. Some features may not be available or are being tested and optimized. We appreciate your understanding and patience. If you encounter any issues, please <a href='https://github.com/arielkeybob/professional-referral-directory/issues' target='_blank' style='color: #0073aa; text-decoration: none;'>report them to us on our GitHub page</a> to help improve the plugin.",
         "trigger": "on_activation",
         "status": "ativo",
         "imagem": "plugin-logo-ntf.png"
@@ -14,13 +14,6 @@
         "trigger": "on_activation",
         "status": "ativo",
         "imagem": "plugin-logo-ntf.png"
-    },
-    {
-        "id": "25",
-        "titulo": "3 - Contribute to Plugin Development",
-        "mensagem": "As a plugin in development, we value your contribution! If you have ideas, suggestions, or want to participate in the improvement process, please reach out to us. Together, we can build something amazing!",
-        "trigger": "on_activation",
-        "status": "ativo",
-        "imagem": "plugin-logo-ntf.png"
     }
+    
 ]

@@ -179,3 +179,12 @@ form .submit {
 .rhb-notification-content {
     flex-grow: 1;
 }
+.rhb-notification a {
+    color: #0073aa; /* Cor do link */
+    text-decoration: underline !important; /* Sem sublinhado */
+}
+
+.rhb-notification a:hover {
+    color: #4ab3e4 !important;
+   /* text-decoration: none !important; /* Sublinhado ao passar o mouse */
+}
