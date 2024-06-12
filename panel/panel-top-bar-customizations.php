@@ -50,7 +50,7 @@ function rhb_add_custom_admin_bar() {
             <div id="rhb-custom-user" style="width: 83%; display: flex; justify-content: flex-end; align-items: center;">
                 <!-- Ícone de ajuda -->
                 <div class="rhb-icon-help" style="margin-right: 20px;">
-                    <a href="#" title="Ajuda">
+                    <a href="https://github.com/arielkeybob/professional-referral-directory/tree/main/docs" title="Ajuda">
                     <img src="<?php echo esc_url($help_icon_url); ?>" alt="Help" style="height: 24px; width: 24px;">
                     </a> <!-- Link de ajuda será adicionado aqui -->
                 </div>
