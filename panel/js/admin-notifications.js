@@ -10,6 +10,8 @@ jQuery(document).ready(function($) {
     $('.rhb-notification').hide();
     if (totalNotifications > 0) {
         $('.rhb-notification').eq(currentNotification).show();
+    } else {
+        $('#rhb-notifications-container').hide(); // Esconde o contêiner se não há notificações
     }
 
     // Adiciona a funcionalidade de navegação 'Próximo'
@@ -36,13 +38,17 @@ jQuery(document).ready(function($) {
         }, function(response) {
             // Opções de callback após fechar a notificação, se necessário
         });
-        
+
         // Remove a notificação atual da exibição e ajusta o índice e total
         $(this).closest('.rhb-notification').remove();
         totalNotifications--;
-        if (currentNotification >= totalNotifications) {
-            currentNotification = 0; // Reset para o início se a última notificação foi fechada
+        if (totalNotifications > 0) {
+            if (currentNotification >= totalNotifications) {
+                currentNotification = 0; // Reset para o início se a última notificação foi fechada
+            }
+            $('.rhb-notification').eq(currentNotification).show(); // Mostra a próxima notificação
+        } else {
+            $('#rhb-notifications-container').hide(); // Esconde o contêiner se não há mais notificações
         }
-        $('.rhb-notification').eq(currentNotification).show(); // Mostra a próxima notificação
     });
 });
