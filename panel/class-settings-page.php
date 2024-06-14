@@ -7,7 +7,7 @@ class RHB_Settings {
     public function __construct() {
         $this->settings = $this->get_settings();
         add_action('admin_init', array($this, 'register_settings'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueue_assets'));
+       
     }
 
     public function register_settings() {
@@ -405,17 +405,6 @@ class RHB_Settings {
         );
     }
 
-    public function enqueue_assets($hook) {
-        if ($hook != 'rhb_service_page_rhb-general-settings') {
-            return;
-        }
-        wp_enqueue_script('rhb-settings-page-colors', plugin_dir_url(__FILE__) . 'js/settings-page-colors.js', array('jquery'), '1.0.0', true);
-        wp_enqueue_style('rhb-admin-css', plugin_dir_url(__FILE__) . 'css/admin-main.css', array(), '1.0.0');
-        wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
-        wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
-        wp_enqueue_media();
-        wp_enqueue_script('google-fonts-api', 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', array(), null, true);
-    }
 }
 
 new RHB_Settings();
