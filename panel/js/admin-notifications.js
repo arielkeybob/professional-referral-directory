@@ -31,9 +31,9 @@ jQuery(document).ready(function($) {
     // Adiciona o evento de clique para fechar a notificação
     $(document).on('click', '.rhb-notification button.notice-dismiss', function() {
         var notificationId = $(this).closest('.rhb-notification').data('notification-id');
-        // Faz a requisição AJAX para marcar a notificação como fechada
+        // Faz a requisição AJAX para marcar a notificação como closed
         $.post(ajaxurl, {
-            action: 'rhb_notification_fechada',
+            action: 'rhb_notification_closed',
             notification_id: notificationId
         }, function(response) {
             // Opções de callback após fechar a notificação, se necessário
@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
         totalNotifications--;
         if (totalNotifications > 0) {
             if (currentNotification >= totalNotifications) {
-                currentNotification = 0; // Reset para o início se a última notificação foi fechada
+                currentNotification = 0; // Reset para o início se a última notificação foi closed
             }
             $('.rhb-notification').eq(currentNotification).show(); // Mostra a próxima notificação
         } else {

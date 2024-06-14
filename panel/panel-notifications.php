@@ -20,15 +20,27 @@ function rhb_obter_notificacoes_ativas() {
 }
 
 // Manipulador para fechar notificações via AJAX
-add_action('wp_ajax_rhb_notification_fechada', 'rhb_notification_fechada_handler');
-function rhb_notification_fechada_handler() {
+add_action('wp_ajax_rhb_notification_closed', 'rhb_notification_closed_handler');
+function rhb_notification_closed_handler() {
     $user_id = get_current_user_id();
     $notification_id = isset($_POST['notification_id']) ? $_POST['notification_id'] : '';
     if ($notification_id) {
-        update_user_meta($user_id, 'rhb_notification_fechada_' . $notification_id, true);
+        // Recupera o array atual de notificações closed ou inicializa como array vazio
+        $closed = get_user_meta($user_id, 'rhb_notifications_closed', true);
+        if (!is_array($closed)) {
+            $closed = [];
+        }
+        // Adiciona a nova notificação ao array, se ainda não estiver lá
+        if (!in_array($notification_id, $closed)) {
+            $closed[] = $notification_id;
+        }
+        // Atualiza o metadado com o novo array
+        update_user_meta($user_id, 'rhb_notifications_closed', $closed);
     }
     wp_die();
 }
+
+
 
 // Exibe notificações no painel de administração
 add_action('admin_notices', 'rhb_exibir_notificacoes_admin');
@@ -38,13 +50,21 @@ function rhb_exibir_notificacoes_admin() {
     }
 
     $user_id = get_current_user_id();
+    $closed = get_user_meta($user_id, 'rhb_notifications_closed', true);
+    if (!is_array($closed)) {
+        $closed = [];
+    }
+
     $notificacoes = rhb_obter_notificacoes_ativas();
+    $notificacoes_ativas = array_filter($notificacoes, function($notification) use ($closed) {
+        return !in_array($notification['id'], $closed);
+    });
 
-    echo '<div id="rhb-notifications-container">';
-    echo '<div class="rhb-notification-slider">';
+    if (!empty($notificacoes_ativas)) {
+        echo '<div id="rhb-notifications-container">';
+        echo '<div class="rhb-notification-slider">';
 
-    foreach ($notificacoes as $notification) {
-        if (!get_user_meta($user_id, 'rhb_notification_fechada_' . $notification['id'], true)) {
+        foreach ($notificacoes_ativas as $notification) {
             $imagem_url = plugins_url('img/' . $notification['imagem'], __FILE__);
             echo "<div class='notice notice-info is-dismissible rhb-notification' data-notification-id='{$notification['id']}'>
                     <img src='{$imagem_url}' class='rhb-notification-icon' alt='Notification Icon'>
@@ -55,8 +75,11 @@ function rhb_exibir_notificacoes_admin() {
                     <button type='button' class='notice-dismiss'><span class='screen-reader-text'>Dismiss this notice.</span></button>
                   </div>";
         }
-    }
 
-    echo '</div><div class="rhb-notification-controls"><button class=\'prev\'>Prev</button><button class=\'next\'>Next</button></div>';
-    echo '</div>';
+        echo '</div><div class="rhb-notification-controls"><button class=\'prev\'>Prev</button><button class=\'next\'>Next</button></div>';
+        echo '</div>';
+    }
 }
+
+
+
