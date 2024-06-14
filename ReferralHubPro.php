@@ -67,18 +67,6 @@ register_activation_hook(__FILE__, 'rhbActivate');
 
 
 
-// Enfileirando o carregador de mídia
-function rhb_enqueue_media_uploader() {
-    if (function_exists('wp_enqueue_media')) {
-        wp_enqueue_media();
-    } else {
-        wp_enqueue_style('thickbox');
-        wp_enqueue_script('media-upload');
-        wp_enqueue_script('thickbox');
-    }
-}
-add_action('admin_enqueue_scripts', 'rhb_enqueue_media_uploader');
-
 
 
 function rhbDeactivate() {
@@ -110,7 +98,4 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'rhb_add_plugin_a
 
 
 
-function enqueue_cleave_js() {
-    wp_enqueue_script('cleave-js', 'https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js', array('jquery'), '1.6.0', true);
-}
-add_action('admin_enqueue_scripts', 'enqueue_cleave_js');
+

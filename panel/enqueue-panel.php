@@ -9,7 +9,9 @@ function referralhub_enqueue_admin_styles($hook_suffix) {
         wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
         wp_enqueue_style('rhb-admin-notifications-style', plugins_url('/panel/css/admin-notifications.css', RHB_MAIN_FILE));
 
-        // Estilos específicos da página de configurações
+        if (current_user_can('service_provider')) {
+            wp_enqueue_style('rhb-custom-admin-style', plugin_dir_url(__FILE__) . 'css/provider-panel.css');
+        }
         if ($hook_suffix === 'rhb_service_page_rhb-general-settings') {
             wp_enqueue_style('rhb-admin-css', plugin_dir_url(__FILE__) . 'css/admin-panel.css', array(), '1.0.0');
             wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4');
@@ -34,6 +36,18 @@ function referralhub_enqueue_admin_scripts($hook_suffix) {
             wp_enqueue_script('rhb-admin-js', plugin_dir_url(__FILE__) . 'js/admin-settings-manager.js', array('jquery'), '1.0.0', true);
             wp_enqueue_script('google-fonts-api', 'https://fonts.googleapis.com/css2?family=Roboto&display=swap', array(), null, true);
         }
+        
+        // Enfileirar o carregador de mídia
+        if (function_exists('wp_enqueue_media')) {
+            wp_enqueue_media();
+        } else {
+            wp_enqueue_style('thickbox');
+            wp_enqueue_script('media-upload');
+            wp_enqueue_script('thickbox');
+        }
+
+        // Enfileira o script Cleave.js para formatar campos de entrada
+        wp_enqueue_script('cleave-js', 'https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js', array('jquery'), '1.6.0', true);
     }
 }
 

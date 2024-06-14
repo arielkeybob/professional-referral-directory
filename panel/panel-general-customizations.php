@@ -33,12 +33,7 @@ function rhb_redirect_dashboard() {
 add_action('current_screen', 'rhb_redirect_dashboard');
 
 
-function rhbEnqueueCustomAdminStyle() {
-    if (current_user_can('service_provider')) {
-        wp_enqueue_style('rhb-custom-admin-style', plugin_dir_url(__FILE__) . '../panel/css/provider-panel.css');
-    }
-}
-add_action('admin_enqueue_scripts', 'rhbEnqueueCustomAdminStyle', 9999999);
+
 
 
 
