@@ -8,6 +8,7 @@ function referralhub_enqueue_admin_styles($hook_suffix) {
         wp_enqueue_style('rhb-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', RHB_MAIN_FILE));
         wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
         wp_enqueue_style('rhb-admin-notifications-style', plugins_url('/panel/css/admin-notifications.css', RHB_MAIN_FILE));
+        //wp_enqueue_style('dashicons');
 
         if (current_user_can('service_provider')) {
             wp_enqueue_style('rhb-custom-admin-style', plugin_dir_url(__FILE__) . 'css/provider-panel.css');

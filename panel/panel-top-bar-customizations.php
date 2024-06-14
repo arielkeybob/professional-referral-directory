@@ -97,8 +97,3 @@ function rhb_custom_admin_bar_scripts() {
     <?php
 }
 add_action('admin_head', 'rhb_custom_admin_bar_scripts');
-
-function rhb_enqueue_dashicons() {
-    wp_enqueue_style('dashicons');
-}
-add_action('admin_enqueue_scripts', 'rhb_enqueue_dashicons');
