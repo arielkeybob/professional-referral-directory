@@ -95,19 +95,19 @@ class RHB_Settings {
 
     public function render_field($args) {
         $field = $args['field'];
-    $id = $args['id'];
-    $options = get_option('rhb_settings');
-    $value = $options[$id] ?? $field['default'];
-    $attributes = $field['attributes'] ?? [];
+        $id = $args['id'];
+        $options = get_option('rhb_settings');
+        $value = isset($options[$id]) ? $options[$id] : $field['default'];
+        $attributes = $field['attributes'] ?? [];
     
         switch ($field['type']) {
             case 'text':
                 echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' />";
                 break;
                 case 'number':
-                    $step = $attributes['step'] ?? 'any';
-                    $min = $attributes['min'] ?? '0';
-                    echo "<input type='number' id='$id' name='rhb_settings[$id]' value='$value' class='regular-text' step='$step' min='$min' />";
+                    // Certifique-se de formatar o valor para a visualização correta
+                    $formattedValue = number_format((float)$value, 2, ',', '.');
+                    echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$formattedValue' class='regular-text rhb-number-field' />";
                     break;
             case 'checkbox':
                 $checked = $value ? 'checked' : '';

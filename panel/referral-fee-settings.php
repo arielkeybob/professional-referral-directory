@@ -13,14 +13,18 @@ function rhb_sanitize_settings($input) {
     }
     
     if (isset($input['rhb_general_referral_fee_view'])) {
-        $sanitized_input['rhb_general_referral_fee_view'] = sanitize_text_field($input['rhb_general_referral_fee_view']);
+        // Removendo caracteres não numéricos exceto a vírgula, depois convertendo vírgula para ponto
+        $sanitized_input['rhb_general_referral_fee_view'] = preg_replace('/[^\d,]/', '', $input['rhb_general_referral_fee_view']);
+        $sanitized_input['rhb_general_referral_fee_view'] = str_replace(',', '.', $sanitized_input['rhb_general_referral_fee_view']);
     }
     
     if (isset($input['rhb_general_referral_fee_agreement_reached'])) {
-        $sanitized_input['rhb_general_referral_fee_agreement_reached'] = sanitize_text_field($input['rhb_general_referral_fee_agreement_reached']);
+        $sanitized_input['rhb_general_referral_fee_agreement_reached'] = preg_replace('/[^\d,]/', '', $input['rhb_general_referral_fee_agreement_reached']);
+        $sanitized_input['rhb_general_referral_fee_agreement_reached'] = str_replace(',', '.', $sanitized_input['rhb_general_referral_fee_agreement_reached']);
     }
     
     return $sanitized_input;
 }
+
 
 add_action('admin_init', 'rhb_register_referral_fee_settings');

@@ -110,3 +110,7 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'rhb_add_plugin_a
 
 
 
+function enqueue_cleave_js() {
+    wp_enqueue_script('cleave-js', 'https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js', array('jquery'), '1.6.0', true);
+}
+add_action('admin_enqueue_scripts', 'enqueue_cleave_js');

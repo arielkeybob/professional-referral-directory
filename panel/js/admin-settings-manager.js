@@ -10,24 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = this.getAttribute('href').substring(1);
 
             sections.forEach(section => {
-                if (section.id === target) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
+                section.style.display = (section.id === target) ? 'block' : 'none';
             });
 
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
             this.classList.add('active');
-
-            // Armazena a aba ativa no localStorage
             localStorage.setItem('rhbActiveTab', target);
         });
     });
 
-    // Abre a aba armazenada no localStorage
     const activeTab = localStorage.getItem('rhbActiveTab');
     if (activeTab) {
         document.querySelector(`.rhb-settings-tab[href="#${activeTab}"]`).click();
@@ -35,28 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
         tabs[0].click();
     }
 
-    // Adiciona funcionalidade de salvamento para todos os botões save
     saveButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Simula um clique no botão de envio do formulário
-            document.querySelector('form input[type="submit"]').click();
+            form.submit();
         });
     });
 
-    // Script para mostrar/ocultar campos de referral fee
     function toggleReferralFeeFields() {
         const type = document.getElementById('rhb_referral_fee_type').value;
-        document.querySelector('input#rhb_general_referral_fee_view').closest('tr').style.display = (type === 'view' || type === 'both') ? 'table-row' : 'none';
-        document.querySelector('input#rhb_general_referral_fee_agreement_reached').closest('tr').style.display = (type === 'agreement_reached' || type === 'both') ? 'table-row' : 'none';
+        const viewField = document.querySelector('input#rhb_general_referral_fee_view').closest('tr');
+        const agreementField = document.querySelector('input#rhb_general_referral_fee_agreement_reached').closest('tr');
+        viewField.style.display = (type === 'view' || type === 'both') ? 'table-row' : 'none';
+        agreementField.style.display = (type === 'agreement_reached' || type === 'both') ? 'table-row' : 'none';
     }
 
     const referralFeeTypeField = document.getElementById('rhb_referral_fee_type');
     if (referralFeeTypeField) {
         referralFeeTypeField.addEventListener('change', toggleReferralFeeFields);
-        toggleReferralFeeFields();  // Garante que os campos corretos sejam mostrados inicialmente
+        toggleReferralFeeFields();
     }
 
-    // Script para upload de mídia
     const mediaButtons = document.querySelectorAll('button[id$="_button"]');
     mediaButtons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -83,6 +74,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const id = this.id.replace('_remove', '');
             document.getElementById(id).value = '';
             document.getElementById(id + '_preview').src = '';
+        });
+    });
+
+    document.querySelectorAll('.rhb-number-field').forEach(input => {
+        input.addEventListener('input', function() {
+            let rawValue = input.value.replace(/[^0-9]/g, '');
+            if (rawValue === '') {
+                input.value = '';
+                return;
+            }
+            let integerPart = rawValue.slice(0, -2) || '0';
+            let decimalPart = rawValue.slice(-2);
+            input.value = new Intl.NumberFormat('pt-BR', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(parseFloat(integerPart + '.' + decimalPart));
+        });
+    });
+
+    form.addEventListener('submit', function(e) {
+        document.querySelectorAll('.rhb-number-field').forEach(input => {
+            let normalizedValue = input.value.replace(/\./g, '').replace(',', '.');
+            input.value = parseFloat(normalizedValue).toFixed(2);
         });
     });
 });
