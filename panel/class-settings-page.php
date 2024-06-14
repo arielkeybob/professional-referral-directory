@@ -109,10 +109,13 @@ class RHB_Settings {
                     $formattedValue = number_format((float)$value, 2, ',', '.');
                     echo "<input type='text' id='$id' name='rhb_settings[$id]' value='$formattedValue' class='regular-text rhb-number-field' />";
                     break;
-            case 'checkbox':
-                $checked = $value ? 'checked' : '';
-                echo "<input type='checkbox' id='$id' name='rhb_settings[$id]' value='1' $checked />";
-                break;
+                case 'checkbox':
+                    // Adiciona a classe 'rhb-toggle-checkbox' ao checkbox
+                    echo "<label class='rhb-switch'>";
+                    echo "<input type='checkbox' id='$id' name='rhb_settings[$id]' value='1' " . checked($value, 1, false) . " class='rhb-toggle-checkbox'>";
+                    echo "<span class='rhb-slider rhb-round'></span>";
+                    echo "</label>";
+                    break;
             case 'color':
                 echo "<input type='color' id='$id' name='rhb_settings[$id]' value='$value' />";
                 echo "<input type='text' id='{$id}_hex' name='rhb_settings[{$id}_hex]' class='color-hex-text-field' value='$value' placeholder='#ffffff' />";
@@ -243,8 +246,10 @@ class RHB_Settings {
                     'rhb_delete_data_on_uninstall' => array(
                         'label' => __('Delete Data on Uninstall', 'referralhub'),
                         'type' => 'checkbox',
-                        'default' => ''
+                        'default' => '',
+                        'class' => 'rhb-toggle-checkbox' // Adicione a classe com o prefixo aqui
                     )
+
                 )
             ),
             'api_settings' => array(

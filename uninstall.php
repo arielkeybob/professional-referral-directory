@@ -41,6 +41,7 @@ $meta_keys_to_delete = [
     'rhb_referral_fee_view',
     'rhb_referral_fee_agreement_reached',
     'rhb_override_referral_fee',
+    'rhb_notifications_closed'
 ];
 
 foreach ($meta_keys_to_delete as $meta_key) {

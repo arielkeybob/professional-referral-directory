@@ -127,13 +127,17 @@ if (isset($_GET['skip'])) {
             <form method="post" action="">
                 <?php wp_nonce_field('rhb_create_pages', 'rhb_create_pages_nonce'); ?>
                 <p>
-                    <input type="checkbox" id="create_inquiry_page" name="create_inquiry_page" value="1" <?php disabled($page_exists); ?>>
-                    <label for="create_inquiry_page"><?php _e('Automatically create the inquiry page', 'referralhub'); ?></label>
+                    <label class="rhb-switch">
+                        <input type="checkbox" id="create_inquiry_page" name="create_inquiry_page" value="1" class="rhb-toggle-checkbox" <?php disabled($page_exists); ?>>
+                        <span class="rhb-slider"></span>
+                        <?php _e('Automatically create the inquiry page', 'referralhub'); ?>
+                    </label>
                 </p>
                 <p>
                     <input type="submit" name="rhb_create_pages_submit" class="button button-primary" value="<?php _e('Create Pages', 'referralhub'); ?>" <?php disabled($page_exists); ?>>
                 </p>
             </form>
+
         </div>
         <div class="setup-footer">
             <a href="<?php echo admin_url('edit.php?post_type=rhb_service'); ?>"><?php _e('Skip setup', 'referralhub'); ?></a>

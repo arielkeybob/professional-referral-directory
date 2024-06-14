@@ -70,12 +70,16 @@ class RHB_Users {
             ?>
             <h3><?php _e('Referral Fee Settings', 'referralhub'); ?></h3>
             <table class="form-table">
-                <tr>
-                    <th><label for="override_referral_fee"><?php _e('Override Global Referral Fee Settings', 'referralhub'); ?></label></th>
-                    <td>
-                        <input type="checkbox" name="override_referral_fee" id="override_referral_fee" value="yes" <?php checked($override_referral_fee, true); ?> />
-                    </td>
-                </tr>
+            <tr>
+                <th><label for="override_referral_fee"><?php _e('Override Global Referral Fee Settings', 'referralhub'); ?></label></th>
+                <td>
+                    <label class="rhb-switch">
+                        <input type="checkbox" name="override_referral_fee" id="override_referral_fee" value="yes" class="rhb-toggle-checkbox" <?php checked($override_referral_fee, true); ?> />
+                        <span class="rhb-slider"></span>
+                    </label>
+                </td>
+            </tr>
+
                 <tr class="referral_fee_settings" style="display: <?php echo $override_referral_fee ? '' : 'none'; ?>">
                     <th><label for="referral_fee_type"><?php _e('Referral Fee Type', 'referralhub'); ?></label></th>
                     <td>

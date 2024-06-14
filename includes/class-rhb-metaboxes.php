@@ -61,10 +61,12 @@ class RHB_Metaboxes {
         $email_preference = get_post_meta($post->ID, '_rhb_email_preference', true);
 
         // Checkbox para a preferência de e-mail
-        echo '<label>';
-        echo '<input type="checkbox" name="rhb_email_preference" value="1"' . checked($email_preference, '1', false) . '>';
+        echo '<label class="rhb-switch">';
+        echo '<input type="checkbox" name="rhb_email_preference" value="1" class="rhb-toggle-checkbox"' . checked($email_preference, '1', false) . '>';
+        echo '<span class="rhb-slider"></span>';
         esc_html_e('Desejo receber notificações por e-mail para este serviço', 'referralhub');
         echo '</label>';
+
     }
 
     // Função para salvar os dados dos meta boxes

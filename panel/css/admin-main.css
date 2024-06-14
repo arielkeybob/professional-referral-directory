@@ -95,3 +95,155 @@ form .submit {
 
 
 
+
+/* Notifications */
+/* Notifications */
+.rhb-notification-slider {
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.rhb-notification-slider .notice {
+    border: none; /* Assegura que não há bordas */
+    box-shadow:none;
+    padding: 0 10px; /* Ajuste no padding para um design mais limpo */
+    background-color: #f9f9f9; /* Mantém o fundo claro para contraste */
+}
+
+.rhb-notification-controls {
+    display: flex;
+    justify-content: flex-end; /* Alinha os controles à direita */
+    margin-top: 10px;
+    width: auto !important; /* Garante que a área de controle ocupe toda a largura */
+    padding-right: 20px; /* Padding à direita para alinhamento dos botões */
+}
+
+.rhb-notification-controls button {
+    padding: 5px 10px;
+    margin-left: 5px; /* Espaçamento entre botões */
+    background-color: #0073aa; /* Cor do botão */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px; /* Bordas arredondadas para os botões */
+}
+
+.rhb-notification-controls button:hover {
+    background-color: #005288; /* Cor do botão ao passar o mouse */
+}
+
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#rhb-notifications-container {
+    margin: 20px 50px 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Inicia invisível */
+    animation-name: fadeIn; /* Nome da animação */
+    animation-duration: 800ms; /* Duração da animação */
+    animation-delay: 2s; /* Atraso antes da animação começar */
+    animation-fill-mode: forwards; /* Mantém o estado final da animação */
+}
+
+.rhb-notification {
+    width: -webkit-fill-available;
+}
+
+.rhb-notification {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espaçamento entre notificações */
+}
+
+.rhb-notification-icon {
+    width: 50px; /* Largura da imagem */
+    height: 50px; /* Altura da imagem */
+    margin-right: 15px; /* Espaçamento entre a imagem e o texto */
+}
+
+.rhb-notification-content {
+    flex-grow: 1;
+}
+.rhb-notification a {
+    color: #0073aa; /* Cor do link */
+    text-decoration: underline !important; /* Sem sublinhado */
+}
+
+.rhb-notification a:hover {
+    color: #4ab3e4 !important;
+   /* text-decoration: none !important; /* Sublinhado ao passar o mouse */
+}
+
+
+
+/* Estilo base para o switch (o label) */
+.rhb-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* largura do switch */
+    height: 25px; /* altura do switch */
+  }
+  
+  /* Esconde o input checkbox padrão */
+  .rhb-switch input.rhb-toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Estilo para a slider (a parte que desliza no switch) */
+  .rhb-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* cor de fundo quando está desativado */
+    transition: .4s; /* animação suave para deslizar */
+    border-radius: 25px; /* arredondamento das bordas do slider */
+  }
+  
+  /* Círculo interno que representa a alavanca do switch */
+  .rhb-slider:before {
+    position: absolute;
+    content: "";
+    height: 21px; /* tamanho do círculo interno um pouco menor que o slider */
+    width: 21px;
+    left: 2px; /* pequena margem para não tocar na borda */
+    bottom: 2px; /* pequena margem para não tocar na borda */
+    background-color: white; /* cor do círculo interno */
+    transition: .4s; /* animação suave para deslizar */
+    border-radius: 50%; /* torna o círculo perfeitamente redondo */
+  }
+  
+  /* Cor do slider quando o checkbox está marcado/ativado */
+  .rhb-switch input.rhb-toggle-checkbox:checked + .rhb-slider {
+    background-color: #2196F3; /* cor de fundo quando está ativado */
+  }
+  
+  /* Desloca o círculo interno para a direita quando ativado */
+  .rhb-switch input.rhb-toggle-checkbox:checked + .rhb-slider:before {
+    transform: translateX(25px); /* desliza para a direita; ajuste conforme a largura do seu switch */
+  }
+  
+  /* Estilo opcional para quando o usuário foca no switch com a tabulação do teclado */
+  .rhb-switch input.rhb-toggle-checkbox:focus + .rhb-slider {
+    box-shadow: 0 0 1px #2196F3; /* adiciona um glow ao redor do slider */
+  }
+  
