@@ -8,6 +8,8 @@ function referralhub_enqueue_admin_styles($hook_suffix) {
         wp_enqueue_style('rhb-dashboard-admin-style', plugins_url('/panel/css/dashboard-style-admin.css', RHB_MAIN_FILE));
         wp_enqueue_style('datatables-css', 'https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css');
         wp_enqueue_style('rhb-admin-notifications-style', plugins_url('/panel/css/admin-notifications.css', RHB_MAIN_FILE));
+        wp_enqueue_style('notyf-css', 'https://unpkg.com/notyf/notyf.min.css');
+        wp_enqueue_style('material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
         //wp_enqueue_style('dashicons');
 
         if (current_user_can('service_provider')) {
@@ -30,6 +32,7 @@ function referralhub_enqueue_admin_scripts($hook_suffix) {
         wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', array('jquery'), null, true);
         wp_enqueue_script('datatables-js', 'https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js', array('jquery'), null, true);
         wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js', array('jquery'), null, true);
+        wp_enqueue_script('notyf-js', 'https://unpkg.com/notyf/notyf.min.js', [], null, true);
 
         // Scripts específicos da página de configurações
         if ($hook_suffix === 'rhb_service_page_rhb-general-settings') {

@@ -1,3 +1,8 @@
+**Reorganizar este trecho**
+O  'material-icons' serve para renderizar icones em todo o plugin. Por enquanto em uso apenas para o check_circle das notificações do Notyf, que por sua vez são notificações popup que aparecem ao salvar o status de um contato.
+
+
+
 # Guia do Desenvolvedor para ReferralHub
 
 Bem-vindo ao guia do desenvolvedor do ReferralHub. Este documento fornece uma visão geral da arquitetura do plugin, padrões de código e práticas recomendadas para contribuir ou estender o plugin, além de uma descrição detalhada do fluxo de dados e das funções principais.
