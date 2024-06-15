@@ -1,27 +1,27 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-// Supondo que o arquivo de includes/referral-fees.php tenha sido incluído onde necessário
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['start_date'], $_POST['end_date'])) {
-    $start_date = date('Y-m-d', strtotime($_POST['start_date']));
-    $end_date = date('Y-m-d', strtotime($_POST['end_date']));
-    $providers = get_unpaid_referral_fees(null, $start_date, $end_date);
-} else {
-    $providers = get_unpaid_referral_fees();  // Chamada sem filtro de data
-}
+$filter_type = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : null;
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : null;
+$providers = get_unpaid_referral_fees(null, $filter_type, $start_date, $end_date);
 
-?>
-<form method="post" action="">
-    <label for="start_date">Data Inicial:</label>
-    <input type="date" id="start_date" name="start_date" required>
+echo '<h1>Referral Fees Report</h1>';
+echo '<select id="period-selector" onchange="updateFilters()">';
+echo '<option value="all">Todo o período</option>';
+echo '<option value="this_week">Esta semana</option>';
+echo '<option value="this_month">Este mês</option>';
+echo '<option value="this_semester">Este semestre</option>';
+echo '<option value="this_year">Este ano</option>';
+echo '<option value="custom">Período personalizado</option>';
+echo '</select>';
 
-    <label for="end_date">Data Final:</label>
-    <input type="date" id="end_date" name="end_date" required>
+echo '<div id="custom-date-picker" style="display:none;">';
+echo '<input type="date" id="start-date">';
+echo '<input type="date" id="end-date">';
+echo '<button onclick="fetchDataBasedOnDates()">Filtrar</button>';
+echo '</div>';
 
-    <input type="submit" value="Filtrar">
-</form>
-
-<?php
 echo '<table border="1">';
 echo '<tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
 
@@ -30,4 +30,22 @@ foreach ($providers as $provider) {
 }
 
 echo '</table>';
-?>
+
+echo '<script>
+function updateFilters() {
+    var selector = document.getElementById("period-selector");
+    var datePicker = document.getElementById("custom-date-picker");
+    if(selector.value === "custom") {
+        datePicker.style.display = "block";
+    } else {
+        datePicker.style.display = "none";
+        window.location.href = "?post_type=rhb_service&page=rhb-referral-fees&filter=" + selector.value;
+    }
+}
+
+function fetchDataBasedOnDates() {
+    var startDate = document.getElementById("start-date").value;
+    var endDate = document.getElementById("end-date").value;
+    window.location.href = "?post_type=rhb_service&page=rhb-referral-fees&filter=custom&start_date=" + startDate + "&end_date=" + endDate;
+}
+</script>';
