@@ -14,13 +14,13 @@ function rhb_initialize_panel_menus() {
 // Adiciona as capacidades necessárias ao papel 'service_provider'.
 function rhb_add_roles_and_capabilities() {
     $role = get_role('service_provider');
-
     // Verifica se o papel existe antes de tentar adicionar capacidades.
     if ($role) {
         // Adiciona a capacidade de ver o dashboard do Service Provider e os contatos.
         $role->add_cap('view_rhb_dashboard');
         $role->add_cap('view_rhb_contacts');
         // Adicione outras capacidades conforme necessário aqui.
+        $role->add_cap('view_rhb_referral_fees');
     }
 }
 
@@ -28,7 +28,6 @@ function rhb_add_roles_and_capabilities() {
 function rhb_register_menus() {
     // Instancia a classe RHB_Settings aqui para uso nos callbacks.
     $rhb_plugin_settings = new RHB_Settings();
-
     // Adiciona um menu para o Provider Dashboard
     add_menu_page(
         __('Provider Dashboard', 'referralhub'),
@@ -69,6 +68,27 @@ function rhb_register_menus() {
         'manage_options',
         'rhb-setup-wizard',
         'rhb_setup_wizard_page_content'
+    );
+
+    // Nova página para relatórios de taxas de referência para admin
+    add_submenu_page(
+        'edit.php?post_type=rhb_service',
+        __('Referral Fees Report', 'referralhub'),
+        __('Referral Fees', 'referralhub'),
+        'manage_options',
+        'rhb-referral-fees',
+        'rhb_referral_fees_page_content'
+    );
+
+    // Nova página de taxas de referência para providers
+    add_menu_page(
+        __('My Referral Fees', 'referralhub'),
+        __('My Referral Fees', 'referralhub'),
+        'view_rhb_referral_fees',
+        'rhb-my-referral-fees',
+        'rhb_my_referral_fees_page_content',
+        'dashicons-money',
+        7
     );
 
     // Registra a página de detalhes do contato como uma página 'fantasma'
@@ -121,6 +141,20 @@ function rhb_setup_wizard_page_content() {
     include plugin_dir_path(__FILE__) . '/setup-wizard.php';
 }
 
+
+function rhb_referral_fees_page_content() {
+    // Conteúdo para a página de relatórios de taxas de referência do admin
+    echo '<h1>Referral Fees Report</h1>';
+    // Implementação de lógica para exibir relatórios
+}
+
+function rhb_my_referral_fees_page_content() {
+    // Conteúdo para a página de taxas de referência dos providers
+    echo '<h1>My Referral Fees</h1>';
+    // Implementação de lógica para exibir as próprias taxas de referência
+}
+
+//Mover isso para um local mais apropriado
 // Função para lidar com a criação de páginas.
 function rhb_handle_create_pages() {
     $options = get_option('rhb_settings', []);
