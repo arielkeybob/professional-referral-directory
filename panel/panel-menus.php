@@ -150,9 +150,6 @@ $plugin_directory_path = plugin_dir_path(__FILE__);
 // Construa o caminho para o arquivo template
 $template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
 
-// Registre o caminho no log do PHP
-error_log('Tentando acessar o arquivo de template em: ' . $template_path);
-
 // Tente incluir o arquivo de template
 include($template_path);
 }

@@ -1,19 +1,17 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-// Supondo que o arquivo de includes/referral-fees.php tenha sido incluído onde necessário
 $providers = get_unpaid_referral_fees(); // Chamada sem filtro para iniciar
 
-if (!$providers) {
-    error_log('No providers or no unpaid fees found.');
-}
-
-echo '<table border="1">';
-echo '<tr><th>Provider ID</th><th>Total Due</th></tr>';
+echo '<h1>Unpaid Referral Fees</h1>';
+echo '<table>';
+echo '<thead><tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr></thead>';
+echo '<tbody>';
 
 foreach ($providers as $provider) {
-    echo "<tr><td>{$provider->provider_id}</td><td>{$provider->total_due}</td></tr>";
-    error_log("Rendering provider ID: {$provider->provider_id} with total due: {$provider->total_due}");
+    echo "<tr><td>{$provider->provider_id}</td><td>{$provider->provider_name}</td><td>{$provider->provider_email}</td><td>$" . number_format($provider->total_due, 2) . "</td></tr>";
 }
 
-echo '</table>';
+echo '</tbody></table>';
+
+?>
