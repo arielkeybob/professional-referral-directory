@@ -19,6 +19,8 @@ define( 'RHB_VERSION', '1.1.7' );
 
 
 // Inclusões de Arquivos Principais do Plugin
+require_once plugin_dir_path(__FILE__) . 'includes/referral-fees.php';
+
 require_once plugin_dir_path(__FILE__) . 'update.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-users.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-cpt.php';

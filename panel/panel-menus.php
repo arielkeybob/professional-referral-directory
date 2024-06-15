@@ -143,15 +143,23 @@ function rhb_setup_wizard_page_content() {
 
 
 function rhb_referral_fees_page_content() {
-    // Conteúdo para a página de relatórios de taxas de referência do admin
-    echo '<h1>Referral Fees Report</h1>';
-    // Implementação de lógica para exibir relatórios
+    // Inclui o arquivo de template para a página de taxas de referência dos providers
+// Obtenha o caminho absoluto para o diretório do arquivo atual
+$plugin_directory_path = plugin_dir_path(__FILE__);
+
+// Construa o caminho para o arquivo template
+$template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
+
+// Registre o caminho no log do PHP
+error_log('Tentando acessar o arquivo de template em: ' . $template_path);
+
+// Tente incluir o arquivo de template
+include($template_path);
 }
 
 function rhb_my_referral_fees_page_content() {
-    // Conteúdo para a página de taxas de referência dos providers
-    echo '<h1>My Referral Fees</h1>';
-    // Implementação de lógica para exibir as próprias taxas de referência
+    // Inclui o arquivo de template para a página de taxas de referência dos providers
+    include plugin_dir_path(__FILE__) . '/paneltemplates/provider-referral-fees.php';
 }
 
 //Mover isso para um local mais apropriado
