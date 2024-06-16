@@ -1,12 +1,9 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-/**
- * Handler para salvar detalhes de contato via AJAX.
- *
- * Esta função é chamada através de uma requisição AJAX para salvar os detalhes do contato
- * e atualizar o status dos Inquiries associadas, incluindo o cálculo e ajuste das Referral Fees.
- */
+// Handler para salvar detalhes de contato via AJAX.
+// Esta função é chamada através de uma requisição AJAX para salvar os detalhes do contato
+ //e atualizar o status dos Inquiries associadas, incluindo o cálculo e ajuste das Referral Fees.
 function rhb_save_contact_details_ajax_handler() {
     check_ajax_referer('update_contact_' . $_POST['contact_id'], 'nonce');
 
@@ -67,4 +64,35 @@ function rhb_save_contact_details_ajax_handler() {
 
     exit;
 }
+
+
+
+// Handler para buscar taxas de referência não pagas
+function handle_ajax_fetch_referral_fees() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Acesso negado');
+    }
+
+    $filter_type = sanitize_text_field($_POST['filter']);
+    $custom_start = sanitize_text_field($_POST['start_date']);
+    $custom_end = sanitize_text_field($_POST['end_date']);
+
+    $providers = get_unpaid_referral_fees(null, $filter_type, $custom_start, $custom_end);
+
+    if (empty($providers)) {
+        echo '<table border="1"><tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
+        echo '<tr><td colspan="4">Nenhum dado encontrado para o período.</td></tr></table>';
+    } else {
+        echo '<table border="1"><tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
+        foreach ($providers as $provider) {
+            echo "<tr><td>" . esc_html($provider->provider_id) . "</td><td>" . esc_html($provider->provider_name) . "</td><td>" . esc_html($provider->provider_email) . "</td><td>" . esc_html($provider->total_due) . "</td></tr>";
+        }
+        echo '</table>';
+    }
+
+    wp_die(); // Finaliza a execução e retorna uma resposta adequada
+}
+
+add_action('wp_ajax_fetch_referral_fees', 'handle_ajax_fetch_referral_fees');
+
 ?>
