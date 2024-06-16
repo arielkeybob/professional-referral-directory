@@ -4,29 +4,28 @@ defined('ABSPATH') or die('No script kiddies please!');
 function get_unpaid_referral_fees($provider_id = null, $filter_type = 'all', $custom_start = null, $custom_end = null) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'rhb_inquiry_data';
-    
-    $today = date('Y-m-d');
+
     switch ($filter_type) {
         case 'this_week':
             $start_date = date('Y-m-d', strtotime('monday this week'));
-            $end_date = date('Y-m-d', strtotime('sunday this week') + 86400 - 1);
+            $end_date = date('Y-m-d 23:59:59', strtotime('sunday this week'));
             break;
         case 'this_month':
             $start_date = date('Y-m-01');
-            $end_date = date('Y-m-t') . ' 23:59:59';
+            $end_date = date('Y-m-t 23:59:59');
             break;
         case 'this_semester':
             $month = date('n');
             $start_date = $month < 7 ? date('Y-01-01') : date('Y-07-01');
-            $end_date = $month < 7 ? date('Y-06-30') . ' 23:59:59' : date('Y-12-31') . ' 23:59:59';
+            $end_date = $month < 7 ? date('Y-06-30 23:59:59') : date('Y-12-31 23:59:59');
             break;
         case 'this_year':
             $start_date = date('Y-01-01');
-            $end_date = date('Y-12-31') . ' 23:59:59';
+            $end_date = date('Y-12-31 23:59:59');
             break;
         case 'custom':
-            $start_date = $custom_start;
-            $end_date = date('Y-m-d 23:59:59', strtotime($custom_end));
+            $start_date = sanitize_text_field($custom_start);
+            $end_date = date('Y-m-d 23:59:59', strtotime(sanitize_text_field($custom_end)));
             break;
         default:
             $start_date = null;

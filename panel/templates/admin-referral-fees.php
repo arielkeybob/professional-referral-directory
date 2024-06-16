@@ -1,9 +1,9 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-$filter_type = isset($_GET['filter']) ? $_GET['filter'] : 'all';
-$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : null;
-$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : null;
+$filter_type = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : 'all';
+$start_date = isset($_GET['start_date']) ? sanitize_text_field($_GET['start_date']) : null;
+$end_date = isset($_GET['end_date']) ? sanitize_text_field($_GET['end_date']) : null;
 $providers = get_unpaid_referral_fees(null, $filter_type, $start_date, $end_date);
 
 echo '<h1>Referral Fees Report</h1>';
@@ -22,30 +22,18 @@ echo '<input type="date" id="end-date">';
 echo '<button onclick="fetchDataBasedOnDates()">Filtrar</button>';
 echo '</div>';
 
-echo '<table border="1">';
+echo '<div id="table-container"><table border="1">';
 echo '<tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
 
 foreach ($providers as $provider) {
-    echo "<tr><td>{$provider->provider_id}</td><td>{$provider->provider_name}</td><td>{$provider->provider_email}</td><td>{$provider->total_due}</td></tr>";
+    echo "<tr><td>" . esc_html($provider->provider_id) . "</td><td>" . esc_html($provider->provider_name) . "</td><td>" . esc_html($provider->provider_email) . "</td><td>" . esc_html($provider->total_due) . "</td></tr>";
 }
 
-echo '</table>';
+echo '</table></div>';
 
-echo '<script>
-function updateFilters() {
-    var selector = document.getElementById("period-selector");
-    var datePicker = document.getElementById("custom-date-picker");
-    if(selector.value === "custom") {
-        datePicker.style.display = "block";
-    } else {
-        datePicker.style.display = "none";
-        window.location.href = "?post_type=rhb_service&page=rhb-referral-fees&filter=" + selector.value;
-    }
-}
-
-function fetchDataBasedOnDates() {
-    var startDate = document.getElementById("start-date").value;
-    var endDate = document.getElementById("end-date").value;
-    window.location.href = "?post_type=rhb_service&page=rhb-referral-fees&filter=custom&start_date=" + startDate + "&end_date=" + endDate;
-}
+// Referência ao script JavaScript
+// No final do arquivo PHP, antes de fechar a tag </body>
+echo '<script src="' . plugins_url('/js/admin-referral-fees.js', dirname(__FILE__)) . '"></script>';
+echo '<script type="text/javascript">
+    var ajaxurl = "' . admin_url('admin-ajax.php') . '";
 </script>';
