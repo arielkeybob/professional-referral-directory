@@ -6,34 +6,72 @@ $start_date = isset($_GET['start_date']) ? sanitize_text_field($_GET['start_date
 $end_date = isset($_GET['end_date']) ? sanitize_text_field($_GET['end_date']) : null;
 $providers = get_unpaid_referral_fees(null, $filter_type, $start_date, $end_date);
 
-echo '<h1>Referral Fees Report</h1>';
-echo '<select id="period-selector" onchange="updateFilters()">';
-echo '<option value="all">Todo o período</option>';
-echo '<option value="this_week">Esta semana</option>';
-echo '<option value="this_month">Este mês</option>';
-echo '<option value="this_semester">Este semestre</option>';
-echo '<option value="this_year">Este ano</option>';
-echo '<option value="custom">Período personalizado</option>';
-echo '</select>';
+$period_options = [
+    'all' => 'Todo o período',
+    'this_week' => 'Esta semana',
+    'this_month' => 'Este mês',
+    'this_semester' => 'Este semestre',
+    'this_year' => 'Este ano',
+    'custom' => 'Período personalizado',
+];
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Taxas de Referência</title>
+    <style>
+        #custom-date-picker {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Taxas de Referência</h1>
+    <select id="period-selector" onchange="updateFilters()">
+        <?php foreach ($period_options as $value => $label) : ?>
+            <option value="<?php echo esc_attr($value); ?>"><?php echo esc_html($label); ?></option>
+        <?php endforeach; ?>
+    </select>
 
-echo '<div id="custom-date-picker" style="display:none;">';
-echo '<input type="date" id="start-date">';
-echo '<input type="date" id="end-date">';
-echo '<button onclick="fetchDataBasedOnDates()">Filtrar</button>';
-echo '</div>';
+    <div id="custom-date-picker">
+        <input type="date" id="start-date" value="<?php echo esc_attr($start_date); ?>">
+        <input type="date" id="end-date" value="<?php echo esc_attr($end_date); ?>">
+        <button onclick="fetchDataBasedOnDates()">Filtrar</button>
+    </div>
 
-echo '<div id="table-container"><table border="1">';
-echo '<tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
+    <div id="table-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Provider ID</th>
+                    <th>Provider Name</th>
+                    <th>Provider Email</th>
+                    <th>Total Due</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($providers) : ?>
+                    <?php foreach ($providers as $provider) : ?>
+                        <tr>
+                            <td><?php echo esc_html($provider->provider_id); ?></td>
+                            <td><?php echo esc_html($provider->provider_name); ?></td>
+                            <td><?php echo esc_html($provider->provider_email); ?></td>
+                            <td><?php echo esc_html($provider->total_due); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="4">Nenhum dado encontrado para o período.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
-foreach ($providers as $provider) {
-    echo "<tr><td>" . esc_html($provider->provider_id) . "</td><td>" . esc_html($provider->provider_name) . "</td><td>" . esc_html($provider->provider_email) . "</td><td>" . esc_html($provider->total_due) . "</td></tr>";
-}
-
-echo '</table></div>';
-
-// Referência ao script JavaScript
-// No final do arquivo PHP, antes de fechar a tag </body>
-echo '<script src="' . plugins_url('/js/admin-referral-fees.js', dirname(__FILE__)) . '"></script>';
-echo '<script type="text/javascript">
-    var ajaxurl = "' . admin_url('admin-ajax.php') . '";
-</script>';
+    <script src="<?php echo esc_url(plugins_url('/js/admin-panel-referral-fees.js', dirname(__FILE__))); ?>"></script>
+    <script type="text/javascript">
+        var ajaxurl = "<?php echo esc_url(admin_url('admin-ajax.php')); ?>";
+    </script>
+</body>
+</html>
