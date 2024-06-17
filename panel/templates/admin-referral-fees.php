@@ -58,6 +58,7 @@ $period_options = [
                             <td><?php echo esc_html($provider->provider_name); ?></td>
                             <td><?php echo esc_html($provider->provider_email); ?></td>
                             <td><?php echo esc_html($provider->total_due); ?></td>
+                            <td><a href="?post_type=rhb_service&page=rhb-referral-fees-provider-details&provider_id=<?php echo esc_attr($provider->provider_id); ?>">Ver Detalhes</a></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else : ?>

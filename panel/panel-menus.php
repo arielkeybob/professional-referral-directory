@@ -164,16 +164,20 @@ $template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
 include($template_path);
 }
 
+
+
 function rhb_referral_fees_provider_details_page_content() {
-    // Inclui o arquivo de template para a página de taxas de referência dos providers
-// Obtenha o caminho absoluto para o diretório do arquivo atual
-$plugin_directory_path = plugin_dir_path(__FILE__);
+    if (!current_user_can('manage_options')) {
+        wp_die(__('You do not have sufficient permissions to access this page.'));
+    }
 
-// Construa o caminho para o arquivo template
-$template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
-
-// Tente incluir o arquivo de template
-include($template_path);
+    $provider_id = isset($_GET['provider_id']) ? intval($_GET['provider_id']) : 0;
+    if ($provider_id) {
+        $provider_data = get_provider_details($provider_id);  // Função fictícia para buscar dados
+        include plugin_dir_path(__FILE__) . 'templates/admin-provider-details-template.php';
+    } else {
+        echo '<p>Error: Provider not found.</p>';
+    }
 }
 
 function rhb_my_referral_fees_page_content() {
