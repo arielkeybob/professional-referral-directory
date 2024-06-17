@@ -26,6 +26,6 @@ $inquiries = $contactService->getInquiriesByContactId($contact_id, $author_id);
 $js_url = plugins_url('/js/alert-save-before-leave.js', __FILE__); // Ajuste conforme necessário.
 
 // Inclui o arquivo de template, passando as variáveis necessárias.
-require_once __DIR__ . '\contact_details_template.php';
+require_once __DIR__ . '\templates\contact-details-template.php';
 
 ob_end_flush();
