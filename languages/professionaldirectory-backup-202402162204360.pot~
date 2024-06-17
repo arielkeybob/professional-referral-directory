@@ -20,24 +20,24 @@ msgstr ""
 msgid "Accent Color"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:15
+#: includes/classes/class-rhb-cpt.php:15
 msgid "Add New"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:14
+#: includes/classes/class-rhb-cpt.php:14
 msgctxt "Add New on Toolbar"
 msgid "Service"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:16
+#: includes/classes/class-rhb-cpt.php:16
 msgid "Add New Service"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:61
+#: includes/classes/class-rhb-taxonomies.php:61
 msgid "Add New Service Location"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:24
+#: includes/classes/class-rhb-taxonomies.php:24
 msgid "Add New Service Type"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:13
+#: includes/classes/class-rhb-cpt.php:13
 msgctxt "Admin Menu text"
 msgid "Services"
 msgstr ""
@@ -58,15 +58,15 @@ msgstr ""
 msgid "Admins to Receive Emails"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:56
+#: includes/classes/class-rhb-taxonomies.php:56
 msgid "All Service Locations"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:19
+#: includes/classes/class-rhb-taxonomies.php:19
 msgid "All Service Types"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:20
+#: includes/classes/class-rhb-cpt.php:20
 msgid "All Services"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: includes/class-rhb-metaboxes.php:69
+#: includes/classes/class-rhb-metaboxes.php:69
 msgid "Desejo receber notificações por e-mail para este serviço"
 msgstr ""
 
@@ -118,15 +118,15 @@ msgstr ""
 msgid "Distribution of Inquiries by Service Type"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:18
+#: includes/classes/class-rhb-cpt.php:18
 msgid "Edit Service"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:59
+#: includes/classes/class-rhb-taxonomies.php:59
 msgid "Edit Service Location"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:22
+#: includes/classes/class-rhb-taxonomies.php:22
 msgid "Edit Service Type"
 msgstr ""
 
@@ -188,15 +188,15 @@ msgid ""
 "Post ID: %s"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:17
+#: includes/classes/class-rhb-cpt.php:17
 msgid "New Service"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:62
+#: includes/classes/class-rhb-taxonomies.php:62
 msgid "New Service Location Name"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:25
+#: includes/classes/class-rhb-taxonomies.php:25
 msgid "New Service Type Name"
 msgstr ""
 
@@ -213,11 +213,11 @@ msgstr ""
 msgid "No service found."
 msgstr ""
 
-#: includes/class-rhb-cpt.php:24
+#: includes/classes/class-rhb-cpt.php:24
 msgid "No services found in Trash."
 msgstr ""
 
-#: includes/class-rhb-cpt.php:23
+#: includes/classes/class-rhb-cpt.php:23
 msgid "No services found."
 msgstr ""
 
@@ -225,39 +225,39 @@ msgstr ""
 msgid "Nome"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:25
+#: includes/classes/class-rhb-cpt.php:25
 msgctxt ""
 "Overrides the “Featured Image” phrase for this post type. Added in 4.3"
 msgid "Service Cover Image"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:30
+#: includes/classes/class-rhb-cpt.php:30
 msgctxt ""
 "Overrides the “Insert into post”/“Insert into page” phrase (used when "
 "inserting media into a post). Added in 4.4"
 msgid "Insert into service"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:27
+#: includes/classes/class-rhb-cpt.php:27
 msgctxt ""
 "Overrides the “Remove featured image” phrase for this post type. Added in 4.3"
 msgid "Remove cover image"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:26
+#: includes/classes/class-rhb-cpt.php:26
 msgctxt ""
 "Overrides the “Set featured image” phrase for this post type. Added in 4.3"
 msgid "Set cover image"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:31
+#: includes/classes/class-rhb-cpt.php:31
 msgctxt ""
 "Overrides the “Uploaded to this post”/“Uploaded to this page” phrase (used "
 "when viewing media attached to a post). Added in 4.4"
 msgid "Uploaded to this service"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:28
+#: includes/classes/class-rhb-cpt.php:28
 msgctxt ""
 "Overrides the “Use as featured image” phrase for this post type. Added in 4.3"
 msgid "Use as cover image"
@@ -275,37 +275,37 @@ msgstr ""
 msgid "Panel Style Settings"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:57
+#: includes/classes/class-rhb-taxonomies.php:57
 msgid "Parent Service Location"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:58
+#: includes/classes/class-rhb-taxonomies.php:58
 msgid "Parent Service Location:"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:20
+#: includes/classes/class-rhb-taxonomies.php:20
 msgid "Parent Service Type"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:21
+#: includes/classes/class-rhb-taxonomies.php:21
 msgid "Parent Service Type:"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:22
+#: includes/classes/class-rhb-cpt.php:22
 msgid "Parent Services:"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:11
+#: includes/classes/class-rhb-cpt.php:11
 msgctxt "Post type general name"
 msgid "Services"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:12
+#: includes/classes/class-rhb-cpt.php:12
 msgctxt "Post type singular name"
 msgid "Service"
 msgstr ""
 
-#: includes/class-rhb-metaboxes.php:33
+#: includes/classes/class-rhb-metaboxes.php:33
 msgid "Preferência de Recebimento de E-mail"
 msgstr ""
 
@@ -333,36 +333,36 @@ msgstr ""
 msgid "Remove Logo"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:32
+#: includes/classes/class-rhb-cpt.php:32
 msgctxt ""
 "Screen reader text for the filter links heading on the post type listing "
 "screen. Default “Filter posts list”/“Filter pages list”. Added in 4.4"
 msgid "Filter services list"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:34
+#: includes/classes/class-rhb-cpt.php:34
 msgctxt ""
 "Screen reader text for the items list heading on the post type listing "
 "screen. Default “Posts list”/“Pages list”. Added in 4.4"
 msgid "Services list"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:33
+#: includes/classes/class-rhb-cpt.php:33
 msgctxt ""
 "Screen reader text for the pagination heading on the post type listing "
 "screen. Default “Posts list navigation”/“Pages list navigation”. Added in 4.4"
 msgid "Services list navigation"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:55
+#: includes/classes/class-rhb-taxonomies.php:55
 msgid "Inquiry Service Locations"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:18
+#: includes/classes/class-rhb-taxonomies.php:18
 msgid "Service Types"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:21
+#: includes/classes/class-rhb-cpt.php:21
 msgid "Inquiry Services"
 msgstr ""
 
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:63
+#: includes/classes/class-rhb-taxonomies.php:63
 msgid "Service Location"
 msgstr ""
 
@@ -394,7 +394,7 @@ msgstr ""
 msgid "Service Locations:"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:26
+#: includes/classes/class-rhb-taxonomies.php:26
 msgid "Service Type"
 msgstr ""
 
@@ -410,22 +410,22 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:53
+#: includes/classes/class-rhb-taxonomies.php:53
 msgctxt "taxonomy general name"
 msgid "Service Locations"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:16
+#: includes/classes/class-rhb-taxonomies.php:16
 msgctxt "taxonomy general name"
 msgid "Service Types"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:54
+#: includes/classes/class-rhb-taxonomies.php:54
 msgctxt "taxonomy singular name"
 msgid "Service Location"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:17
+#: includes/classes/class-rhb-taxonomies.php:17
 msgctxt "taxonomy singular name"
 msgid "Service Type"
 msgstr ""
@@ -442,7 +442,7 @@ msgstr ""
 msgid "Text Color"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:29
+#: includes/classes/class-rhb-cpt.php:29
 msgctxt ""
 "The post type archive label used in nav menus. Default “Post Archives”. "
 "Added in 4.4"
@@ -465,11 +465,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:60
+#: includes/classes/class-rhb-taxonomies.php:60
 msgid "Update Service Location"
 msgstr ""
 
-#: includes/class-rhb-taxonomies.php:23
+#: includes/classes/class-rhb-taxonomies.php:23
 msgid "Update Service Type"
 msgstr ""
 
@@ -489,6 +489,6 @@ msgstr ""
 msgid "User Name"
 msgstr ""
 
-#: includes/class-rhb-cpt.php:19
+#: includes/classes/class-rhb-cpt.php:19
 msgid "View Service"
 msgstr ""

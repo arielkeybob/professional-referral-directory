@@ -22,11 +22,11 @@ define( 'RHB_VERSION', '1.1.7' );
 require_once plugin_dir_path(__FILE__) . 'includes/referral-fees.php';
 
 require_once plugin_dir_path(__FILE__) . 'update.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-users.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-cpt.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-taxonomies.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/class-rhb-users.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/class-rhb-cpt.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/class-rhb-taxonomies.php';
 require_once plugin_dir_path(__FILE__) . 'panel/class-panel-restrictions.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-metaboxes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/class-rhb-metaboxes.php';
 require_once plugin_dir_path(__FILE__) . 'public/form-data-functions.php';
 require_once plugin_dir_path(__FILE__) . 'includes/email-functions.php';
 require_once plugin_dir_path(__FILE__) . 'public/class-rhb-inquiry-form.php';
@@ -43,7 +43,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/global-styles.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-general-customizations.php';
 include_once plugin_dir_path(__FILE__) . 'panel/panel-top-bar-customizations.php';
 require_once plugin_dir_path(__FILE__) . 'includes/ajax-handlers.php';
-require_once plugin_dir_path(__FILE__) . 'includes/class-rhb-media-restrictions.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/class-rhb-media-restrictions.php';
 
 
 
