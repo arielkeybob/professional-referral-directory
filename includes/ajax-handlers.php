@@ -95,4 +95,32 @@ function handle_ajax_fetch_referral_fees() {
 
 add_action('wp_ajax_fetch_referral_fees', 'handle_ajax_fetch_referral_fees');
 
+
+
+
+// Função para lidar com a criação de páginas.
+function rhb_handle_create_pages() {
+    $options = get_option('rhb_settings', []);
+    $inquiry_page_id = isset($options['rhb_inquiry_page_id']) ? $options['rhb_inquiry_page_id'] : null;
+    $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
+
+    if (isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
+        if (isset($_POST['create_inquiry_page']) && !$page_exists) {
+            // Cria a página de Inquiry de serviços
+            $page_id = wp_insert_post([
+                'post_title' => __('Inquiry de Serviços', 'referralhub'),
+                'post_content' => '[rhb_inquiry_form][rhb_inquiry_results]',
+                'post_status' => 'publish',
+                'post_type' => 'page'
+            ]);
+            if ($page_id) {
+                $options['rhb_inquiry_page_id'] = $page_id;
+                update_option('rhb_settings', $options);
+                wp_redirect(admin_url('edit.php?post_type=rhb_service&page=rhb-setup-wizard&created=true'));
+                exit;
+            }
+        }
+    }
+}
+add_action('admin_init', 'rhb_handle_create_pages'); // Adiciona o handler para criar páginas
 ?>

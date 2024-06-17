@@ -8,7 +8,7 @@ function rhb_initialize_panel_menus() {
     add_action('admin_menu', 'rhb_register_menus');
     add_action('init', 'rhb_add_roles_and_capabilities');
     add_action('admin_menu', 'rhb_remove_default_dashboard_for_service_providers', 999);
-    add_action('admin_init', 'rhb_handle_create_pages'); // Adiciona o handler para criar páginas
+   
 }
 
 // Adiciona as capacidades necessárias ao papel 'service_provider'.
@@ -78,6 +78,16 @@ function rhb_register_menus() {
         'manage_options',
         'rhb-referral-fees',
         'rhb_referral_fees_page_content'
+    );
+
+    // Nova página para relatórios de taxas de referência para admin
+    add_submenu_page(
+        'edit.php?post_type=rhb_service',
+        __('Referral Fees Details', 'referralhub'),
+        __('Referral Fees Details', 'referralhub'),
+        'manage_options',
+        'rhb-referral-fees-provider-details',
+        'rhb_referral_fees_provider_details_page_content'
     );
 
     // Nova página de taxas de referência para providers
@@ -154,36 +164,24 @@ $template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
 include($template_path);
 }
 
+function rhb_referral_fees_provider_details_page_content() {
+    // Inclui o arquivo de template para a página de taxas de referência dos providers
+// Obtenha o caminho absoluto para o diretório do arquivo atual
+$plugin_directory_path = plugin_dir_path(__FILE__);
+
+// Construa o caminho para o arquivo template
+$template_path = $plugin_directory_path . 'templates/admin-referral-fees.php';
+
+// Tente incluir o arquivo de template
+include($template_path);
+}
+
 function rhb_my_referral_fees_page_content() {
     // Inclui o arquivo de template para a página de taxas de referência dos providers
     include plugin_dir_path(__FILE__) . '/paneltemplates/provider-referral-fees.php';
 }
 
-//Mover isso para um local mais apropriado
-// Função para lidar com a criação de páginas.
-function rhb_handle_create_pages() {
-    $options = get_option('rhb_settings', []);
-    $inquiry_page_id = isset($options['rhb_inquiry_page_id']) ? $options['rhb_inquiry_page_id'] : null;
-    $page_exists = $inquiry_page_id && get_post_status($inquiry_page_id);
 
-    if (isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
-        if (isset($_POST['create_inquiry_page']) && !$page_exists) {
-            // Cria a página de Inquiry de serviços
-            $page_id = wp_insert_post([
-                'post_title' => __('Inquiry de Serviços', 'referralhub'),
-                'post_content' => '[rhb_inquiry_form][rhb_inquiry_results]',
-                'post_status' => 'publish',
-                'post_type' => 'page'
-            ]);
-            if ($page_id) {
-                $options['rhb_inquiry_page_id'] = $page_id;
-                update_option('rhb_settings', $options);
-                wp_redirect(admin_url('edit.php?post_type=rhb_service&page=rhb-setup-wizard&created=true'));
-                exit;
-            }
-        }
-    }
-}
 
 // Inicialização
 rhb_initialize_panel_menus();
