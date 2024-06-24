@@ -1,9 +1,8 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
+
 // Handler para salvar detalhes de contato via AJAX.
-// Esta função é chamada através de uma requisição AJAX para salvar os detalhes do contato
- //e atualizar o status dos Inquiries associadas, incluindo o cálculo e ajuste das Referral Fees.
 function rhb_save_contact_details_ajax_handler() {
     check_ajax_referer('update_contact_' . $_POST['contact_id'], 'nonce');
 
@@ -16,14 +15,14 @@ function rhb_save_contact_details_ajax_handler() {
     $contact_id = intval($_POST['contact_id']);
     $author_id = get_current_user_id();
     $custom_name = sanitize_text_field($_POST['custom_name']);
-    $new_status = sanitize_text_field($_POST['contact_status']); // Garanta que este campo esteja sendo enviado corretamente
+    $new_status = sanitize_text_field($_POST['contact_status']);
     $errors = false;
 
     $updated = $wpdb->update(
         "{$wpdb->prefix}rhb_author_contact_relations",
         [
             'custom_name' => $custom_name,
-            'status' => $new_status // Assegure que está atualizando o status
+            'status' => $new_status
         ],
         ['contact_id' => $contact_id, 'author_id' => $author_id]
     );
@@ -65,8 +64,6 @@ function rhb_save_contact_details_ajax_handler() {
     exit;
 }
 
-
-
 // Handler para buscar taxas de referência não pagas
 function handle_ajax_fetch_referral_fees() {
     if (!current_user_can('manage_options')) {
@@ -78,25 +75,12 @@ function handle_ajax_fetch_referral_fees() {
     $custom_end = sanitize_text_field($_POST['end_date']);
 
     $providers = get_unpaid_referral_fees(null, $filter_type, $custom_start, $custom_end);
+    echo render_referral_fees_table($providers);
 
-    if (empty($providers)) {
-        echo '<table border="1"><tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
-        echo '<tr><td colspan="4">Nenhum dado encontrado para o período.</td></tr></table>';
-    } else {
-        echo '<table border="1"><tr><th>Provider ID</th><th>Provider Name</th><th>Provider Email</th><th>Total Due</th></tr>';
-        foreach ($providers as $provider) {
-            echo "<tr><td>" . esc_html($provider->provider_id) . "</td><td>" . esc_html($provider->provider_name) . "</td><td>" . esc_html($provider->provider_email) . "</td><td>" . esc_html($provider->total_due) . "</td></tr>";
-        }
-        echo '</table>';
-    }
-
-    wp_die(); // Finaliza a execução e retorna uma resposta adequada
+    wp_die();
 }
 
 add_action('wp_ajax_fetch_referral_fees', 'handle_ajax_fetch_referral_fees');
-
-
-
 
 // Função para lidar com a criação de páginas.
 function rhb_handle_create_pages() {
@@ -106,13 +90,13 @@ function rhb_handle_create_pages() {
 
     if (isset($_POST['rhb_create_pages_submit']) && check_admin_referer('rhb_create_pages', 'rhb_create_pages_nonce')) {
         if (isset($_POST['create_inquiry_page']) && !$page_exists) {
-            // Cria a página de Inquiry de serviços
             $page_id = wp_insert_post([
                 'post_title' => __('Inquiry de Serviços', 'referralhub'),
                 'post_content' => '[rhb_inquiry_form][rhb_inquiry_results]',
                 'post_status' => 'publish',
                 'post_type' => 'page'
             ]);
+
             if ($page_id) {
                 $options['rhb_inquiry_page_id'] = $page_id;
                 update_option('rhb_settings', $options);
@@ -122,5 +106,5 @@ function rhb_handle_create_pages() {
         }
     }
 }
-add_action('admin_init', 'rhb_handle_create_pages'); // Adiciona o handler para criar páginas
-?>
+
+add_action('admin_init', 'rhb_handle_create_pages');

@@ -48,3 +48,31 @@ function get_unpaid_referral_fees($provider_id = null, $filter_type = 'all', $cu
 
     return $results;
 }
+
+
+function render_referral_fees_table($providers) {
+    ob_start();
+    ?>
+    <table border="1">
+        <tr>
+            <th>ID do Fornecedor</th>
+            <th>Nome do Fornecedor</th>
+            <th>Email do Fornecedor</th>
+            <th>Total Devido</th>
+        </tr>
+        <?php if (!empty($providers)) : ?>
+            <?php foreach ($providers as $provider) : ?>
+                <tr>
+                    <td><?php echo esc_html($provider->provider_id); ?></td>
+                    <td><?php echo esc_html($provider->provider_name); ?></td>
+                    <td><?php echo esc_html($provider->provider_email); ?></td>
+                    <td><?php echo esc_html($provider->total_due); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr><td colspan="4">Nenhum dado encontrado para o período.</td></tr>
+        <?php endif; ?>
+    </table>
+    <?php
+    return ob_get_clean();
+}

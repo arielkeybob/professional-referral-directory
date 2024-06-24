@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
+
 $filter_type = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : 'all';
 $start_date = isset($_GET['start_date']) ? sanitize_text_field($_GET['start_date']) : null;
 $end_date = isset($_GET['end_date']) ? sanitize_text_field($_GET['end_date']) : null;
@@ -21,9 +22,7 @@ $period_options = [
     <meta charset="UTF-8">
     <title>Relatório de Taxas de Referência</title>
     <style>
-        #custom-date-picker {
-            display: none;
-        }
+        #custom-date-picker { display: none; }
     </style>
 </head>
 <body>
@@ -41,33 +40,7 @@ $period_options = [
     </div>
 
     <div id="table-container">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Provider ID</th>
-                    <th>Provider Name</th>
-                    <th>Provider Email</th>
-                    <th>Total Due</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($providers) : ?>
-                    <?php foreach ($providers as $provider) : ?>
-                        <tr>
-                            <td><?php echo esc_html($provider->provider_id); ?></td>
-                            <td><?php echo esc_html($provider->provider_name); ?></td>
-                            <td><?php echo esc_html($provider->provider_email); ?></td>
-                            <td><?php echo esc_html($provider->total_due); ?></td>
-                            <td><a href="?post_type=rhb_service&page=rhb-referral-fees-provider-details&provider_id=<?php echo esc_attr($provider->provider_id); ?>">Ver Detalhes</a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="4">Nenhum dado encontrado para o período.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+        <?php echo render_referral_fees_table($providers); ?>
     </div>
 
     <script src="<?php echo esc_url(plugins_url('/js/admin-panel-referral-fees.js', dirname(__FILE__))); ?>"></script>
