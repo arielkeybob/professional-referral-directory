@@ -24,6 +24,16 @@ $period_options = [
     <style>
         #custom-date-picker { display: none; }
     </style>
+    <style>
+    tr[data-href] {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    tr[data-href]:hover {
+        background-color: #ffffff; /* Cor de fundo ao passar o mouse */
+    }
+</style>
+
 </head>
 <body>
     <h1>Relatório de Taxas de Referência</h1>

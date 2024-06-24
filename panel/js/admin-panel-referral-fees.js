@@ -17,6 +17,8 @@ function fetchData(filterType, startDate = '', endDate = '') {
         if (this.status >= 200 && this.status < 400) {
             // Sucesso na requisição
             document.getElementById('table-container').innerHTML = this.response;
+            // Adiciona o evento de clique às linhas da tabela
+            addRowClickEvent();
         } else {
             // Tratamos erros do servidor aqui
             console.error('Erro do servidor');
@@ -34,3 +36,33 @@ function fetchDataBasedOnDates() {
     var endDate = document.getElementById("end-date").value;
     fetchData('custom', startDate, endDate);
 }
+
+// Função para adicionar eventos de clique às linhas da tabela que contêm o atributo 'data-href'
+function addRowClickEvent() {
+    var rows = document.querySelectorAll('tr[data-href]');
+    rows.forEach(function(row) {
+        row.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-href');
+        });
+    });
+}
+
+// Chamada inicial para adicionar eventos de clique após carregamento da página
+document.addEventListener('DOMContentLoaded', function() {
+    addRowClickEvent();
+});
+
+// Função para adicionar eventos de clique às linhas da tabela que contêm o atributo 'data-href'
+function addRowClickEvent() {
+    var rows = document.querySelectorAll('tr[data-href]');
+    rows.forEach(function(row) {
+        row.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-href');
+        });
+    });
+}
+
+// Chamada inicial para adicionar eventos de clique após carregamento da página
+document.addEventListener('DOMContentLoaded', function() {
+    addRowClickEvent();
+});

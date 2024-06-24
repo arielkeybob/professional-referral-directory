@@ -62,7 +62,7 @@ function render_referral_fees_table($providers) {
         </tr>
         <?php if (!empty($providers)) : ?>
             <?php foreach ($providers as $provider) : ?>
-                <tr>
+                <tr data-href="?post_type=rhb_service&page=rhb-referral-fees-provider-details&provider_id=<?php echo esc_attr($provider->provider_id); ?>">
                     <td><?php echo esc_html($provider->provider_id); ?></td>
                     <td><?php echo esc_html($provider->provider_name); ?></td>
                     <td><?php echo esc_html($provider->provider_email); ?></td>
