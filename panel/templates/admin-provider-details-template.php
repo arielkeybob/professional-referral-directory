@@ -8,7 +8,6 @@ if ($provider_data) :
     <form id="invoice-form">
         <input type="hidden" name="action" value="create_invoice">
         <input type="hidden" name="provider_id" value="<?php echo esc_attr($provider_data->ID); ?>">
-        <!-- Inclui o nonce para a verificação de segurança -->
         <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('create_invoice_nonce'); ?>">
         <table>
             <thead>
@@ -25,7 +24,7 @@ if ($provider_data) :
                 <?php 
                 if (!empty($unpaid_fees)) :
                     foreach ($unpaid_fees as $fee) : ?>
-                        <tr>
+                        <tr id="inquiry-row-<?php echo esc_attr($fee->id); ?>">
                             <td><input type="checkbox" class="inquiry-checkbox" name="inquiry_ids[]" value="<?php echo esc_attr($fee->id); ?>"></td>
                             <td><?php echo date('d/m/Y', strtotime($fee->inquiry_date)); ?></td>
                             <td><?php echo esc_html($fee->service_type); ?></td>
@@ -55,7 +54,11 @@ if ($provider_data) :
         }).then(response => response.json()).then(data => {
             if (data.success) {
                 alert('Invoice criada com sucesso!');
-                // Opcional: atualize a página ou ajuste a UI conforme necessário
+                // Remove visualmente as linhas dos inquiries que foram faturados
+                document.querySelectorAll('.inquiry-checkbox:checked').forEach(function(checkbox) {
+                    var row = checkbox.closest('tr');
+                    row.remove();
+                });
             } else {
                 alert('Erro: ' + data.data.message);
             }
