@@ -70,6 +70,17 @@ function rhb_register_menus() {
         'rhb_setup_wizard_page_content'
     );
 
+    // Adicionar submenu para Invoice
+    add_submenu_page(
+        'edit.php?post_type=rhb_service',
+        __('Invoice', 'referralhub'),
+        __('Invoice', 'referralhub'),
+        'manage_options',
+        'rhb-invoice',
+        'rhb_invoice_page_content'  // Você precisará criar essa função para carregar o conteúdo da página
+    );
+
+
     // Nova página para relatórios de taxas de referência para admin
     add_submenu_page(
         'edit.php?post_type=rhb_service',
@@ -151,6 +162,10 @@ function rhb_setup_wizard_page_content() {
     include plugin_dir_path(__FILE__) . '/setup-wizard.php';
 }
 
+// Função para renderizar o conteúdo da página Invoice
+function rhb_invoice_page_content() {
+    include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';  // Caminho para o arquivo de template da página Invoice
+}
 
 function rhb_referral_fees_page_content() {
     // Inclui o arquivo de template para a página de taxas de referência dos providers
