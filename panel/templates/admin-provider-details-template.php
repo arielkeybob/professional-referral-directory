@@ -3,12 +3,42 @@ defined('ABSPATH') or die('No script kiddies please!');
 
 if ($provider_data) :
     $unpaid_fees = get_provider_unpaid_fees_details($provider_data->ID);
+    $invoices = get_provider_invoices($provider_data->ID);
     ?>
     <h1>Detalhes do Provider: <?php echo esc_html($provider_data->display_name); ?></h1>
+    
+    <h2>Invoices Emitidos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID do Invoice</th>
+                <th>Total</th>
+                <th>Pago</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($invoices)) : ?>
+                <?php foreach ($invoices as $invoice) : ?>
+                    <tr>
+                        <td><?php echo esc_html($invoice->invoice_id); ?></td>
+                        <td><?php echo esc_html(number_format($invoice->total, 2, '.', ',')); ?></td>
+                        <td><?php echo $invoice->is_paid ? 'Sim' : 'Não'; ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($invoice->created_at)); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="4">Nenhum invoice encontrado.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <h2>Inquiries Não Faturados</h2>
     <form id="invoice-form">
         <input type="hidden" name="action" value="create_invoice">
         <input type="hidden" name="provider_id" value="<?php echo esc_attr($provider_data->ID); ?>">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('create_invoice_nonce'); ?>">
         <table>
             <thead>
                 <tr>
@@ -21,10 +51,9 @@ if ($provider_data) :
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                if (!empty($unpaid_fees)) :
-                    foreach ($unpaid_fees as $fee) : ?>
-                        <tr id="inquiry-row-<?php echo esc_attr($fee->id); ?>">
+                <?php if (!empty($unpaid_fees)) : ?>
+                    <?php foreach ($unpaid_fees as $fee) : ?>
+                        <tr>
                             <td><input type="checkbox" class="inquiry-checkbox" name="inquiry_ids[]" value="<?php echo esc_attr($fee->id); ?>"></td>
                             <td><?php echo date('d/m/Y', strtotime($fee->inquiry_date)); ?></td>
                             <td><?php echo esc_html($fee->service_type); ?></td>
@@ -32,8 +61,8 @@ if ($provider_data) :
                             <td><?php echo esc_html($fee->referral_fee_value_agreement_reached); ?></td>
                             <td><?php echo esc_html($fee->total_fee); ?></td>
                         </tr>
-                    <?php endforeach;
-                else : ?>
+                    <?php endforeach; ?>
+                <?php else : ?>
                     <tr>
                         <td colspan="6">Nenhuma taxa pendente encontrada.</td>
                     </tr>
@@ -54,11 +83,7 @@ if ($provider_data) :
         }).then(response => response.json()).then(data => {
             if (data.success) {
                 alert('Invoice criada com sucesso!');
-                // Remove visualmente as linhas dos inquiries que foram faturados
-                document.querySelectorAll('.inquiry-checkbox:checked').forEach(function(checkbox) {
-                    var row = checkbox.closest('tr');
-                    row.remove();
-                });
+                // Opcional: atualize a página ou ajuste a UI conforme necessário
             } else {
                 alert('Erro: ' + data.data.message);
             }

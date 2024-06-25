@@ -42,19 +42,11 @@ function mark_inquiries_as_invoiced($inquiry_ids) {
     }
 }
 
-/**
- * Cria uma invoice e associa os inquiries selecionados.
- *
- * @param int $provider_id ID do provider.
- * @param array $inquiry_ids IDs dos inquiries a serem faturados.
- * @return int|null ID da invoice criada ou null em caso de falha.
- */
 function create_invoice_and_link_inquiries($provider_id, $inquiry_ids) {
     global $wpdb;
     $invoice_table = $wpdb->prefix . 'rhb_invoices';
     $link_table = $wpdb->prefix . 'rhb_invoice_inquiries';
 
-    // Calcula o total
     $total = 0;
     foreach ($inquiry_ids as $id) {
         $fee_details = $wpdb->get_row($wpdb->prepare("SELECT (referral_fee_value_view + referral_fee_value_agreement_reached) AS total_fee FROM {$wpdb->prefix}rhb_inquiry_data WHERE id = %d", $id));
@@ -63,7 +55,6 @@ function create_invoice_and_link_inquiries($provider_id, $inquiry_ids) {
         }
     }
 
-    // Cria o invoice
     $wpdb->insert($invoice_table, [
         'provider_id' => $provider_id,
         'total' => $total,
@@ -71,7 +62,6 @@ function create_invoice_and_link_inquiries($provider_id, $inquiry_ids) {
     ]);
     $invoice_id = $wpdb->insert_id;
 
-    // Associa inquiries ao invoice
     foreach ($inquiry_ids as $inquiry_id) {
         $wpdb->insert($link_table, [
             'invoice_id' => $invoice_id,
@@ -79,16 +69,31 @@ function create_invoice_and_link_inquiries($provider_id, $inquiry_ids) {
         ]);
     }
 
-    // Marca inquiries como faturadas
     mark_inquiries_as_invoiced($inquiry_ids);
 
     return $invoice_id;
 }
 
+function get_provider_invoices($provider_id) {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'rhb_invoices';
+
+    $query = $wpdb->prepare("
+        SELECT invoice_id, total, created_at, is_paid 
+        FROM $table_name
+        WHERE provider_id = %d
+        ORDER BY created_at DESC", 
+        $provider_id
+    );
+
+    return $wpdb->get_results($query);
+}
+
+
+
 function handle_ajax_create_invoice() {
     $nonce = $_POST['nonce'] ?? '';
 
-    // Verifica o nonce
     if (!wp_verify_nonce($nonce, 'create_invoice_nonce')) {
         wp_send_json_error(['message' => 'Verificação de segurança falhou.']);
         return;
@@ -111,4 +116,3 @@ function handle_ajax_create_invoice() {
 }
 
 add_action('wp_ajax_create_invoice', 'handle_ajax_create_invoice');
-add_action('wp_ajax_nopriv_create_invoice', 'handle_ajax_create_invoice'); // Se você quiser que não-logados possam também criar invoices, o que geralmente não é recomendado.
