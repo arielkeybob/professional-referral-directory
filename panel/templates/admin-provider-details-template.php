@@ -2,15 +2,18 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 if ($provider_data) :
-    // Carrega os detalhes de inquiries não pagas
     $unpaid_fees = get_provider_unpaid_fees_details($provider_data->ID);
     ?>
     <h1>Detalhes do Provider: <?php echo esc_html($provider_data->display_name); ?></h1>
     <form id="invoice-form">
+        <input type="hidden" name="action" value="create_invoice">
+        <input type="hidden" name="provider_id" value="<?php echo esc_attr($provider_data->ID); ?>">
+        <!-- Inclui o nonce para a verificação de segurança -->
+        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('create_invoice_nonce'); ?>">
         <table>
             <thead>
                 <tr>
-                    <th>Selecionar</th> <!-- Checkbox para seleção -->
+                    <th>Selecionar</th>
                     <th>Data da Inquiry</th>
                     <th>Tipo de Serviço</th>
                     <th>Taxa por Visualização</th>
@@ -48,10 +51,7 @@ if ($provider_data) :
         fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
             method: 'POST',
             credentials: 'same-origin',
-            body: data,
-            headers: {
-                'X-WP-Nonce': '<?php echo wp_create_nonce('wp_rest'); ?>'
-            }
+            body: data
         }).then(response => response.json()).then(data => {
             if (data.success) {
                 alert('Invoice criada com sucesso!');

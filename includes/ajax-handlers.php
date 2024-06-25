@@ -108,3 +108,5 @@ function rhb_handle_create_pages() {
 }
 
 add_action('admin_init', 'rhb_handle_create_pages');
+
+
