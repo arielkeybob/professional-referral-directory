@@ -70,14 +70,14 @@ function rhb_register_menus() {
         'rhb_setup_wizard_page_content'
     );
 
-    // Adicionar submenu para Invoice
+    // Registro do submenu de gerenciamento de invoices
     add_submenu_page(
         'edit.php?post_type=rhb_service',
-        __('Invoice', 'referralhub'),
-        __('Invoice', 'referralhub'),
+        __('Manage Invoices', 'referralhub'),
+        __('Invoices', 'referralhub'),
         'manage_options',
         'rhb-invoice',
-        'rhb_invoice_page_content'  // Você precisará criar essa função para carregar o conteúdo da página
+        'rhb_invoice_page_content'  // A função callback que renderiza a página
     );
 
 
@@ -162,9 +162,16 @@ function rhb_setup_wizard_page_content() {
     include plugin_dir_path(__FILE__) . '/setup-wizard.php';
 }
 
-// Função para renderizar o conteúdo da página Invoice
+// A função que carrega a página de invoices
 function rhb_invoice_page_content() {
-    include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';  // Caminho para o arquivo de template da página Invoice
+    $invoice_id = isset($_GET['invoice_id']) ? intval($_GET['invoice_id']) : null;
+    
+    if ($invoice_id) {
+        include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';
+    } else {
+        // Caso não exista invoice_id, carregue a mesma template como nova invoice
+        include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';
+    }
 }
 
 function rhb_referral_fees_page_content() {
