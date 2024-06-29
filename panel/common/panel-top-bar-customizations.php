@@ -33,11 +33,11 @@ function rhb_add_custom_admin_bar() {
         
         // Se nenhuma imagem foi definida, você pode definir uma imagem padrão
         if (!$logo_url) {
-            $logo_url = plugin_dir_url(__FILE__) . '../panel/img/default-logo.png'; // Caminho para a logo padrão
+            $logo_url = plugin_dir_url(__FILE__) . '../common/img/default-logo.png'; // Caminho para a logo padrão
         }
 
-        $bell_notification_url = plugin_dir_url(__FILE__) . '../public/img/Bell-Notification.png'; 
-        $help_icon_url = plugin_dir_url(__FILE__) . '../public/img/help-icon.png'; 
+        $bell_notification_url = plugin_dir_url(__FILE__) . '../common/img/Bell-Notification.png'; 
+        $help_icon_url = plugin_dir_url(__FILE__) . '../common/img/help-icon.png'; 
 
         ?>
         <div id="rhb-custom-admin-bar" style="width: 100%; display: flex;">

@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
-require_once plugin_dir_path(__FILE__) . 'class-settings-page.php';
+require_once plugin_dir_path(__FILE__) . '../admin/class-settings-page.php';
 
 // Adiciona capacidades ao papel 'service_provider' e registra menus e submenus.
 function rhb_initialize_panel_menus() {
@@ -142,24 +142,24 @@ function rhb_remove_default_dashboard_for_service_providers() {
 
 // Função que renderiza o conteúdo da página de Contatos.
 function rhb_contacts_page_content() {
-    require_once plugin_dir_path(__FILE__) . 'class-contacts-admin.php';
+    require_once plugin_dir_path(__FILE__) . '../provider/class-contacts-admin.php';
     $contactsPage = new Contatos_Admin_Page();
     $contactsPage->render();
 }
 
 // Função para renderizar o conteúdo da página de detalhes do contato
 function rhb_contact_details_page_content() {
-    require_once plugin_dir_path(__FILE__) . 'single-contact.php';
+    require_once plugin_dir_path(__FILE__) . '../provider/single-contact.php';
 }
 
 // Função para a página de ajuda de shortcodes.
 function rhb_render_shortcodes_help_page() {
-    include plugin_dir_path(__FILE__) . '/shortcodes-help-page.php';
+    include plugin_dir_path(__FILE__) . '../admin/shortcodes-help-page.php';
 }
 
 // Função para a página de Setup Wizard.
 function rhb_setup_wizard_page_content() {
-    include plugin_dir_path(__FILE__) . '/setup-wizard.php';
+    include plugin_dir_path(__FILE__) . '../admin/setup-wizard.php';
 }
 
 // A função que carrega a página de invoices
@@ -167,10 +167,10 @@ function rhb_invoice_page_content() {
     $invoice_id = isset($_GET['invoice_id']) ? intval($_GET['invoice_id']) : null;
     
     if ($invoice_id) {
-        include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';
+        include plugin_dir_path(__FILE__) . '../admin/templates/admin-invoice-management-template.php';
     } else {
         // Caso não exista invoice_id, carregue a mesma template como nova invoice
-        include plugin_dir_path(__FILE__) . 'templates/admin-invoice-management-template.php';
+        include plugin_dir_path(__FILE__) . '../admin/templates/admin-invoice-management-template.php';
     }
 }
 
@@ -180,7 +180,7 @@ function rhb_referral_fees_page_content() {
 $plugin_directory_path = plugin_dir_path(__FILE__);
 
 // Construa o caminho para o arquivo template
-$template_path = $plugin_directory_path . 'templates/admin-referral-fees-page-template.php';
+$template_path = $plugin_directory_path . '../admin/templates/admin-referral-fees-page-template.php';
 
 // Tente incluir o arquivo de template
 include($template_path);
@@ -198,7 +198,7 @@ function rhb_referral_fees_provider_details_page_content() {
     $provider_id = isset($_GET['provider_id']) ? intval($_GET['provider_id']) : 0;
     if ($provider_id) {
         $provider_data = get_provider_details($provider_id);  // Função fictícia para buscar dados
-        include plugin_dir_path(__FILE__) . 'templates/admin-provider-details-template.php';
+        include plugin_dir_path(__FILE__) . '../admin/templates/admin-provider-details-template.php';
     } else {
         echo '<p>Error: Provider not found.</p>';
     }
@@ -206,7 +206,7 @@ function rhb_referral_fees_provider_details_page_content() {
 
 function rhb_my_referral_fees_page_content() {
     // Inclui o arquivo de template para a página de taxas de referência dos providers
-    include plugin_dir_path(__FILE__) . '/panel/templates/provider-admin-referral-fees-page-functions.php';
+    include plugin_dir_path(__FILE__) . '../admin/templates/provider-admin-referral-fees-page-functions.php';
 }
 
 

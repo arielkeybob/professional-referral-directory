@@ -2,7 +2,7 @@
     defined('ABSPATH') or die('No script kiddies please!');
 
 // Inclui a classe ContactService para gerenciar as consultas de contato.
-require_once dirname(__DIR__) .  '\panel\class-contact-service.php';
+require_once plugin_dir_path(__FILE__) . '../common/class-contact-service.php';
 
 
 class Contatos_Admin_Page {

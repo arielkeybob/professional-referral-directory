@@ -20,7 +20,7 @@ if ($provider_data) :
         <tbody>
             <?php if (!empty($invoices)) : ?>
                 <?php foreach ($invoices as $invoice) : ?>
-                    <tr>
+                    <tr data-id="<?php echo esc_attr($invoice->invoice_id); ?>" style="cursor: pointer;">
                         <td><?php echo esc_html($invoice->invoice_id); ?></td>
                         <td><?php echo esc_html(number_format($invoice->total, 2, '.', ',')); ?></td>
                         <td><?php echo $invoice->is_paid ? 'Sim' : 'Não'; ?></td>
@@ -34,6 +34,16 @@ if ($provider_data) :
             <?php endif; ?>
         </tbody>
     </table>
+
+    <!-- Adicionando JavaScript para tornar as linhas clicáveis -->
+    <script>
+        document.querySelectorAll('table tr[data-id]').forEach(row => {
+            row.addEventListener('click', () => {
+                var invoiceId = row.getAttribute('data-id');
+                window.location.href = `<?php echo admin_url('edit.php?post_type=rhb_service&page=rhb-invoice&invoice_id='); ?>${invoiceId}`;
+            });
+        });
+    </script>
 
     <h2>Inquiries Não Faturados</h2>
     <form id="invoice-form">
@@ -72,23 +82,22 @@ if ($provider_data) :
         <button type="button" id="create-invoice">Gerar Invoice</button>
     </form>
     <script>
-    document.getElementById('create-invoice').addEventListener('click', function() {
-        var form = document.getElementById('invoice-form');
-        var data = new FormData(form);
-
-        fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
-            method: 'POST',
-            credentials: 'same-origin',
-            body: data
-        }).then(response => response.json()).then(data => {
-            if (data.success) {
-                alert('Invoice criada com sucesso!');
-                // Opcional: atualize a página ou ajuste a UI conforme necessário
-            } else {
-                alert('Erro: ' + data.data.message);
-            }
-        }).catch(error => console.error('Erro ao criar invoice:', error));
-    });
+        document.getElementById('create-invoice').addEventListener('click', function() {
+            var form = document.getElementById('invoice-form');
+            var data = new FormData(form);
+            fetch('<?php echo admin_url('admin-ajax.php'); ?>', {
+                method: 'POST',
+                credentials: 'same-origin',
+                body: data
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    alert('Invoice criada com sucesso!');
+                    // Opcional: atualize a página ou ajuste a UI conforme necessário
+                } else {
+                    alert('Erro: ' + data.data.message);
+                }
+            }).catch(error => console.error('Erro ao criar invoice:', error));
+        });
     </script>
 <?php else : ?>
     <p>Provider não encontrado.</p>
