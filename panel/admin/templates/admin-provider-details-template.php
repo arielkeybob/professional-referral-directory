@@ -1,6 +1,9 @@
 <?php
 defined('ABSPATH') or die('No script kiddies please!');
 
+$provider_id = isset($_GET['provider_id']) ? intval($_GET['provider_id']) : 0;
+$provider_data = get_provider_details($provider_id);
+
 if ($provider_data) :
     $unpaid_fees = get_provider_unpaid_fees_details($provider_data->ID);
     $invoices = get_provider_invoices($provider_data->ID);
@@ -35,7 +38,6 @@ if ($provider_data) :
         </tbody>
     </table>
 
-    <!-- Adicionando JavaScript para tornar as linhas clicáveis -->
     <script>
         document.querySelectorAll('table tr[data-id]').forEach(row => {
             row.addEventListener('click', () => {

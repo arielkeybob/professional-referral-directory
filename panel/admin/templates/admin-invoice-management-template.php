@@ -8,6 +8,7 @@ $is_edit_mode = !empty($invoice_id);
 $customer_name = $is_edit_mode ? $invoice_details->provider_name : '';
 $invoice_date = $is_edit_mode ? $invoice_details->invoice_date : date('Y-m-d');
 $total_amount = $is_edit_mode ? $invoice_details->total : 0.00;
+$is_paid = $is_edit_mode ? $invoice_details->is_paid : 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +29,12 @@ $total_amount = $is_edit_mode ? $invoice_details->total : 0.00;
     <input type="date" id="invoice_date" name="invoice_date" value="<?php echo esc_attr($invoice_date); ?>" required>
 
     <label for="total_amount">Total Amount:</label>
-    <input type="text" id="total_amount" name="total_amount" value="<?php echo esc_attr($total_amount); ?>" required>
+    <input type="text" id="total_amount" name="total_amount" value="<?php echo esc_attr(number_format($total_amount, 2)); ?>" required>
 
     <label for="paid_status">Paid:</label>
     <select id="paid_status" name="paid_status">
-        <option value="0" <?php echo !$invoice_details->is_paid ? 'selected' : ''; ?>>No</option>
-        <option value="1" <?php echo $invoice_details->is_paid ? 'selected' : ''; ?>>Yes</option>
+        <option value="0" <?php echo $is_paid == 0 ? 'selected' : ''; ?>>No</option>
+        <option value="1" <?php echo $is_paid == 1 ? 'selected' : ''; ?>>Yes</option>
     </select>
 
     <h3>Inquiries Linked</h3>
@@ -42,14 +43,16 @@ $total_amount = $is_edit_mode ? $invoice_details->total : 0.00;
             <tr>
                 <th>Inquiry ID</th>
                 <th>Service Type</th>
+                <th>Date</th>
                 <th>Amount</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach (get_invoice_items($invoice_id) as $item) : ?>
                 <tr>
-                    <td><?php echo esc_html($item->inquiry_id); ?></td>
+                    <td><?php echo esc_html($item->id); ?></td>
                     <td><?php echo esc_html($item->service_type); ?></td>
+                    <td><?php echo esc_html(date('Y-m-d', strtotime($item->inquiry_date))); ?></td>
                     <td><?php echo esc_html(number_format($item->amount, 2)); ?></td>
                 </tr>
             <?php endforeach; ?>
