@@ -5,9 +5,9 @@ require_once 'admin-provider-details-functions.php';
 
 function get_invoice_details($invoice_id) {
     global $wpdb;
-    // Consulta para buscar detalhes da fatura incluindo dados do provider
+    // Ajustando a consulta para incluir a coluna 'created_at'
     $query = $wpdb->prepare("
-        SELECT inv.*, usr.display_name as provider_name
+        SELECT inv.*, usr.display_name as provider_name, inv.created_at
         FROM {$wpdb->prefix}rhb_invoices inv
         JOIN {$wpdb->prefix}users usr ON inv.provider_id = usr.ID
         WHERE inv.invoice_id = %d", $invoice_id
@@ -15,6 +15,7 @@ function get_invoice_details($invoice_id) {
 
     return $wpdb->get_row($query);
 }
+
 
 function save_invoice($data) {
     global $wpdb;
@@ -43,14 +44,17 @@ function save_invoice($data) {
     return $invoice_id;
 }
 
-function get_invoice_items($invoice_id) {
-    global $wpdb;
-    $query = $wpdb->prepare("
-        SELECT id, service_type, inquiry_date, referral_fee_value_agreement_reached as amount
-        FROM {$wpdb->prefix}rhb_inquiry_data
-        WHERE invoice_id = %d", $invoice_id
-    );
 
+function get_linked_inquiries($invoice_id) {
+    global $wpdb;
+    // Corrigindo a consulta para somar as taxas corretamente
+    $query = $wpdb->prepare(
+        "SELECT iq.id, iq.service_type, iq.inquiry_date,
+        (iq.referral_fee_value_view + iq.referral_fee_value_agreement_reached) as amount
+        FROM {$wpdb->prefix}rhb_invoice_inquiries ii
+        JOIN {$wpdb->prefix}rhb_inquiry_data iq ON ii.inquiry_id = iq.id
+        WHERE ii.invoice_id = %d", $invoice_id
+    );
     return $wpdb->get_results($query);
 }
 
