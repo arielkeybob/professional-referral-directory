@@ -35,15 +35,20 @@ require_once plugin_dir_path(__FILE__) . 'panel/common/panel-general-customizati
 require_once plugin_dir_path(__FILE__) . 'panel/common/panel-top-bar-customizations.php';
 require_once plugin_dir_path(__FILE__) . 'panel/common/enqueue-panel.php';
 require_once plugin_dir_path(__FILE__) . 'panel/common/panel-notifications.php';
-require_once plugin_dir_path(__FILE__) . 'panel/common/panel-menus.php';
+require_once plugin_dir_path(__FILE__) . 'panel/common/common-menus.php';
+;
+
 
 // Inclusões específicas do admin
 require_once plugin_dir_path(__FILE__) . 'panel/admin/admin-provider-details-functions.php';
 require_once plugin_dir_path(__FILE__) . 'panel/admin/admin-referral-fees-page-functions.php';
 require_once plugin_dir_path(__FILE__) . 'panel/admin/admin-invoice-functions.php';
+require_once plugin_dir_path(__FILE__) . 'panel/admin/admin-menus.php';
+
 
 // Inclusões específicas do provedor
 require_once plugin_dir_path(__FILE__) . 'panel/provider/dashboard-service-provider-functions.php';
+require_once plugin_dir_path(__FILE__) . 'panel/provider/provider-menus.php';
 
 // Inclusões públicas
 require_once plugin_dir_path(__FILE__) . 'public/class-rhb-inquiry-form.php';
